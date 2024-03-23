@@ -1,7 +1,6 @@
 # compiled output
 /dist
 /node_modules
-/build
 
 # Logs
 logs
@@ -27,6 +26,7 @@ lerna-debug.log*
 *.launch
 .settings/
 *.sublime-workspace
+/.vs
 
 # IDE - VSCode
 .vscode/*
@@ -35,22 +35,30 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# dotenv environment variable files
-.env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
+# env
+.env*
+!.env.example
 
-# temp directory
-.temp
-.tmp
+# Config nginx
+*.conf.sample
+/ssl
 
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
+# Docs
+/compodoc
 
-# Diagnostic reports (https://nodejs.org/api/report.html)
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+# Uploads folder
+/uploads
+
+# Generated files
+generated/
+swagger.yaml
+asyncapi.yaml
+
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+.pnp.cjs
+.pnp.loader.mjs
