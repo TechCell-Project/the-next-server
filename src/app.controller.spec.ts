@@ -1,4 +1,4 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { TestBed } from '@automock/jest';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -6,12 +6,14 @@ describe('AppController', () => {
     let appController: AppController;
 
     beforeEach(async () => {
-        const app: TestingModule = await Test.createTestingModule({
-            controllers: [AppController],
-            providers: [AppService],
-        }).compile();
+        const { unit } = TestBed.create(AppController)
+            .mock(AppService)
+            .using({
+                getHello: () => 'Hello World!',
+            })
+            .compile();
 
-        appController = app.get<AppController>(AppController);
+        appController = unit;
     });
 
     describe('root', () => {
