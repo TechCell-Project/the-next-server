@@ -8,6 +8,10 @@
     },
     "moduleNameMapper": {
         "~/logger/(.*)": "<rootDir>/../libs/logger/src/$1",
-        "~/logger": "<rootDir>/../libs/logger/src"
+        "~/logger": "<rootDir>/../libs/logger/src",
+        "~/common/(.*)": "<rootDir>/../libs/common/src/$1",
+        "~/common": "<rootDir>/../libs/common/src",
+        "~/casl/(.*)": "<rootDir>/../libs/casl/src/$1",
+        "~/casl": "<rootDir>/../libs/casl/src"
     }
 }
