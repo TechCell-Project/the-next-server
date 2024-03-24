@@ -1,3 +1,4 @@
 {
-    "cSpell.words": ["pino"]
+    "cSpell.words": ["casl", "pino"],
+    "conventionalCommits.scopes": ["seed"]
 }
