@@ -1,7 +1,7 @@
 import { Logger, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import Redis, { RedisOptions } from 'ioredis';
-import { RedisCacheService, RedlockService } from './services';
+import { RedisService, RedlockService } from './services';
 import { RedisStateService } from './services/redis-state.service';
 import { CacheModule } from '@nestjs/cache-manager';
 import { redisStore } from 'cache-manager-ioredis-yet';
@@ -38,9 +38,9 @@ import { redisStore } from 'cache-manager-ioredis-yet';
             },
         },
         RedisStateService,
-        RedisCacheService,
+        RedisService,
         RedlockService,
     ],
-    exports: ['REDIS_CLIENT', RedisCacheService, RedlockService],
+    exports: ['REDIS_CLIENT', RedisService, RedlockService],
 })
 export class RedisModule {}

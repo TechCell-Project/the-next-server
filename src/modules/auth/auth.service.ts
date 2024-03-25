@@ -195,8 +195,19 @@ export class AuthService {
         };
     }
 
-    async logout(accessToken: string) {
-        await this.revokeTokens('access', accessToken);
+    async logout(hashAccessToken?: string) {
+        if (!hashAccessToken) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        token: 'invalidToken',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+        await this.revokeTokens('access', hashAccessToken);
     }
 
     async isTokenRevoked(tokenType: 'access' | 'refresh', sessionId: string) {
@@ -246,20 +257,16 @@ export class AuthService {
 
     private async revokeTokens(tokenType: 'access' | 'refresh', sessionId: string) {
         if (tokenType === 'access') {
-            await this.redisService.setExpire(
+            await this.redisService.set(
                 `${PREFIX_REVOKE_ACCESS_TOKEN}${sessionId}`,
-                convertTimeString(
-                    this.configService.getOrThrow('AUTH_JWT_TOKEN_EXPIRES_IN'),
-                    TimeUnitOutPut.SECOND,
-                ),
+                true,
+                convertTimeString(this.configService.getOrThrow('AUTH_JWT_TOKEN_EXPIRES_IN')),
             );
         } else if (tokenType === 'refresh') {
-            await this.redisService.setExpire(
+            await this.redisService.set(
                 `${PREFIX_REVOKE_REFRESH_TOKEN}${sessionId}`,
-                convertTimeString(
-                    this.configService.getOrThrow('AUTH_REFRESH_TOKEN_EXPIRES_IN'),
-                    TimeUnitOutPut.SECOND,
-                ),
+                true,
+                convertTimeString(this.configService.getOrThrow('AUTH_REFRESH_TOKEN_EXPIRES_IN')),
             );
         }
     }

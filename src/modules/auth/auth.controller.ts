@@ -1,8 +1,16 @@
-import { Controller, Post, HttpCode, HttpStatus, Body, SerializeOptions } from '@nestjs/common';
+import {
+    Controller,
+    Post,
+    HttpCode,
+    HttpStatus,
+    Body,
+    SerializeOptions,
+    Req,
+} from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { AuthSignupDto, AuthEmailLoginDto, LoginResponseDto } from './dtos';
-import { AuthProvider } from '../users/enums';
+import { AuthRoles } from './guards';
 
 @ApiTags('auth')
 @Controller({
@@ -25,5 +33,12 @@ export class AuthController {
     @ApiOkResponse({ type: LoginResponseDto })
     public login(@Body() loginDto: AuthEmailLoginDto): Promise<LoginResponseDto> {
         return this.authService.validateLogin(loginDto);
+    }
+
+    @AuthRoles()
+    @HttpCode(HttpStatus.NO_CONTENT)
+    @Post('logout')
+    public async logout(@Req() req: { user: { hash?: string } }) {
+        return this.authService.logout(req.user?.hash);
     }
 }
