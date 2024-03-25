@@ -5,9 +5,10 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { UsersModule } from '../users';
 import { JwtStrategy, AnonymousStrategy } from './strategies';
+import { RedisModule } from '~/common/redis';
 
 @Module({
-    imports: [JwtModule.register({}), PassportModule, UsersModule],
+    imports: [JwtModule.register({}), PassportModule, UsersModule, RedisModule],
     controllers: [AuthController],
     providers: [AuthService, AnonymousStrategy, JwtStrategy],
     exports: [AuthService],

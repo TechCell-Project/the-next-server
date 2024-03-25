@@ -13,7 +13,9 @@ import * as crypto from 'crypto';
 import { v4 as uuid } from 'uuid';
 import * as bcrypt from 'bcryptjs';
 import { AuthEmailLoginDto, LoginResponseDto } from './dtos';
-import { convertTimeString } from 'convert-time-string';
+import { TimeUnitOutPut, convertTimeString } from 'convert-time-string';
+import { RedisService } from '~/common/redis';
+import { PREFIX_REVOKE_ACCESS_TOKEN, PREFIX_REVOKE_REFRESH_TOKEN } from './auth.constant';
 
 @Injectable()
 export class AuthService {
@@ -23,6 +25,7 @@ export class AuthService {
         private readonly jwtService: JwtService,
         private readonly usersService: UsersService,
         // private mailService: MailService,
+        private readonly redisService: RedisService,
     ) {}
 
     async register(dto: AuthSignupDto): Promise<void> {
@@ -114,7 +117,7 @@ export class AuthService {
         // });
 
         const { accessToken, refreshToken, accessTokenExpires } = await this.getTokensData({
-            id: user._id,
+            userId: user._id,
             role: user.role,
             hash,
         });
@@ -179,7 +182,7 @@ export class AuthService {
             .digest('hex');
 
         const { accessToken, refreshToken, accessTokenExpires } = await this.getTokensData({
-            id: user._id,
+            userId: user._id,
             role: user.role,
             hash,
         });
@@ -192,16 +195,29 @@ export class AuthService {
         };
     }
 
-    private async getTokensData(data: { id: User['_id']; role: User['role']; hash: string }) {
+    async logout(accessToken: string) {
+        await this.revokeTokens('access', accessToken);
+    }
+
+    async isTokenRevoked(tokenType: 'access' | 'refresh', sessionId: string) {
+        if (tokenType === 'access') {
+            return !!(await this.redisService.get(`${PREFIX_REVOKE_ACCESS_TOKEN}${sessionId}`));
+        } else if (tokenType === 'refresh') {
+            return !!(await this.redisService.get(`${PREFIX_REVOKE_REFRESH_TOKEN}${sessionId}`));
+        }
+        return false;
+    }
+
+    private async getTokensData(data: { userId: User['_id']; role: User['role']; hash: string }) {
         const accessTokenExpiresIn = this.configService.getOrThrow('AUTH_JWT_TOKEN_EXPIRES_IN');
         const accessTokenExpires: number = Date.now() + convertTimeString(accessTokenExpiresIn);
 
         const [accessToken, refreshToken] = await Promise.all([
             await this.jwtService.signAsync(
                 {
-                    id: data.id,
+                    userId: data.userId,
                     role: data.role,
-                    sessionId: data.hash,
+                    hash: data.hash,
                 },
                 {
                     secret: this.configService.getOrThrow('AUTH_JWT_SECRET'),
@@ -210,7 +226,8 @@ export class AuthService {
             ),
             await this.jwtService.signAsync(
                 {
-                    sessionId: data.hash,
+                    userId: data.userId,
+                    role: data.role,
                     hash: data.hash,
                 },
                 {
@@ -225,5 +242,25 @@ export class AuthService {
             refreshToken,
             accessTokenExpires,
         };
+    }
+
+    private async revokeTokens(tokenType: 'access' | 'refresh', sessionId: string) {
+        if (tokenType === 'access') {
+            await this.redisService.setExpire(
+                `${PREFIX_REVOKE_ACCESS_TOKEN}${sessionId}`,
+                convertTimeString(
+                    this.configService.getOrThrow('AUTH_JWT_TOKEN_EXPIRES_IN'),
+                    TimeUnitOutPut.SECOND,
+                ),
+            );
+        } else if (tokenType === 'refresh') {
+            await this.redisService.setExpire(
+                `${PREFIX_REVOKE_REFRESH_TOKEN}${sessionId}`,
+                convertTimeString(
+                    this.configService.getOrThrow('AUTH_REFRESH_TOKEN_EXPIRES_IN'),
+                    TimeUnitOutPut.SECOND,
+                ),
+            );
+        }
     }
 }
