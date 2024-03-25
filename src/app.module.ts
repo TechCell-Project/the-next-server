@@ -6,9 +6,19 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './modules/users';
 import { AuthModule } from './modules/auth';
+import { AuthGoogleModule } from './modules/auth-google';
+import { AuthFacebookModule } from './modules/auth-facebook';
 
 @Module({
-    imports: [AppConfigModule, RedisModule, LoggerModule, AuthModule, UsersModule],
+    imports: [
+        AppConfigModule,
+        RedisModule,
+        LoggerModule,
+        AuthModule,
+        AuthGoogleModule,
+        AuthFacebookModule,
+        UsersModule,
+    ],
     controllers: [AppController],
     providers: [AppService],
 })
