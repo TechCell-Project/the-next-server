@@ -13,9 +13,11 @@ import * as crypto from 'crypto';
 import { v4 as uuid } from 'uuid';
 import * as bcrypt from 'bcryptjs';
 import { AuthEmailLoginDto, LoginResponseDto } from './dtos';
-import { TimeUnitOutPut, convertTimeString } from 'convert-time-string';
+import { convertTimeString } from 'convert-time-string';
 import { RedisService } from '~/common/redis';
 import { PREFIX_REVOKE_ACCESS_TOKEN, PREFIX_REVOKE_REFRESH_TOKEN } from './auth.constant';
+import { JwtPayloadType, JwtRefreshPayloadType } from './strategies/types';
+import { Session, SessionService } from '~/modules/session';
 
 @Injectable()
 export class AuthService {
@@ -26,6 +28,7 @@ export class AuthService {
         private readonly usersService: UsersService,
         // private mailService: MailService,
         private readonly redisService: RedisService,
+        private readonly sessionService: SessionService,
     ) {}
 
     async register(dto: AuthSignupDto): Promise<void> {
@@ -53,6 +56,7 @@ export class AuthService {
         //     },
         // });
     }
+
     async validateLogin(loginDto: AuthEmailLoginDto): Promise<LoginResponseDto> {
         const user = await this.usersService.findByEmail(loginDto.email);
 
@@ -111,15 +115,17 @@ export class AuthService {
             .update(faker.string.alphanumeric(18))
             .digest('hex');
 
-        // const session = await this.sessionService.create({
-        //     user,
-        //     hash,
-        // });
+        const session = await this.sessionService.create({
+            user,
+            hash,
+        });
 
+        console.log(session._id);
         const { accessToken, refreshToken, accessTokenExpires } = await this.getTokensData({
             userId: user._id,
             role: user.role,
             hash,
+            sessionId: session._id,
         });
 
         return {
@@ -181,10 +187,16 @@ export class AuthService {
             .update(faker.string.alphanumeric(18))
             .digest('hex');
 
+        const session = await this.sessionService.create({
+            user,
+            hash,
+        });
+
         const { accessToken, refreshToken, accessTokenExpires } = await this.getTokensData({
             userId: user._id,
             role: user.role,
             hash,
+            sessionId: session._id,
         });
 
         return {
@@ -195,19 +207,10 @@ export class AuthService {
         };
     }
 
-    async logout(hashAccessToken?: string) {
-        if (!hashAccessToken) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        token: 'invalidToken',
-                    },
-                },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
-        }
-        await this.revokeTokens('access', hashAccessToken);
+    async logout(data: Pick<JwtRefreshPayloadType, 'sessionId'>) {
+        return this.sessionService.softDelete({
+            id: data.sessionId,
+        });
     }
 
     async isTokenRevoked(tokenType: 'access' | 'refresh', sessionId: string) {
@@ -223,17 +226,72 @@ export class AuthService {
         return this.usersService.findById(userId);
     }
 
-    private async getTokensData(data: { userId: User['_id']; role: User['role']; hash: string }) {
+    async refreshToken(data: JwtRefreshPayloadType): Promise<Omit<LoginResponseDto, 'user'>> {
+        const session = await this.sessionService.findOne({
+            _id: data.sessionId,
+        });
+
+        if (!session || session.hash !== data.hash) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNAUTHORIZED,
+                    errors: {
+                        token: 'tokenDataDoesNotMatch',
+                    },
+                },
+                HttpStatus.UNAUTHORIZED,
+            );
+        }
+
+        const hash = crypto
+            .createHash('sha256')
+            .update(faker.string.alphanumeric(18))
+            .digest('hex');
+
+        const user = await this.usersService.findById(session.user._id);
+
+        if (!user) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNAUTHORIZED,
+                    errors: {
+                        user: 'userNotFound',
+                    },
+                },
+                HttpStatus.UNAUTHORIZED,
+            );
+        }
+
+        await this.sessionService.update(session._id, {
+            hash,
+        });
+
+        const { accessToken, refreshToken, accessTokenExpires } = await this.getTokensData({
+            userId: session.user._id,
+            role: user.role,
+            sessionId: session._id,
+            hash,
+        });
+
+        return { accessToken, refreshToken, accessTokenExpires };
+    }
+
+    private async getTokensData(data: {
+        userId: User['_id'];
+        role: User['role'];
+        sessionId: Session['_id'];
+        hash: Session['hash'];
+    }) {
         const accessTokenExpiresIn = this.configService.getOrThrow('AUTH_JWT_TOKEN_EXPIRES_IN');
         const accessTokenExpires: number = Date.now() + convertTimeString(accessTokenExpiresIn);
 
         const [accessToken, refreshToken] = await Promise.all([
             await this.jwtService.signAsync(
                 {
-                    userId: data.userId,
+                    userId: data.userId.toString(),
                     role: data.role,
-                    hash: data.hash,
-                },
+                    sessionId: data.sessionId,
+                } as Omit<JwtPayloadType, 'iat' | 'exp'>,
                 {
                     secret: this.configService.getOrThrow('AUTH_JWT_SECRET'),
                     expiresIn: accessTokenExpiresIn,
@@ -241,10 +299,9 @@ export class AuthService {
             ),
             await this.jwtService.signAsync(
                 {
-                    userId: data.userId,
-                    role: data.role,
+                    sessionId: data.sessionId,
                     hash: data.hash,
-                },
+                } as Omit<JwtRefreshPayloadType, 'iat' | 'exp'>,
                 {
                     secret: this.configService.getOrThrow('AUTH_REFRESH_SECRET'),
                     expiresIn: this.configService.getOrThrow('AUTH_REFRESH_TOKEN_EXPIRES_IN'),
