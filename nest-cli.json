@@ -15,6 +15,24 @@
             "compilerOptions": {
                 "tsConfigPath": "libs/logger/tsconfig.lib.json"
             }
+        },
+        "common": {
+            "type": "library",
+            "root": "libs/common",
+            "entryFile": "index",
+            "sourceRoot": "libs/common/src",
+            "compilerOptions": {
+                "tsConfigPath": "libs/common/tsconfig.lib.json"
+            }
+        },
+        "casl": {
+            "type": "library",
+            "root": "libs/casl",
+            "entryFile": "index",
+            "sourceRoot": "libs/casl/src",
+            "compilerOptions": {
+                "tsConfigPath": "libs/casl/tsconfig.lib.json"
+            }
         }
     }
 }

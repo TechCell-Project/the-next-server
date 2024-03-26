@@ -18,8 +18,14 @@
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
         "paths": {
+            "~/modules": ["src/modules"],
+            "~/modules/*": ["src/modules/*"],
             "~/logger": ["libs/logger/src"],
-            "~/logger/*": ["libs/logger/src/*"]
+            "~/logger/*": ["libs/logger/src/*"],
+            "~/common": ["libs/common/src"],
+            "~/common/*": ["libs/common/src/*"],
+            "~/casl": ["libs/casl/src"],
+            "~/casl/*": ["libs/casl/src/*"]
         }
     }
 }
