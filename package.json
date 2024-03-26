@@ -114,5 +114,6 @@
             "^~/common(|/.*)$": "<rootDir>/libs/common/src/$1",
             "^~/casl(|/.*)$": "<rootDir>/libs/casl/src/$1"
         }
-    }
+    },
+    "packageManager": "yarn@4.1.0"
 }
