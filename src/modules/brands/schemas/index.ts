@@ -1,1 +1,1 @@
-export * from './brands.schema';
+export * from './brand.schema';

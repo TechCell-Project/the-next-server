@@ -14,22 +14,22 @@ import { BrandStatus } from '../enums';
 export class Brand extends AbstractDocument {
     @ApiProperty({ example: 'apple' })
     @Factory(() => uuid())
-    @Prop({ unique: true, required: true })
+    @Prop({ unique: true, required: true, type: String })
     slug: string;
 
     @ApiProperty({ example: 'Apple' })
     @Factory((faker: Faker) => faker.company.name())
-    @Prop({ required: true })
+    @Prop({ required: true, type: String })
     name: string;
 
     @ApiProperty({ example: 'Apple Inc.' })
     @Factory((faker: Faker) => faker.company.catchPhrase())
-    @Prop({ required: false, default: '' })
+    @Prop({ required: false, default: '', type: String })
     description: string;
 
     @ApiProperty({ example: BrandStatus.Active, enum: BrandStatus })
     @Factory((faker: Faker) => faker.helpers.enumValue(BrandStatus))
-    @Prop({ required: true, default: BrandStatus.Active })
+    @Prop({ required: true, default: BrandStatus.Active, type: String })
     status: string;
 }
 
