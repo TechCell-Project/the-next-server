@@ -1,4 +1,4 @@
 {
     "cSpell.words": ["casl", "pino", "Redlock", "virtuals"],
-    "conventionalCommits.scopes": ["seed", "lib/common", "auth"]
+    "conventionalCommits.scopes": ["seed", "lib/common", "auth", "main", "deps"]
 }
