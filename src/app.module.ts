@@ -8,6 +8,9 @@ import { UsersModule } from './modules/users';
 import { AuthModule } from './modules/auth';
 import { AuthGoogleModule } from './modules/auth-google';
 import { AuthFacebookModule } from './modules/auth-facebook';
+import { ProductModelsModule } from './modules/product-models/product-models.module';
+import { AttributesModule } from './modules/attributes/attributes.module';
+import { BrandsModule } from './modules/brands/brands.module';
 
 @Module({
     imports: [
@@ -18,6 +21,9 @@ import { AuthFacebookModule } from './modules/auth-facebook';
         AuthGoogleModule,
         AuthFacebookModule,
         UsersModule,
+        BrandsModule,
+        ProductModelsModule,
+        AttributesModule,
     ],
     controllers: [AppController],
     providers: [AppService],
