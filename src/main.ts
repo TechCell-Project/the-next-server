@@ -12,6 +12,7 @@ import {
     SwaggerModule,
 } from '@nestjs/swagger';
 import { ResolvePromisesInterceptor } from '~/common/utils';
+import * as swaggerStats from 'swagger-stats';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, { bufferLogs: true });
@@ -61,8 +62,31 @@ async function bootstrap() {
     };
     SwaggerModule.setup('docs', app, document, swaggerCustomOptions);
 
+    // Use swagger-stats to generate statistics
+    app.use(
+        swaggerStats.getMiddleware({
+            uriPath: '/api-stats',
+            swaggerSpec: document,
+            name: 'TechCell API statistics',
+            hostname: 'api.techcell.cloud',
+            timelineBucketDuration: 180000,
+            authentication: true,
+            onAuthenticate(req, username, password) {
+                if (
+                    username !== configService.getOrThrow<string>('API_STATS_USERNAME') &&
+                    password !== configService.getOrThrow<string>('API_STATS_PASSWORD')
+                ) {
+                    return false;
+                }
+
+                return true;
+            },
+        }),
+    );
+
     await app.listen(configService.getOrThrow('API_PORT')).then(() => {
         logger.log(`API live: http://localhost:${configService.getOrThrow('API_PORT')}`);
+        logger.log(`API stats: http://localhost:${configService.getOrThrow('API_PORT')}/api-stats`);
         logger.log(`API Docs: http://localhost:${configService.getOrThrow('API_PORT')}/docs`);
     });
 }
