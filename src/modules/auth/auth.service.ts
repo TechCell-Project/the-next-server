@@ -219,6 +219,10 @@ export class AuthService {
         return false;
     }
 
+    async me(userId: User['_id'] | string) {
+        return this.usersService.findById(userId);
+    }
+
     private async getTokensData(data: { userId: User['_id']; role: User['role']; hash: string }) {
         const accessTokenExpiresIn = this.configService.getOrThrow('AUTH_JWT_TOKEN_EXPIRES_IN');
         const accessTokenExpires: number = Date.now() + convertTimeString(accessTokenExpiresIn);

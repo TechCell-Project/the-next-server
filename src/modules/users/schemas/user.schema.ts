@@ -8,6 +8,8 @@ import { AuthProvider, UserRole } from '../enums';
 import { AvatarSchema } from './avatar.schema';
 import { UserAddressSchema } from './address.schema';
 import { UserBlockSchema } from './block.schema';
+import { NullableType } from '~/common';
+import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -16,18 +18,38 @@ export type UserDocument = HydratedDocument<User>;
     collection: 'users',
 })
 export class User extends AbstractDocument {
+    constructor(data?: NullableType<User>) {
+        super();
+        Object.assign(this, data);
+    }
+
+    @ApiProperty({
+        example: 'example@techcell.cloud',
+    })
     @Factory((faker: Faker) => faker.internet.email({ provider: 'techcell.cloud' }))
     @Prop({ unique: true, required: true })
     email: string;
 
+    @ApiProperty({
+        example: true,
+    })
     @Factory((faker: Faker) => faker.datatype.boolean())
     @Prop({ default: false })
     emailVerified: boolean;
 
+    @ApiProperty({
+        example: AuthProvider.Email,
+        enum: AuthProvider,
+        type: String,
+    })
     @Factory((faker: Faker) => faker.helpers.enumValue(AuthProvider))
     @Prop({ required: true, type: String, enum: AuthProvider, default: AuthProvider.Email })
     provider: string;
 
+    @ApiPropertyOptional({
+        example: '12345',
+        type: String,
+    })
     @Factory(() => null)
     @Expose({ groups: ['me', 'manager'], toPlainOnly: true })
     @Prop({
@@ -36,29 +58,43 @@ export class User extends AbstractDocument {
     })
     socialId?: string | null;
 
+    @ApiHideProperty()
     @Exclude({ toPlainOnly: true })
     @Factory((faker: Faker) => faker.internet.password())
     @Prop({ required: true })
     password: string;
 
+    @ApiProperty({
+        example: 'John',
+    })
     @Factory((faker: Faker) => faker.person.firstName())
     @Prop({
         type: String,
     })
     firstName: string;
 
+    @ApiProperty({
+        example: 'Doe',
+    })
     @Factory((faker: Faker) => faker.person.lastName())
     @Prop({
         type: String,
     })
     lastName: string;
 
+    @ApiProperty({
+        example: 'john.doe',
+    })
     @Factory((faker: Faker, ctx) =>
         faker.internet.userName({ firstName: ctx?.firstName, lastName: ctx?.lastName }),
     )
     @Prop({ required: true, unique: true })
     userName: string;
 
+    @ApiProperty({
+        example: UserRole.Customer,
+        enum: UserRole,
+    })
     @Factory((faker: Faker) =>
         faker.helpers.arrayElement([
             UserRole.Accountant,
@@ -71,12 +107,21 @@ export class User extends AbstractDocument {
     @Prop({ type: String, enum: UserRole, required: true })
     role: string;
 
+    @ApiPropertyOptional({
+        type: AvatarSchema,
+    })
     @Prop({ type: AvatarSchema })
     avatar?: AvatarSchema;
 
+    @ApiPropertyOptional({
+        type: UserAddressSchema,
+    })
     @Prop({ type: [UserAddressSchema], default: [] })
     address?: UserAddressSchema[];
 
+    @ApiPropertyOptional({
+        type: UserBlockSchema,
+    })
     @Expose({ groups: [UserRole.Manager], toPlainOnly: true })
     @Prop({ type: UserBlockSchema, default: {} })
     block?: UserBlockSchema;

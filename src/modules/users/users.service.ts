@@ -74,56 +74,45 @@ export class UsersService {
             );
         }
 
-        // if (clonedPayload.status?.id) {
-        //     const statusObject = Object.values(StatusEnum).includes(clonedPayload.status.id);
-        //     if (!statusObject) {
-        //         throw new HttpException(
-        //             {
-        //                 status: HttpStatus.UNPROCESSABLE_ENTITY,
-        //                 errors: {
-        //                     status: 'statusNotExists',
-        //                 },
-        //             },
-        //             HttpStatus.UNPROCESSABLE_ENTITY,
-        //         );
-        //     }
-        // }
-
-        return this.usersRepository.create({
+        const userCreated = await this.usersRepository.create({
             document: clonedPayload,
         });
+        return new User(userCreated);
     }
 
     async findByEmail(email: string): Promise<NullableType<User>> {
-        return this.usersRepository.findOne({
+        const user = await this.usersRepository.findOne({
             filterQuery: {
                 email,
             },
         });
+        return new User(user);
     }
 
     async findById(id: string | Types.ObjectId): Promise<NullableType<User>> {
-        return this.usersRepository.findOne({
+        const user = await this.usersRepository.findOne({
             filterQuery: {
                 _id: convertToObjectId(id),
             },
         });
+        return new User(user);
     }
 
     async findBySocial(socialId: string, provider: AuthProvider): Promise<NullableType<User>> {
-        return this.usersRepository.findOne({
+        const user = await this.usersRepository.findOne({
             filterQuery: {
                 socialId,
                 provider,
             },
         });
+        return new User(user);
     }
 
     async update(
         userId: string | Types.ObjectId,
         payload: Partial<User>,
     ): Promise<NullableType<User>> {
-        return this.usersRepository.findOneAndUpdate({
+        const user = await this.usersRepository.findOneAndUpdate({
             filterQuery: {
                 _id: convertToObjectId(userId),
             },
@@ -131,5 +120,6 @@ export class UsersService {
                 ...payload,
             },
         });
+        return new User(user);
     }
 }

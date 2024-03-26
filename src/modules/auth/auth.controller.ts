@@ -6,8 +6,11 @@ import {
     Body,
     SerializeOptions,
     Req,
+    Get,
 } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { NullableType } from '~/common/types';
+import { User } from '~/modules/users';
 import { AuthService } from './auth.service';
 import { AuthSignupDto, AuthEmailLoginDto, LoginResponseDto } from './dtos';
 import { AuthRoles } from './guards';
@@ -40,5 +43,18 @@ export class AuthController {
     @Post('logout')
     public async logout(@Req() req: { user: { hash?: string } }) {
         return this.authService.logout(req.user?.hash);
+    }
+
+    @AuthRoles()
+    @SerializeOptions({
+        groups: ['me'],
+    })
+    @Get('me')
+    @HttpCode(HttpStatus.OK)
+    @ApiOkResponse({
+        type: User,
+    })
+    public me(@Req() request: { user: { userId: string } }): Promise<NullableType<User>> {
+        return this.authService.me(request.user.userId);
     }
 }

@@ -1,11 +1,17 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from 'nestjs-pino';
 import helmet from 'helmet';
 import { ConfigService } from '@nestjs/config';
-import { ValidationPipe } from '@nestjs/common';
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import validationOptions from '~/common/utils/validation-options';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import {
+    DocumentBuilder,
+    SwaggerCustomOptions,
+    SwaggerDocumentOptions,
+    SwaggerModule,
+} from '@nestjs/swagger';
+import { ResolvePromisesInterceptor } from '~/common/utils';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, { bufferLogs: true });
@@ -19,16 +25,41 @@ async function bootstrap() {
         exclude: ['/'],
     });
     app.useGlobalPipes(new ValidationPipe(validationOptions));
+    app.useGlobalInterceptors(
+        // ResolvePromisesInterceptor is used to resolve promises in responses because class-transformer can't do it
+        // https://github.com/typestack/class-transformer/issues/549
+        new ResolvePromisesInterceptor(),
+        new ClassSerializerInterceptor(app.get(Reflector)),
+    );
 
-    const options = new DocumentBuilder()
-        .setTitle('API')
-        .setDescription('API docs')
+    const swaggerDocumentConfig = new DocumentBuilder()
+        .setTitle('TechCell RESTful API Documentations')
+        .setContact('TechCell Teams', 'https://techcell.cloud', 'teams@techcell.cloud')
+        .setDescription('The documentations of the TechCell RESTful API')
         .setVersion('1.0')
+        .setLicense(
+            'MIT LICENSE',
+            'https://github.com/TechCell-Project/the-next-server?tab=MIT-1-ov-file',
+        )
+        .setExternalDoc('TechCell Github', 'https://github.com/TechCell-Project/the-next-server')
+        .addServer('https://api.techcell.cloud')
+        .addServer('http://localhost:8000')
         .addBearerAuth()
         .build();
 
-    const document = SwaggerModule.createDocument(app, options);
-    SwaggerModule.setup('docs', app, document);
+    const swaggerDocumentOptions: SwaggerDocumentOptions = {
+        // re-define the url for each method in controller
+        operationIdFactory: (controllerKey: string, methodKey: string) => methodKey,
+    };
+    const document = SwaggerModule.createDocument(
+        app,
+        swaggerDocumentConfig,
+        swaggerDocumentOptions,
+    );
+    const swaggerCustomOptions: SwaggerCustomOptions = {
+        customSiteTitle: 'TechCell RESTful API documentations',
+    };
+    SwaggerModule.setup('docs', app, document, swaggerCustomOptions);
 
     await app.listen(configService.getOrThrow('API_PORT')).then(() => {
         logger.log(`API live: http://localhost:${configService.getOrThrow('API_PORT')}`);
