@@ -22,7 +22,6 @@ export class AuthFacebookService {
                 resolve(response);
             });
         });
-        console.log(data);
 
         return {
             id: data.id,

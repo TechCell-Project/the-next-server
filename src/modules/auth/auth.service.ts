@@ -120,7 +120,6 @@ export class AuthService {
             hash,
         });
 
-        console.log(session._id);
         const { accessToken, refreshToken, accessTokenExpires } = await this.getTokensData({
             userId: user._id,
             role: user.role,
