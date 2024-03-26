@@ -4,7 +4,7 @@ import { Factory } from 'nestjs-seeder';
 import { AbstractDocument } from '~/common/abstract';
 import { v4 as uuid } from 'uuid';
 import { Faker } from '@faker-js/faker';
-import { AttributeSchema } from './attribute.shema';
+import { AttributeSchema } from './attribute.schema';
 import { HydratedDocument } from 'mongoose';
 
 @Schema({
