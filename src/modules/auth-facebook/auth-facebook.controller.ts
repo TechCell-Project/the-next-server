@@ -6,7 +6,7 @@ import { AuthFacebookLoginDto } from './dto/auth-facebook-login.dto';
 import { AuthProvider } from '../users/enums';
 import { LoginResponseDto } from '../auth/dtos';
 
-@ApiTags('Auth')
+@ApiTags('auth')
 @Controller({
     path: 'auth/facebook',
     version: '1',
