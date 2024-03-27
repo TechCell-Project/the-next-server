@@ -158,7 +158,7 @@ jobs:
 
             - name: Run the web server and generate the OpenAPI YAML
               run: |
-                  yarn start api &
+                  yarn start &
                   sleep 25 &&
                   node ./scripts/get-swagger-yaml.js
 
