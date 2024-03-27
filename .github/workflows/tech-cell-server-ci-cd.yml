@@ -274,8 +274,8 @@ jobs:
             - name: Build and push images
               id: build_and_push
               run: |
-                  docker compose -f docker-compose.yml build
-                  docker compose -f docker-compose.yml push
+                  docker compose -f docker-compose.yaml build
+                  docker compose -f docker-compose.yaml push
 
             - name: Overwrite .env file for latest tag
               run: |
@@ -285,8 +285,8 @@ jobs:
             - name: Build and push images with latest tag
               id: build_and_push_latest
               run: |
-                  docker compose -f docker-compose.yml build
-                  docker compose -f docker-compose.yml push
+                  docker compose -f docker-compose.yaml build
+                  docker compose -f docker-compose.yaml push
 
             - name: Remove .env file
               run: |
@@ -374,17 +374,17 @@ jobs:
 
                       echo "COMPOSE_TAG=${{ steps.set_short_sha.outputs.SHORT_SHA }}" >> .env || { echo "Failed to set COMPOSE_TAG"; exit 1; }
 
-                      docker compose -f ./docker-compose.yml pull || { echo "Failed to pull production"; exit 1; }
+                      docker compose -f ./docker-compose.yaml pull || { echo "Failed to pull production"; exit 1; }
 
-                      if docker compose -f ./docker-compose.yml up -d; then
+                      if docker compose -f ./docker-compose.yaml up -d; then
                           echo "Deployment successful saving new version to artifact: ${{ steps.set_short_sha.outputs.SHORT_SHA }}"
                       else
                           echo "Deployment failed, rolling back to previous version"
                           if [ -n "${{steps.extract_artifact.outputs.last_deployed_sha}}" ]; then
                               echo "COMPOSE_TAG=${{steps.extract_artifact.outputs.last_deployed_sha}}" >> .env || { echo "Failed to set COMPOSE_TAG"; exit 1; }
                               echo "Rolling back to previous version: ${{steps.extract_artifact.outputs.last_deployed_sha}}"
-                              docker compose -f ./docker-compose.yml pull || { echo "Failed to pull previous production"; exit 1; }
-                              docker compose -f ./docker-compose.yml up -d || { echo "Failed to up previous production"; exit 1; }
+                              docker compose -f ./docker-compose.yaml pull || { echo "Failed to pull previous production"; exit 1; }
+                              docker compose -f ./docker-compose.yaml up -d || { echo "Failed to up previous production"; exit 1; }
                           else
                               echo "No previous version found, rollback failed"
                               exit 1
@@ -400,7 +400,7 @@ jobs:
                   echo "${{ secrets.SERVER_SSH_KEY }}" > ssh_key
                   chmod 600 ssh_key
 
-                  DEPLOYED_SHA_FULL=$(ssh -i ssh_key -o StrictHostKeyChecking=no ${{ secrets.SERVER_SSH_USERNAME }}@${{ secrets.SERVER_SSH_HOST }} "docker compose -f ${{ steps.set_repo_dir.outputs.repo_dir_on_server}}/docker-compose.prod.yml images | grep lehuygiang28/techcell_api")
+                  DEPLOYED_SHA_FULL=$(ssh -i ssh_key -o StrictHostKeyChecking=no ${{ secrets.SERVER_SSH_USERNAME }}@${{ secrets.SERVER_SSH_HOST }} "docker compose -f ${{ steps.set_repo_dir.outputs.repo_dir_on_server}}/docker-compose.yaml images | grep lehuygiang28/the_next_tech_cell")
                   DEPLOYED_SHA=$(echo $DEPLOYED_SHA_FULL | awk '{print $(NF-2)}')
 
                   echo "DEPLOYED_SHA=$DEPLOYED_SHA" >> $GITHUB_ENV
