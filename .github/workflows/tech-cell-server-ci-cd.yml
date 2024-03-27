@@ -160,7 +160,7 @@ jobs:
               run: |
                   yarn start api &
                   sleep 25 &&
-                  yarn generate:swagger-yaml
+                  node ./scripts/get-swagger-yaml.js
 
             - name: Config git global
               run: |
