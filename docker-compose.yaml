@@ -39,3 +39,5 @@ networks:
 volumes:
     the_next_tech_cell_data:
         driver: local
+    redis_data:
+        driver: local
