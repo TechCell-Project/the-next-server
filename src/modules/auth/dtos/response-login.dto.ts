@@ -2,13 +2,13 @@ import { ApiProperty } from '@nestjs/swagger';
 import { User } from '~/modules/users';
 
 export class LoginResponseDto {
-    @ApiProperty()
+    @ApiProperty({ example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' })
     accessToken: string;
 
-    @ApiProperty()
+    @ApiProperty({ example: 3600 })
     accessTokenExpires: number;
 
-    @ApiProperty()
+    @ApiProperty({ example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' })
     refreshToken: string;
 
     @ApiProperty({ type: User })
