@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+    mongodb:
+        container_name: mongodb
+        hostname: mongodb
+        image: docker.io/bitnami/mongodb:7.0
+        environment:
+            - MONGODB_PORT_NUMBER=${MONGODB_PORT:-27017}
+            - MONGODB_ROOT_USER=${MONGODB_USERNAME}
+            - MONGODB_ROOT_PASSWORD=${MONGODB_PASSWORD}
+        ports:
+            - '${MONGODB_PORT:-27017}:${MONGODB_PORT:-27017}'
+        volumes:
+            - 'mongodb_data:/bitnami/mongodb'
+        networks:
+            - the_next_techcell_backend
+
+    redis:
+        container_name: redis
+        hostname: redis
+        image: docker.io/bitnami/redis:7.2
+        environment:
+            - REDIS_PASSWORD=${REDIS_PASSWORD}
+            - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+            - REDIS_PORT_NUMBER=${REDIS_PORT:-6379}
+        ports:
+            - ${REDIS_PORT:-6379}:${REDIS_PORT:-6379}
+        volumes:
+            - 'redis_data:/bitnami/redis/data'
+        networks:
+            - the_next_techcell_backend
+        restart: unless-stopped
+
+networks:
+    the_next_techcell_backend:
+        driver: bridge
+
+volumes:
+    mongodb_data:
+        driver: local
+    redis_data:
+        driver: local
