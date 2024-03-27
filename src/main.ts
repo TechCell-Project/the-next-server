@@ -13,6 +13,7 @@ import {
 } from '@nestjs/swagger';
 import { ResolvePromisesInterceptor } from '~/common/utils';
 import * as swaggerStats from 'swagger-stats';
+import { SwaggerTheme, SwaggerThemeNameEnum } from 'swagger-themes';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, { bufferLogs: true });
@@ -60,6 +61,7 @@ async function bootstrap() {
     );
     const swaggerCustomOptions: SwaggerCustomOptions = {
         customSiteTitle: 'TechCell RESTful API documentations',
+        customCss: new SwaggerTheme().getBuffer(SwaggerThemeNameEnum.NORD_DARK),
     };
     SwaggerModule.setup('docs', app, document, swaggerCustomOptions);
 
