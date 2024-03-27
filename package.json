@@ -23,8 +23,10 @@
         "test:e2e": "jest --config ./test/jest-e2e.json",
         "seed": "nest start --entryFile seeder",
         "seed:refresh": "nest start --entryFile seeder --refresh",
-        "compose:up": "docker compose -f docker-compose.yml up -d",
-        "compose:up:ssl": "docker compose -f docker-compose.ssl.yml up -d"
+        "compose:up": "docker compose -f docker-compose.yaml up -d",
+        "compose:down": "docker compose -f docker-compose.yaml down",
+        "compose:up:ssl": "docker compose -f docker-compose.ssl.yaml up -d",
+        "compose:down:ssl": "docker compose -f docker-compose.ssl.yaml down"
     },
     "dependencies": {
         "@casl/ability": "^6.7.0",
