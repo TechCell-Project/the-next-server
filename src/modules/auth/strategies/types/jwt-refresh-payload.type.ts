@@ -1,7 +1,7 @@
-import { User } from 'src/modules/users';
 import { Session } from '~/modules/session';
+import { User } from '~/modules/users';
 
-export type JwtPayloadType = Pick<User, 'role'> & {
+export type JwtRefreshPayloadType = Pick<User, 'role'> & {
     userId: string;
     sessionId: Session['_id'];
     hash: Session['hash'];
