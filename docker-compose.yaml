@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+    api:
+        container_name: api
+        hostname: api
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        image: lehuygiang28/the_next_tech_cell:${COMPOSE_TAG:-latest}
+        ports:
+            - ${API_PORT:-8000}:${API_PORT:-8000}
+        env_file:
+            - .env
+        volumes:
+            - the_next_tech_cell_data:/app
+        networks:
+            - the_next_techcell_backend
+        restart: unless-stopped
+
+    redis:
+        container_name: redis
+        hostname: redis
+        image: docker.io/bitnami/redis:7.2
+        environment:
+            - REDIS_PASSWORD=${REDIS_PASSWORD}
+            - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+            - REDIS_PORT_NUMBER=${REDIS_PORT:-6379}
+        ports:
+            - ${REDIS_PORT:-6379}:${REDIS_PORT:-6379}
+        volumes:
+            - 'redis_data:/bitnami/redis/data'
+        restart: unless-stopped
+
+networks:
+    the_next_techcell_backend:
+        driver: bridge
+
+volumes:
+    the_next_tech_cell_data:
+        driver: local
