@@ -22,10 +22,13 @@
         "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
         "test:e2e": "jest --config ./test/jest-e2e.json",
         "seed": "nest start --entryFile seeder",
-        "seed:refresh": "nest start --entryFile seeder --refresh"
+        "seed:refresh": "nest start --entryFile seeder --refresh",
+        "compose:up": "docker compose -f docker-compose.yml up -d",
+        "compose:up:ssl": "docker compose -f docker-compose.ssl.yml up -d"
     },
     "dependencies": {
         "@casl/ability": "^6.7.0",
+        "@faker-js/faker": "^8.4.1",
         "@nestjs/cache-manager": "^2.2.2",
         "@nestjs/common": "^10.0.0",
         "@nestjs/config": "^3.2.0",
@@ -64,7 +67,6 @@
     "devDependencies": {
         "@automock/adapters.nestjs": "^2.1.0",
         "@automock/jest": "^2.1.0",
-        "@faker-js/faker": "^8.4.1",
         "@nestjs/cli": "^10.0.0",
         "@nestjs/schematics": "^10.0.0",
         "@nestjs/testing": "^10.0.0",
