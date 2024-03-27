@@ -19,6 +19,7 @@ async function bootstrap() {
     const logger = app.get(Logger);
     const configService = app.get(ConfigService);
 
+    app.enableCors();
     app.useLogger(app.get(Logger));
     app.enableShutdownHooks();
     app.use(helmet());
