@@ -1591,6 +1591,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/js-yaml@npm:^4":
+  version: 4.0.9
+  resolution: "@types/js-yaml@npm:4.0.9"
+  checksum: 10c0/24de857aa8d61526bbfbbaa383aa538283ad17363fcd5bb5148e2c7f604547db36646440e739d78241ed008702a8920665d1add5618687b6743858fae00da211
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:*, @types/json-schema@npm:^7.0.12, @types/json-schema@npm:^7.0.8":
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
@@ -7635,6 +7642,7 @@ __metadata:
     "@types/express": "npm:^4.17.17"
     "@types/facebook-js-sdk": "npm:^3.3.10"
     "@types/jest": "npm:^29.5.2"
+    "@types/js-yaml": "npm:^4"
     "@types/node": "npm:^20.3.1"
     "@types/passport-anonymous": "npm:^1.0.5"
     "@types/passport-jwt": "npm:^4.0.1"
@@ -7657,6 +7665,7 @@ __metadata:
     helmet: "npm:^7.1.0"
     ioredis: "npm:^5.3.2"
     jest: "npm:^29.5.0"
+    js-yaml: "npm:^4.1.0"
     mongoose: "npm:^8.2.3"
     mongoose-autopopulate: "npm:^1.1.0"
     nestjs-pino: "npm:^4.0.0"
