@@ -31,7 +31,7 @@ export class Attribute extends AbstractDocument {
 
     @ApiProperty({ example: AttributeStatus.Available, enum: AttributeStatus })
     @Factory((faker: Faker) => faker.helpers.enumValue(AttributeStatus))
-    @Prop({ required: true, default: AttributeStatus.Available, type: String })
+    @Prop({ required: true, type: String, enum: AttributeStatus })
     status: string;
 }
 

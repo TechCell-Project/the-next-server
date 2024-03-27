@@ -33,7 +33,7 @@ export class UserAddressSchema {
     customerName: string;
 
     @Prop({ type: String, enum: AddressType, default: AddressType.Other })
-    name: string;
+    type: string;
 
     @Prop({ required: true, type: String })
     detail: string;
