@@ -1,33 +1,34 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { HydratedDocument, ObjectId } from 'mongoose';
 import { Factory } from 'nestjs-seeder';
 import { AbstractDocument } from '~/common/abstract';
 import { v4 as uuid } from 'uuid';
 import { Faker } from '@faker-js/faker';
-import { AttributeSchema } from './attribute.schema';
-import { HydratedDocument, ObjectId } from 'mongoose';
+import { AttributeSchema } from '~/modules/product-models/schemas/attribute.schema';
+import { ImageSchema } from './image.schema';
 
 @Schema({
     timestamps: true,
-    collection: 'productModels',
+    collection: 'productSeries',
 })
-export class ProductModel extends AbstractDocument {
+export class ProductSeries extends AbstractDocument {
     @ApiProperty({ example: '5f9a7f5d9d8f6d7f5d8f6d7' })
     @Factory(() => '5f9a7f5d9d8f6d7f5d8f6d7')
     @Prop({ type: String, required: true })
-    brandId: ObjectId;
+    modelId: ObjectId;
 
-    @ApiProperty({ example: 'iphone-15' })
+    @ApiProperty({ example: 'pro-max' })
     @Factory(() => uuid())
     @Prop({ unique: true, required: true, type: String })
     slug: string;
 
-    @ApiProperty({ example: 'Iphone 15' })
+    @ApiProperty({ example: 'Pro Max' })
     @Factory((faker: Faker) => faker.commerce.productName())
     @Prop({ required: true, type: String })
     name: string;
 
-    @ApiPropertyOptional({ example: 'This is iPhone 15 Models' })
+    @ApiPropertyOptional({ example: 'This is iphone Pro Max series' })
     @Factory((faker: Faker) => faker.company.catchPhrase())
     @Prop({ required: false, type: String, default: '' })
     description: string;
@@ -36,7 +37,12 @@ export class ProductModel extends AbstractDocument {
     @Factory(() => [])
     @Prop({ required: true, type: [AttributeSchema], default: [] })
     attributes: AttributeSchema[];
+
+    @ApiProperty({ type: [ImageSchema] })
+    @Factory(() => [])
+    @Prop({ required: true, type: [ImageSchema], default: [] })
+    images: ImageSchema[];
 }
 
-export type ProductModelDocument = HydratedDocument<ProductModel>;
-export const ProductModelSchema = SchemaFactory.createForClass(ProductModel);
+export type ProductSeriesDocument = HydratedDocument<ProductSeries>;
+export const ProductSeriesSchema = SchemaFactory.createForClass(ProductSeries);
