@@ -11,6 +11,8 @@ import { AuthFacebookModule } from './modules/auth-facebook';
 import { ProductModelsModule } from './modules/product-models/product-models.module';
 import { AttributesModule } from './modules/attributes/attributes.module';
 import { BrandsModule } from './modules/brands/brands.module';
+import { ProductSeriesModule } from './modules/product-series/product-series.module';
+import { ProductVariationsModule } from './modules/product-variations/product-variations.module';
 
 @Module({
     imports: [
@@ -24,6 +26,8 @@ import { BrandsModule } from './modules/brands/brands.module';
         BrandsModule,
         ProductModelsModule,
         AttributesModule,
+        ProductSeriesModule,
+        ProductVariationsModule,
     ],
     controllers: [AppController],
     providers: [AppService],
