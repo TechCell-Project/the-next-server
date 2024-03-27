@@ -50,8 +50,8 @@ jobs:
             - name: Install dependencies
               run: yarn install
 
-            - name: Build all services
-              run: yarn build:all
+            - name: Build services
+              run: yarn build
 
             - name: Run tests
               run: yarn test --passWithNoTests
