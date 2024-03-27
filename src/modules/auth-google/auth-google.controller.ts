@@ -1,12 +1,4 @@
-import {
-    Body,
-    Controller,
-    HttpCode,
-    HttpStatus,
-    Inject,
-    Post,
-    SerializeOptions,
-} from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, SerializeOptions } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from '../auth/auth.service';
 import { AuthGoogleService } from './auth-google.service';
@@ -14,7 +6,7 @@ import { AuthGoogleLoginDto } from './auth-google-login.dto';
 import { LoginResponseDto } from '../auth/dtos';
 import { AuthProvider } from '~/modules/users/enums';
 
-@ApiTags('Auth')
+@ApiTags('auth')
 @Controller({
     path: 'auth/google',
     version: '1',
