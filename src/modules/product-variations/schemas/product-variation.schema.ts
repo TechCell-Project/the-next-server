@@ -37,7 +37,7 @@ export class ProductVariation extends AbstractDocument {
 
     @ApiProperty({ example: VariationStatus.Selling, enum: VariationStatus })
     @Factory((faker: Faker) => faker.helpers.enumValue(VariationStatus))
-    @Prop({ required: true, default: VariationStatus.Selling, type: String })
+    @Prop({ required: true, type: String, enum: VariationStatus, default: VariationStatus.Selling })
     status: string;
 
     @ApiProperty({ type: [AttributeSchema] })

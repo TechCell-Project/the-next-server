@@ -13,6 +13,8 @@ import { AttributesModule } from './modules/attributes/attributes.module';
 import { BrandsModule } from './modules/brands/brands.module';
 import { ProductSeriesModule } from './modules/product-series/product-series.module';
 import { ProductVariationsModule } from './modules/product-variations/product-variations.module';
+import { CategoriesModule } from './modules/categories/categories.module';
+import { OrdersModule } from './modules/orders/orders.module';
 
 @Module({
     imports: [
@@ -28,6 +30,8 @@ import { ProductVariationsModule } from './modules/product-variations/product-va
         AttributesModule,
         ProductSeriesModule,
         ProductVariationsModule,
+        CategoriesModule,
+        OrdersModule,
     ],
     controllers: [AppController],
     providers: [AppService],
