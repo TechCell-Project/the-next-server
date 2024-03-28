@@ -50,10 +50,7 @@ async function bootstrap() {
         .addBearerAuth()
         .build();
 
-    const swaggerDocumentOptions: SwaggerDocumentOptions = {
-        // re-define the url for each method in controller
-        operationIdFactory: (controllerKey: string, methodKey: string) => methodKey,
-    };
+    const swaggerDocumentOptions: SwaggerDocumentOptions = {};
     const document = SwaggerModule.createDocument(
         app,
         swaggerDocumentConfig,
