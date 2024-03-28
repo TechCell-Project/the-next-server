@@ -130,24 +130,25 @@ jobs:
             - name: 'Create .env file'
               run: |
                   touch .env
-                  echo API_PORT= '8000' >> .env 
-                  echo GOOGLE_CLIENT_ID= 'google_sample' >> .env
-                  echo GOOGLE_CLIENT_SECRET= 'google_sample' >> .env
-                  echo GOOGLE_REDIRECT_URL= 'google_sample' >> .env
-                  echo JWT_ACCESS_TOKEN_SECRET= 'jwt_sample' >> .env
-                  echo JWT_REFRESH_TOKEN_SECRET= 'jwt_sample' >> .env
-                  echo JWT_ACCESS_TOKEN_EXPIRE_TIME_STRING= '1h' >> .env
-                  echo JWT_REFRESH_TOKEN_EXPIRE_TIME_STRING= '1h' >> .env
-                  echo FALLBACK_LANGUAGE= 'en' >> .env
-                  echo RABBITMQ_UTILITY_QUEUE= 'utility_queue' >> .env
-                  echo RABBITMQ_SEARCH_QUEUE= 'search_queue' >> .env
-                  echo RABBITMQ_AUTH_QUEUE= 'auth_queue' >> .env
-                  echo RABBITMQ_COMMUNICATIONS_QUEUE= 'communications_queue' >> .env
-                  echo RABBITMQ_MANAGEMENTS_QUEUE= 'managements_queue' >> .env
-                  echo RABBITMQ_ORDER_QUEUE= 'order_queue' >> .env
-                  echo RABBITMQ_TASK_QUEUE= 'task_queue' >> .env
+                  echo "NODE_ENV=development" >> .env
+                  echo "API_PORT='8000'" >> .env
+                  echo "API_PREFIX='/api'" >> .env
+                  echo "FALLBACK_LANGUAGE='en'" >> .env
+                  echo "API_STATS_USERNAME='test'" >> .env
+                  echo "API_STATS_PASSWORD='test'" >> .env
+                  echo "AUTH_JWT_SECRET='secret'" >> .env
+                  echo "AUTH_JWT_TOKEN_EXPIRES_IN='1m'" >> .env
+                  echo "AUTH_REFRESH_SECRET='sample'" >> .env
+                  echo "AUTH_REFRESH_TOKEN_EXPIRES_IN='1d'" >> .env
+                  echo "AUTH_FORGOT_SECRET='sample'" >> .env
+                  echo "AUTH_FORGOT_TOKEN_EXPIRES_IN='1m'" >> .env
+                  echo "AUTH_CONFIRM_EMAIL_SECRET='sample'" >> .env
+                  echo "AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN='1m'" >> .env
+                  echo "GOOGLE_CLIENT_ID='-.apps.googleusercontent.com'" >> .env
+                  echo "GOOGLE_CLIENT_SECRET='--secret'" >> .env
+                  echo "FACEBOOK_APP_ID='111'" >> .env
+                  echo "FACEBOOK_APP_SECRET='111'" >> .env
                   echo MONGODB_URI= '${{secrets.MONGODB_URI}}' >> .env
-                  echo RABBITMQ_URLS= '${{secrets.RABBITMQ_URLS}}' >> .env
                   echo REDIS_HOST= '${{secrets.REDIS_HOST}}' >> .env
                   echo REDIS_PORT= '${{secrets.REDIS_PORT}}' >> .env
                   echo REDIS_PASSWORD= '${{secrets.REDIS_PASSWORD}}' >> .env
