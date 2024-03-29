@@ -184,9 +184,6 @@ export class AuthService {
         }
 
         user.emailVerified = true;
-        await this.redisService.del(key);
-        await this.usersService.update(user._id, user);
-
         await Promise.all([this.redisService.del(key), this.usersService.update(user._id, user)]);
     }
 
