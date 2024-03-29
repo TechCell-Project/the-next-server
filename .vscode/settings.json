@@ -11,6 +11,7 @@
         "schemas",
         "swagger",
         "ssl/tls",
-        "scripts"
+        "scripts",
+        "mail"
     ]
 }

@@ -62,4 +62,12 @@ export class RedisService {
     public async keys(pattern: string): Promise<string[]> {
         return this.redisClient.keys(pattern);
     }
+
+    public async exists(key: string): Promise<boolean> {
+        return (await this.redisClient.exists(key)) > 0;
+    }
+
+    public async existsUniqueKey(key: string): Promise<boolean> {
+        return (await this.redisClient.exists(key)) === 1;
+    }
 }

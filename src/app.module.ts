@@ -2,8 +2,6 @@ import { Module } from '@nestjs/common';
 import { LoggerModule } from '~/logger';
 import { AppConfigModule } from '~/common/config';
 import { RedisModule } from '~/common/redis';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { UsersModule } from './modules/users';
 import { AuthModule } from './modules/auth';
 import { AuthGoogleModule } from './modules/auth-google';
@@ -15,10 +13,14 @@ import { ProductSeriesModule } from './modules/product-series/product-series.mod
 import { ProductVariationsModule } from './modules/product-variations/product-variations.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { OrdersModule } from './modules/orders/orders.module';
+import { I18nModule } from './modules/i18n';
+import { MailModule } from '~/modules/mail';
 
 @Module({
     imports: [
         AppConfigModule,
+        I18nModule,
+        MailModule,
         RedisModule,
         LoggerModule,
         AuthModule,
@@ -33,7 +35,5 @@ import { OrdersModule } from './modules/orders/orders.module';
         CategoriesModule,
         OrdersModule,
     ],
-    controllers: [AppController],
-    providers: [AppService],
 })
 export class AppModule {}

@@ -18,6 +18,7 @@ import { RedisService } from '~/common/redis';
 import { PREFIX_REVOKE_ACCESS_TOKEN, PREFIX_REVOKE_REFRESH_TOKEN } from './auth.constant';
 import { JwtPayloadType, JwtRefreshPayloadType } from './strategies/types';
 import { Session, SessionService } from '~/modules/session';
+import { MailService } from '~/modules/mail';
 
 @Injectable()
 export class AuthService {
@@ -26,7 +27,7 @@ export class AuthService {
         private readonly configService: ConfigService,
         private readonly jwtService: JwtService,
         private readonly usersService: UsersService,
-        // private mailService: MailService,
+        private readonly mailService: MailService,
         private readonly redisService: RedisService,
         private readonly sessionService: SessionService,
     ) {}
@@ -37,6 +38,7 @@ export class AuthService {
             email: dto.email,
             role: UserRole.Customer,
         });
+        const key = `user:${userCreated._id.toString()}:confirmEmailHash`;
 
         const hash = await this.jwtService.signAsync(
             {
@@ -47,14 +49,142 @@ export class AuthService {
                 expiresIn: this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN'),
             },
         );
-        this.logger.debug(`Register hash: ${hash}`);
 
-        // await this.mailService.userSignUp({
-        //     to: dto.email,
-        //     data: {
-        //         hash,
-        //     },
-        // });
+        await Promise.all([
+            this.redisService.set(
+                key,
+                { hash },
+                convertTimeString(
+                    this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN'),
+                ),
+            ),
+            this.mailService.sendConfirmMail({
+                to: userCreated.email,
+                mailData: {
+                    hash,
+                },
+            }),
+        ]);
+    }
+
+    async resendConfirmEmail(email: string): Promise<void> {
+        const userFound = await this.usersService.findByEmail(email);
+        if (!userFound) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        user: 'userNotFound',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+        const key = `user:${userFound._id.toString()}:confirmEmailHash`;
+
+        if (userFound.emailVerified === true) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        user: 'alreadyConfirmed',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        const hash = await this.jwtService.signAsync(
+            {
+                confirmEmailUserId: userFound._id,
+            },
+            {
+                secret: this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_SECRET'),
+                expiresIn: this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN'),
+            },
+        );
+
+        await this.redisService.del(key);
+        await Promise.all([
+            this.redisService.set(
+                key,
+                { hash },
+                convertTimeString(
+                    this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN'),
+                ),
+            ),
+            this.mailService.sendConfirmMail({
+                to: email,
+                mailData: {
+                    hash,
+                },
+                isResend: true,
+            }),
+        ]);
+    }
+
+    async confirmEmail(hash: string): Promise<void> {
+        let userId: User['_id'];
+
+        try {
+            const jwtData = await this.jwtService.verifyAsync<{
+                confirmEmailUserId: User['_id'];
+            }>(hash, {
+                secret: this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_SECRET'),
+            });
+
+            userId = jwtData.confirmEmailUserId;
+        } catch {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        hash: `invalidHash`,
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        const user = await this.usersService.findById(userId);
+
+        if (!user) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.NOT_FOUND,
+                    error: `notFound`,
+                },
+                HttpStatus.NOT_FOUND,
+            );
+        }
+        const key = `user:${user._id.toString()}:confirmEmailHash`;
+
+        if (!(await this.redisService.existsUniqueKey(key))) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        hash: `invalidHash`,
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        if (user.emailVerified === true) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        user: 'alreadyConfirmed',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        user.emailVerified = true;
+        await Promise.all([this.redisService.del(key), this.usersService.update(user._id, user)]);
     }
 
     async validateLogin(loginDto: AuthEmailLoginDto): Promise<LoginResponseDto> {
