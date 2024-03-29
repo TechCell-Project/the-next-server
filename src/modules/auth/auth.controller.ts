@@ -18,6 +18,8 @@ import {
     AuthEmailLoginDto,
     LoginResponseDto,
     RefreshTokenResponseDto,
+    ResendConfirmEmail,
+    AuthConfirmEmailDto,
 } from './dtos';
 import { AuthRoles } from './guards';
 import { AuthGuard } from '@nestjs/passport';
@@ -35,6 +37,18 @@ export class AuthController {
     @HttpCode(HttpStatus.NO_CONTENT)
     async register(@Body() createUserDto: AuthSignupDto): Promise<void> {
         return this.authService.register(createUserDto);
+    }
+
+    @Post('email/resend-confirm')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    async resendConfirmEmail(@Body() { email }: ResendConfirmEmail): Promise<void> {
+        return this.authService.resendConfirmEmail(email);
+    }
+
+    @Post('email/confirm')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    async confirmEmail(@Body() confirmEmailDto: AuthConfirmEmailDto): Promise<void> {
+        return this.authService.confirmEmail(confirmEmailDto.hash);
     }
 
     @SerializeOptions({

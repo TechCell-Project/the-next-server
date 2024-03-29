@@ -54,7 +54,9 @@ export class AuthService {
             this.redisService.set(
                 key,
                 { hash },
-                this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN'),
+                convertTimeString(
+                    this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN'),
+                ),
             ),
             this.mailService.sendConfirmMail({
                 to: userCreated.email,
@@ -107,7 +109,9 @@ export class AuthService {
             this.redisService.set(
                 key,
                 { hash },
-                this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN'),
+                convertTimeString(
+                    this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN'),
+                ),
             ),
             this.mailService.sendConfirmMail({
                 to: email,
@@ -117,6 +121,73 @@ export class AuthService {
                 isResend: true,
             }),
         ]);
+    }
+
+    async confirmEmail(hash: string): Promise<void> {
+        let userId: User['_id'];
+
+        try {
+            const jwtData = await this.jwtService.verifyAsync<{
+                confirmEmailUserId: User['_id'];
+            }>(hash, {
+                secret: this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_SECRET'),
+            });
+
+            userId = jwtData.confirmEmailUserId;
+        } catch {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        hash: `invalidHash`,
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        const user = await this.usersService.findById(userId);
+
+        if (!user) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.NOT_FOUND,
+                    error: `notFound`,
+                },
+                HttpStatus.NOT_FOUND,
+            );
+        }
+        const key = `user:${user._id.toString()}:confirmEmailHash`;
+
+        if (!(await this.redisService.existsUniqueKey(key))) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        hash: `invalidHash`,
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        if (user.emailVerified === true) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        user: 'alreadyConfirmed',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        user.emailVerified = true;
+        await this.redisService.del(key);
+        await this.usersService.update(user._id, user);
+
+        await Promise.all([this.redisService.del(key), this.usersService.update(user._id, user)]);
     }
 
     async validateLogin(loginDto: AuthEmailLoginDto): Promise<LoginResponseDto> {
