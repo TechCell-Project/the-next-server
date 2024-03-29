@@ -27,5 +27,7 @@ COPY --chown=node .yarn ./.yarn
 RUN yarn workspaces focus --production && yarn cache clean --all
 
 COPY --from=build-stage --chown=node /usr/src/app/dist ./dist
+COPY --from=build-stage --chown=node /usr/src/app/src/modules/i18n/lang ./src/modules/i18n/lang
+COPY --from=build-stage --chown=node /usr/src/app/src/modules/mail/templates ./src/modules/mail/templates
 
 CMD ["node", "dist/main"]
