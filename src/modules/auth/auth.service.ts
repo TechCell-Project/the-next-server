@@ -38,6 +38,7 @@ export class AuthService {
             email: dto.email,
             role: UserRole.Customer,
         });
+        const key = `user:${userCreated._id.toString()}:confirmEmailHash`;
 
         const hash = await this.jwtService.signAsync(
             {
@@ -48,14 +49,74 @@ export class AuthService {
                 expiresIn: this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN'),
             },
         );
-        this.logger.debug(`Register hash: ${hash}`);
 
-        await this.mailService.sendConfirmMail({
-            to: dto.email,
-            mailData: {
-                hash,
+        await Promise.all([
+            this.redisService.set(
+                key,
+                { hash },
+                this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN'),
+            ),
+            this.mailService.sendConfirmMail({
+                to: userCreated.email,
+                mailData: {
+                    hash,
+                },
+            }),
+        ]);
+    }
+
+    async resendConfirmEmail(email: string): Promise<void> {
+        const userFound = await this.usersService.findByEmail(email);
+        if (!userFound) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        user: 'userNotFound',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+        const key = `user:${userFound._id.toString()}:confirmEmailHash`;
+
+        if (userFound.emailVerified === true) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        user: 'alreadyConfirmed',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        const hash = await this.jwtService.signAsync(
+            {
+                confirmEmailUserId: userFound._id,
             },
-        });
+            {
+                secret: this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_SECRET'),
+                expiresIn: this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN'),
+            },
+        );
+
+        await this.redisService.del(key);
+        await Promise.all([
+            this.redisService.set(
+                key,
+                { hash },
+                this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN'),
+            ),
+            this.mailService.sendConfirmMail({
+                to: email,
+                mailData: {
+                    hash,
+                },
+                isResend: true,
+            }),
+        ]);
     }
 
     async validateLogin(loginDto: AuthEmailLoginDto): Promise<LoginResponseDto> {
