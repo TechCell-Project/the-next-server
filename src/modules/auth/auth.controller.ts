@@ -20,6 +20,8 @@ import {
     RefreshTokenResponseDto,
     ResendConfirmEmail,
     AuthConfirmEmailDto,
+    AuthForgotPasswordDto,
+    AuthResetPasswordDto,
 } from './dtos';
 import { AuthRoles } from './guards';
 import { AuthGuard } from '@nestjs/passport';
@@ -96,5 +98,17 @@ export class AuthController {
         @Req() request: { user: JwtRefreshPayloadType },
     ): Promise<Omit<LoginResponseDto, 'user'>> {
         return this.authService.refreshToken(request.user);
+    }
+
+    @Post('forgot/password')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    async forgotPassword(@Body() forgotPasswordDto: AuthForgotPasswordDto): Promise<void> {
+        return this.authService.forgotPassword(forgotPasswordDto.email);
+    }
+
+    @Post('reset/password')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    resetPassword(@Body() resetPasswordDto: AuthResetPasswordDto): Promise<void> {
+        return this.authService.resetPassword(resetPasswordDto.hash, resetPasswordDto.password);
     }
 }

@@ -80,7 +80,8 @@ export class AuthService {
                 HttpStatus.UNPROCESSABLE_ENTITY,
             );
         }
-        const key = `user:${userFound._id.toString()}:confirmEmailHash`;
+
+        const key = `auth:confirmEmailHash:${userFound._id.toString()}`;
 
         if (userFound.emailVerified === true) {
             throw new HttpException(
@@ -157,7 +158,8 @@ export class AuthService {
                 HttpStatus.NOT_FOUND,
             );
         }
-        const key = `user:${user._id.toString()}:confirmEmailHash`;
+
+        const key = `auth:confirmEmailHash:${user._id.toString()}`;
 
         if (!(await this.redisService.existsUniqueKey(key))) {
             throw new HttpException(
@@ -403,6 +405,111 @@ export class AuthService {
         });
 
         return { accessToken, refreshToken, accessTokenExpires };
+    }
+
+    async forgotPassword(email: string): Promise<void> {
+        const user = await this.usersService.findByEmail(email);
+
+        if (!user) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        email: 'emailNotExists',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        const tokenExpiresIn = this.configService.getOrThrow('AUTH_FORGOT_TOKEN_EXPIRES_IN');
+
+        const tokenExpires = Date.now() + convertTimeString(tokenExpiresIn);
+
+        const hash = await this.jwtService.signAsync(
+            {
+                forgotUserId: user._id,
+            },
+            {
+                secret: this.configService.getOrThrow('AUTH_FORGOT_SECRET'),
+                expiresIn: tokenExpiresIn,
+            },
+        );
+
+        const key = `auth:forgotPassword:${user._id.toString()}`;
+        await Promise.all([
+            this.redisService.set(key, { hash, tokenExpires }, convertTimeString(tokenExpiresIn)),
+            this.mailService.forgotPassword({
+                to: user.email,
+                data: {
+                    hash,
+                    tokenExpires,
+                },
+            }),
+        ]);
+    }
+
+    async resetPassword(hash: string, password: string): Promise<void> {
+        let userId: User['_id'];
+
+        try {
+            const jwtData = await this.jwtService.verifyAsync<{
+                forgotUserId: User['_id'];
+            }>(hash, {
+                secret: this.configService.getOrThrow('AUTH_FORGOT_SECRET'),
+            });
+
+            userId = jwtData.forgotUserId;
+        } catch {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        hash: `invalidHash`,
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        const user = await this.usersService.findById(userId);
+
+        if (!user) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        hash: `notFound`,
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+        const key = `auth:forgotPassword:${user._id.toString()}`;
+
+        if (!this.redisService.existsUniqueKey(key)) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        hash: `hashRevoked`,
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        user.password = password;
+
+        await Promise.all([
+            this.redisService.del(key),
+            this.sessionService.softDelete({
+                user: {
+                    _id: user._id,
+                },
+            }),
+            this.usersService.update(user._id, user),
+        ]);
     }
 
     private async getTokensData(data: {

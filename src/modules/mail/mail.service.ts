@@ -5,6 +5,7 @@ import { MailerConfig } from './mail.config';
 import { I18nContext } from 'nestjs-i18n';
 import { I18nTranslations } from '../i18n';
 import { MaybeType } from '~/common/types';
+import { MailData } from './mail-data.interface';
 
 @Injectable()
 export class MailService {
@@ -136,79 +137,71 @@ export class MailService {
             });
     }
 
-    // async sendForgotPasswordMail(
-    //     { userEmail, firstName, otpCode }: ForgotPasswordEmailDTO,
-    //     lang,
-    //     transporter?: string,
-    //     retryCount = 0,
-    // ) {
-    //     const i18Context = new I18nContext(lang, this.i18n);
-    //     if (retryCount > this.MAX_RETRIES) {
-    //         this.logger.debug(`Send mail failed: too many retries`);
-    //         return {
-    //             message: 'Failed to send email',
-    //         };
-    //     }
+    async forgotPassword(
+        mailData: MailData<{ hash: string; tokenExpires: number }>,
+        retryData: {
+            retryCount?: number;
+            transporter?: string;
+        } = { retryCount: 0, transporter: SENDGRID_TRANSPORT },
+    ) {
+        const { retryCount = 0, transporter = SENDGRID_TRANSPORT } = retryData;
 
-    //     const transporterName = this.resolveTransporter(transporter);
-    //     const message = `Mail sent: ${userEmail}`;
-    //     this.logger.debug(
-    //         `Sending forgot password mail to ${userEmail} with transporter: ${transporterName}`,
-    //     );
-    //     return this.mailerService
-    //         .sendMail({
-    //             transporterName,
-    //             to: userEmail,
-    //             subject: i18Context.t('emailMessage.RESET_PASSWORD_SUBJECT'),
-    //             template: 'forgot-password',
-    //             context: {
-    //                 userEmail,
-    //                 firstName,
-    //                 otpCode,
-    //                 FORGOT_PASSWORD_TEXT_1: i18Context.t('emailMessage.FORGOT_PASSWORD_TEXT_1'),
-    //                 YOUR_OTP_CODE_TEXT: i18Context.t('emailMessage.YOUR_OTP_CODE_TEXT'),
-    //                 EXPIRED_TIME_OTP_TEXT: i18Context.t('emailMessage.EXPIRED_TIME_OTP_TEXT', {
-    //                     args: {
-    //                         time: '5',
-    //                     },
-    //                 }),
-    //                 INSTRUCTIONS: i18Context.t('emailMessage.INSTRUCTIONS'),
-    //                 INSTRUCTIONS_TEXT_ENTER_OTP_RESET_PASSWORD: i18Context.t(
-    //                     'emailMessage.INSTRUCTIONS_TEXT_ENTER_OTP_RESET_PASSWORD',
-    //                 ),
-    //                 EMAIL_CREDIT: i18Context.t('emailMessage.EMAIL_CREDIT'),
-    //             },
-    //             attachments: [
-    //                 {
-    //                     filename: 'logo-red.png',
-    //                     path: join(this.TEMPLATES_PATH, 'images/logo-red.png'),
-    //                     cid: 'logo_red',
-    //                 },
-    //             ],
-    //         })
-    //         .then(() => {
-    //             this.logger.debug(`Mail sent: ${userEmail}`);
-    //             return {
-    //                 message: message,
-    //             };
-    //         })
-    //         .catch(async (error) => {
-    //             this.logger.debug(`Send mail failed: ${error.message}`);
-    //             transporter = this.getNextTransporter(transporterName);
-    //             this.logger.debug(`Retry send mail with transporter: ${transporter}`);
-    //             return await this.sendForgotPasswordMail(
-    //                 { userEmail, firstName, otpCode },
-    //                 lang,
-    //                 transporter,
-    //                 retryCount + 1,
-    //             );
-    //         })
-    //         .finally(() => {
-    //             return {
-    //                 message: message,
-    //             };
-    //         });
-    // }
+        if (retryCount > this.MAX_RETRIES) {
+            this.logger.debug(`Send mail failed: too many retries`);
+            return {
+                message: 'Failed to send email',
+            };
+        }
+
+        const i18n = I18nContext.current<I18nTranslations>();
+        let resetPasswordTitle: MaybeType<string>;
+        let text1: MaybeType<string>;
+        let text2: MaybeType<string>;
+        let text3: MaybeType<string>;
+        let text4: MaybeType<string>;
+
+        if (i18n) {
+            [resetPasswordTitle, text1, text2, text3, text4] = await Promise.all([
+                i18n.t('mail-context.RESET_PASSWORD.title'),
+                i18n.t('mail-context.RESET_PASSWORD.text1'),
+                i18n.t('mail-context.RESET_PASSWORD.text2'),
+                i18n.t('mail-context.RESET_PASSWORD.text3'),
+                i18n.t('mail-context.RESET_PASSWORD.text4'),
+            ]);
+        }
+
+        const url = new URL(process.env.FE_DOMAIN + '/password-change');
+        url.searchParams.set('hash', mailData.data.hash);
+        url.searchParams.set('expires', mailData.data.tokenExpires.toString());
+
+        let transporterName = this.resolveTransporter(transporter);
+        await this.mailerService
+            .sendMail({
+                to: mailData.to,
+                subject: resetPasswordTitle,
+                text: `${url.toString()} ${resetPasswordTitle}`,
+                template: 'reset-password',
+                context: {
+                    title: resetPasswordTitle,
+                    url: url.toString(),
+                    actionTitle: resetPasswordTitle,
+                    app_name: 'TechCell.cloud',
+                    text1,
+                    text2,
+                    text3,
+                    text4,
+                },
+            })
+            .catch(async (error) => {
+                this.logger.debug(`Send mail failed: ${error.message}`);
+                transporterName = this.getNextTransporter(transporterName);
+                this.logger.debug(`Retry send mail with transporter: ${transporterName}`);
+                await this.forgotPassword(mailData, {
+                    transporter: transporterName,
+                    retryCount: retryCount + 1,
+                });
+            });
+    }
 
     private resolveTransporter(transporter = SENDGRID_TRANSPORT) {
         if (!this.TRANSPORTERS.includes(transporter)) {
