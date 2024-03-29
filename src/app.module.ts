@@ -13,10 +13,14 @@ import { ProductSeriesModule } from './modules/product-series/product-series.mod
 import { ProductVariationsModule } from './modules/product-variations/product-variations.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { OrdersModule } from './modules/orders/orders.module';
+import { I18nModule } from './modules/i18n';
+import { MailModule } from '~/modules/mail';
 
 @Module({
     imports: [
         AppConfigModule,
+        I18nModule,
+        MailModule,
         RedisModule,
         LoggerModule,
         AuthModule,

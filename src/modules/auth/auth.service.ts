@@ -18,6 +18,7 @@ import { RedisService } from '~/common/redis';
 import { PREFIX_REVOKE_ACCESS_TOKEN, PREFIX_REVOKE_REFRESH_TOKEN } from './auth.constant';
 import { JwtPayloadType, JwtRefreshPayloadType } from './strategies/types';
 import { Session, SessionService } from '~/modules/session';
+import { MailService } from '~/modules/mail';
 
 @Injectable()
 export class AuthService {
@@ -26,7 +27,7 @@ export class AuthService {
         private readonly configService: ConfigService,
         private readonly jwtService: JwtService,
         private readonly usersService: UsersService,
-        // private mailService: MailService,
+        private readonly mailService: MailService,
         private readonly redisService: RedisService,
         private readonly sessionService: SessionService,
     ) {}
@@ -49,12 +50,12 @@ export class AuthService {
         );
         this.logger.debug(`Register hash: ${hash}`);
 
-        // await this.mailService.userSignUp({
-        //     to: dto.email,
-        //     data: {
-        //         hash,
-        //     },
-        // });
+        await this.mailService.sendConfirmMail({
+            to: dto.email,
+            mailData: {
+                hash,
+            },
+        });
     }
 
     async validateLogin(loginDto: AuthEmailLoginDto): Promise<LoginResponseDto> {
