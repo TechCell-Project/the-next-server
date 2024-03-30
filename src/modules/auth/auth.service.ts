@@ -12,13 +12,14 @@ import { faker } from '@faker-js/faker';
 import * as crypto from 'crypto';
 import { v4 as uuid } from 'uuid';
 import * as bcrypt from 'bcryptjs';
-import { AuthEmailLoginDto, LoginResponseDto } from './dtos';
+import { AuthEmailLoginDto, AuthUpdateDto, LoginResponseDto } from './dtos';
 import { convertTimeString } from 'convert-time-string';
 import { RedisService } from '~/common/redis';
 import { PREFIX_REVOKE_ACCESS_TOKEN, PREFIX_REVOKE_REFRESH_TOKEN } from './auth.constant';
 import { JwtPayloadType, JwtRefreshPayloadType } from './strategies/types';
 import { Session, SessionService } from '~/modules/session';
 import { MailService } from '~/modules/mail';
+import { GhnService } from '~/third-party';
 
 @Injectable()
 export class AuthService {
@@ -30,6 +31,7 @@ export class AuthService {
         private readonly mailService: MailService,
         private readonly redisService: RedisService,
         private readonly sessionService: SessionService,
+        private readonly ghnService: GhnService,
     ) {}
 
     async register(dto: AuthSignupDto): Promise<void> {
@@ -510,6 +512,120 @@ export class AuthService {
             }),
             this.usersService.update(user._id, user),
         ]);
+    }
+
+    async update(
+        userJwtPayload: JwtPayloadType,
+        userDto: AuthUpdateDto,
+    ): Promise<NullableType<User>> {
+        const userData = userDto;
+        if (userData?.userName) {
+            const user = await this.usersService.findByUserName(userData.userName);
+            if (user) {
+                throw new HttpException(
+                    {
+                        status: HttpStatus.UNPROCESSABLE_ENTITY,
+                        errors: {
+                            userName: 'userNameAlreadyExists',
+                        },
+                    },
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                );
+            }
+        }
+
+        if (userData.password) {
+            if (!userData.oldPassword) {
+                throw new HttpException(
+                    {
+                        status: HttpStatus.UNPROCESSABLE_ENTITY,
+                        errors: {
+                            oldPassword: 'missingOldPassword',
+                        },
+                    },
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                );
+            }
+
+            const currentUser = await this.usersService.findById(userJwtPayload.userId);
+
+            if (!currentUser) {
+                throw new HttpException(
+                    {
+                        status: HttpStatus.UNPROCESSABLE_ENTITY,
+                        errors: {
+                            user: 'userNotFound',
+                        },
+                    },
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                );
+            }
+
+            if (!currentUser.password) {
+                throw new HttpException(
+                    {
+                        status: HttpStatus.UNPROCESSABLE_ENTITY,
+                        errors: {
+                            oldPassword: 'incorrectOldPassword',
+                        },
+                    },
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                );
+            }
+
+            const isValidOldPassword = await bcrypt.compare(
+                userData.oldPassword,
+                currentUser.password,
+            );
+
+            if (!isValidOldPassword) {
+                throw new HttpException(
+                    {
+                        status: HttpStatus.UNPROCESSABLE_ENTITY,
+                        errors: {
+                            oldPassword: 'incorrectOldPassword',
+                        },
+                    },
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                );
+            } else {
+                await this.sessionService.softDelete({
+                    user: {
+                        _id: currentUser._id,
+                    },
+                    excludeId: userJwtPayload.sessionId,
+                });
+            }
+        }
+
+        if (userData?.address !== null || userData?.address !== undefined) {
+            if (userData.address?.length === 0) {
+                userData.address = [];
+            } else {
+                const addressPromises = userData.address?.map((address) =>
+                    this.ghnService.getSelectedAddress(address),
+                );
+
+                try {
+                    await Promise.all(addressPromises ?? []);
+                } catch (error) {
+                    throw new HttpException(
+                        {
+                            status: HttpStatus.UNPROCESSABLE_ENTITY,
+                            errors: {
+                                address: 'invalidAddress',
+                                message: error.message,
+                            },
+                        },
+                        HttpStatus.UNPROCESSABLE_ENTITY,
+                    );
+                }
+            }
+        }
+
+        await this.usersService.update(userJwtPayload.userId, userData);
+
+        return new User(await this.usersService.findById(userJwtPayload.userId));
     }
 
     private async getTokensData(data: {

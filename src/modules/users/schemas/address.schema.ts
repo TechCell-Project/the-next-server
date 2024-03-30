@@ -12,8 +12,8 @@ class DistrictLevel {
 }
 
 class WardLevel {
-    @Prop({ required: true, type: Number })
-    wardCode: number;
+    @Prop({ required: true, type: String })
+    wardCode: string;
 }
 
 export class UserAddressSchema {

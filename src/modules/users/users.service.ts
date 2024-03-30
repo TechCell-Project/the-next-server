@@ -108,6 +108,15 @@ export class UsersService {
         return new User(user);
     }
 
+    async findByUserName(userName: string): Promise<NullableType<User>> {
+        const user = await this.usersRepository.findOne({
+            filterQuery: {
+                userName,
+            },
+        });
+        return new User(user);
+    }
+
     async update(
         userId: string | Types.ObjectId,
         payload: Partial<User>,

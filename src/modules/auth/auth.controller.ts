@@ -7,7 +7,7 @@ import {
     SerializeOptions,
     Req,
     Get,
-    UseGuards,
+    Patch,
 } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { NullableType } from '~/common/types';
@@ -22,10 +22,10 @@ import {
     AuthConfirmEmailDto,
     AuthForgotPasswordDto,
     AuthResetPasswordDto,
+    AuthUpdateDto,
 } from './dtos';
 import { AuthRoles } from './guards';
-import { AuthGuard } from '@nestjs/passport';
-import { JwtRefreshPayloadType } from './strategies/types';
+import { JwtPayloadType, JwtRefreshPayloadType } from './strategies/types';
 import { Types } from 'mongoose';
 
 @ApiTags('auth')
@@ -78,19 +78,6 @@ export class AuthController {
     @SerializeOptions({
         groups: ['me'],
     })
-    @Get('me')
-    @HttpCode(HttpStatus.OK)
-    @ApiOkResponse({
-        type: User,
-    })
-    public me(@Req() request: { user: { userId: string } }): Promise<NullableType<User>> {
-        return this.authService.me(request.user.userId);
-    }
-
-    @UseGuards(AuthGuard('jwt-refresh'))
-    @SerializeOptions({
-        groups: ['me'],
-    })
     @Post('refresh')
     @HttpCode(HttpStatus.OK)
     @ApiOkResponse({ type: RefreshTokenResponseDto })
@@ -110,5 +97,31 @@ export class AuthController {
     @HttpCode(HttpStatus.NO_CONTENT)
     resetPassword(@Body() resetPasswordDto: AuthResetPasswordDto): Promise<void> {
         return this.authService.resetPassword(resetPasswordDto.hash, resetPasswordDto.password);
+    }
+
+    @AuthRoles()
+    @SerializeOptions({
+        groups: ['me'],
+    })
+    @Get('me')
+    @HttpCode(HttpStatus.OK)
+    @ApiOkResponse({
+        type: User,
+    })
+    public me(@Req() request: { user: { userId: string } }): Promise<NullableType<User>> {
+        return this.authService.me(request.user.userId);
+    }
+
+    @AuthRoles()
+    @SerializeOptions({
+        groups: ['me'],
+    })
+    @Patch('me')
+    @HttpCode(HttpStatus.OK)
+    public update(
+        @Req() request: { user: JwtPayloadType },
+        @Body() userDto: AuthUpdateDto,
+    ): Promise<NullableType<User>> {
+        return this.authService.update(request.user, userDto);
     }
 }

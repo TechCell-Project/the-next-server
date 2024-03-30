@@ -21,7 +21,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     // Why we don't check if the user exists in the database:
     // https://github.com/brocoders/nestjs-boilerplate/blob/main/docs/auth.md#about-jwt-strategy
     public async validate(payload: JwtPayloadType): Promise<OrNeverType<JwtPayloadType>> {
-        if (!payload.userId || !payload.hash) {
+        if (!payload.userId || !payload.sessionId) {
             throw new HttpException(
                 {
                     status: HttpStatus.UNAUTHORIZED,

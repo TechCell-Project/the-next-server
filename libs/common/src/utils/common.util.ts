@@ -8,3 +8,13 @@ export function convertToObjectId(
     }
     return new Types.ObjectId(input);
 }
+
+/**
+ *
+ * @param stringValue The string value to check if it is true
+ * @returns true if the string value is true, otherwise false
+ * @description true value: true
+ */
+export function isTrueSet(stringValue: string | boolean) {
+    return !!stringValue && String(stringValue)?.toLowerCase()?.trim() === 'true';
+}
