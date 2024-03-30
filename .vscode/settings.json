@@ -13,6 +13,7 @@
         "ssl/tls",
         "scripts",
         "mail",
-        "third-party"
+        "third-party",
+        "workflows"
     ]
 }

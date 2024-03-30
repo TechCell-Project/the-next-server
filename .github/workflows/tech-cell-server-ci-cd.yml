@@ -148,6 +148,9 @@ jobs:
                   echo "GOOGLE_CLIENT_SECRET='--secret'" >> .env
                   echo "FACEBOOK_APP_ID='111'" >> .env
                   echo "FACEBOOK_APP_SECRET='111'" >> .env
+                  echo "GHN_URL='https://dev-online-gateway.ghn.vn'" >> .env
+                  echo "GHN_API_TOKEN='111'" >> .env
+                  echo "GHN_SHOP_ID='724881'" >> .env
                   echo MONGODB_URI= '${{secrets.MONGODB_URI}}' >> .env
                   echo REDIS_HOST= '${{secrets.REDIS_HOST}}' >> .env
                   echo REDIS_PORT= '${{secrets.REDIS_PORT}}' >> .env
