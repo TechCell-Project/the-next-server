@@ -73,7 +73,7 @@ async function bootstrap() {
             authentication: true,
             onAuthenticate(req, username, password) {
                 if (
-                    username !== configService.getOrThrow<string>('API_STATS_USERNAME') &&
+                    username !== configService.getOrThrow<string>('API_STATS_USERNAME') ||
                     password !== configService.getOrThrow<string>('API_STATS_PASSWORD')
                 ) {
                     return false;
