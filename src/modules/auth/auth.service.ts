@@ -601,8 +601,8 @@ export class AuthService {
         if (userData?.address !== null || userData?.address !== undefined) {
             if (userData.address?.length === 0) {
                 userData.address = [];
-            } else {
-                const addressPromises = userData.address?.map((address) =>
+            } else if (userData.address && userData.address?.length > 0) {
+                const addressPromises = userData.address.map((address) =>
                     this.ghnService.getSelectedAddress(address),
                 );
 
@@ -619,6 +619,21 @@ export class AuthService {
                         },
                         HttpStatus.UNPROCESSABLE_ENTITY,
                     );
+                }
+
+                const defaultAddresses = userData.address.filter((address) => address?.isDefault);
+                if (defaultAddresses.length > 1) {
+                    throw new HttpException(
+                        {
+                            status: HttpStatus.UNPROCESSABLE_ENTITY,
+                            errors: {
+                                address: 'Only one address can be set as default.',
+                            },
+                        },
+                        HttpStatus.UNPROCESSABLE_ENTITY,
+                    );
+                } else if (defaultAddresses.length <= 0) {
+                    userData.address[0].isDefault = true;
                 }
             }
         }
