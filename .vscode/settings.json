@@ -1,5 +1,5 @@
 {
-    "cSpell.words": ["casl", "clipboardy", "pino", "Redlock", "virtuals"],
+    "cSpell.words": ["casl", "clipboardy", "giaohangnhanh", "pino", "Redlock", "virtuals"],
     "conventionalCommits.scopes": [
         "seed",
         "lib/common",
@@ -12,6 +12,7 @@
         "swagger",
         "ssl/tls",
         "scripts",
-        "mail"
+        "mail",
+        "third-party"
     ]
 }

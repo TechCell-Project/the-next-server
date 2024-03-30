@@ -25,7 +25,9 @@
             "~/common": ["libs/common/src"],
             "~/common/*": ["libs/common/src/*"],
             "~/casl": ["libs/casl/src"],
-            "~/casl/*": ["libs/casl/src/*"]
+            "~/casl/*": ["libs/casl/src/*"],
+            "~/third-party": ["libs/third-party/src"],
+            "~/third-party/*": ["libs/third-party/src/*"]
         }
     }
 }

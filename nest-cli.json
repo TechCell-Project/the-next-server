@@ -33,6 +33,15 @@
             "compilerOptions": {
                 "tsConfigPath": "libs/casl/tsconfig.lib.json"
             }
+        },
+        "third-party": {
+            "type": "library",
+            "root": "libs/third-party",
+            "entryFile": "index",
+            "sourceRoot": "libs/third-party/src",
+            "compilerOptions": {
+                "tsConfigPath": "libs/third-party/tsconfig.lib.json"
+            }
         }
     }
 }

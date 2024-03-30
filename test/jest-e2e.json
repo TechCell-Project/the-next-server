@@ -12,6 +12,8 @@
         "~/common/(.*)": "<rootDir>/../libs/common/src/$1",
         "~/common": "<rootDir>/../libs/common/src",
         "~/casl/(.*)": "<rootDir>/../libs/casl/src/$1",
-        "~/casl": "<rootDir>/../libs/casl/src"
+        "~/casl": "<rootDir>/../libs/casl/src",
+        "~/third-party/(.*)": "<rootDir>/../libs/third-party/src/$1",
+        "~/third-party": "<rootDir>/../libs/third-party/src"
     }
 }

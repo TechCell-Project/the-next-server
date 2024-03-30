@@ -54,6 +54,7 @@
         "class-validator": "^0.14.1",
         "convert-time-string": "^0.0.2",
         "fb": "^2.0.0",
+        "giaohangnhanh": "^0.0.1",
         "google-auth-library": "^9.7.0",
         "handlebars": "^4.7.8",
         "helmet": "^7.1.0",
@@ -134,7 +135,8 @@
         "moduleNameMapper": {
             "^~/logger(|/.*)$": "<rootDir>/libs/logger/src/$1",
             "^~/common(|/.*)$": "<rootDir>/libs/common/src/$1",
-            "^~/casl(|/.*)$": "<rootDir>/libs/casl/src/$1"
+            "^~/casl(|/.*)$": "<rootDir>/libs/casl/src/$1",
+            "^~/third-party(|/.*)$": "<rootDir>/libs/third-party/src/$1"
         }
     },
     "packageManager": "yarn@4.1.0"
