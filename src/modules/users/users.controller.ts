@@ -1,10 +1,24 @@
-import { Controller, Get, HttpStatus, SerializeOptions, HttpCode, Query } from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    HttpStatus,
+    SerializeOptions,
+    HttpCode,
+    Query,
+    Param,
+    Req,
+} from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiOkResponse } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { QueryUserDto, UserInfinityPaginationResult } from './dtos';
-import { InfinityPaginationResultType } from '~/common/types';
+import { InfinityPaginationResultType, NullableType } from '~/common/types';
 import { User } from './schemas';
 import { infinityPagination } from '~/common/utils';
+import { ObjectIdParamDto } from 'libs/common/dtos';
+import { AuthRoles } from '../auth/guards';
+import { instanceToPlain } from 'class-transformer';
+import { JwtPayloadType } from '../auth/strategies/types';
+import { UserRole } from './enums';
 
 @ApiTags('users')
 @ApiBearerAuth()
@@ -14,6 +28,7 @@ import { infinityPagination } from '~/common/utils';
 export class UsersController {
     constructor(private readonly usersService: UsersService) {}
 
+    @AuthRoles(UserRole.Manager)
     @SerializeOptions({
         groups: ['manager'],
     })
@@ -40,5 +55,23 @@ export class UsersController {
             }),
             { page, limit },
         );
+    }
+
+    @AuthRoles()
+    @Get('/:id')
+    @HttpCode(HttpStatus.OK)
+    @ApiOkResponse({
+        type: User,
+    })
+    async findOne(
+        @Param() { id }: ObjectIdParamDto,
+        @Req() request: { user: JwtPayloadType },
+    ): Promise<NullableType<User>> {
+        const user = await this.usersService.findById(id);
+        const { role } = request.user;
+        const serializedUser = instanceToPlain(user, {
+            groups: [role],
+        });
+        return serializedUser as NullableType<User>;
     }
 }

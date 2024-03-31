@@ -30,6 +30,7 @@ export class User extends AbstractDocument {
     @Prop({ unique: true, required: true })
     email: string;
 
+    @Expose({ groups: ['me', 'manager'] })
     @ApiProperty({
         example: true,
     })
@@ -37,6 +38,7 @@ export class User extends AbstractDocument {
     @Prop({ default: false })
     emailVerified: boolean;
 
+    @Expose({ groups: ['me', 'manager'] })
     @ApiProperty({
         example: AuthProvider.Email,
         enum: AuthProvider,
@@ -46,6 +48,7 @@ export class User extends AbstractDocument {
     @Prop({ required: true, type: String, enum: AuthProvider, default: AuthProvider.Email })
     provider: string;
 
+    @Expose({ groups: ['me', 'manager'] })
     @ApiPropertyOptional({
         example: '12345',
         type: String,
@@ -91,6 +94,7 @@ export class User extends AbstractDocument {
     @Prop({ required: true, unique: true })
     userName: string;
 
+    @Expose({ groups: ['me', 'manager'] })
     @ApiProperty({
         example: UserRole.Customer,
         enum: UserRole,
