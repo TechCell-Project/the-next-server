@@ -7,7 +7,7 @@ import { v4 as uuid } from 'uuid';
 export class AvatarSchema {
     @ApiProperty({
         type: String,
-        example: uuid(),
+        example: '123e4567-e89b-12d3-a456-426614174000',
     })
     @Factory(() => uuid())
     @Prop({ required: true })

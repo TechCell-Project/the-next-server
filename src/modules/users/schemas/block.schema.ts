@@ -12,7 +12,7 @@ class BlockActivityLog {
     @Prop({ required: true, type: Date, default: Date.now })
     actionAt: Date;
 
-    @ApiProperty({ type: String, format: 'ObjectId', example: new Types.ObjectId() })
+    @ApiProperty({ type: String, format: 'ObjectId', example: '507f1f77bcf86cd799439011' })
     @Prop({ required: true, type: Types.ObjectId, ref: 'User' })
     actionBy: Types.ObjectId;
 
