@@ -44,26 +44,8 @@ export class UsersService {
             }
         }
 
-        // if (clonedPayload.photo?.id) {
-        //     const fileObject = await this.filesService.findOne({
-        //         id: clonedPayload.photo.id,
-        //     });
-        //     if (!fileObject) {
-        //         throw new HttpException(
-        //             {
-        //                 status: HttpStatus.UNPROCESSABLE_ENTITY,
-        //                 errors: {
-        //                     photo: 'imageNotExists',
-        //                 },
-        //             },
-        //             HttpStatus.UNPROCESSABLE_ENTITY,
-        //         );
-        //     }
-        //     clonedPayload.photo = fileObject;
-        // }
-
-        const roleObject = valuesOfEnum(UserRole).includes(clonedPayload.role);
-        if (!roleObject) {
+        const roleOfUse = valuesOfEnum(UserRole).includes(clonedPayload.role);
+        if (!roleOfUse) {
             throw new HttpException(
                 {
                     status: HttpStatus.UNPROCESSABLE_ENTITY,
@@ -75,10 +57,33 @@ export class UsersService {
             );
         }
 
+        if (clonedPayload.role === UserRole.Manager) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        role: 'canNotBeManager',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+        if (clonedPayload.role === UserRole.Customer) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        role: 'canNotBeCustomer',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
         const userCreated = await this.usersRepository.create({
             document: clonedPayload,
         });
-        return new User(userCreated);
+        return userCreated;
     }
 
     async findByEmail(email: string): Promise<NullableType<User>> {
@@ -87,7 +92,7 @@ export class UsersService {
                 email,
             },
         });
-        return new User(user);
+        return user ? new User(user) : null;
     }
 
     async findById(id: string | Types.ObjectId): Promise<NullableType<User>> {
@@ -96,7 +101,7 @@ export class UsersService {
                 _id: convertToObjectId(id),
             },
         });
-        return new User(user);
+        return user ? new User(user) : null;
     }
 
     async findBySocial(socialId: string, provider: AuthProvider): Promise<NullableType<User>> {
@@ -106,7 +111,7 @@ export class UsersService {
                 provider,
             },
         });
-        return new User(user);
+        return user ? new User(user) : null;
     }
 
     async findByUserName(userName: string): Promise<NullableType<User>> {
@@ -130,7 +135,7 @@ export class UsersService {
                 ...payload,
             },
         });
-        return new User(user);
+        return user ? new User(user) : null;
     }
     async findManyWithPagination({
         filterOptions,

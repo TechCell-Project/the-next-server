@@ -7,13 +7,15 @@ import {
     Query,
     Param,
     Req,
+    Post,
+    Body,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiOkResponse } from '@nestjs/swagger';
 import { UsersService } from './users.service';
-import { QueryUserDto, UserInfinityPaginationResult } from './dtos';
+import { CreateUserDto, QueryUserDto, UserInfinityPaginationResult } from './dtos';
 import { InfinityPaginationResultType, NullableType } from '~/common/types';
 import { User } from './schemas';
-import { infinityPagination } from '~/common/utils';
+import { convertToObjectId, infinityPagination } from '~/common/utils';
 import { ObjectIdParamDto } from 'libs/common/dtos';
 import { AuthRoles } from '../auth/guards';
 import { instanceToPlain } from 'class-transformer';
@@ -27,6 +29,19 @@ import { UserRole } from './enums';
 })
 export class UsersController {
     constructor(private readonly usersService: UsersService) {}
+
+    @AuthRoles(UserRole.Manager)
+    @SerializeOptions({
+        groups: ['manager'],
+    })
+    @Post()
+    @HttpCode(HttpStatus.CREATED)
+    @ApiOkResponse({
+        type: User,
+    })
+    create(@Body() createProfileDto: CreateUserDto): Promise<NullableType<User>> {
+        return this.usersService.create(createProfileDto);
+    }
 
     @AuthRoles(UserRole.Manager)
     @SerializeOptions({
@@ -67,7 +82,11 @@ export class UsersController {
         @Param() { id }: ObjectIdParamDto,
         @Req() request: { user: JwtPayloadType },
     ): Promise<NullableType<User>> {
-        const user = await this.usersService.findById(id);
+        const user = await this.usersService.usersRepository.findOneOrThrow({
+            filterQuery: {
+                _id: convertToObjectId(id),
+            },
+        });
         const { role } = request.user;
         const serializedUser = instanceToPlain(user, {
             groups: [role],

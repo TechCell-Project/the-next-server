@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, MinLength } from 'class-validator';
 import { lowerCaseTransformer } from '~/common/transformers';
-import { UserRole } from '../enums';
+import { RolesWithoutCustomerAndManager, UserRole } from '../enums';
 
 export class CreateUserDto {
     @ApiProperty({
@@ -48,13 +48,13 @@ export class CreateUserDto {
     userName?: string;
 
     @ApiProperty({
-        example: 'admin',
         description: "The user's role.",
         required: true,
-        enum: UserRole,
+        enum: RolesWithoutCustomerAndManager,
+        example: UserRole.Accountant,
     })
     @IsNotEmpty()
-    @IsEnum(UserRole)
+    @IsEnum(RolesWithoutCustomerAndManager)
     role: UserRole | string;
 
     socialId?: string;
