@@ -1,28 +1,36 @@
 import { Prop } from '@nestjs/mongoose';
 import { BlockAction } from '../enums';
 import { Types } from 'mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 
 class BlockActivityLog {
+    @ApiProperty({ type: String, enum: BlockAction, example: BlockAction.Block })
     @Prop({ required: true, type: String, enum: BlockAction })
     action: string;
 
+    @ApiProperty({ type: String, format: 'date-time', example: Date.now() })
     @Prop({ required: true, type: Date, default: Date.now })
     actionAt: Date;
 
+    @ApiProperty({ type: String, format: 'ObjectId', example: new Types.ObjectId() })
     @Prop({ required: true, type: Types.ObjectId, ref: 'User' })
     actionBy: Types.ObjectId;
 
+    @ApiProperty({ type: String, example: 'reason to be block or unblock' })
     @Prop({ required: true, type: String })
     reason: string;
 
+    @ApiProperty({ type: String, example: 'note' })
     @Prop({ type: String, default: '' })
     note: string;
 }
 
 export class UserBlockSchema {
+    @ApiProperty({ type: Boolean, example: false })
     @Prop({ default: false })
     isBlocked: boolean;
 
+    @ApiProperty({ type: [BlockActivityLog] })
     @Prop({ type: [BlockActivityLog], default: [] })
     activityLogs: BlockActivityLog[];
 }

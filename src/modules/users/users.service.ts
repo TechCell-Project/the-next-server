@@ -4,8 +4,9 @@ import { AuthProvider, UserRole } from './enums';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { User } from './schemas';
 import * as bcrypt from 'bcryptjs';
-import { NullableType, convertToObjectId, valuesOfEnum } from '~/common';
+import { NullableType, TPaginationOptions, convertToObjectId, valuesOfEnum } from '~/common';
 import { Types } from 'mongoose';
+import { FilterUserDto, SortUserDto } from './dtos';
 
 @Injectable()
 export class UsersService {
@@ -130,5 +131,20 @@ export class UsersService {
             },
         });
         return new User(user);
+    }
+    async findManyWithPagination({
+        filterOptions,
+        sortOptions,
+        paginationOptions,
+    }: {
+        filterOptions?: FilterUserDto | null;
+        sortOptions?: SortUserDto[] | null;
+        paginationOptions: TPaginationOptions;
+    }): Promise<User[]> {
+        return this.usersRepository.findManyWithPagination({
+            filterOptions,
+            sortOptions,
+            paginationOptions,
+        });
     }
 }
