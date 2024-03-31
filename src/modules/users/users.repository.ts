@@ -3,7 +3,6 @@ import { User } from './schemas';
 import { PinoLogger } from 'nestjs-pino';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, Model } from 'mongoose';
-import { CreateUserDto } from './dtos/create-user.dto';
 import { v4 as uuid } from 'uuid';
 import { HttpException, HttpStatus } from '@nestjs/common';
 

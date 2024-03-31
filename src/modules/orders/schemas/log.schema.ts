@@ -1,6 +1,5 @@
 import { Prop } from '@nestjs/mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { PaymentMethod, PaymentStatus } from '../enum';
 import { ObjectId } from 'mongoose';
 
 export class LogSchema {
