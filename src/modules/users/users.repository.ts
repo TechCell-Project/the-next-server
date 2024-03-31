@@ -2,10 +2,11 @@ import { AbstractRepository } from '~/common/abstract';
 import { User } from './schemas';
 import { PinoLogger } from 'nestjs-pino';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import { Connection, Model } from 'mongoose';
-import { CreateUserDto } from './dtos/create-user.dto';
+import { Connection, FilterQuery, Model } from 'mongoose';
 import { v4 as uuid } from 'uuid';
 import { HttpException, HttpStatus } from '@nestjs/common';
+import { FilterUserDto, SortUserDto } from './dtos';
+import { TPaginationOptions } from '~/common/types';
 
 export class UsersRepository extends AbstractRepository<User> {
     protected readonly logger = new PinoLogger({
@@ -13,7 +14,7 @@ export class UsersRepository extends AbstractRepository<User> {
     });
 
     constructor(
-        @InjectModel(User.name) userModel: Model<User>,
+        @InjectModel(User.name) protected readonly userModel: Model<User>,
         @InjectConnection() connection: Connection,
     ) {
         super(userModel, connection);
@@ -60,5 +61,40 @@ export class UsersRepository extends AbstractRepository<User> {
         }
 
         return isUserNameExists;
+    }
+
+    async findManyWithPagination({
+        filterOptions,
+        sortOptions,
+        paginationOptions,
+    }: {
+        filterOptions?: FilterUserDto | null;
+        sortOptions?: SortUserDto[] | null;
+        paginationOptions: TPaginationOptions;
+    }): Promise<User[]> {
+        const where: FilterQuery<User> = {};
+        if (filterOptions?.roles?.length) {
+            where['role'] = {
+                $in: filterOptions.roles.map((role) => role.toString()),
+            };
+        }
+
+        const userObjects = await this.userModel
+            .find(where)
+            .sort(
+                sortOptions?.reduce(
+                    (accumulator, sort) => ({
+                        ...accumulator,
+                        [sort.orderBy === '_id' ? '_id' : sort.orderBy]:
+                            sort.order.toUpperCase() === 'ASC' ? 1 : -1,
+                    }),
+                    {},
+                ),
+            )
+            .skip((paginationOptions.page - 1) * paginationOptions.limit)
+            .limit(paginationOptions.limit)
+            .lean(true);
+
+        return userObjects.map((userObject) => new User(userObject));
     }
 }

@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { AbstractDocument } from '~/common/abstract';
 import { Factory } from 'nestjs-seeder';
-import { v4 as uuid } from 'uuid';
 import { Faker } from '@faker-js/faker';
 import { HydratedDocument } from 'mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
