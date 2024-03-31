@@ -3,7 +3,7 @@ import { BlockAction } from '../enums';
 import { Types } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 
-class BlockActivityLog {
+export class BlockActivityLog {
     @ApiProperty({ type: String, enum: BlockAction, example: BlockAction.Block })
     @Prop({ required: true, type: String, enum: BlockAction })
     action: string;

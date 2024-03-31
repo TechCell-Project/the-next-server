@@ -6,7 +6,7 @@ import { User } from './schemas';
 import * as bcrypt from 'bcryptjs';
 import { NullableType, TPaginationOptions, convertToObjectId, valuesOfEnum } from '~/common';
 import { Types } from 'mongoose';
-import { FilterUserDto, SortUserDto } from './dtos';
+import { FilterUserDto, SortUserDto, UpdateUserMntDto } from './dtos';
 
 @Injectable()
 export class UsersService {
@@ -137,6 +137,97 @@ export class UsersService {
         });
         return user ? new User(user) : null;
     }
+
+    async updateUserMnt(
+        targetUserId: string | Types.ObjectId,
+        actorId: string | Types.ObjectId,
+        payload: UpdateUserMntDto,
+    ): Promise<NullableType<User>> {
+        // eslint-disable-next-line prefer-const
+        let [targetUser, actor] = await Promise.all([
+            this.usersRepository.findOne({
+                filterQuery: {
+                    _id: convertToObjectId(targetUserId),
+                },
+            }),
+            this.usersRepository.findOne({
+                filterQuery: {
+                    _id: convertToObjectId(actorId),
+                },
+            }),
+        ]);
+
+        if (!targetUser) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        block: 'targetUserNotExists',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        if (!actor) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        block: 'actorNotExists',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        if (payload?.role) {
+            targetUser = this.usersRepository.changeRole({
+                targetUser,
+                actor,
+                role: payload.role,
+            });
+        }
+
+        if (payload?.block) {
+            switch (payload.block.isBlocked) {
+                case true:
+                    targetUser = this.usersRepository.blockUser({
+                        targetUser,
+                        actor,
+                        block: payload.block,
+                    });
+                    break;
+                case false:
+                    targetUser = this.usersRepository.unblockUser({
+                        targetUser,
+                        actor,
+                        block: payload.block,
+                    });
+                    break;
+                default:
+                    throw new HttpException(
+                        {
+                            status: HttpStatus.UNPROCESSABLE_ENTITY,
+                            errors: {
+                                block: 'isBlockedNotExists',
+                            },
+                        },
+                        HttpStatus.UNPROCESSABLE_ENTITY,
+                    );
+            }
+        }
+
+        targetUser = await this.usersRepository.findOneAndUpdate({
+            filterQuery: {
+                _id: convertToObjectId(targetUserId),
+            },
+            updateQuery: targetUser,
+        });
+
+        return targetUser ? new User(targetUser) : null;
+    }
+
     async findManyWithPagination({
         filterOptions,
         sortOptions,
