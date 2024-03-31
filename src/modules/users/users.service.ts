@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UsersRepository } from './users.repository';
-import { AuthProvider, UserRole } from './enums';
+import { AuthProvider, BlockAction, UserRole } from './enums';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { User } from './schemas';
 import * as bcrypt from 'bcryptjs';
@@ -138,6 +138,22 @@ export class UsersService {
         return user ? new User(user) : null;
     }
 
+    async findManyWithPagination({
+        filterOptions,
+        sortOptions,
+        paginationOptions,
+    }: {
+        filterOptions?: FilterUserDto | null;
+        sortOptions?: SortUserDto[] | null;
+        paginationOptions: TPaginationOptions;
+    }): Promise<User[]> {
+        return this.usersRepository.findManyWithPagination({
+            filterOptions,
+            sortOptions,
+            paginationOptions,
+        });
+    }
+
     async updateUserMnt(
         targetUserId: string | Types.ObjectId,
         actorId: string | Types.ObjectId,
@@ -145,44 +161,20 @@ export class UsersService {
     ): Promise<NullableType<User>> {
         // eslint-disable-next-line prefer-const
         let [targetUser, actor] = await Promise.all([
-            this.usersRepository.findOne({
+            this.usersRepository.findOneOrThrow({
                 filterQuery: {
                     _id: convertToObjectId(targetUserId),
                 },
             }),
-            this.usersRepository.findOne({
+            this.usersRepository.findOneOrThrow({
                 filterQuery: {
                     _id: convertToObjectId(actorId),
                 },
             }),
         ]);
 
-        if (!targetUser) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        block: 'targetUserNotExists',
-                    },
-                },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
-        }
-
-        if (!actor) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        block: 'actorNotExists',
-                    },
-                },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
-        }
-
         if (payload?.role) {
-            targetUser = this.usersRepository.changeRole({
+            targetUser = this.changeRole({
                 targetUser,
                 actor,
                 role: payload.role,
@@ -192,17 +184,27 @@ export class UsersService {
         if (payload?.block) {
             switch (payload.block.isBlocked) {
                 case true:
-                    targetUser = this.usersRepository.blockUser({
+                    targetUser = this.updateUserBlockStatus({
                         targetUser,
                         actor,
                         block: payload.block,
+                        isBlocked: true,
+                        action: BlockAction.Block,
+                        selfBlockError: 'cannotBlockYourself',
+                        permissionError: 'notAllowedToBlock',
+                        alreadyBlockedError: 'userAlreadyBlocked',
                     });
                     break;
                 case false:
-                    targetUser = this.usersRepository.unblockUser({
+                    targetUser = this.updateUserBlockStatus({
                         targetUser,
                         actor,
                         block: payload.block,
+                        isBlocked: false,
+                        action: BlockAction.Unblock,
+                        selfBlockError: 'cannotUnblockYourself',
+                        permissionError: 'notAllowedToUnblock',
+                        alreadyBlockedError: 'userAlreadyNotBlocked',
                     });
                     break;
                 default:
@@ -218,7 +220,7 @@ export class UsersService {
             }
         }
 
-        targetUser = await this.usersRepository.findOneAndUpdate({
+        targetUser = await this.usersRepository.findOneAndUpdateOrThrow({
             filterQuery: {
                 _id: convertToObjectId(targetUserId),
             },
@@ -228,19 +230,124 @@ export class UsersService {
         return targetUser ? new User(targetUser) : null;
     }
 
-    async findManyWithPagination({
-        filterOptions,
-        sortOptions,
-        paginationOptions,
+    private changeRole({
+        targetUser,
+        actor,
+        role,
     }: {
-        filterOptions?: FilterUserDto | null;
-        sortOptions?: SortUserDto[] | null;
-        paginationOptions: TPaginationOptions;
-    }): Promise<User[]> {
-        return this.usersRepository.findManyWithPagination({
-            filterOptions,
-            sortOptions,
-            paginationOptions,
+        targetUser: User;
+        actor: User;
+        role: UserRole;
+    }): User {
+        if (targetUser._id === actor._id) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        role: 'cannotChangeRoleOfYourself',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        if (actor.role !== UserRole.Manager || targetUser.role === UserRole.Manager) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        role: 'notAllowedToChangeRole',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        if (targetUser?.role === role) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        role: 'userAlreadyHasRole',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        targetUser.role = role;
+        return targetUser;
+    }
+
+    private updateUserBlockStatus({
+        targetUser,
+        actor,
+        block: blockObject,
+        isBlocked,
+        action,
+        selfBlockError,
+        permissionError,
+        alreadyBlockedError,
+    }: {
+        targetUser: User;
+        actor: User;
+        block: UpdateUserMntDto['block'];
+        isBlocked: boolean;
+        action: BlockAction;
+        selfBlockError: string;
+        permissionError: string;
+        alreadyBlockedError: string;
+    }): User {
+        if (targetUser._id === actor._id) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        block: selfBlockError,
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        if (actor.role !== UserRole.Manager || targetUser.role === UserRole.Manager) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        block: permissionError,
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        if (targetUser?.block?.isBlocked === isBlocked) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        block: alreadyBlockedError,
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        const actLogs = (targetUser.block && targetUser?.block?.activityLogs) || [];
+        actLogs.push({
+            action,
+            actionAt: new Date(),
+            actionBy: actor._id,
+            reason: blockObject?.activityLogs.reason ?? '',
+            note: blockObject?.activityLogs.note ?? '',
+        });
+
+        return Object.assign(targetUser, {
+            block: {
+                isBlocked,
+                activityLogs: actLogs,
+            },
         });
     }
 }
