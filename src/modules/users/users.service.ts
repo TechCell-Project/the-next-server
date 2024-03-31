@@ -120,7 +120,7 @@ export class UsersService {
                 userName,
             },
         });
-        return new User(user);
+        return user ? new User(user) : null;
     }
 
     async update(
