@@ -5,8 +5,9 @@ import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, FilterQuery, Model } from 'mongoose';
 import { v4 as uuid } from 'uuid';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { FilterUserDto, SortUserDto } from './dtos';
+import { FilterUserDto, SortUserDto, UpdateUserMntDto } from './dtos';
 import { TPaginationOptions } from '~/common/types';
+import { BlockAction, UserRole } from './enums';
 
 export class UsersRepository extends AbstractRepository<User> {
     protected readonly logger = new PinoLogger({

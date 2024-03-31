@@ -9,10 +9,16 @@ import {
     Req,
     Post,
     Body,
+    Patch,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiOkResponse } from '@nestjs/swagger';
 import { UsersService } from './users.service';
-import { CreateUserDto, QueryUserDto, UserInfinityPaginationResult } from './dtos';
+import {
+    CreateUserDto,
+    QueryUserDto,
+    UserInfinityPaginationResult,
+    UpdateUserMntDto,
+} from './dtos';
 import { InfinityPaginationResultType, NullableType } from '~/common/types';
 import { User } from './schemas';
 import { convertToObjectId, infinityPagination } from '~/common/utils';
@@ -52,7 +58,7 @@ export class UsersController {
     @ApiOkResponse({
         type: UserInfinityPaginationResult,
     })
-    async findAll(@Query() query: QueryUserDto): Promise<InfinityPaginationResultType<User>> {
+    async getUsers(@Query() query: QueryUserDto): Promise<InfinityPaginationResultType<User>> {
         const page = query?.page ?? 1;
         let limit = query?.limit ?? 10;
         if (limit > 50) {
@@ -78,7 +84,7 @@ export class UsersController {
     @ApiOkResponse({
         type: User,
     })
-    async findOne(
+    async getUserId(
         @Param() { id }: ObjectIdParamDto,
         @Req() request: { user: JwtPayloadType },
     ): Promise<NullableType<User>> {
@@ -92,5 +98,19 @@ export class UsersController {
             groups: [role],
         });
         return serializedUser as NullableType<User>;
+    }
+
+    @AuthRoles(UserRole.Manager)
+    @SerializeOptions({
+        groups: ['manager'],
+    })
+    @Patch(':id')
+    @HttpCode(HttpStatus.OK)
+    updateUserMnt(
+        @Param() { id }: ObjectIdParamDto,
+        @Body() updateProfileDto: UpdateUserMntDto,
+        @Req() request: { user: JwtPayloadType },
+    ): Promise<User | null> {
+        return this.usersService.updateUserMnt(id, request.user.userId, updateProfileDto);
     }
 }
