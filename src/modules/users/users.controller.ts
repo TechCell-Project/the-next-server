@@ -16,7 +16,7 @@ import { CreateUserDto, QueryUserDto, UserInfinityPaginationResult } from './dto
 import { InfinityPaginationResultType, NullableType } from '~/common/types';
 import { User } from './schemas';
 import { convertToObjectId, infinityPagination } from '~/common/utils';
-import { ObjectIdParamDto } from 'libs/common/dtos';
+import { ObjectIdParamDto } from '~/common/dtos';
 import { AuthRoles } from '../auth/guards';
 import { instanceToPlain } from 'class-transformer';
 import { JwtPayloadType } from '../auth/strategies/types';
