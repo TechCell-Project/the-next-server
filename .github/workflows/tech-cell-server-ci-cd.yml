@@ -220,7 +220,8 @@ jobs:
                   const ignoreList = [
                     'node_modules',
                     'git_push.sh',
-                    'generate-sdk-git-push.sh'
+                    'generate-sdk-git-push.sh',
+                    '.npmrc'
                   ]
                   fs.appendFileSync(gitignorePath, '\n' + ignoreList.join('\n'));
                   fs.appendFileSync(npmignorePath, '\n' + ignoreList.join('\n'));
