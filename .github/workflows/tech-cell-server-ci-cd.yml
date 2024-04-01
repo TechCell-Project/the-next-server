@@ -231,12 +231,14 @@ jobs:
                   fs.appendFileSync(readmePath, stringToAppend);
 
                   const gitignorePath = './generated/node/.gitignore';
+                  const npmignorePath = './generated/node/.npmignore';
                   const ignoreList = [
                     'node_modules',
                     'git_push.sh',
                     'generate-sdk-git-push.sh'
                   ]
                   fs.appendFileSync(gitignorePath, '\n' + ignoreList.join('\n'));
+                  fs.appendFileSync(npmignorePath, '\n' + ignoreList.join('\n'));
                   "
 
                   cd ./generated/node
