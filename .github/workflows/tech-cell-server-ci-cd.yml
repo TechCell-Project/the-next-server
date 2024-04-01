@@ -249,6 +249,7 @@ jobs:
 
             - name: Publish to npm
               run: |
+                  cd ./generated/node
                   echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
                   npm publish --access public
               env:
