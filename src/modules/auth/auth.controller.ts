@@ -9,7 +9,7 @@ import {
     Get,
     Patch,
 } from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiNoContentResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { NullableType } from '~/common/types';
 import { User } from '~/modules/users';
 import { AuthService } from './auth.service';
@@ -37,18 +37,21 @@ export class AuthController {
 
     @Post('email/register')
     @HttpCode(HttpStatus.NO_CONTENT)
+    @ApiNoContentResponse({ description: 'Success' })
     async register(@Body() createUserDto: AuthSignupDto): Promise<void> {
         return this.authService.register(createUserDto);
     }
 
     @Post('email/resend-confirm')
     @HttpCode(HttpStatus.NO_CONTENT)
+    @ApiNoContentResponse({ description: 'Success' })
     async resendConfirmEmail(@Body() { email }: ResendConfirmEmail): Promise<void> {
         return this.authService.resendConfirmEmail(email);
     }
 
     @Post('email/confirm')
     @HttpCode(HttpStatus.NO_CONTENT)
+    @ApiNoContentResponse({ description: 'Success' })
     async confirmEmail(@Body() confirmEmailDto: AuthConfirmEmailDto): Promise<void> {
         return this.authService.confirmEmail(confirmEmailDto.hash);
     }
@@ -65,6 +68,7 @@ export class AuthController {
 
     @AuthRoles()
     @HttpCode(HttpStatus.NO_CONTENT)
+    @ApiNoContentResponse({ description: 'Success' })
     @Post('logout')
     public async logout(
         @Req() req: { user: { sessionId: Pick<JwtRefreshPayloadType, 'sessionId'> } },
@@ -89,12 +93,14 @@ export class AuthController {
 
     @Post('forgot/password')
     @HttpCode(HttpStatus.NO_CONTENT)
+    @ApiNoContentResponse({ description: 'Success' })
     async forgotPassword(@Body() forgotPasswordDto: AuthForgotPasswordDto): Promise<void> {
         return this.authService.forgotPassword(forgotPasswordDto.email);
     }
 
     @Post('reset/password')
     @HttpCode(HttpStatus.NO_CONTENT)
+    @ApiNoContentResponse({ description: 'Success' })
     resetPassword(@Body() resetPasswordDto: AuthResetPasswordDto): Promise<void> {
         return this.authService.resetPassword(resetPasswordDto.hash, resetPasswordDto.password);
     }
@@ -118,6 +124,9 @@ export class AuthController {
     })
     @Patch('me')
     @HttpCode(HttpStatus.OK)
+    @ApiOkResponse({
+        type: User,
+    })
     public update(
         @Req() request: { user: JwtPayloadType },
         @Body() userDto: AuthUpdateDto,

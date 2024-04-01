@@ -1,5 +1,5 @@
 import { Body, Controller, HttpCode, HttpStatus, Post, SerializeOptions } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from '../auth/auth.service';
 import { AuthGoogleService } from './auth-google.service';
 import { AuthGoogleLoginDto } from './auth-google-login.dto';
@@ -21,6 +21,7 @@ export class AuthGoogleController {
         groups: ['me'],
     })
     @Post('login')
+    @ApiOkResponse({ type: LoginResponseDto })
     @HttpCode(HttpStatus.OK)
     async login(@Body() loginDto: AuthGoogleLoginDto): Promise<LoginResponseDto> {
         const socialData = await this.authGoogleService.getProfileByToken(loginDto);

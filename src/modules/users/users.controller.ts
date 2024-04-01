@@ -106,6 +106,9 @@ export class UsersController {
     })
     @Patch(':id')
     @HttpCode(HttpStatus.OK)
+    @ApiOkResponse({
+        type: User,
+    })
     updateUserMnt(
         @Param() { id }: ObjectIdParamDto,
         @Body() updateProfileDto: UpdateUserMntDto,
