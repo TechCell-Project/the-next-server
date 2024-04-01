@@ -18,9 +18,7 @@
                     "withSeparateModelsAndApi": true,
                     "useSingleRequestParameter": true,
                     "stringEnums": true,
-                    "withInterfaces": true,
-                    "sortModelPropertiesByRequiredFlag": true,
-                    "withNodeImports": true
+                    "sortModelPropertiesByRequiredFlag": true
                 }
             }
         }
