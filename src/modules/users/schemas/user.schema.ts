@@ -118,7 +118,7 @@ export class User extends AbstractDocument {
     avatar?: AvatarSchema;
 
     @ApiPropertyOptional({
-        type: UserAddressSchema,
+        type: [UserAddressSchema],
     })
     @Prop({ type: [UserAddressSchema], default: [] })
     address?: UserAddressSchema[];
