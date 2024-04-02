@@ -92,9 +92,7 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
 
         session?: ClientSession;
     }): Promise<NullableType<TDocument>> {
-        if (updateQuery?._id) {
-            delete updateQuery._id;
-        }
+        delete updateQuery?._id;
 
         const document = await this.model.findOneAndUpdate(filterQuery, updateQuery, {
             lean: true,
@@ -116,9 +114,7 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
         queryOptions?: Partial<QueryOptions<TDocument>>;
         session?: ClientSession;
     }): Promise<TDocument> {
-        if (updateQuery?._id) {
-            delete updateQuery._id;
-        }
+        delete updateQuery?._id;
 
         const document = await this.findOneAndUpdate({
             filterQuery,
@@ -135,9 +131,7 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
     }
 
     async upsert(filterQuery: FilterQuery<TDocument>, document: Partial<TDocument>) {
-        if (document?._id) {
-            delete document._id;
-        }
+        delete document?._id;
 
         return this.model.findOneAndUpdate(filterQuery, document, {
             lean: true,

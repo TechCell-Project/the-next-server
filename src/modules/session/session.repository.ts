@@ -73,6 +73,6 @@ export class SessionRepository extends AbstractRepository<Session> {
             user: criteria.user?._id ?? undefined,
             _id: criteria.id ? criteria.id : excludeId ? { $not: { $eq: excludeId } } : undefined,
         };
-        await this.sessionModel.updateMany(transformedCriteria);
+        await this.sessionModel.deleteMany(transformedCriteria);
     }
 }
