@@ -28,7 +28,7 @@ import { ObjectIdParamDto } from '~/common/dtos';
 import { AuthRoles } from '../auth/guards';
 import { instanceToPlain } from 'class-transformer';
 import { JwtPayloadType } from '../auth/strategies/types';
-import { UserRole } from './enums';
+// import { UserRole } from './enums';
 
 @ApiTags('users')
 @ApiBearerAuth()
@@ -39,7 +39,8 @@ import { UserRole } from './enums';
 export class UsersController {
     constructor(private readonly usersService: UsersService) {}
 
-    @AuthRoles(UserRole.Manager)
+    @AuthRoles()
+    // @AuthRoles(UserRole.Manager)
     @SerializeOptions({
         groups: ['manager'],
     })
@@ -52,7 +53,8 @@ export class UsersController {
         return this.usersService.create(createProfileDto);
     }
 
-    @AuthRoles(UserRole.Manager)
+    @AuthRoles()
+    // @AuthRoles(UserRole.Manager)
     @SerializeOptions({
         groups: ['manager'],
     })
@@ -103,7 +105,8 @@ export class UsersController {
         return serializedUser as NullableType<User>;
     }
 
-    @AuthRoles(UserRole.Manager)
+    @AuthRoles()
+    // @AuthRoles(UserRole.Manager)
     @SerializeOptions({
         groups: ['manager'],
     })

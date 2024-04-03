@@ -32,7 +32,8 @@ import { Attribute } from './schemas';
 export class AttributesController {
     constructor(private readonly attributesService: AttributesService) {}
 
-    @AuthRoles(UserRole.Warehouse)
+    @AuthRoles()
+    // @AuthRoles(UserRole.Warehouse)
     @Post('/')
     @HttpCode(HttpStatus.CREATED)
     async createAttribute(@Body() payload: CreateAttributeDto) {
