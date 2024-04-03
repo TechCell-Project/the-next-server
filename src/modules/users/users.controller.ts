@@ -11,13 +11,15 @@ import {
     Body,
     Patch,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags, ApiOkResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags, ApiOkResponse, ApiExtraModels } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import {
     CreateUserDto,
     QueryUserDto,
     UserInfinityPaginationResult,
     UpdateUserMntDto,
+    FilterUserDto,
+    SortUserDto,
 } from './dtos';
 import { InfinityPaginationResultType, NullableType } from '~/common/types';
 import { User } from './schemas';
@@ -30,6 +32,7 @@ import { UserRole } from './enums';
 
 @ApiTags('users')
 @ApiBearerAuth()
+@ApiExtraModels(FilterUserDto, SortUserDto)
 @Controller({
     path: '/users',
 })
