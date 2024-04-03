@@ -72,6 +72,7 @@
         "prom-client": "14.2.0",
         "redlock": "^5.0.0-beta.2",
         "reflect-metadata": "^0.2.0",
+        "regex-vietnamese": "^2.0.1",
         "rxjs": "^7.8.1",
         "swagger-stats": "^0.99.7",
         "swagger-themes": "^1.4.3",

@@ -23,6 +23,7 @@ import { MailModule } from '~/modules/mail';
         MailModule,
         RedisModule,
         LoggerModule,
+        AttributesModule,
         AuthModule,
         AuthGoogleModule,
         AuthFacebookModule,
