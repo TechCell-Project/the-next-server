@@ -32,7 +32,9 @@ export class AuthService {
         private readonly redisService: RedisService,
         private readonly sessionService: SessionService,
         private readonly ghnService: GhnService,
-    ) {}
+    ) {
+        this.logger.setContext(AuthService.name);
+    }
 
     async register(dto: AuthSignupDto): Promise<void> {
         const userCreated = await this.usersService.create({

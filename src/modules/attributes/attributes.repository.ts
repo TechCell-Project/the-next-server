@@ -10,13 +10,13 @@ import { GetAttributesDto } from './dtos/get-attributes.dto';
 import { generateRegexQuery } from 'regex-vietnamese';
 
 export class AttributesRepository extends AbstractRepository<Attribute> {
-    protected readonly logger: PinoLogger;
-
     constructor(
         @InjectModel(Attribute.name) protected readonly attributeModel: Model<Attribute>,
         @InjectConnection() connection: Connection,
+        protected readonly logger: PinoLogger,
     ) {
         super(attributeModel, connection);
+        this.logger.setContext(AttributesRepository.name);
     }
 
     async createAttribute(payload: CreateAttributeDto) {
