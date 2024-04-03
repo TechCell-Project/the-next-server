@@ -127,6 +127,13 @@ export class UsersService {
         userId: string | Types.ObjectId,
         payload: Partial<User>,
     ): Promise<NullableType<User>> {
+        delete payload?.email;
+
+        if (payload?.password) {
+            const salt = await bcrypt.genSalt();
+            payload.password = await bcrypt.hash(payload.password, salt);
+        }
+
         const user = await this.usersRepository.findOneAndUpdate({
             filterQuery: {
                 _id: convertToObjectId(userId),
