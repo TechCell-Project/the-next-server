@@ -7,7 +7,7 @@ export class UserInfinityPaginationResult implements InfinityPaginationResultTyp
         type: [User],
     })
     readonly data: User[];
-    @ApiProperty({ example: true })
+    @ApiProperty({ example: true, type: Boolean })
     readonly hasNextPage: boolean;
 
     constructor(data: User[], hasNextPage: boolean) {

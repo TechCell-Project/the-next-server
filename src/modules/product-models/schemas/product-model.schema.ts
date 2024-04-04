@@ -12,22 +12,22 @@ import { HydratedDocument, ObjectId } from 'mongoose';
     collection: 'productModels',
 })
 export class ProductModel extends AbstractDocument {
-    @ApiProperty({ example: '5f9a7f5d9d8f6d7f5d8f6d7' })
+    @ApiProperty({ example: '5f9a7f5d9d8f6d7f5d8f6d7', type: String })
     @Factory(() => '5f9a7f5d9d8f6d7f5d8f6d7')
     @Prop({ type: String, required: true })
     brandId: ObjectId;
 
-    @ApiProperty({ example: 'iphone-15' })
+    @ApiProperty({ example: 'iphone-15', type: String })
     @Factory(() => uuid())
     @Prop({ unique: true, required: true, type: String })
     slug: string;
 
-    @ApiProperty({ example: 'Iphone 15' })
+    @ApiProperty({ example: 'Iphone 15', type: String })
     @Factory((faker: Faker) => faker.commerce.productName())
     @Prop({ required: true, type: String })
     name: string;
 
-    @ApiPropertyOptional({ example: 'This is iPhone 15 Models' })
+    @ApiPropertyOptional({ example: 'This is iPhone 15 Models', type: String })
     @Factory((faker: Faker) => faker.company.catchPhrase())
     @Prop({ required: false, type: String, default: '' })
     description: string;

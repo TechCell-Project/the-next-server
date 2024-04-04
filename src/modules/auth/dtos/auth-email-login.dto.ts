@@ -8,6 +8,7 @@ export class AuthEmailLoginDto {
         example: 'test@techcell.cloud',
         description: 'User email',
         required: true,
+        type: String,
     })
     @Transform(lowerCaseTransformer)
     @IsEmail()
@@ -18,6 +19,7 @@ export class AuthEmailLoginDto {
         example: 'password',
         description: 'User password',
         required: true,
+        type: String,
     })
     @IsNotEmpty()
     password: string;

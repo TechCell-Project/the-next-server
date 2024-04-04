@@ -8,6 +8,7 @@ export class AuthForgotPasswordDto {
         example: 'test@techcell.cloud',
         description: 'User email',
         required: true,
+        type: String,
     })
     @Transform(lowerCaseTransformer)
     @IsEmail()

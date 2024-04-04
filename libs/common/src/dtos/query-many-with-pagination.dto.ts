@@ -3,13 +3,17 @@ import { Transform } from 'class-transformer';
 import { IsJSON, IsNumber, IsOptional } from 'class-validator';
 
 export class QueryManyWithPaginationDto<F, S> {
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({
+        type: Number,
+    })
     @IsOptional()
     @Transform(({ value }) => (value ? Number(value) : 1))
     @IsNumber()
     page: number;
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({
+        type: Number,
+    })
     @IsOptional()
     @Transform(({ value }) => (value ? Number(value) : 10))
     @IsNumber()

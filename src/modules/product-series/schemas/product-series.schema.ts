@@ -13,22 +13,22 @@ import { ImageSchema } from './image.schema';
     collection: 'productSeries',
 })
 export class ProductSeries extends AbstractDocument {
-    @ApiProperty({ example: '5f9a7f5d9d8f6d7f5d8f6d7' })
+    @ApiProperty({ example: '5f9a7f5d9d8f6d7f5d8f6d7', type: String, format: 'ObjectId' })
     @Factory(() => '5f9a7f5d9d8f6d7f5d8f6d7')
     @Prop({ type: String, required: true })
     modelId: ObjectId;
 
-    @ApiProperty({ example: 'pro-max' })
+    @ApiProperty({ example: 'pro-max', type: String })
     @Factory(() => uuid())
     @Prop({ unique: true, required: true, type: String })
     slug: string;
 
-    @ApiProperty({ example: 'Pro Max' })
+    @ApiProperty({ example: 'Pro Max', type: String })
     @Factory((faker: Faker) => faker.commerce.productName())
     @Prop({ required: true, type: String })
     name: string;
 
-    @ApiPropertyOptional({ example: 'This is iphone Pro Max series' })
+    @ApiPropertyOptional({ example: 'This is iphone Pro Max series', type: String })
     @Factory((faker: Faker) => faker.company.catchPhrase())
     @Prop({ required: false, type: String, default: '' })
     description: string;

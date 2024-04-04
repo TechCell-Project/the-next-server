@@ -20,7 +20,7 @@ export class Order extends AbstractDocument {
     @Prop({ required: true, type: CustomerSchema })
     customer: CustomerSchema;
 
-    @ApiPropertyOptional({ example: 'wait at 123 street' })
+    @ApiPropertyOptional({ example: 'wait at 123 street', type: String })
     @Factory((faker: Faker) => faker.company.catchPhrase())
     @Prop({ required: false, type: String, default: '' })
     note: string;
@@ -34,7 +34,7 @@ export class Order extends AbstractDocument {
     @Prop({ required: true, type: PaymentSchema })
     payment: PaymentSchema;
 
-    @ApiProperty({ example: OrderStatus.Pending, enum: OrderStatus })
+    @ApiProperty({ example: OrderStatus.Pending, enum: OrderStatus, type: String })
     @Factory((faker: Faker) => faker.helpers.enumValue(OrderStatus))
     @Prop({ required: true, type: String, enum: OrderStatus })
     orderStatus: string;

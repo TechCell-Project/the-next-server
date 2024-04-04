@@ -6,6 +6,7 @@ export class AuthResetPasswordDto {
         example: 'password',
         description: 'User new password',
         required: true,
+        type: String,
     })
     @IsNotEmpty()
     password: string;
@@ -13,6 +14,7 @@ export class AuthResetPasswordDto {
     @ApiProperty({
         example: 'hash',
         required: true,
+        type: String,
     })
     @IsNotEmpty()
     hash: string;

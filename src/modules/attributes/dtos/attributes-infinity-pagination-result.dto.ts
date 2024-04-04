@@ -7,7 +7,7 @@ export class AttributeInfinityPaginationResult implements InfinityPaginationResu
         type: [Attribute],
     })
     readonly data: Attribute[];
-    @ApiProperty({ example: true })
+    @ApiProperty({ example: true, type: Boolean })
     readonly hasNextPage: boolean;
 
     constructor(data: Attribute[], hasNextPage: boolean) {

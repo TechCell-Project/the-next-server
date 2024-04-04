@@ -5,6 +5,7 @@ export class AuthConfirmEmailDto {
     @ApiProperty({
         example: 'hash',
         required: true,
+        type: String,
     })
     @IsNotEmpty()
     hash: string;

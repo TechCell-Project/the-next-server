@@ -40,6 +40,7 @@ export class UpdateUserMntDto {
         enum: RolesWithoutCustomerAndManager,
         description: 'User role to update',
         example: UserRole.DataEntry,
+        type: String,
     })
     @IsOptional()
     @IsEnum(RolesWithoutCustomerAndManager)

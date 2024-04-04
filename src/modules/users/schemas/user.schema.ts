@@ -24,6 +24,7 @@ export class User extends AbstractDocument {
     }
 
     @ApiProperty({
+        type: String,
         example: 'example@techcell.cloud',
     })
     @Factory((faker: Faker) => faker.internet.email({ provider: 'techcell.cloud' }))
@@ -32,6 +33,7 @@ export class User extends AbstractDocument {
 
     @Expose({ groups: ['me', 'manager'] })
     @ApiProperty({
+        type: Boolean,
         example: true,
     })
     @Factory((faker: Faker) => faker.datatype.boolean())
@@ -78,6 +80,7 @@ export class User extends AbstractDocument {
 
     @ApiProperty({
         example: 'Doe',
+        type: String,
     })
     @Factory((faker: Faker) => faker.person.lastName())
     @Prop({
@@ -87,6 +90,7 @@ export class User extends AbstractDocument {
 
     @ApiProperty({
         example: 'john.doe',
+        type: String,
     })
     @Factory((faker: Faker, ctx) =>
         faker.internet.userName({ firstName: ctx?.firstName, lastName: ctx?.lastName }),
@@ -98,6 +102,7 @@ export class User extends AbstractDocument {
     @ApiProperty({
         example: UserRole.Customer,
         enum: UserRole,
+        type: String,
     })
     @Factory((faker: Faker) =>
         faker.helpers.arrayElement([

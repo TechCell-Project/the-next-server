@@ -12,22 +12,22 @@ import { CategoryStatus } from '../status.enum';
     collection: 'categories',
 })
 export class Category extends AbstractDocument {
-    @ApiProperty({ example: 'selling' })
+    @ApiProperty({ example: 'selling', type: String })
     @Factory(() => uuid())
     @Prop({ unique: true, required: true, type: String })
     slug: string;
 
-    @ApiProperty({ example: 'Đang bán' })
+    @ApiProperty({ example: 'Đang bán', type: String })
     @Factory((faker: Faker) => faker.company.name())
     @Prop({ required: true, type: String })
     name: string;
 
-    @ApiProperty({ example: 'Product that is selling.' })
+    @ApiProperty({ example: 'Product that is selling.', type: String })
     @Factory((faker: Faker) => faker.company.catchPhrase())
     @Prop({ required: false, type: String, default: '' })
     description: string;
 
-    @ApiProperty({ example: CategoryStatus.Active, enum: CategoryStatus })
+    @ApiProperty({ example: CategoryStatus.Active, enum: CategoryStatus, type: String })
     @Factory((faker: Faker) => faker.helpers.enumValue(CategoryStatus))
     @Prop({ required: true, default: CategoryStatus.Active, type: String })
     status: string;

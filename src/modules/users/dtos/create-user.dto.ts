@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, MinLength } from 'class-validator';
 import { lowerCaseTransformer } from '~/common/transformers';
@@ -9,13 +9,19 @@ export class CreateUserDto {
         example: 'example@techcell.cloud',
         description: "The user's email address.",
         required: true,
+        type: String,
     })
     @Transform(lowerCaseTransformer)
     @IsNotEmpty()
     @IsEmail()
     email: string;
 
-    @ApiProperty()
+    @ApiProperty({
+        example: 'password-will-secret',
+        description: "The user's password.",
+        minLength: 6,
+        type: String,
+    })
     @MinLength(6)
     password: string;
 
@@ -23,6 +29,7 @@ export class CreateUserDto {
         example: 'John',
         description: "The user's first name.",
         required: true,
+        type: String,
     })
     @IsNotEmpty()
     @IsString()
@@ -32,15 +39,17 @@ export class CreateUserDto {
         example: 'Doe',
         description: "The user's last name.",
         required: true,
+        type: String,
     })
     @IsNotEmpty()
     @IsString()
     lastName: string;
 
-    @ApiProperty({
+    @ApiPropertyOptional({
         example: 'techcell',
         description: "The user's username.",
         required: false,
+        type: String,
     })
     @IsOptional()
     @IsString()
@@ -52,6 +61,7 @@ export class CreateUserDto {
         required: true,
         enum: RolesWithoutCustomerAndManager,
         example: UserRole.Accountant,
+        type: String,
     })
     @IsNotEmpty()
     @IsEnum(RolesWithoutCustomerAndManager)

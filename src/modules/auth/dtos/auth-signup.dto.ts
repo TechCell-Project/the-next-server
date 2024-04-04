@@ -8,6 +8,7 @@ export class AuthSignupDto {
         example: 'example@techcell.cloud',
         description: "The user's email address.",
         required: true,
+        type: String,
     })
     @Transform(lowerCaseTransformer)
     @IsEmail()
@@ -17,8 +18,10 @@ export class AuthSignupDto {
         example: 'john.doe',
         description: "The user's username.",
         required: false,
+        type: String,
     })
     @IsOptional()
+    @IsNotEmpty()
     @IsString()
     userName: string;
 
@@ -27,7 +30,10 @@ export class AuthSignupDto {
         description: "The user's password.",
         minLength: 6,
         required: true,
+        type: String,
     })
+    @IsNotEmpty()
+    @IsString()
     @MinLength(6)
     password: string;
 
@@ -35,15 +41,19 @@ export class AuthSignupDto {
         example: 'John',
         description: "The user's first name.",
         required: true,
+        type: String,
     })
     @IsNotEmpty()
+    @IsString()
     firstName: string;
 
     @ApiProperty({
         example: 'Doe',
         description: "The user's last name.",
         required: true,
+        type: String,
     })
     @IsNotEmpty()
+    @IsString()
     lastName: string;
 }

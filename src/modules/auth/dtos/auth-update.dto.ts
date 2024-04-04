@@ -17,7 +17,7 @@ import { UserAddressSchema } from '~/modules/users';
 import { AddressType } from '~/modules/users/enums';
 
 class ProvinceSchemaDTO {
-    @ApiProperty({ description: 'The id of province', example: 201 })
+    @ApiProperty({ description: 'The id of province', example: 201, type: Number })
     @IsNotEmpty()
     @IsNumber()
     @Type(() => Number)
@@ -25,7 +25,7 @@ class ProvinceSchemaDTO {
 }
 
 class DistrictSchemaDTO {
-    @ApiProperty({ description: 'The id of district', example: 1490 })
+    @ApiProperty({ description: 'The id of district', example: 1490, type: Number })
     @IsNotEmpty()
     @IsNumber()
     @Type(() => Number)
@@ -33,7 +33,7 @@ class DistrictSchemaDTO {
 }
 
 class WardSchemaDTO {
-    @ApiProperty({ description: 'The code of ward', example: '1A0807' })
+    @ApiProperty({ description: 'The code of ward', example: '1A0807', type: String })
     @IsNotEmpty()
     @IsString()
     wardCode: string;
@@ -48,17 +48,22 @@ export class AddressSchemaDTO implements UserAddressSchema {
         description: 'The name type of address',
         enum: AddressType,
         example: AddressType.Home,
+        type: String,
     })
     @IsEnum(AddressType)
     @IsNotEmpty()
     type: string;
 
-    @ApiProperty({ description: 'The name of customer', example: 'John Doe' })
+    @ApiProperty({ description: 'The name of customer', example: 'John Doe', type: String })
     @IsString()
     @IsNotEmpty()
     customerName: string;
 
-    @ApiProperty({ description: 'The phone number of customer', example: '0123456789' })
+    @ApiProperty({
+        description: 'The phone number of customer',
+        example: '0123456789',
+        type: String,
+    })
     @IsPhoneNumber('VN')
     @IsNotEmpty()
     phoneNumbers: string;
@@ -81,13 +86,15 @@ export class AddressSchemaDTO implements UserAddressSchema {
     @Type(() => WardSchemaDTO)
     wardLevel: WardSchemaDTO;
 
-    @ApiProperty({ description: 'The detailed address', example: '18 Tam Trinh' })
+    @ApiProperty({ description: 'The detailed address', example: '18 Tam Trinh', type: String })
     @IsString()
     @IsNotEmpty()
     detail: string;
 
     @ApiPropertyOptional({
         description: 'The boolean value to check if this address is default or not',
+        example: true,
+        type: Boolean,
     })
     @IsOptional()
     @IsBoolean()
@@ -96,28 +103,36 @@ export class AddressSchemaDTO implements UserAddressSchema {
 }
 
 export class AuthUpdateDto {
-    @ApiPropertyOptional({ example: 'JohnDoe' })
+    @ApiPropertyOptional({ example: 'JohnDoe', type: String })
     @IsOptional()
     @IsNotEmpty({ message: 'mustBeNotEmpty' })
     userName?: string;
 
-    @ApiPropertyOptional({ example: 'John' })
+    @ApiPropertyOptional({ example: 'John', type: String })
     @IsOptional()
     @IsNotEmpty({ message: 'mustBeNotEmpty' })
     firstName?: string;
 
-    @ApiPropertyOptional({ example: 'Doe' })
+    @ApiPropertyOptional({ example: 'Doe', type: String })
     @IsOptional()
     @IsNotEmpty({ message: 'mustBeNotEmpty' })
     lastName?: string;
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({
+        example: 'password-will-secret',
+        type: String,
+        minLength: 6,
+    })
     @IsOptional()
     @IsNotEmpty()
     @MinLength(6)
     password?: string;
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({
+        example: 'password-will-secret',
+        type: String,
+        minLength: 6,
+    })
     @IsOptional()
     @IsNotEmpty({ message: 'mustBeNotEmpty' })
     oldPassword?: string;
