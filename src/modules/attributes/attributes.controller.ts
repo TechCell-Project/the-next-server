@@ -5,6 +5,7 @@ import {
     HttpCode,
     HttpStatus,
     Param,
+    Patch,
     Post,
     Query,
     SerializeOptions,
@@ -16,8 +17,15 @@ import {
     FilterAttributeDto,
     GetAttributesDto,
     SortAttributeDto,
+    UpdateAttributeDto,
 } from './dtos';
-import { ApiBearerAuth, ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+    ApiBearerAuth,
+    ApiExtraModels,
+    ApiNoContentResponse,
+    ApiOkResponse,
+    ApiTags,
+} from '@nestjs/swagger';
 import { AuthRoles } from '../auth/guards';
 import { UserRole } from '../users/enums';
 import { ObjectIdParamDto, infinityPagination } from '~/common';
@@ -40,6 +48,7 @@ export class AttributesController {
         return this.attributesService.createAttribute(payload);
     }
 
+    @AuthRoles()
     // @AuthRoles(UserRole.Warehouse)
     @SerializeOptions({
         groups: [UserRole.Warehouse],
@@ -72,5 +81,16 @@ export class AttributesController {
     @HttpCode(HttpStatus.OK)
     async getAttribute(@Param() { id }: ObjectIdParamDto) {
         return this.attributesService.getAttribute(id);
+    }
+
+    @AuthRoles()
+    // @AuthRoles(UserRole.Warehouse)
+    @ApiNoContentResponse({
+        description: 'Update attribute successfully',
+    })
+    @Patch('/:id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    async updateAttribute(@Param() { id }: ObjectIdParamDto, @Body() payload: UpdateAttributeDto) {
+        return this.attributesService.updateAttribute(id, payload);
     }
 }

@@ -15,6 +15,7 @@
         "mail",
         "third-party",
         "workflows",
-        "users"
+        "users",
+        "attributes"
     ]
 }

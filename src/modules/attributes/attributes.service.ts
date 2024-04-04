@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { AttributesRepository } from './attributes.repository';
-import { CreateAttributeDto, GetAttributesDto } from './dtos';
+import { CreateAttributeDto, GetAttributesDto, UpdateAttributeDto } from './dtos';
 import { Attribute } from './schemas';
 import { convertToObjectId } from '~/common';
 
@@ -29,5 +29,12 @@ export class AttributesService {
                 filterQuery: { _id: convertToObjectId(id) },
             }),
         );
+    }
+
+    async updateAttribute(id: string, payload: UpdateAttributeDto): Promise<void> {
+        await this.attributesRepository.findOneAndUpdateOrThrow({
+            filterQuery: { _id: convertToObjectId(id) },
+            updateQuery: payload,
+        });
     }
 }

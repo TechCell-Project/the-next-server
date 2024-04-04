@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Factory } from 'nestjs-seeder';
 import { HydratedDocument } from 'mongoose';
 import { AbstractDocument } from '~/common/abstract';
@@ -18,16 +18,16 @@ export class Attribute extends AbstractDocument {
         Object.assign(this, data);
     }
 
-    @ApiProperty({ example: 'ram', type: String })
+    @ApiProperty({ example: 'ram', type: String, description: 'Attribute label, unique' })
     @Factory(() => uuid())
     @Prop({ unique: true, required: true, type: String })
     label: string;
 
-    @ApiProperty({ example: 'RAM', type: String })
+    @ApiProperty({ example: 'RAM', type: String, description: 'Attribute name, can be translated' })
     @Prop({ required: true, type: String })
     name: string;
 
-    @ApiProperty({ example: 'GB', type: String })
+    @ApiPropertyOptional({ example: 'GB', type: String, description: 'Attribute unit' })
     @Prop({ required: false, type: String })
     unit: string;
 
@@ -35,7 +35,12 @@ export class Attribute extends AbstractDocument {
     @Prop({ required: false, default: '', type: String })
     description: string;
 
-    @ApiProperty({ example: AttributeStatus.Available, enum: AttributeStatus, type: String })
+    @ApiProperty({
+        example: AttributeStatus.Available,
+        enum: AttributeStatus,
+        type: String,
+        description: 'Attribute status',
+    })
     @Factory((faker: Faker) => faker.helpers.enumValue(AttributeStatus))
     @Prop({
         required: false,
