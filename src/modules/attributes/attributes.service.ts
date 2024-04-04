@@ -3,6 +3,7 @@ import { AttributesRepository } from './attributes.repository';
 import { CreateAttributeDto, GetAttributesDto, UpdateAttributeDto } from './dtos';
 import { Attribute } from './schemas';
 import { convertToObjectId } from '~/common';
+import { AttributeStatus } from './attribute.enum';
 
 @Injectable()
 export class AttributesService {
@@ -14,7 +15,10 @@ export class AttributesService {
 
     async getAttributes(payload: GetAttributesDto): Promise<Attribute[]> {
         return this.attributesRepository.findManyWithPagination({
-            filterOptions: payload?.filters,
+            filterOptions: {
+                status: AttributeStatus.Available,
+                ...payload?.filters,
+            },
             sortOptions: payload?.sort,
             paginationOptions: {
                 limit: payload?.limit,

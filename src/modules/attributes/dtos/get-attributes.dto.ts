@@ -8,16 +8,37 @@ import {
 } from '@nestjs/swagger';
 import { QueryManyWithPaginationDto } from '~/common';
 import { Attribute } from '../schemas';
-import { IsJSON, IsString, ValidateNested } from 'class-validator';
+import { IsEnum, IsJSON, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { Transform, Type, plainToInstance } from 'class-transformer';
 import { SortCase } from '~/common/enums';
+import { AttributeStatus } from '../attribute.enum';
 
-export class FilterAttributeDto extends OmitType(PartialType(Attribute), ['status', '_id']) {}
+export class FilterAttributeDto extends OmitType(PartialType(Attribute), ['_id']) {
+    @IsOptional()
+    @IsString()
+    description?: string | undefined;
+
+    @IsOptional()
+    @IsString()
+    label?: string | undefined;
+
+    @IsOptional()
+    @IsString()
+    name?: string | undefined;
+
+    @IsOptional()
+    @IsEnum(AttributeStatus)
+    status?: string | undefined;
+
+    @IsOptional()
+    @IsString()
+    unit?: string | undefined;
+}
 
 export class SortAttributeDto {
     @ApiProperty({
         type: String,
-        example: 'label',
+        example: 'key of attribute',
     })
     @Type(() => String)
     @IsString()
@@ -28,7 +49,7 @@ export class SortAttributeDto {
         enum: SortCase,
         example: SortCase.Asc,
     })
-    @IsString()
+    @IsEnum(SortCase)
     order: string;
 }
 

@@ -22,6 +22,7 @@ import {
 } from './dtos';
 import {
     ApiBearerAuth,
+    ApiCreatedResponse,
     ApiExtraModels,
     ApiNoContentResponse,
     ApiOkResponse,
@@ -42,6 +43,9 @@ import { AttributeStatus } from './attribute.enum';
 export class AttributesController {
     constructor(private readonly attributesService: AttributesService) {}
 
+    @ApiCreatedResponse({
+        description: 'Attribute created',
+    })
     @AuthRoles()
     // @AuthRoles(UserRole.Warehouse)
     @Post('/')
@@ -56,6 +60,7 @@ export class AttributesController {
         groups: [UserRole.Warehouse],
     })
     @ApiOkResponse({
+        description: 'Get attributes successfully',
         type: AttributeInfinityPaginationResult,
     })
     @Get('/')
@@ -78,7 +83,7 @@ export class AttributesController {
         );
     }
 
-    @ApiOkResponse({ type: Attribute })
+    @ApiOkResponse({ type: Attribute, description: 'Get attribute successfully' })
     @Get('/:id')
     @HttpCode(HttpStatus.OK)
     async getAttribute(@Param() { id }: ObjectIdParamDto) {
