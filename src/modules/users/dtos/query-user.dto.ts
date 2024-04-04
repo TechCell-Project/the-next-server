@@ -5,7 +5,7 @@ import { UserRole } from '../enums';
 import { User } from '../schemas';
 
 export class FilterUserDto {
-    @ApiPropertyOptional({ type: String, enum: UserRole })
+    @ApiPropertyOptional({ type: [UserRole], enum: UserRole })
     @IsOptional()
     roles?: UserRole[] | null;
 }
