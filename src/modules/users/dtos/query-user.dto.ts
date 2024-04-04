@@ -1,23 +1,37 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsEnum, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { Transform, Type, plainToInstance } from 'class-transformer';
 import { UserRole } from '../enums';
 import { User } from '../schemas';
+import { SortCase } from '~/common/enums';
 
 export class FilterUserDto {
-    @ApiPropertyOptional({ type: [UserRole], enum: UserRole })
+    @ApiPropertyOptional({
+        type: [UserRole],
+        enum: UserRole,
+        example: [UserRole.Accountant, UserRole.DataEntry],
+    })
     @IsOptional()
     roles?: UserRole[] | null;
 }
 
 export class SortUserDto {
-    @ApiProperty()
+    @ApiProperty({
+        type: String,
+        description: 'Key of User',
+    })
     @Type(() => String)
     @IsString()
     orderBy: keyof User;
 
-    @ApiProperty()
+    @ApiProperty({
+        type: String,
+        description: 'Order of sorting',
+        example: SortCase.Asc,
+        enum: SortCase,
+    })
     @IsString()
+    @IsEnum(SortCase)
     order: string;
 }
 
