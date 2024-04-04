@@ -140,5 +140,5 @@
             "^~/third-party(|/.*)$": "<rootDir>/libs/third-party/src/$1"
         }
     },
-    "packageManager": "yarn@4.1.0"
+    "packageManager": "yarn@4.1.1"
 }
