@@ -1,6 +1,7 @@
 import {
     Body,
     Controller,
+    Delete,
     Get,
     HttpCode,
     HttpStatus,
@@ -30,6 +31,7 @@ import { AuthRoles } from '../auth/guards';
 import { UserRole } from '../users/enums';
 import { ObjectIdParamDto, infinityPagination } from '~/common';
 import { Attribute } from './schemas';
+import { AttributeStatus } from './attribute.enum';
 
 @ApiTags('attributes')
 @ApiExtraModels(FilterAttributeDto, SortAttributeDto)
@@ -92,5 +94,16 @@ export class AttributesController {
     @HttpCode(HttpStatus.NO_CONTENT)
     async updateAttribute(@Param() { id }: ObjectIdParamDto, @Body() payload: UpdateAttributeDto) {
         return this.attributesService.updateAttribute(id, payload);
+    }
+
+    @AuthRoles()
+    // @AuthRoles(UserRole.Warehouse)
+    @ApiNoContentResponse({
+        description: 'Delete attribute successfully',
+    })
+    @Delete('/:id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    async deleteAttribute(@Param() { id }: ObjectIdParamDto) {
+        return this.attributesService.updateAttribute(id, { status: AttributeStatus.Deleted });
     }
 }
