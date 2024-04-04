@@ -37,10 +37,15 @@ export class AuthService {
     }
 
     async register(dto: AuthSignupDto): Promise<void> {
-        const userCreated = await this.usersService.create({
-            ...dto,
-            email: dto.email,
-            role: UserRole.Customer,
+        const userCreated = await this.usersService.usersRepository.create({
+            document: {
+                ...dto,
+                userName: await this.usersService.usersRepository.validateUserName(dto?.userName),
+                email: dto.email,
+                emailVerified: false,
+                role: UserRole.Customer,
+                provider: AuthProvider.Email,
+            },
         });
         const key = `user:${userCreated._id.toString()}:confirmEmailHash`;
 

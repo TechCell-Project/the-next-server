@@ -57,28 +57,28 @@ export class UsersService {
             );
         }
 
-        // if (clonedPayload.role === UserRole.Manager) {
-        //     throw new HttpException(
-        //         {
-        //             status: HttpStatus.UNPROCESSABLE_ENTITY,
-        //             errors: {
-        //                 role: 'canNotBeManager',
-        //             },
-        //         },
-        //         HttpStatus.UNPROCESSABLE_ENTITY,
-        //     );
-        // }
-        // if (clonedPayload.role === UserRole.Customer) {
-        //     throw new HttpException(
-        //         {
-        //             status: HttpStatus.UNPROCESSABLE_ENTITY,
-        //             errors: {
-        //                 role: 'canNotBeCustomer',
-        //             },
-        //         },
-        //         HttpStatus.UNPROCESSABLE_ENTITY,
-        //     );
-        // }
+        if (clonedPayload.role === UserRole.Manager) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        role: 'canNotBeManager',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+        if (clonedPayload.role === UserRole.Customer) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        role: 'canNotBeCustomer',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
 
         const userCreated = await this.usersRepository.create({
             document: clonedPayload,
