@@ -16,7 +16,6 @@ export class UsersService {
         const clonedPayload = {
             provider: AuthProvider.Email,
             emailVerified: false,
-            userName: await this.usersRepository.validateUserName(createProfileDto?.userName),
             ...createProfileDto,
         };
 
@@ -109,15 +108,6 @@ export class UsersService {
             filterQuery: {
                 socialId,
                 provider,
-            },
-        });
-        return user ? new User(user) : null;
-    }
-
-    async findByUserName(userName: string): Promise<NullableType<User>> {
-        const user = await this.usersRepository.findOne({
-            filterQuery: {
-                userName,
             },
         });
         return user ? new User(user) : null;

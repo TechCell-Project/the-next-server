@@ -103,11 +103,6 @@ export class AddressSchemaDTO implements UserAddressSchema {
 }
 
 export class AuthUpdateDto {
-    @ApiPropertyOptional({ example: 'JohnDoe', type: String })
-    @IsOptional()
-    @IsNotEmpty({ message: 'mustBeNotEmpty' })
-    userName?: string;
-
     @ApiPropertyOptional({ example: 'John', type: String })
     @IsOptional()
     @IsNotEmpty({ message: 'mustBeNotEmpty' })

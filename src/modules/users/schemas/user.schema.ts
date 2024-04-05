@@ -88,16 +88,6 @@ export class User extends AbstractDocument {
     })
     lastName: string;
 
-    @ApiProperty({
-        example: 'john.doe',
-        type: String,
-    })
-    @Factory((faker: Faker, ctx) =>
-        faker.internet.userName({ firstName: ctx?.firstName, lastName: ctx?.lastName }),
-    )
-    @Prop({ required: true, unique: true })
-    userName: string;
-
     @Expose({ groups: ['me', 'manager'] })
     @ApiProperty({
         example: UserRole.Customer,

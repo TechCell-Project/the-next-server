@@ -52,7 +52,6 @@ export class AuthService {
         const userCreated = await this.usersService.usersRepository.create({
             document: {
                 ...dto,
-                userName: await this.usersService.usersRepository.validateUserName(dto?.userName),
                 email: dto.email,
                 emailVerified: false,
                 role: UserRole.Customer,
@@ -539,21 +538,6 @@ export class AuthService {
         userDto: AuthUpdateDto,
     ): Promise<NullableType<User>> {
         const userData = userDto;
-        if (userData?.userName) {
-            const user = await this.usersService.findByUserName(userData.userName);
-            if (user) {
-                throw new HttpException(
-                    {
-                        status: HttpStatus.UNPROCESSABLE_ENTITY,
-                        errors: {
-                            userName: 'userNameAlreadyExists',
-                        },
-                    },
-                    HttpStatus.UNPROCESSABLE_ENTITY,
-                );
-            }
-        }
-
         if (userData.password) {
             if (!userData.oldPassword) {
                 throw new HttpException(
