@@ -138,7 +138,7 @@ export class MailService {
     }
 
     async forgotPassword(
-        mailData: MailData<{ hash: string; tokenExpires: number }>,
+        mailData: MailData<{ hash: string; tokenExpires: number; returnUrl?: string }>,
         retryData: {
             retryCount?: number;
             transporter?: string;
@@ -169,10 +169,11 @@ export class MailService {
                 i18n.t('mail-context.RESET_PASSWORD.text4'),
             ]);
         }
+        const fallbackReturnUrl = process.env.FE_DOMAIN + '/password-change';
 
-        const url = new URL(process.env.FE_DOMAIN + '/password-change');
-        url.searchParams.set('hash', mailData.data.hash);
+        const url = new URL(mailData?.data?.returnUrl ?? fallbackReturnUrl);
         url.searchParams.set('expires', mailData.data.tokenExpires.toString());
+        url.searchParams.set('hash', mailData.data.hash);
 
         let transporterName = this.resolveTransporter(transporter);
         await this.mailerService
@@ -191,6 +192,9 @@ export class MailService {
                     text3,
                     text4,
                 },
+            })
+            .then(() => {
+                this.logger.debug(`Mail sent: ${mailData.to}`);
             })
             .catch(async (error) => {
                 this.logger.debug(`Send mail failed: ${error.message}`);

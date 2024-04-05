@@ -12,7 +12,7 @@ import { faker } from '@faker-js/faker';
 import * as crypto from 'crypto';
 import { v4 as uuid } from 'uuid';
 import * as bcrypt from 'bcryptjs';
-import { AuthEmailLoginDto, AuthUpdateDto, LoginResponseDto } from './dtos';
+import { AuthEmailLoginDto, AuthForgotPasswordDto, AuthUpdateDto, LoginResponseDto } from './dtos';
 import { convertTimeString } from 'convert-time-string';
 import { RedisService } from '~/common/redis';
 import { PREFIX_REVOKE_ACCESS_TOKEN, PREFIX_REVOKE_REFRESH_TOKEN } from './auth.constant';
@@ -37,6 +37,18 @@ export class AuthService {
     }
 
     async register(dto: AuthSignupDto): Promise<void> {
+        if (await this.usersService.findByEmail(dto.email)) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        email: 'emailAlreadyExists',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
         const userCreated = await this.usersService.usersRepository.create({
             document: {
                 ...dto,
@@ -416,7 +428,7 @@ export class AuthService {
         return { accessToken, refreshToken, accessTokenExpires };
     }
 
-    async forgotPassword(email: string): Promise<void> {
+    async forgotPassword({ email, returnUrl }: AuthForgotPasswordDto): Promise<void> {
         const user = await this.usersService.findByEmail(email);
 
         if (!user) {
@@ -453,6 +465,7 @@ export class AuthService {
                 data: {
                     hash,
                     tokenExpires,
+                    returnUrl,
                 },
             }),
         ]);

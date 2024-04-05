@@ -95,7 +95,7 @@ export class AuthController {
     @HttpCode(HttpStatus.NO_CONTENT)
     @ApiNoContentResponse({ description: 'Success' })
     async forgotPassword(@Body() forgotPasswordDto: AuthForgotPasswordDto): Promise<void> {
-        return this.authService.forgotPassword(forgotPasswordDto.email);
+        return this.authService.forgotPassword(forgotPasswordDto);
     }
 
     @Post('reset/password')
