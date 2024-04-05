@@ -8,8 +8,9 @@ import {
     Req,
     Get,
     Patch,
+    UseGuards,
 } from '@nestjs/common';
-import { ApiNoContentResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiNoContentResponse, ApiOkResponse, ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { NullableType } from '~/common/types';
 import { User } from '~/modules/users';
 import { AuthService } from './auth.service';
@@ -27,6 +28,7 @@ import {
 import { AuthRoles } from './guards';
 import { JwtPayloadType, JwtRefreshPayloadType } from './strategies/types';
 import { Types } from 'mongoose';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('auth')
 @Controller({
@@ -78,7 +80,8 @@ export class AuthController {
         });
     }
 
-    @AuthRoles()
+    @ApiBearerAuth()
+    @UseGuards(AuthGuard('jwt-refresh'))
     @SerializeOptions({
         groups: ['me'],
     })
