@@ -165,7 +165,7 @@ export class UsersService {
         targetUserId: string | Types.ObjectId,
         actorId: string | Types.ObjectId,
         payload: UpdateUserMntDto,
-    ): Promise<NullableType<User>> {
+    ) {
         // eslint-disable-next-line prefer-const
         let [targetUser, actor] = await Promise.all([
             this.usersRepository.findOneOrThrow({
@@ -189,8 +189,8 @@ export class UsersService {
         }
 
         if (payload?.block) {
-            switch (payload.block.isBlocked) {
-                case true:
+            switch (payload.block.action) {
+                case BlockAction.Block:
                     targetUser = this.updateUserBlockStatus({
                         targetUser,
                         actor,
@@ -202,7 +202,7 @@ export class UsersService {
                         alreadyBlockedError: 'userAlreadyBlocked',
                     });
                     break;
-                case false:
+                case BlockAction.Unblock:
                     targetUser = this.updateUserBlockStatus({
                         targetUser,
                         actor,
@@ -215,26 +215,15 @@ export class UsersService {
                     });
                     break;
                 default:
-                    throw new HttpException(
-                        {
-                            status: HttpStatus.UNPROCESSABLE_ENTITY,
-                            errors: {
-                                block: 'isBlockedNotExists',
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
+                    break;
             }
         }
-
-        targetUser = await this.usersRepository.findOneAndUpdateOrThrow({
+        await this.usersRepository.findOneAndUpdateOrThrow({
             filterQuery: {
                 _id: convertToObjectId(targetUserId),
             },
             updateQuery: targetUser,
         });
-
-        return targetUser ? new User(targetUser) : null;
     }
 
     private changeRole({

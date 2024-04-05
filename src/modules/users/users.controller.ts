@@ -6,7 +6,6 @@ import {
     HttpCode,
     Query,
     Param,
-    Req,
     Post,
     Body,
     Patch,
@@ -28,6 +27,8 @@ import { ObjectIdParamDto } from '~/common/dtos';
 import { AuthRoles } from '../auth/guards';
 import { instanceToPlain } from 'class-transformer';
 import { JwtPayloadType } from '../auth/strategies/types';
+import { UserRole } from './enums';
+import { CurrentUser } from '~/common/decorators';
 // import { UserRole } from './enums';
 
 @ApiTags('users')
@@ -39,10 +40,10 @@ import { JwtPayloadType } from '../auth/strategies/types';
 export class UsersController {
     constructor(private readonly usersService: UsersService) {}
 
-    @AuthRoles()
-    // @AuthRoles(UserRole.Manager)
+    // @AuthRoles()
+    @AuthRoles(UserRole.Manager)
     @SerializeOptions({
-        groups: ['manager'],
+        groups: [UserRole.Manager],
     })
     @Post()
     @HttpCode(HttpStatus.CREATED)
@@ -56,7 +57,7 @@ export class UsersController {
     @AuthRoles()
     // @AuthRoles(UserRole.Manager)
     @SerializeOptions({
-        groups: ['manager'],
+        groups: [UserRole.Manager],
     })
     @Get('/')
     @HttpCode(HttpStatus.OK)
@@ -91,35 +92,34 @@ export class UsersController {
     })
     async getUserId(
         @Param() { id }: ObjectIdParamDto,
-        @Req() request: { user: JwtPayloadType },
+        @CurrentUser() { role }: JwtPayloadType,
     ): Promise<NullableType<User>> {
         const user = await this.usersService.usersRepository.findOneOrThrow({
             filterQuery: {
                 _id: convertToObjectId(id),
             },
         });
-        const { role } = request.user;
         const serializedUser = instanceToPlain(user, {
             groups: [role],
         });
         return serializedUser as NullableType<User>;
     }
 
-    @AuthRoles()
-    // @AuthRoles(UserRole.Manager)
+    // @AuthRoles()
+    @AuthRoles(UserRole.Manager)
     @SerializeOptions({
-        groups: ['manager'],
+        groups: [UserRole.Manager],
     })
-    @Patch(':id')
-    @HttpCode(HttpStatus.OK)
+    @Patch('/:id')
+    @HttpCode(HttpStatus.NO_CONTENT)
     @ApiOkResponse({
         type: User,
     })
     updateUserMnt(
-        @Param() { id }: ObjectIdParamDto,
         @Body() updateProfileDto: UpdateUserMntDto,
-        @Req() request: { user: JwtPayloadType },
-    ): Promise<User | null> {
-        return this.usersService.updateUserMnt(id, request.user.userId, updateProfileDto);
+        @Param() { id }: ObjectIdParamDto,
+        @CurrentUser() user: JwtPayloadType,
+    ): Promise<void> {
+        return this.usersService.updateUserMnt(id, user.userId, updateProfileDto);
     }
 }
