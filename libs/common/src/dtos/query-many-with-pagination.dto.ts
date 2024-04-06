@@ -1,6 +1,27 @@
-import { ApiPropertyOptional } from '@nestjs/swagger';
-import { Transform } from 'class-transformer';
-import { IsJSON, IsNumber, IsOptional } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Transform, Type } from 'class-transformer';
+import { IsEnum, IsJSON, IsNumber, IsOptional, IsString } from 'class-validator';
+import { SortCase } from '../enums';
+
+export class SortDto<T> {
+    @ApiProperty({
+        type: String,
+        description: 'Key of Entity to sort',
+    })
+    @Type(() => String)
+    @IsString()
+    orderBy: keyof T;
+
+    @ApiProperty({
+        type: String,
+        description: 'Order of sorting',
+        example: SortCase.Asc,
+        enum: SortCase,
+    })
+    @IsString()
+    @IsEnum(SortCase)
+    order: string;
+}
 
 export class QueryManyWithPaginationDto<F, S> {
     @ApiPropertyOptional({

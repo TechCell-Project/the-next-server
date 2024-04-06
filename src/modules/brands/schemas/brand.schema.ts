@@ -12,7 +12,12 @@ import { BrandStatus } from '../enums';
     collection: 'brands',
 })
 export class Brand extends AbstractDocument {
-    @ApiProperty({ example: 'apple', type: String })
+    constructor(data?: Partial<Brand>) {
+        super();
+        Object.assign(this, data);
+    }
+
+    @ApiProperty({ example: 'apple', type: String, uniqueItems: true })
     @Factory(() => uuid())
     @Prop({ unique: true, required: true, type: String })
     slug: string;

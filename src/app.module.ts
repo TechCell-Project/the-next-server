@@ -15,6 +15,7 @@ import { CategoriesModule } from './modules/categories/categories.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { I18nModule } from './modules/i18n';
 import { MailModule } from '~/modules/mail';
+import { SPUModule } from './modules/spus';
 
 @Module({
     imports: [
@@ -23,8 +24,8 @@ import { MailModule } from '~/modules/mail';
         MailModule,
         RedisModule,
         LoggerModule,
-        AttributesModule,
         AuthModule,
+        AttributesModule,
         AuthGoogleModule,
         AuthFacebookModule,
         UsersModule,
@@ -35,6 +36,7 @@ import { MailModule } from '~/modules/mail';
         ProductVariationsModule,
         CategoriesModule,
         OrdersModule,
+        SPUModule,
     ],
 })
 export class AppModule {}

@@ -1,5 +1,14 @@
 {
-    "cSpell.words": ["casl", "clipboardy", "giaohangnhanh", "pino", "Redlock", "virtuals"],
+    "cSpell.words": [
+        "casl",
+        "clipboardy",
+        "giaohangnhanh",
+        "pino",
+        "promax",
+        "Redlock",
+        "spus",
+        "virtuals"
+    ],
     "conventionalCommits.scopes": [
         "seed",
         "lib/common",
@@ -16,6 +25,7 @@
         "third-party",
         "workflows",
         "users",
-        "attributes"
+        "attributes",
+        "brands"
     ]
 }
