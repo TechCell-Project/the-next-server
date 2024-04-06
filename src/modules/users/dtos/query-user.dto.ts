@@ -12,6 +12,7 @@ export class FilterUserDto {
         example: [UserRole.Accountant, UserRole.DataEntry],
     })
     @IsOptional()
+    @IsEnum(UserRole, { each: true })
     roles?: UserRole[] | null;
 }
 

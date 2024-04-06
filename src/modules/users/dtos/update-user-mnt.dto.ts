@@ -23,6 +23,7 @@ export class BlockUserDto {
 
     @ApiProperty({ type: BlockActivityLogDto })
     @ValidateNested({ each: true })
+    @Type(() => BlockActivityLogDto)
     activityLogs: BlockActivityLogDto;
 }
 
