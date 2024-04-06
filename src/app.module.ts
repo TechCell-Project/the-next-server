@@ -16,6 +16,7 @@ import { OrdersModule } from './modules/orders/orders.module';
 import { I18nModule } from './modules/i18n';
 import { MailModule } from '~/modules/mail';
 import { SPUModule } from './modules/spus';
+import { AddressModule } from './modules/address';
 
 @Module({
     imports: [
@@ -29,6 +30,7 @@ import { SPUModule } from './modules/spus';
         AuthGoogleModule,
         AuthFacebookModule,
         UsersModule,
+        AddressModule,
         BrandsModule,
         ProductModelsModule,
         AttributesModule,

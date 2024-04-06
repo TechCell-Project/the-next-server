@@ -29,6 +29,7 @@
         "brands",
         "dtos",
         "typos",
-        "spus"
+        "spus",
+        "address"
     ]
 }
