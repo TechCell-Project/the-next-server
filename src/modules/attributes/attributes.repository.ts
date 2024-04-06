@@ -6,7 +6,7 @@ import { Connection, FilterQuery, Model } from 'mongoose';
 import { CreateAttributeDto } from './dtos';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { AttributeStatus } from './attribute.enum';
-import { GetAttributesDto } from './dtos/get-attributes.dto';
+import { QueryAttributesDto } from './dtos/query-attributes.dto';
 import { generateRegexQuery } from 'regex-vietnamese';
 
 export class AttributesRepository extends AbstractRepository<Attribute> {
@@ -52,8 +52,8 @@ export class AttributesRepository extends AbstractRepository<Attribute> {
         sortOptions,
         paginationOptions,
     }: {
-        filterOptions?: GetAttributesDto['filters'] | null;
-        sortOptions?: GetAttributesDto['sort'] | null;
+        filterOptions?: QueryAttributesDto['filters'] | null;
+        sortOptions?: QueryAttributesDto['sort'] | null;
         paginationOptions: TPaginationOptions;
     }): Promise<Attribute[]> {
         const where: FilterQuery<Attribute> = {};

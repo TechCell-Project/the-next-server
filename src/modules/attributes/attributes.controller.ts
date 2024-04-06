@@ -16,7 +16,7 @@ import {
     AttributeInfinityPaginationResult,
     CreateAttributeDto,
     FilterAttributeDto,
-    GetAttributesDto,
+    QueryAttributesDto,
     SortAttributeDto,
     UpdateAttributeDto,
 } from './dtos';
@@ -65,7 +65,7 @@ export class AttributesController {
     })
     @Get('/')
     @HttpCode(HttpStatus.OK)
-    async getAttributes(@Query() query: GetAttributesDto) {
+    async getAttributes(@Query() query: QueryAttributesDto) {
         const page = query?.page ?? 1;
         let limit = query?.limit ?? 10;
         if (limit > 50) {

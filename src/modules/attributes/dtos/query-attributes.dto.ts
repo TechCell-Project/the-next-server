@@ -53,7 +53,7 @@ export class SortAttributeDto {
     order: string;
 }
 
-export class GetAttributesDto extends IntersectionType(
+export class QueryAttributesDto extends IntersectionType(
     QueryManyWithPaginationDto<FilterAttributeDto, SortAttributeDto>,
 ) {
     @ApiPropertyOptional({
