@@ -14,7 +14,7 @@ import { ApiBearerAuth, ApiTags, ApiOkResponse, ApiExtraModels } from '@nestjs/s
 import { UsersService } from './users.service';
 import {
     CreateUserDto,
-    QueryUserDto,
+    QueryUsersDto,
     UserInfinityPaginationResult,
     UpdateUserMntDto,
     FilterUserDto,
@@ -64,7 +64,7 @@ export class UsersController {
     @ApiOkResponse({
         type: UserInfinityPaginationResult,
     })
-    async getUsers(@Query() query: QueryUserDto): Promise<InfinityPaginationResultType<User>> {
+    async getUsers(@Query() query: QueryUsersDto): Promise<InfinityPaginationResultType<User>> {
         const page = query?.page ?? 1;
         let limit = query?.limit ?? 10;
         if (limit > 50) {

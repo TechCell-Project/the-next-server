@@ -36,7 +36,7 @@ export class SortUserDto {
     order: string;
 }
 
-export class QueryUserDto {
+export class QueryUsersDto {
     @ApiPropertyOptional({
         type: Number,
     })

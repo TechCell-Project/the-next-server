@@ -27,6 +27,7 @@
         "users",
         "attributes",
         "brands",
-        "dtos"
+        "dtos",
+        "typos"
     ]
 }
