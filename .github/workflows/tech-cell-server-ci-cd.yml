@@ -192,6 +192,7 @@ jobs:
                       version: '',
                       description: '',
                       main: 'index.ts',
+                      files: [],
                       scripts: {
                         test: 'echo \"Error: no test specified\" && exit 1'
                       },
@@ -208,7 +209,10 @@ jobs:
                     type: 'git',
                     url: 'https://github.com/TechCell-Project/the-next-server'
                   };
+                  pkg.keywords = pkg.keywords || [];
                   pkg.keywords.push('techcell');
+                  pkg.files = pkg.files || [];
+                  pkg.files.push('dist', 'README.md');
                   fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
 
                   const readmePath = './generated/node/README.md';
