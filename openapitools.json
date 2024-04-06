@@ -1,5 +1,5 @@
 {
-    "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+    "$schema": "node_modules/@openapitools/openapi-generator-cli/config.schema.json",
     "spaces": 4,
     "generator-cli": {
         "version": "7.4.0",
@@ -8,6 +8,14 @@
                 "generatorName": "typescript-axios",
                 "output": "#{cwd}/generated/node",
                 "glob": "swagger.yaml",
+                "gitHost": "https://github.com",
+                "gitUserId": "TechCell-Project",
+                "gitRepoId": "node-sdk",
+                "verbose": false,
+                "globalProperty": {
+                    "apiDocs": true,
+                    "modelDocs": true
+                },
                 "additionalProperties": {
                     "npmName": "@techcell/node-sdk",
                     "npmRepository": "https://registry.npmjs.org",
@@ -19,6 +27,46 @@
                     "useSingleRequestParameter": true,
                     "stringEnums": true,
                     "sortModelPropertiesByRequiredFlag": true
+                }
+            },
+            "dart": {
+                "generatorName": "dart",
+                "output": "#{cwd}/generated/dart",
+                "glob": "swagger.yaml",
+                "gitHost": "https://github.com",
+                "gitUserId": "TechCell-Project",
+                "gitRepoId": "dart-sdk",
+                "verbose": false,
+                "globalProperty": {
+                    "apiDocs": true,
+                    "modelDocs": true
+                },
+                "additionalProperties": {
+                    "pubAuthor": "lehuygiang28",
+                    "pubAuthorEmail": "lehuygiang28@gmail.com",
+                    "pubDescription": "Dart SDK for Techcell",
+                    "pubLibrary": "techcell.dart_sdk",
+                    "pubName": "dart_sdk"
+                }
+            },
+            "dart-dio": {
+                "generatorName": "dart-dio",
+                "output": "#{cwd}/generated/dart-dio",
+                "glob": "swagger.yaml",
+                "gitHost": "https://github.com",
+                "gitUserId": "TechCell-Project",
+                "gitRepoId": "dart-dio-sdk",
+                "verbose": false,
+                "globalProperty": {
+                    "apiDocs": true,
+                    "modelDocs": true
+                },
+                "additionalProperties": {
+                    "pubAuthor": "lehuygiang28",
+                    "pubAuthorEmail": "lehuygiang28@gmail.com",
+                    "pubDescription": "Dart-dio SDK for Techcell",
+                    "pubLibrary": "techcell.dart_dio_sdk",
+                    "pubName": "dart_dio_sdk"
                 }
             }
         }
