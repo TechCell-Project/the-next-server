@@ -28,6 +28,7 @@
         "attributes",
         "brands",
         "dtos",
-        "typos"
+        "typos",
+        "spus"
     ]
 }
