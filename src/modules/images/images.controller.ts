@@ -8,11 +8,10 @@ import {
     ParseFilePipe,
     PayloadTooLargeException,
     Post,
-    UploadedFile,
     UseInterceptors,
     UploadedFiles,
 } from '@nestjs/common';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { FilesInterceptor } from '@nestjs/platform-express';
 import {
     ApiBadRequestResponse,
     ApiBody,
@@ -29,11 +28,10 @@ import {
 import { ImageUploadedResponseDTO, PublicIdDTO } from './dtos';
 import { ImagesService } from './images.service';
 import {
-    ARRAY_IMAGE_FILE_MAX_COUNT,
+    MULTI_IMAGE_FILE_MAX_COUNT,
     IMAGE_FILE_ACCEPTED_EXTENSIONS,
     IMAGE_FILE_MAX_SIZE_IN_BYTES,
     IMAGE_FILE_MAX_SIZE_IN_MB,
-    SINGLE_IMAGE_FILE_MAX_COUNT,
 } from '~/third-party/cloudinary.com';
 
 @ApiBadRequestResponse({
@@ -71,82 +69,7 @@ export class ImagesController {
     }
 
     @ApiOperation({
-        summary: 'Upload image',
-    })
-    @ApiConsumes('multipart/form-data')
-    @ApiCreatedResponse({
-        description: 'Image uploaded',
-        type: ImageUploadedResponseDTO,
-    })
-    @ApiPayloadTooLargeResponse({
-        description: `Image size too large, maximum 10 MB, and maximum ${SINGLE_IMAGE_FILE_MAX_COUNT} image`,
-    })
-    @UseInterceptors(
-        FileInterceptor('image', {
-            limits: {
-                files: SINGLE_IMAGE_FILE_MAX_COUNT,
-                fileSize: IMAGE_FILE_MAX_SIZE_IN_BYTES,
-            },
-            fileFilter: (req, file, cb) => {
-                if (
-                    !RegExp(`\\.(${IMAGE_FILE_ACCEPTED_EXTENSIONS})$`).exec(
-                        file.originalname?.toLowerCase(),
-                    )
-                ) {
-                    return cb(
-                        new BadRequestException(
-                            `Only ${IMAGE_FILE_ACCEPTED_EXTENSIONS} are allowed!`,
-                        ),
-                        false,
-                    );
-                }
-                if (file.size > IMAGE_FILE_MAX_SIZE_IN_BYTES) {
-                    return cb(
-                        new PayloadTooLargeException(
-                            `Maximum image size is ${IMAGE_FILE_MAX_SIZE_IN_MB} MB (${IMAGE_FILE_MAX_SIZE_IN_BYTES} bytes)`,
-                        ),
-                        false,
-                    );
-                }
-                cb(null, true);
-            },
-        }),
-    )
-    @ApiBody({
-        description: 'Image file to upload as multipart/form-data',
-        schema: {
-            type: 'object',
-            properties: {
-                image: {
-                    type: 'string',
-                    format: 'binary',
-                    description: `Maximum image size is ${IMAGE_FILE_MAX_SIZE_IN_MB} MB (${IMAGE_FILE_MAX_SIZE_IN_BYTES} bytes)`,
-                },
-            },
-        },
-    })
-    @Post('/')
-    async uploadSingleImage(
-        @UploadedFile(
-            new ParseFilePipe({
-                validators: [
-                    new MaxFileSizeValidator({ maxSize: IMAGE_FILE_MAX_SIZE_IN_BYTES }),
-                    new FileTypeValidator({
-                        fileType: 'image',
-                    }),
-                ],
-                fileIsRequired: true,
-            }),
-        )
-        image: Express.Multer.File,
-    ) {
-        return this.imagesService.uploadSingleImage({
-            image,
-        });
-    }
-
-    @ApiOperation({
-        summary: 'Upload array of image',
+        summary: 'Upload multiple image',
     })
     @ApiConsumes('multipart/form-data')
     @ApiCreatedResponse({
@@ -154,7 +77,7 @@ export class ImagesController {
         type: [ImageUploadedResponseDTO],
     })
     @ApiPayloadTooLargeResponse({
-        description: `Image size too large, maximum ${IMAGE_FILE_MAX_SIZE_IN_MB} MB, and maximum ${ARRAY_IMAGE_FILE_MAX_COUNT} images`,
+        description: `Image size too large, maximum ${IMAGE_FILE_MAX_SIZE_IN_MB} MB, and maximum ${MULTI_IMAGE_FILE_MAX_COUNT} images`,
     })
     @ApiBody({
         description: 'Image files to upload as multipart/form-data',
@@ -173,9 +96,9 @@ export class ImagesController {
         },
     })
     @UseInterceptors(
-        FilesInterceptor('images', ARRAY_IMAGE_FILE_MAX_COUNT, {
+        FilesInterceptor('images', MULTI_IMAGE_FILE_MAX_COUNT, {
             limits: {
-                files: ARRAY_IMAGE_FILE_MAX_COUNT,
+                files: MULTI_IMAGE_FILE_MAX_COUNT,
                 fileSize: IMAGE_FILE_MAX_SIZE_IN_BYTES,
             },
             fileFilter: (req, file, cb) => {
@@ -203,7 +126,7 @@ export class ImagesController {
             },
         }),
     )
-    @Post('/array')
+    @Post('/')
     async uploadArrayImages(
         @UploadedFiles(
             new ParseFilePipe({

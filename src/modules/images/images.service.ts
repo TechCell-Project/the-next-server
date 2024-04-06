@@ -39,7 +39,7 @@ export class ImagesService {
         }
     }
 
-    async uploadSingleImage({ image }: { image: Express.Multer.File }) {
+    private async uploadSingleImage(image: Express.Multer.File) {
         try {
             const uploadedImage = await this.cloudinaryService.uploadImage(image);
             return new ImageUploadedResponseDTO(uploadedImage);
@@ -55,7 +55,7 @@ export class ImagesService {
         const uploadedImages = await Promise.all(
             images.map(async (image) => {
                 if (!uploadedFilenames.has(image.filename)) {
-                    const uploadedImage = await this.uploadSingleImage({ image });
+                    const uploadedImage = await this.uploadSingleImage(image);
                     uploadedFilenames.add(image.filename);
                     return uploadedImage;
                 }
