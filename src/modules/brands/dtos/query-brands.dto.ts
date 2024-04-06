@@ -1,9 +1,9 @@
-import { QueryManyWithPaginationDto, SortDto } from '~/common';
+import { JsonTransform, QueryManyWithPaginationDto, SortDto } from '~/common';
 import { Brand } from '../schemas';
 import { ApiPropertyOptional, IntersectionType, getSchemaPath } from '@nestjs/swagger';
 import { IsEnum, IsOptional, ValidateNested } from 'class-validator';
 import { BrandStatus } from '../enums';
-import { Transform, Type, plainToInstance } from 'class-transformer';
+import { Type } from 'class-transformer';
 
 export class FilterBrandsDto {
     @ApiPropertyOptional({
@@ -12,7 +12,7 @@ export class FilterBrandsDto {
         example: [BrandStatus.Active, BrandStatus.Inactive],
     })
     @IsOptional()
-    @IsEnum(BrandStatus)
+    @IsEnum(BrandStatus, { each: true })
     status: BrandStatus[] | null;
 }
 
@@ -25,9 +25,7 @@ export class QueryBrandsDto extends QueryManyWithPaginationDto<FilterBrandsDto, 
         format: getSchemaPath(FilterBrandsDto),
     })
     @IsOptional()
-    @Transform(({ value }) =>
-        value ? plainToInstance(FilterBrandsDto, JSON.parse(value)) : undefined,
-    )
+    @JsonTransform(FilterBrandsDto)
     @ValidateNested()
     @Type(() => FilterBrandsDto)
     filters?: FilterBrandsDto | null | undefined;
@@ -38,9 +36,7 @@ export class QueryBrandsDto extends QueryManyWithPaginationDto<FilterBrandsDto, 
         format: getSchemaPath(SortBrandsDto),
     })
     @IsOptional()
-    @Transform(({ value }) => {
-        return value ? plainToInstance(SortBrandsDto, JSON.parse(value)) : undefined;
-    })
+    @JsonTransform(SortBrandsDto)
     @ValidateNested({ each: true })
     @Type(() => SortBrandsDto)
     sort?: SortBrandsDto[] | null;

@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform, Type } from 'class-transformer';
-import { IsEnum, IsJSON, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
 import { SortCase } from '../enums';
 
 export class SortDto<T> {
@@ -41,14 +41,8 @@ export class QueryManyWithPaginationDto<F, S> {
     limit: number;
 
     @ApiPropertyOptional({ type: String, description: 'JSON string' })
-    @IsOptional()
-    @IsJSON()
-    @Transform(({ value }) => (value ? JSON.parse(value) : undefined))
     filters?: F | null;
 
     @ApiPropertyOptional({ type: String, description: 'JSON string' })
-    @IsOptional()
-    @IsJSON()
-    @Transform(({ value }) => (value ? JSON.parse(value) : undefined))
     sort?: S[] | null;
 }

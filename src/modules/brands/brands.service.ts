@@ -51,7 +51,7 @@ export class BrandsService {
         });
     }
 
-    async findOne(id: ObjectIdParamDto['id']) {
+    async getBrandById(id: ObjectIdParamDto['id']) {
         return this.brandsRepository.findOneOrThrow({
             filterQuery: { _id: convertToObjectId(id) },
         });

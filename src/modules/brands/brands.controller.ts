@@ -10,11 +10,12 @@ import {
     Post,
     Query,
 } from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { BrandsService } from './brands.service';
 import {
     BrandInfinityPaginationResult,
     CreateBrandDto,
+    FilterBrandsDto,
     QueryBrandsDto,
     UpdateBrandDto,
 } from './dtos';
@@ -22,8 +23,10 @@ import { ObjectIdParamDto, infinityPagination } from '~/common';
 import { BrandStatus } from './enums';
 import { AuthRoles } from '../auth/guards';
 import { Brand } from './schemas';
+import { SortAttributeDto } from '../attributes/dtos';
 
 @ApiTags('brands')
+@ApiExtraModels(FilterBrandsDto, SortAttributeDto)
 @Controller({
     path: 'brands',
 })
@@ -68,7 +71,7 @@ export class BrandsController {
     @Get('/:id')
     @HttpCode(HttpStatus.OK)
     async getBrand(@Param() { id }: ObjectIdParamDto) {
-        return this.brandsService.findOne(id);
+        return this.brandsService.getBrandById(id);
     }
 
     @AuthRoles()
