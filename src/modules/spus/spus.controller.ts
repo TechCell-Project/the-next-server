@@ -1,11 +1,18 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Query } from '@nestjs/common';
 import { SPUService } from './spus.service';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ObjectIdParamDto, infinityPagination } from '~/common';
-import { CreateSpuDto, QuerySpusDto, SpuInfinityPaginationResult } from './dtos';
+import {
+    CreateSpuDto,
+    QuerySpusDto,
+    SpuInfinityPaginationResult,
+    FilterSpuDto,
+    SortSpuDto,
+} from './dtos';
 import { SPU } from './schemas';
 
 @ApiTags('spus')
+@ApiExtraModels(FilterSpuDto, SortSpuDto)
 @Controller({
     path: 'spus',
 })

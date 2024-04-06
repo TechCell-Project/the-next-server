@@ -4,9 +4,9 @@ import { ApiPropertyOptional, IntersectionType, getSchemaPath } from '@nestjs/sw
 import { IsOptional, IsString, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 
-class FilterSpuDto {}
+export class FilterSpuDto {}
 
-class SortSpuDto extends IntersectionType(SortDto<SPU>) {}
+export class SortSpuDto extends IntersectionType(SortDto<SPU>) {}
 
 export class QuerySpusDto extends IntersectionType(
     QueryManyWithPaginationDto<FilterSpuDto, SortSpuDto>,
