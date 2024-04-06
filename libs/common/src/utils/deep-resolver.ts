@@ -18,13 +18,8 @@ export async function deepResolvePromises(input: any): Promise<unknown> {
         for (const key of keys) {
             let resolvedValue = await deepResolvePromises(input[key]);
 
-            // Special case for _id objects
-            if (
-                key === '_id' &&
-                resolvedValue &&
-                typeof resolvedValue === 'object' &&
-                'buffer' in resolvedValue
-            ) {
+            // Special case for ObjectId
+            if (resolvedValue && typeof resolvedValue === 'object' && 'buffer' in resolvedValue) {
                 const buffer = Buffer.from(Object.values(resolvedValue.buffer as any) as any[]);
                 resolvedValue = buffer.toString('hex');
             }
