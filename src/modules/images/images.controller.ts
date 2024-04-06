@@ -33,6 +33,7 @@ import {
     IMAGE_FILE_MAX_SIZE_IN_BYTES,
     IMAGE_FILE_MAX_SIZE_IN_MB,
 } from '~/third-party/cloudinary.com';
+import { AuthRoles } from '../auth/guards';
 
 @ApiBadRequestResponse({
     description: 'Invalid request, please check your request data!',
@@ -126,6 +127,7 @@ export class ImagesController {
             },
         }),
     )
+    @AuthRoles()
     @Post('/')
     async uploadArrayImages(
         @UploadedFiles(
