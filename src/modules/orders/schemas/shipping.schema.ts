@@ -4,12 +4,12 @@ import { ShippingProviderEnum } from '../enum';
 import { LogSchema } from './log.schema';
 
 export class ShippingSchema {
-    @ApiProperty({ example: ShippingProviderEnum.GHTK, enum: ShippingProviderEnum, type: String })
+    @ApiProperty({ example: ShippingProviderEnum.GHN, enum: ShippingProviderEnum, type: String })
     @Prop({
         required: true,
         type: String,
         enum: ShippingProviderEnum,
-        default: ShippingProviderEnum.GHTK,
+        default: ShippingProviderEnum.GHN,
     })
     provider: string;
 
