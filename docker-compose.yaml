@@ -6,7 +6,7 @@ services:
         hostname: api
         build:
             context: .
-            dockerfile: ./Dockerfile
+            dockerfile: .apps/server/Dockerfile
         image: lehuygiang28/the_next_tech_cell:${COMPOSE_TAG:-latest}
         ports:
             - ${API_PORT:-8000}:${API_PORT:-8000}
