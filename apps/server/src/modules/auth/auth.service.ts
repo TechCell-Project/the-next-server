@@ -512,7 +512,7 @@ export class AuthService {
         }
         const key = `auth:forgotPassword:${user._id.toString()}`;
 
-        if (!this.redisService.existsUniqueKey(key)) {
+        if (!(await this.redisService.existsUniqueKey(key))) {
             throw new HttpException(
                 {
                     status: HttpStatus.UNPROCESSABLE_ENTITY,
