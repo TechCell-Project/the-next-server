@@ -23,8 +23,4 @@ export class SendConfirmMailDto {
     @IsObject()
     @ValidateNested()
     mailData: MailData;
-
-    @IsOptional()
-    @IsString()
-    transporter?: string;
 }

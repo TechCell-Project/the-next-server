@@ -9,7 +9,7 @@ RUN yarn workspaces focus --all
 
 COPY . . 
 
-RUN yarn run build server
+RUN yarn run build communication
 
 FROM node:18-alpine AS production
 
@@ -28,4 +28,4 @@ RUN yarn workspaces focus --production && yarn cache clean --all
 
 COPY --from=build-stage --chown=node /usr/src/app/dist ./dist
 
-CMD ["node", "dist/apps/server/main"]
+CMD ["node", "dist/apps/communication/main"]

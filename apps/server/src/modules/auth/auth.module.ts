@@ -7,14 +7,13 @@ import { UsersModule } from '~/modules/users';
 import { JwtStrategy, AnonymousStrategy, JwtRefreshStrategy } from './strategies';
 import { RedisModule } from '~/common/redis';
 import { SessionModule } from '~/modules/session';
-import { MailModule } from '../mail';
 import { GhnModule } from '~/third-party';
+import { RabbitMQModule } from '~/common';
 
 @Module({
     imports: [
         JwtModule.register({}),
         PassportModule,
-        MailModule,
         SessionModule,
         UsersModule,
         RedisModule,
@@ -24,6 +23,7 @@ import { GhnModule } from '~/third-party';
             shopId: +process.env.GHN_SHOP_ID! ?? 0,
             testMode: true,
         }),
+        RabbitMQModule.registerRmq('COMMUNICATION_SERVICE', process.env.COMMUNICATION_QUEUE!),
     ],
     controllers: [AuthController],
     providers: [AuthService, AnonymousStrategy, JwtStrategy, JwtRefreshStrategy],

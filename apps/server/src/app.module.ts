@@ -13,7 +13,6 @@ import { ProductSeriesModule } from './modules/product-series/product-series.mod
 import { ProductVariationsModule } from './modules/product-variations/product-variations.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { OrdersModule } from './modules/orders/orders.module';
-import { MailModule } from '~/modules/mail';
 import { SPUModule } from './modules/spus';
 import { AddressModule } from './modules/address';
 import { ImagesModule } from './modules/images';
@@ -23,7 +22,6 @@ import { I18nModule } from '~/common/i18n';
     imports: [
         AppConfigModule,
         I18nModule,
-        MailModule,
         RedisModule,
         LoggerModule,
         AuthModule,

@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
@@ -18,8 +18,9 @@ import { RedisService } from '~/common/redis';
 import { PREFIX_REVOKE_ACCESS_TOKEN, PREFIX_REVOKE_REFRESH_TOKEN } from './auth.constant';
 import { JwtPayloadType, JwtRefreshPayloadType } from './strategies/types';
 import { Session, SessionService } from '~/modules/session';
-import { MailService } from '~/modules/mail';
 import { GhnService } from '~/third-party';
+import { MailEventPattern } from '~/communication/mail/mail.pattern';
+import { ClientRMQ } from '@nestjs/microservices';
 
 @Injectable()
 export class AuthService {
@@ -28,15 +29,15 @@ export class AuthService {
         private readonly configService: ConfigService,
         private readonly jwtService: JwtService,
         private readonly usersService: UsersService,
-        private readonly mailService: MailService,
         private readonly redisService: RedisService,
         private readonly sessionService: SessionService,
         private readonly ghnService: GhnService,
+        @Inject('COMMUNICATION_SERVICE') private readonly mailService: ClientRMQ,
     ) {
         this.logger.setContext(AuthService.name);
     }
 
-    async register(dto: AuthSignupDto): Promise<void> {
+    async register(dto: AuthSignupDto): Promise<any> {
         if (await this.usersService.findByEmail(dto.email)) {
             throw new HttpException(
                 {
@@ -78,13 +79,14 @@ export class AuthService {
                     this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN'),
                 ),
             ),
-            this.mailService.sendConfirmMail({
-                to: userCreated.email,
-                mailData: {
-                    hash,
-                },
-            }),
         ]);
+
+        this.mailService.emit(MailEventPattern.sendConfirmMail, {
+            to: userCreated.email,
+            mailData: {
+                hash,
+            },
+        });
     }
 
     async resendConfirmEmail(email: string): Promise<void> {
@@ -134,14 +136,15 @@ export class AuthService {
                     this.configService.getOrThrow('AUTH_CONFIRM_EMAIL_TOKEN_EXPIRES_IN'),
                 ),
             ),
-            this.mailService.sendConfirmMail({
-                to: email,
-                mailData: {
-                    hash,
-                },
-                isResend: true,
-            }),
         ]);
+
+        this.mailService.emit(MailEventPattern.sendConfirmMail, {
+            to: email,
+            mailData: {
+                hash,
+            },
+            isResend: true,
+        });
     }
 
     async confirmEmail(hash: string): Promise<void> {
@@ -427,7 +430,7 @@ export class AuthService {
         return { accessToken, refreshToken, accessTokenExpires };
     }
 
-    async forgotPassword({ email, returnUrl }: AuthForgotPasswordDto): Promise<void> {
+    async forgotPassword({ email, returnUrl }: AuthForgotPasswordDto): Promise<any> {
         const user = await this.usersService.findByEmail(email);
 
         if (!user) {
@@ -459,15 +462,16 @@ export class AuthService {
         const key = `auth:forgotPassword:${user._id.toString()}`;
         await Promise.all([
             this.redisService.set(key, { hash, tokenExpires }, convertTimeString(tokenExpiresIn)),
-            this.mailService.forgotPassword({
-                to: user.email,
-                data: {
-                    hash,
-                    tokenExpires,
-                    returnUrl,
-                },
-            }),
         ]);
+
+        this.mailService.emit(MailEventPattern.sendForgotPassword, {
+            to: user.email,
+            data: {
+                hash,
+                tokenExpires,
+                returnUrl,
+            },
+        });
     }
 
     async resetPassword(hash: string, password: string): Promise<void> {

@@ -40,7 +40,7 @@ export class MailerConfig implements MailerOptionsFactory {
                 from: this.DEFAULT_SENDER,
             },
             template: {
-                dir: join(process.cwd(), `./src/modules/mail/templates`),
+                dir: join(__dirname, `/modules/mail/templates`),
                 adapter: new HandlebarsAdapter(),
                 options: {
                     strict: true,
