@@ -1,7 +1,7 @@
 import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { Brand } from '../schemas';
 import { ApiPropertyOptional, OmitType } from '@nestjs/swagger';
-import { BrandStatus } from '../enums';
+import { BrandStatusEnum } from '../enums';
 
 export class CreateBrandDto extends OmitType(Brand, ['_id']) {
     @IsString()
@@ -19,6 +19,6 @@ export class CreateBrandDto extends OmitType(Brand, ['_id']) {
     @ApiPropertyOptional()
     @IsOptional()
     @IsString()
-    @IsEnum(BrandStatus)
+    @IsEnum(BrandStatusEnum)
     status: string;
 }

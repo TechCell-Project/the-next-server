@@ -4,7 +4,7 @@ import { AuthService } from '../auth/auth.service';
 import { AuthGoogleService } from './auth-google.service';
 import { AuthGoogleLoginDto } from './auth-google-login.dto';
 import { LoginResponseDto } from '../auth/dtos';
-import { AuthProvider } from '~/modules/users/enums';
+import { AuthProviderEnum } from '~/modules/users/enums';
 
 @ApiTags('auth')
 @Controller({
@@ -26,6 +26,6 @@ export class AuthGoogleController {
     async login(@Body() loginDto: AuthGoogleLoginDto): Promise<LoginResponseDto> {
         const socialData = await this.authGoogleService.getProfileByToken(loginDto);
 
-        return this.authService.validateSocialLogin(AuthProvider.Google, socialData);
+        return this.authService.validateSocialLogin(AuthProviderEnum.Google, socialData);
     }
 }

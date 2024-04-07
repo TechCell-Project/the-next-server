@@ -4,7 +4,7 @@ import { Exclude, Expose } from 'class-transformer';
 import { Factory } from 'nestjs-seeder';
 import { Faker } from '@faker-js/faker';
 import { AbstractDocument } from '~/common/abstract';
-import { AuthProvider, UserRole } from '../enums';
+import { AuthProviderEnum, UserRoleEnum } from '../enums';
 import { AvatarSchema } from './avatar.schema';
 import { UserAddressSchema } from './address.schema';
 import { UserBlockSchema } from './block.schema';
@@ -42,12 +42,12 @@ export class User extends AbstractDocument {
 
     @Expose({ groups: ['me', 'manager'] })
     @ApiProperty({
-        example: AuthProvider.Email,
-        enum: AuthProvider,
+        example: AuthProviderEnum.Email,
+        enum: AuthProviderEnum,
         type: String,
     })
-    @Factory((faker: Faker) => faker.helpers.enumValue(AuthProvider))
-    @Prop({ required: true, type: String, enum: AuthProvider, default: AuthProvider.Email })
+    @Factory((faker: Faker) => faker.helpers.enumValue(AuthProviderEnum))
+    @Prop({ required: true, type: String, enum: AuthProviderEnum, default: AuthProviderEnum.Email })
     provider: string;
 
     @Expose({ groups: ['me', 'manager'] })
@@ -90,20 +90,20 @@ export class User extends AbstractDocument {
 
     @Expose({ groups: ['me', 'manager'] })
     @ApiProperty({
-        example: UserRole.Customer,
-        enum: UserRole,
+        example: UserRoleEnum.Customer,
+        enum: UserRoleEnum,
         type: String,
     })
     @Factory((faker: Faker) =>
         faker.helpers.arrayElement([
-            UserRole.Accountant,
-            UserRole.Customer,
-            UserRole.DataEntry,
-            UserRole.Sales,
-            UserRole.Warehouse,
+            UserRoleEnum.Accountant,
+            UserRoleEnum.Customer,
+            UserRoleEnum.DataEntry,
+            UserRoleEnum.Sales,
+            UserRoleEnum.Warehouse,
         ]),
     )
-    @Prop({ type: String, enum: UserRole, required: true })
+    @Prop({ type: String, enum: UserRoleEnum, required: true })
     role: string;
 
     @ApiPropertyOptional({
@@ -121,7 +121,7 @@ export class User extends AbstractDocument {
     @ApiPropertyOptional({
         type: UserBlockSchema,
     })
-    @Expose({ groups: [UserRole.Manager], toPlainOnly: true })
+    @Expose({ groups: [UserRoleEnum.Manager], toPlainOnly: true })
     @Prop({ type: UserBlockSchema, default: {} })
     block?: UserBlockSchema;
 }

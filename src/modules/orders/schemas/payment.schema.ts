@@ -1,14 +1,19 @@
 import { Prop } from '@nestjs/mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { PaymentMethod, PaymentStatus } from '../enum';
+import { PaymentMethodEnum, PaymentStatusEnum } from '../enum';
 
 export class PaymentSchema {
-    @ApiProperty({ example: PaymentMethod.COD, enum: PaymentMethod, type: String })
-    @Prop({ required: true, type: String, enum: PaymentMethod, default: PaymentMethod.COD })
+    @ApiProperty({ example: PaymentMethodEnum.COD, enum: PaymentMethodEnum, type: String })
+    @Prop({ required: true, type: String, enum: PaymentMethodEnum, default: PaymentMethodEnum.COD })
     method: string;
 
-    @ApiProperty({ example: PaymentStatus.Pending, enum: PaymentStatus, type: String })
-    @Prop({ required: true, type: String, enum: PaymentStatus, default: PaymentStatus.Pending })
+    @ApiProperty({ example: PaymentStatusEnum.Pending, enum: PaymentStatusEnum, type: String })
+    @Prop({
+        required: true,
+        type: String,
+        enum: PaymentStatusEnum,
+        default: PaymentStatusEnum.Pending,
+    })
     status: string;
 
     @ApiPropertyOptional({ example: 'https://vnpay.com/pay', type: String })

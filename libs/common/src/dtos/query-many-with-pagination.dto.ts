@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform, Type } from 'class-transformer';
 import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
-import { SortCase } from '../enums';
+import { SortCaseEnum } from '../enums';
 
 export class SortDto<T> {
     @ApiProperty({
@@ -15,11 +15,11 @@ export class SortDto<T> {
     @ApiProperty({
         type: String,
         description: 'Order of sorting',
-        example: SortCase.Asc,
-        enum: SortCase,
+        example: SortCaseEnum.Asc,
+        enum: SortCaseEnum,
     })
     @IsString()
-    @IsEnum(SortCase)
+    @IsEnum(SortCaseEnum)
     order: string;
 }
 

@@ -1,6 +1,6 @@
 import { valuesOfEnum } from '~/common';
 
-export enum UserRole {
+export enum UserRoleEnum {
     Manager = 'manager',
     Customer = 'customer',
     Sales = 'sales',
@@ -9,7 +9,7 @@ export enum UserRole {
     Accountant = 'accountant',
 }
 
-export const RolesWithoutCustomerAndManager = valuesOfEnum(UserRole).filter(
-    (role) => role !== UserRole.Customer && role !== UserRole.Manager,
+export const RolesWithoutCustomerAndManager = valuesOfEnum(UserRoleEnum).filter(
+    (role) => role !== UserRoleEnum.Customer && role !== UserRoleEnum.Manager,
 );
 export type RolesWithoutCustomerAndManager = (typeof RolesWithoutCustomerAndManager)[number];

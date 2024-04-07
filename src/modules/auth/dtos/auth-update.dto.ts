@@ -14,7 +14,7 @@ import {
 } from 'class-validator';
 import { isTrueSet } from '~/common/utils';
 import { UserAddressSchema } from '~/modules/users';
-import { AddressType } from '~/modules/users/enums';
+import { UserAddressTypeEnum } from '~/modules/users/enums';
 
 class ProvinceSchemaDTO {
     @ApiProperty({ description: 'The id of province', example: 201, type: Number })
@@ -46,11 +46,11 @@ export class AddressSchemaDTO implements UserAddressSchema {
 
     @ApiProperty({
         description: 'The name type of address',
-        enum: AddressType,
-        example: AddressType.Home,
+        enum: UserAddressTypeEnum,
+        example: UserAddressTypeEnum.Home,
         type: String,
     })
-    @IsEnum(AddressType)
+    @IsEnum(UserAddressTypeEnum)
     @IsNotEmpty()
     type: string;
 

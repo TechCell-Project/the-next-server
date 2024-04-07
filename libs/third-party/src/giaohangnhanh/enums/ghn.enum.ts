@@ -1,9 +1,9 @@
-export enum StatusEnum {
+export enum GhnStatusEnum {
     enable_route = 1,
     disable_route = 2,
 }
 
-export enum SupportTypeEnum {
+export enum GhnSupportTypeEnum {
     lock_route = 0,
     pickup_return = 1,
     delivery = 2,

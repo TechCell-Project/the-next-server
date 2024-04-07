@@ -10,8 +10,8 @@ import { QueryManyWithPaginationDto } from '~/common';
 import { Attribute } from '../schemas';
 import { IsEnum, IsJSON, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { Transform, Type, plainToInstance } from 'class-transformer';
-import { SortCase } from '~/common/enums';
-import { AttributeStatus } from '../attribute.enum';
+import { SortCaseEnum } from '~/common/enums';
+import { AttributeStatusEnum } from '../attribute.enum';
 
 export class FilterAttributeDto extends OmitType(PartialType(Attribute), ['_id']) {
     @IsOptional()
@@ -27,7 +27,7 @@ export class FilterAttributeDto extends OmitType(PartialType(Attribute), ['_id']
     name?: string | undefined;
 
     @IsOptional()
-    @IsEnum(AttributeStatus)
+    @IsEnum(AttributeStatusEnum)
     status?: string | undefined;
 
     @IsOptional()
@@ -46,10 +46,10 @@ export class SortAttributeDto {
 
     @ApiProperty({
         type: String,
-        enum: SortCase,
-        example: SortCase.Asc,
+        enum: SortCaseEnum,
+        example: SortCaseEnum.Asc,
     })
-    @IsEnum(SortCase)
+    @IsEnum(SortCaseEnum)
     order: string;
 }
 

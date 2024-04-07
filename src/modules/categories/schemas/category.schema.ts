@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { Faker } from '@faker-js/faker';
 import { HydratedDocument } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-import { CategoryStatus } from '../status.enum';
+import { CategoryStatusEnum } from '../status.enum';
 
 @Schema({
     timestamps: true,
@@ -27,9 +27,9 @@ export class Category extends AbstractDocument {
     @Prop({ required: false, type: String, default: '' })
     description: string;
 
-    @ApiProperty({ example: CategoryStatus.Active, enum: CategoryStatus, type: String })
-    @Factory((faker: Faker) => faker.helpers.enumValue(CategoryStatus))
-    @Prop({ required: true, default: CategoryStatus.Active, type: String })
+    @ApiProperty({ example: CategoryStatusEnum.Active, enum: CategoryStatusEnum, type: String })
+    @Factory((faker: Faker) => faker.helpers.enumValue(CategoryStatusEnum))
+    @Prop({ required: true, default: CategoryStatusEnum.Active, type: String })
     status: string;
 }
 

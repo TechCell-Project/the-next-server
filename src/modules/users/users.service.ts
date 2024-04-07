@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UsersRepository } from './users.repository';
-import { AuthProvider, BlockAction, UserRole } from './enums';
+import { AuthProviderEnum, UserBlockActionEnum, UserRoleEnum } from './enums';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { User } from './schemas';
 import * as bcrypt from 'bcryptjs';
@@ -14,7 +14,7 @@ export class UsersService {
 
     async create(createProfileDto: CreateUserDto): Promise<User> {
         const clonedPayload = {
-            provider: AuthProvider.Email,
+            provider: AuthProviderEnum.Email,
             emailVerified: false,
             ...createProfileDto,
         };
@@ -43,7 +43,7 @@ export class UsersService {
             }
         }
 
-        const roleOfUse = valuesOfEnum(UserRole).includes(clonedPayload.role);
+        const roleOfUse = valuesOfEnum(UserRoleEnum).includes(clonedPayload.role);
         if (!roleOfUse) {
             throw new HttpException(
                 {
@@ -56,7 +56,7 @@ export class UsersService {
             );
         }
 
-        if (clonedPayload.role === UserRole.Manager) {
+        if (clonedPayload.role === UserRoleEnum.Manager) {
             throw new HttpException(
                 {
                     status: HttpStatus.UNPROCESSABLE_ENTITY,
@@ -67,7 +67,7 @@ export class UsersService {
                 HttpStatus.UNPROCESSABLE_ENTITY,
             );
         }
-        if (clonedPayload.role === UserRole.Customer) {
+        if (clonedPayload.role === UserRoleEnum.Customer) {
             throw new HttpException(
                 {
                     status: HttpStatus.UNPROCESSABLE_ENTITY,
@@ -103,7 +103,7 @@ export class UsersService {
         return user ? new User(user) : null;
     }
 
-    async findBySocial(socialId: string, provider: AuthProvider): Promise<NullableType<User>> {
+    async findBySocial(socialId: string, provider: AuthProviderEnum): Promise<NullableType<User>> {
         const user = await this.usersRepository.findOne({
             filterQuery: {
                 socialId,
@@ -180,25 +180,25 @@ export class UsersService {
 
         if (payload?.block) {
             switch (payload.block.action) {
-                case BlockAction.Block:
+                case UserBlockActionEnum.Block:
                     targetUser = this.updateUserBlockStatus({
                         targetUser,
                         actor,
                         block: payload.block,
                         isBlocked: true,
-                        action: BlockAction.Block,
+                        action: UserBlockActionEnum.Block,
                         selfBlockError: 'cannotBlockYourself',
                         permissionError: 'notAllowedToBlock',
                         alreadyBlockedError: 'userAlreadyBlocked',
                     });
                     break;
-                case BlockAction.Unblock:
+                case UserBlockActionEnum.Unblock:
                     targetUser = this.updateUserBlockStatus({
                         targetUser,
                         actor,
                         block: payload.block,
                         isBlocked: false,
-                        action: BlockAction.Unblock,
+                        action: UserBlockActionEnum.Unblock,
                         selfBlockError: 'cannotUnblockYourself',
                         permissionError: 'notAllowedToUnblock',
                         alreadyBlockedError: 'userAlreadyNotBlocked',
@@ -223,7 +223,7 @@ export class UsersService {
     }: {
         targetUser: User;
         actor: User;
-        role: UserRole;
+        role: UserRoleEnum;
     }): User {
         if (targetUser._id === actor._id) {
             throw new HttpException(
@@ -237,7 +237,7 @@ export class UsersService {
             );
         }
 
-        if (actor.role !== UserRole.Manager || targetUser.role === UserRole.Manager) {
+        if (actor.role !== UserRoleEnum.Manager || targetUser.role === UserRoleEnum.Manager) {
             throw new HttpException(
                 {
                     status: HttpStatus.UNPROCESSABLE_ENTITY,
@@ -279,7 +279,7 @@ export class UsersService {
         actor: User;
         block: UpdateUserMntDto['block'];
         isBlocked: boolean;
-        action: BlockAction;
+        action: UserBlockActionEnum;
         selfBlockError: string;
         permissionError: string;
         alreadyBlockedError: string;
@@ -296,7 +296,7 @@ export class UsersService {
             );
         }
 
-        if (actor.role !== UserRole.Manager || targetUser.role === UserRole.Manager) {
+        if (actor.role !== UserRoleEnum.Manager || targetUser.role === UserRoleEnum.Manager) {
             throw new HttpException(
                 {
                     status: HttpStatus.UNPROCESSABLE_ENTITY,

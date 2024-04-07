@@ -5,7 +5,7 @@ import { HydratedDocument } from 'mongoose';
 import { AbstractDocument } from '~/common/abstract';
 import { v4 as uuid } from 'uuid';
 import { Faker } from '@faker-js/faker';
-import { AttributeStatus } from '../attribute.enum';
+import { AttributeStatusEnum } from '../attribute.enum';
 import { NullableType } from '~/common/types';
 
 @Schema({
@@ -36,17 +36,17 @@ export class Attribute extends AbstractDocument {
     description: string;
 
     @ApiProperty({
-        example: AttributeStatus.Available,
-        enum: AttributeStatus,
+        example: AttributeStatusEnum.Available,
+        enum: AttributeStatusEnum,
         type: String,
         description: 'Attribute status',
     })
-    @Factory((faker: Faker) => faker.helpers.enumValue(AttributeStatus))
+    @Factory((faker: Faker) => faker.helpers.enumValue(AttributeStatusEnum))
     @Prop({
         required: false,
         type: String,
-        enum: AttributeStatus,
-        default: AttributeStatus.Available,
+        enum: AttributeStatusEnum,
+        default: AttributeStatusEnum.Available,
     })
     status: string;
 }

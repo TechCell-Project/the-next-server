@@ -1,5 +1,5 @@
 import { IsEnum } from 'class-validator';
-import { StatusEnum, SupportTypeEnum } from '../enums';
+import { GhnStatusEnum, GhnSupportTypeEnum } from '../enums';
 import { ApiProperty } from '@nestjs/swagger';
 import { GhnWard } from 'giaohangnhanh';
 
@@ -54,9 +54,9 @@ export class GhnWardDTO {
         type: Number,
         example: 1,
         description: 'Loại hỗ trợ',
-        enum: SupportTypeEnum,
+        enum: GhnSupportTypeEnum,
     })
-    @IsEnum(SupportTypeEnum)
+    @IsEnum(GhnSupportTypeEnum)
     support_type: number;
 
     @ApiProperty({
@@ -70,8 +70,8 @@ export class GhnWardDTO {
         type: Number,
         example: 1,
         description: 'Trạng thái',
-        enum: StatusEnum,
+        enum: GhnStatusEnum,
     })
-    @IsEnum(StatusEnum)
+    @IsEnum(GhnStatusEnum)
     status: number;
 }

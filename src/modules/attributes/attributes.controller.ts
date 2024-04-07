@@ -29,10 +29,10 @@ import {
     ApiTags,
 } from '@nestjs/swagger';
 import { AuthRoles } from '../auth/guards';
-import { UserRole } from '../users/enums';
+import { UserRoleEnum } from '../users/enums';
 import { ObjectIdParamDto, infinityPagination } from '~/common';
 import { Attribute } from './schemas';
-import { AttributeStatus } from './attribute.enum';
+import { AttributeStatusEnum } from './attribute.enum';
 
 @ApiTags('attributes')
 @ApiExtraModels(FilterAttributeDto, SortAttributeDto)
@@ -57,7 +57,7 @@ export class AttributesController {
     @AuthRoles()
     // @AuthRoles(UserRole.Warehouse)
     @SerializeOptions({
-        groups: [UserRole.Warehouse],
+        groups: [UserRoleEnum.Warehouse],
     })
     @ApiOkResponse({
         description: 'Get attributes successfully',
@@ -109,6 +109,6 @@ export class AttributesController {
     @Delete('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async deleteAttribute(@Param() { id }: ObjectIdParamDto) {
-        return this.attributesService.updateAttribute(id, { status: AttributeStatus.Deleted });
+        return this.attributesService.updateAttribute(id, { status: AttributeStatusEnum.Deleted });
     }
 }

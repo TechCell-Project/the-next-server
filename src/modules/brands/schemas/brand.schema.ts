@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { Faker } from '@faker-js/faker';
 import { HydratedDocument } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-import { BrandStatus } from '../enums';
+import { BrandStatusEnum } from '../enums';
 
 @Schema({
     timestamps: true,
@@ -32,9 +32,9 @@ export class Brand extends AbstractDocument {
     @Prop({ required: false, default: '', type: String })
     description: string;
 
-    @ApiProperty({ example: BrandStatus.Active, enum: BrandStatus, type: String })
-    @Factory((faker: Faker) => faker.helpers.enumValue(BrandStatus))
-    @Prop({ required: true, default: BrandStatus.Active, type: String })
+    @ApiProperty({ example: BrandStatusEnum.Active, enum: BrandStatusEnum, type: String })
+    @Factory((faker: Faker) => faker.helpers.enumValue(BrandStatusEnum))
+    @Prop({ required: true, default: BrandStatusEnum.Active, type: String })
     status: string;
 }
 

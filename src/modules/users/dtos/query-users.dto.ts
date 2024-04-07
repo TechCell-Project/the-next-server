@@ -1,19 +1,19 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEnum, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { Transform, Type, plainToInstance } from 'class-transformer';
-import { UserRole } from '../enums';
+import { UserRoleEnum } from '../enums';
 import { User } from '../schemas';
-import { SortCase } from '~/common/enums';
+import { SortCaseEnum } from '~/common/enums';
 
 export class FilterUserDto {
     @ApiPropertyOptional({
-        type: [UserRole],
-        enum: UserRole,
-        example: [UserRole.Accountant, UserRole.DataEntry],
+        type: [UserRoleEnum],
+        enum: UserRoleEnum,
+        example: [UserRoleEnum.Accountant, UserRoleEnum.DataEntry],
     })
     @IsOptional()
-    @IsEnum(UserRole, { each: true })
-    roles?: UserRole[] | null;
+    @IsEnum(UserRoleEnum, { each: true })
+    roles?: UserRoleEnum[] | null;
 }
 
 export class SortUserDto {
@@ -28,11 +28,11 @@ export class SortUserDto {
     @ApiProperty({
         type: String,
         description: 'Order of sorting',
-        example: SortCase.Asc,
-        enum: SortCase,
+        example: SortCaseEnum.Asc,
+        enum: SortCaseEnum,
     })
     @IsString()
-    @IsEnum(SortCase)
+    @IsEnum(SortCaseEnum)
     order: string;
 }
 

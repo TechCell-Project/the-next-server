@@ -1,5 +1,5 @@
 import { IsArray, IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { StatusEnum } from '../enums';
+import { GhnStatusEnum } from '../enums';
 import { ApiProperty } from '@nestjs/swagger';
 import { GhnProvince } from 'giaohangnhanh';
 
@@ -60,8 +60,8 @@ export class GhnProvinceDTO {
         example: 1,
         description: 'Trạng thái',
         type: Number,
-        enum: StatusEnum,
+        enum: GhnStatusEnum,
     })
-    @IsEnum(StatusEnum)
+    @IsEnum(GhnStatusEnum)
     status: number;
 }

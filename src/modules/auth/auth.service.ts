@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import { AuthSignupDto } from './dtos/auth-signup.dto';
-import { AuthProvider, UserRole } from '../users/enums';
+import { AuthProviderEnum, UserRoleEnum } from '../users/enums';
 import { PinoLogger } from 'nestjs-pino';
 import { SocialInterface } from './social/social.interface';
 import { NullableType } from '~/common/types';
@@ -54,8 +54,8 @@ export class AuthService {
                 ...dto,
                 email: dto.email,
                 emailVerified: false,
-                role: UserRole.Customer,
-                provider: AuthProvider.Email,
+                role: UserRoleEnum.Customer,
+                provider: AuthProviderEnum.Email,
             },
         });
         const key = `user:${userCreated._id.toString()}:confirmEmailHash`;
@@ -224,7 +224,7 @@ export class AuthService {
             );
         }
 
-        if (user.provider !== AuthProvider.Email) {
+        if (user.provider !== AuthProviderEnum.Email) {
             throw new HttpException(
                 {
                     status: HttpStatus.UNPROCESSABLE_ENTITY,
@@ -287,7 +287,7 @@ export class AuthService {
         };
     }
 
-    async validateSocialLogin(authProvider: AuthProvider, socialData: SocialInterface) {
+    async validateSocialLogin(authProvider: AuthProviderEnum, socialData: SocialInterface) {
         let user: NullableType<User> = null;
         let userByEmail: NullableType<User> = null;
         const socialEmail = socialData.email?.toLowerCase();
@@ -312,7 +312,7 @@ export class AuthService {
                 email: socialEmail,
                 socialId: socialData.id,
                 provider: authProvider,
-                role: UserRole.Customer,
+                role: UserRoleEnum.Customer,
                 firstName: socialData?.firstName ?? faker.person.firstName(),
                 lastName: socialData?.lastName ?? faker.person.lastName(),
                 password: socialData.id + faker.string.alphanumeric(20) + uuid(),

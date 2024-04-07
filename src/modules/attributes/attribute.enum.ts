@@ -1,4 +1,4 @@
-export enum AttributeStatus {
+export enum AttributeStatusEnum {
     Available = 'available',
     Deleted = 'deleted',
 }

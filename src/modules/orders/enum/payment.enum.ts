@@ -1,4 +1,4 @@
-export enum PaymentMethod {
+export enum PaymentMethodEnum {
     COD = 'cod',
     VNPAY = 'vnpay',
     ATM = 'atm',
@@ -7,7 +7,7 @@ export enum PaymentMethod {
     JCB = 'jcb',
 }
 
-export enum PaymentStatus {
+export enum PaymentStatusEnum {
     Pending = 'pending',
     Processing = 'processing',
     WaitForPayment = 'wait-for-payment',

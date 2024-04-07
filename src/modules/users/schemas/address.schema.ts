@@ -1,5 +1,5 @@
 import { Prop } from '@nestjs/mongoose';
-import { AddressType } from '../enums';
+import { UserAddressTypeEnum } from '../enums';
 import { ApiProperty } from '@nestjs/swagger';
 
 class ProvinceLevel {
@@ -45,7 +45,7 @@ export class UserAddressSchema {
     @Prop({ required: true, type: String })
     customerName: string;
 
-    @ApiProperty({ type: String, enum: AddressType, default: AddressType.Other })
-    @Prop({ type: String, enum: AddressType, default: AddressType.Other })
+    @ApiProperty({ type: String, enum: UserAddressTypeEnum, default: UserAddressTypeEnum.Other })
+    @Prop({ type: String, enum: UserAddressTypeEnum, default: UserAddressTypeEnum.Other })
     type: string;
 }

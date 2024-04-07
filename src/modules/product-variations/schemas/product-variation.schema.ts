@@ -5,7 +5,7 @@ import { AbstractDocument } from '~/common/abstract';
 import { v4 as uuid } from 'uuid';
 import { Faker } from '@faker-js/faker';
 import { HydratedDocument, ObjectId } from 'mongoose';
-import { VariationStatus } from '../status.enum';
+import { VariationStatusEnum } from '../status.enum';
 import { AttributeSchema } from '~/modules/product-models/schemas/attribute.schema';
 import { ImageSchema } from './image.schema';
 import { PriceSchema } from './price.schema';
@@ -38,9 +38,14 @@ export class ProductVariation extends AbstractDocument {
     @Prop({ required: false, type: String, default: '' })
     description: string;
 
-    @ApiProperty({ example: VariationStatus.Selling, enum: VariationStatus, type: String })
-    @Factory((faker: Faker) => faker.helpers.enumValue(VariationStatus))
-    @Prop({ required: true, type: String, enum: VariationStatus, default: VariationStatus.Selling })
+    @ApiProperty({ example: VariationStatusEnum.Selling, enum: VariationStatusEnum, type: String })
+    @Factory((faker: Faker) => faker.helpers.enumValue(VariationStatusEnum))
+    @Prop({
+        required: true,
+        type: String,
+        enum: VariationStatusEnum,
+        default: VariationStatusEnum.Selling,
+    })
     status: string;
 
     @ApiProperty({ type: [AttributeSchema] })

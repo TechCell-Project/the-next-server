@@ -3,7 +3,7 @@ import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from '../auth/auth.service';
 import { AuthFacebookService } from './auth-facebook.service';
 import { AuthFacebookLoginDto } from './dto/auth-facebook-login.dto';
-import { AuthProvider } from '../users/enums';
+import { AuthProviderEnum } from '../users/enums';
 import { LoginResponseDto } from '../auth/dtos';
 
 @ApiTags('auth')
@@ -26,6 +26,6 @@ export class AuthFacebookController {
     async login(@Body() loginDto: AuthFacebookLoginDto): Promise<LoginResponseDto> {
         const socialData = await this.authFacebookService.getProfileByToken(loginDto);
 
-        return this.authService.validateSocialLogin(AuthProvider.Facebook, socialData);
+        return this.authService.validateSocialLogin(AuthProviderEnum.Facebook, socialData);
     }
 }

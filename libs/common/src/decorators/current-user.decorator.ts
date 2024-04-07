@@ -1,18 +1,18 @@
 import { ExecutionContext, createParamDecorator } from '@nestjs/common';
-import { RequestType } from '../enums';
+import { RequestTypeEnum } from '../enums';
 import { JwtPayloadType } from '~/modules/auth/strategies/types';
 
 export const getCurrentUserByContext = (context: ExecutionContext): JwtPayloadType | null => {
     switch (context.getType()?.toLowerCase()) {
-        case RequestType.Http: {
+        case RequestTypeEnum.Http: {
             const request = context.switchToHttp().getRequest();
             return request?.user ?? null;
         }
-        case RequestType.Rpc: {
+        case RequestTypeEnum.Rpc: {
             const ctx = context.switchToRpc().getData();
             return ctx?.user ?? null;
         }
-        case RequestType.Ws: {
+        case RequestTypeEnum.Ws: {
             const client = context.switchToWs().getClient();
             return client?.handshake?.auth?.user ?? null;
         }

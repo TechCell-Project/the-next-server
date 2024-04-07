@@ -5,7 +5,7 @@ import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, FilterQuery, Model } from 'mongoose';
 import { CreateAttributeDto } from './dtos';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { AttributeStatus } from './attribute.enum';
+import { AttributeStatusEnum } from './attribute.enum';
 import { QueryAttributesDto } from './dtos/query-attributes.dto';
 import { generateRegexQuery } from 'regex-vietnamese';
 
@@ -36,7 +36,7 @@ export class AttributesRepository extends AbstractRepository<Attribute> {
         return this.create({
             document: {
                 ...payload,
-                status: AttributeStatus.Available,
+                status: AttributeStatusEnum.Available,
                 unit: payload?.unit ? payload.unit : '',
             },
         });

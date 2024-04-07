@@ -1,15 +1,15 @@
-export enum BlockAction {
+export enum UserBlockActionEnum {
     Block = 'block',
     Unblock = 'unblock',
 }
 
-export enum AddressType {
+export enum UserAddressTypeEnum {
     Home = 'home',
     Office = 'office',
     Other = 'other',
 }
 
-export enum AuthProvider {
+export enum AuthProviderEnum {
     Google = 'google',
     Facebook = 'facebook',
     Apple = 'apple',

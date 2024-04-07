@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateBrandDto, FilterBrandsDto, SortBrandsDto, UpdateBrandDto } from './dtos';
 import { BrandsRepository } from './brands.repository';
-import { BrandStatus } from './enums';
+import { BrandStatusEnum } from './enums';
 import { ObjectIdParamDto, TPaginationOptions, convertToObjectId } from '~/common';
 import { Brand } from './schemas';
 
@@ -10,7 +10,7 @@ export class BrandsService {
     constructor(protected readonly brandsRepository: BrandsRepository) {}
 
     async createBrand(data: CreateBrandDto) {
-        const cloneData = { ...data, status: data.status ?? BrandStatus.Active };
+        const cloneData = { ...data, status: data.status ?? BrandStatusEnum.Active };
         if (await this.brandsRepository.isSlugExists(cloneData.slug)) {
             throw new HttpException(
                 {

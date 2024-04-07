@@ -1,4 +1,3 @@
-export enum ShippingProvider {
-    GHTK = 'ghtk',
+export enum ShippingProviderEnum {
     GHN = 'giaohangnhanh',
 }

@@ -1,4 +1,4 @@
-export enum CategoryStatus {
+export enum CategoryStatusEnum {
     Active = 'active',
     Deleted = 'deleted',
 }

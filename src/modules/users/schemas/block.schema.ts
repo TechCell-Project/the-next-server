@@ -1,11 +1,11 @@
 import { Prop } from '@nestjs/mongoose';
-import { BlockAction } from '../enums';
+import { UserBlockActionEnum } from '../enums';
 import { Types } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class BlockActivityLog {
-    @ApiProperty({ type: String, enum: BlockAction, example: BlockAction.Block })
-    @Prop({ required: true, type: String, enum: BlockAction })
+    @ApiProperty({ type: String, enum: UserBlockActionEnum, example: UserBlockActionEnum.Block })
+    @Prop({ required: true, type: String, enum: UserBlockActionEnum })
     action: string;
 
     @ApiProperty({ type: String, format: 'date-time', example: Date.now() })

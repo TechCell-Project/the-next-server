@@ -20,7 +20,7 @@ import {
     UpdateBrandDto,
 } from './dtos';
 import { ObjectIdParamDto, infinityPagination } from '~/common';
-import { BrandStatus } from './enums';
+import { BrandStatusEnum } from './enums';
 import { AuthRoles } from '../auth/guards';
 import { Brand } from './schemas';
 import { SortAttributeDto } from '../attributes/dtos';
@@ -86,7 +86,7 @@ export class BrandsController {
     @HttpCode(HttpStatus.NO_CONTENT)
     async deleteBrand(@Param() { id }: ObjectIdParamDto) {
         return this.brandsService.updateBrand(id, {
-            status: BrandStatus.Inactive,
+            status: BrandStatusEnum.Inactive,
         });
     }
 }

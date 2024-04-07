@@ -27,7 +27,7 @@ import { ObjectIdParamDto } from '~/common/dtos';
 import { AuthRoles } from '../auth/guards';
 import { instanceToPlain } from 'class-transformer';
 import { JwtPayloadType } from '../auth/strategies/types';
-import { UserRole } from './enums';
+import { UserRoleEnum } from './enums';
 import { CurrentUser } from '~/common/decorators';
 // import { UserRole } from './enums';
 
@@ -41,9 +41,9 @@ export class UsersController {
     constructor(private readonly usersService: UsersService) {}
 
     // @AuthRoles()
-    @AuthRoles(UserRole.Manager)
+    @AuthRoles(UserRoleEnum.Manager)
     @SerializeOptions({
-        groups: [UserRole.Manager],
+        groups: [UserRoleEnum.Manager],
     })
     @Post()
     @HttpCode(HttpStatus.CREATED)
@@ -57,7 +57,7 @@ export class UsersController {
     @AuthRoles()
     // @AuthRoles(UserRole.Manager)
     @SerializeOptions({
-        groups: [UserRole.Manager],
+        groups: [UserRoleEnum.Manager],
     })
     @Get('/')
     @HttpCode(HttpStatus.OK)
@@ -106,9 +106,9 @@ export class UsersController {
     }
 
     // @AuthRoles()
-    @AuthRoles(UserRole.Manager)
+    @AuthRoles(UserRoleEnum.Manager)
     @SerializeOptions({
-        groups: [UserRole.Manager],
+        groups: [UserRoleEnum.Manager],
     })
     @Patch('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)

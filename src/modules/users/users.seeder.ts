@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { User } from './schemas/user.schema';
 import { Seeder, DataFactory } from 'nestjs-seeder';
-import { UserRole } from './enums';
+import { UserRoleEnum } from './enums';
 
 @Injectable()
 export class UsersSeeder implements Seeder {
@@ -14,7 +14,7 @@ export class UsersSeeder implements Seeder {
         const users = DataFactory.createForClass(User).generate(100);
 
         // First user is a manager.
-        (users[0] as unknown as User).role = UserRole.Manager;
+        (users[0] as unknown as User).role = UserRoleEnum.Manager;
 
         // Assign an ID to each user. Avoiding duplicates.
         users.forEach((u) => {

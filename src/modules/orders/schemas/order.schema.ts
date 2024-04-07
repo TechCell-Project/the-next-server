@@ -6,7 +6,7 @@ import { HydratedDocument } from 'mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { CustomerSchema } from './customer.schema';
 import { PaymentSchema } from './payment.schema';
-import { OrderStatus } from '../enum';
+import { OrderStatusEnum } from '../enum';
 import { ProductSchema } from './product.schema';
 import { ShippingSchema } from './shipping.schema';
 
@@ -34,9 +34,9 @@ export class Order extends AbstractDocument {
     @Prop({ required: true, type: PaymentSchema })
     payment: PaymentSchema;
 
-    @ApiProperty({ example: OrderStatus.Pending, enum: OrderStatus, type: String })
-    @Factory((faker: Faker) => faker.helpers.enumValue(OrderStatus))
-    @Prop({ required: true, type: String, enum: OrderStatus })
+    @ApiProperty({ example: OrderStatusEnum.Pending, enum: OrderStatusEnum, type: String })
+    @Factory((faker: Faker) => faker.helpers.enumValue(OrderStatusEnum))
+    @Prop({ required: true, type: String, enum: OrderStatusEnum })
     orderStatus: string;
 
     @ApiProperty({ type: ShippingSchema })

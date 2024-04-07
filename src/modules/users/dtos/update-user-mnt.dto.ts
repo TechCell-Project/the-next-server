@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
-import { BlockAction, RolesWithoutCustomerAndManager, UserRole } from '../enums';
+import { UserBlockActionEnum, RolesWithoutCustomerAndManager, UserRoleEnum } from '../enums';
 import { ApiProperty, ApiPropertyOptional, PickType } from '@nestjs/swagger';
 import { BlockActivityLog } from '../schemas/block.schema';
 import { Type } from 'class-transformer';
@@ -17,8 +17,8 @@ export class BlockActivityLogDto extends PickType(BlockActivityLog, ['reason', '
 }
 
 export class BlockUserDto {
-    @ApiProperty({ type: String, enum: BlockAction, example: BlockAction.Block })
-    @IsEnum(BlockAction)
+    @ApiProperty({ type: String, enum: UserBlockActionEnum, example: UserBlockActionEnum.Block })
+    @IsEnum(UserBlockActionEnum)
     action: string;
 
     @ApiProperty({ type: BlockActivityLogDto })
@@ -31,12 +31,12 @@ export class UpdateUserMntDto {
     @ApiPropertyOptional({
         enum: RolesWithoutCustomerAndManager,
         description: 'User role to update',
-        example: UserRole.DataEntry,
+        example: UserRoleEnum.DataEntry,
         type: String,
     })
     @IsOptional()
     @IsEnum(RolesWithoutCustomerAndManager)
-    role?: UserRole;
+    role?: UserRoleEnum;
 
     @ApiPropertyOptional({ type: BlockUserDto })
     @IsOptional()

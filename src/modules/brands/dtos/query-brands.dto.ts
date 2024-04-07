@@ -2,18 +2,18 @@ import { JsonTransform, QueryManyWithPaginationDto, SortDto } from '~/common';
 import { Brand } from '../schemas';
 import { ApiPropertyOptional, IntersectionType, getSchemaPath } from '@nestjs/swagger';
 import { IsEnum, IsOptional, ValidateNested } from 'class-validator';
-import { BrandStatus } from '../enums';
+import { BrandStatusEnum } from '../enums';
 import { Type } from 'class-transformer';
 
 export class FilterBrandsDto {
     @ApiPropertyOptional({
-        type: [BrandStatus],
-        enum: BrandStatus,
-        example: [BrandStatus.Active, BrandStatus.Inactive],
+        type: [BrandStatusEnum],
+        enum: BrandStatusEnum,
+        example: [BrandStatusEnum.Active, BrandStatusEnum.Inactive],
     })
     @IsOptional()
-    @IsEnum(BrandStatus, { each: true })
-    status: BrandStatus[] | null;
+    @IsEnum(BrandStatusEnum, { each: true })
+    status: BrandStatusEnum[] | null;
 }
 
 export class SortBrandsDto extends IntersectionType(SortDto<Brand>) {}
