@@ -10,7 +10,7 @@ import { RabbitMQModule } from '~/common/rabbitmq';
         ConfigModule.forRoot({
             isGlobal: true,
         }),
-        RabbitMQModule.registerRmq('COMMUNICATIONS_SERVICE', process.env.COMMUNICATION_QUEUE!),
+        RabbitMQModule.registerRmq('COMMUNICATION_SERVICE', process.env.COMMUNICATION_QUEUE!),
         LoggerModule,
         I18nModule,
         MailModule,
