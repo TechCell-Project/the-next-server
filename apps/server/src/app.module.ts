@@ -13,11 +13,11 @@ import { ProductSeriesModule } from './modules/product-series/product-series.mod
 import { ProductVariationsModule } from './modules/product-variations/product-variations.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { OrdersModule } from './modules/orders/orders.module';
-import { I18nModule } from './modules/i18n';
 import { MailModule } from '~/modules/mail';
 import { SPUModule } from './modules/spus';
 import { AddressModule } from './modules/address';
 import { ImagesModule } from './modules/images';
+import { I18nModule } from '~/common/i18n';
 
 @Module({
     imports: [

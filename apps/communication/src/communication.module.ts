@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
-import { CommunicationController } from './communication.controller';
-import { CommunicationService } from './communication.service';
+import { MailModule } from './modules/mail';
+import { ConfigModule } from '@nestjs/config';
+import { I18nModule } from '~/common/i18n';
 
 @Module({
-  imports: [],
-  controllers: [CommunicationController],
-  providers: [CommunicationService],
+    imports: [
+        ConfigModule.forRoot({
+            isGlobal: true,
+        }),
+        I18nModule,
+        MailModule,
+    ],
 })
 export class CommunicationModule {}
