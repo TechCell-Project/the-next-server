@@ -6,7 +6,7 @@ services:
         hostname: api
         build:
             context: .
-            dockerfile: .apps/server/Dockerfile
+            dockerfile: ./apps/server/Dockerfile
         image: lehuygiang28/the_next_tech_cell:${COMPOSE_TAG:-latest}
         ports:
             - ${API_PORT:-8000}:${API_PORT:-8000}
@@ -23,7 +23,7 @@ services:
         hostname: communication
         build:
             context: .
-            dockerfile: .apps/communication/Dockerfile
+            dockerfile: ./apps/communication/Dockerfile
         image: lehuygiang28/the_next_tech_cell_communication:${COMPOSE_TAG:-latest}
         ports:
             - ${COMMUNICATION_PORT:-8001}:${COMMUNICATION_PORT:-8001}

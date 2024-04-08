@@ -51,7 +51,7 @@ jobs:
               run: yarn install
 
             - name: Build services
-              run: yarn build
+              run: yarn run build:all
 
             - name: Run tests
               run: yarn test --passWithNoTests
