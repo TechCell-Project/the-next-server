@@ -5,7 +5,6 @@ import {
     IsNotEmpty,
     IsOptional,
     IsString,
-    IsUrl,
     ValidateNested,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
@@ -15,16 +14,11 @@ import { ImageSchema } from '../schemas/spu-image.schema';
 import { Transform, Type } from 'class-transformer';
 import { isTrueSet } from '~/common';
 
-class ImageSchemaDto implements ImageSchema {
+class ImageSchemaDto implements Omit<ImageSchema, 'url'> {
     @ApiProperty({ example: '5f9a7f5d9d8f6d7f5d8f6d7', type: String })
     @IsString()
     @IsNotEmpty()
     publicId: string;
-
-    @ApiProperty({ example: 'https://res.cloudinary.com/...', type: String })
-    @IsString()
-    @IsUrl({ require_tld: false })
-    url: string;
 
     @ApiProperty({ example: true, type: Boolean })
     @Transform(({ value }) => isTrueSet(value))
@@ -55,7 +49,7 @@ class AttributeInProductSchemaDto implements AttributeInProductSchema {
     u: string;
 }
 
-class SPUModelSchemaDto implements SPUModelSchema {
+class SPUModelSchemaDto implements Omit<SPUModelSchema, 'images'> {
     @ApiProperty({ example: 'plus', type: String })
     @IsString()
     @IsNotEmpty()
@@ -85,7 +79,7 @@ class SPUModelSchemaDto implements SPUModelSchema {
     attributes: AttributeInProductSchemaDto[];
 }
 
-export class CreateSpuDto implements Omit<SPU, '_id' | 'brandId'> {
+export class CreateSpuDto implements Omit<SPU, '_id' | 'brandId' | 'models'> {
     @ApiProperty({
         example: '5f9a7f5d9d8f6d7f5d8f6d7',
         description: 'Brand id',

@@ -4,8 +4,9 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateSpuDto, QuerySpusDto } from './dtos';
 import { BrandsService } from '../brands/brands.service';
 import { AttributesService } from '../attributes';
-import { SPU } from './schemas';
+import { ImageSchema, SPU, SPUModelSchema } from './schemas';
 import { convertToObjectId } from '~/common';
+import { ImagesService } from '../images';
 
 @Injectable()
 export class SPUService {
@@ -14,16 +15,15 @@ export class SPUService {
         private readonly spuRepository: SPURepository,
         private readonly attributesService: AttributesService,
         private readonly brandsService: BrandsService,
+        private readonly imagesService: ImagesService,
     ) {}
 
     async createSPU(payload: CreateSpuDto) {
-        const clonePayload = {
-            ...payload,
-            commonAttributes: payload?.commonAttributes ?? [],
-            models: payload?.models ?? [],
+        const clonePayload: Partial<SPU> = {
+            slug: payload.slug,
         };
 
-        if (await this.spuRepository.isExistSpuSlug(clonePayload.slug)) {
+        if (await this.spuRepository.isExistSpuSlug(clonePayload?.slug ?? payload.slug)) {
             throw new HttpException(
                 {
                     status: HttpStatus.UNPROCESSABLE_ENTITY,
@@ -35,18 +35,25 @@ export class SPUService {
             );
         }
 
-        const brand = await this.brandsService.getBrandById(clonePayload.brandId);
+        const brand = await this.brandsService.getBrandById(payload.brandId);
+        clonePayload.brandId = brand._id;
 
-        if (clonePayload.commonAttributes.length > 0) {
+        if ((payload?.commonAttributes?.length ?? 0) > 0) {
             clonePayload.commonAttributes = await this.attributesService.validateAttributes(
-                clonePayload.commonAttributes,
+                payload.commonAttributes,
             );
         }
 
-        if (clonePayload.models.length > 0) {
+        if ((payload?.models?.length ?? 0) > 0) {
             clonePayload.models = await Promise.all(
-                clonePayload.models.map(async (model) => {
-                    const duplicateModel = clonePayload.models.find(
+                payload.models.map(async (model) => {
+                    const cloneModel: Partial<SPUModelSchema> = {
+                        slug: model.slug,
+                        name: model.name,
+                        description: model.description,
+                    };
+
+                    const duplicateModel = payload.models.find(
                         (m) => m !== model && m.slug === model.slug,
                     );
                     if (duplicateModel) {
@@ -62,19 +69,18 @@ export class SPUService {
                     }
 
                     if ((model?.attributes?.length ?? 0) > 0) {
-                        model.attributes = await this.attributesService.validateAttributes(
+                        cloneModel.attributes = await this.attributesService.validateAttributes(
                             model.attributes,
                         );
                     }
 
-                    if (clonePayload.commonAttributes.length > 0) {
-                        const commonAttList = clonePayload.commonAttributes.map(
+                    if ((clonePayload?.commonAttributes?.length ?? 0) > 0) {
+                        const commonAttKeyList = clonePayload.commonAttributes!.map(
                             (attribute) => attribute.k,
                         );
-                        const modelAttList = model?.attributes?.map((attribute) => attribute.k);
-                        const duplicateKeys = modelAttList?.filter((key) =>
-                            commonAttList.includes(key),
-                        );
+                        const duplicateKeys = model?.attributes
+                            ?.map((attribute) => attribute.k)
+                            ?.filter((key) => commonAttKeyList.includes(key));
 
                         if (duplicateKeys?.length > 0) {
                             throw new HttpException(
@@ -90,19 +96,42 @@ export class SPUService {
                     }
 
                     if (model?.images?.length > 0) {
-                        model.images = [];
+                        const thumbnailCount = model.images.filter(
+                            (image) => image.isThumbnail,
+                        ).length;
+                        if (thumbnailCount === 0) {
+                            model.images[0].isThumbnail = true;
+                        } else if (thumbnailCount > 1) {
+                            throw new HttpException(
+                                {
+                                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                                    errors: {
+                                        images: 'onlyOneThumbnail',
+                                    },
+                                },
+                                HttpStatus.UNPROCESSABLE_ENTITY,
+                            );
+                        }
+
+                        const imagesPromise = model.images.map((image) =>
+                            this.imagesService.getImageByPublicId(image.publicId),
+                        );
+                        const imagesData = await Promise.all(imagesPromise);
+
+                        cloneModel.images = imagesData.map<ImageSchema>((image, index) => ({
+                            publicId: image.publicId,
+                            url: image.url,
+                            isThumbnail: model.images[index].isThumbnail,
+                        }));
                     }
 
-                    return model;
+                    return cloneModel as SPUModelSchema;
                 }),
             );
         }
 
         await this.spuRepository.create({
-            document: {
-                ...clonePayload,
-                brandId: brand._id,
-            },
+            document: clonePayload as SPU,
         });
     }
 

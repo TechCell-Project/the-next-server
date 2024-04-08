@@ -7,6 +7,7 @@ import { SPURepository } from './spus.repository';
 import { SPUService } from './spus.service';
 import { BrandsModule } from '../brands/brands.module';
 import { AttributesModule } from '../attributes';
+import { ImagesModule } from '../images';
 
 @Module({
     imports: [
@@ -14,6 +15,7 @@ import { AttributesModule } from '../attributes';
         MongooseModule.forFeature([{ name: SPU.name, schema: SPUSchema }]),
         AttributesModule,
         BrandsModule,
+        ImagesModule,
     ],
     controllers: [SPUController],
     providers: [SPURepository, SPUService],
