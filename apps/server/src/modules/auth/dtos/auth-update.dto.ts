@@ -136,4 +136,9 @@ export class AuthUpdateDto {
     @IsOptional()
     @Type(() => AddressSchemaDTO)
     address?: AddressSchemaDTO[];
+
+    @ApiPropertyOptional({ example: 'public-id-image', type: String })
+    @IsOptional()
+    @IsNotEmpty({ message: 'mustBeNotEmpty' })
+    avatarImageId?: string;
 }

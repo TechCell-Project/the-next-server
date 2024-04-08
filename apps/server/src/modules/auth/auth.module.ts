@@ -9,6 +9,7 @@ import { RedisModule } from '~/common/redis';
 import { SessionModule } from '~/server/session';
 import { GhnModule } from '~/third-party';
 import { RabbitMQModule } from '~/common';
+import { ImagesModule } from '../images';
 
 @Module({
     imports: [
@@ -24,6 +25,7 @@ import { RabbitMQModule } from '~/common';
             testMode: true,
         }),
         RabbitMQModule.registerRmq('COMMUNICATION_SERVICE', process.env.COMMUNICATION_QUEUE!),
+        ImagesModule,
     ],
     controllers: [AuthController],
     providers: [AuthService, AnonymousStrategy, JwtStrategy, JwtRefreshStrategy],

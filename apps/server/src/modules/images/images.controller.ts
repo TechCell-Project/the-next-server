@@ -33,7 +33,7 @@ import {
     IMAGE_FILE_MAX_SIZE_IN_BYTES,
     IMAGE_FILE_MAX_SIZE_IN_MB,
 } from '~/third-party/cloudinary.com';
-import { AuthRoles } from '../auth/guards';
+import { AuthRoles } from '~/server/auth/guards';
 
 @ApiBadRequestResponse({
     description: 'Invalid request, please check your request data!',

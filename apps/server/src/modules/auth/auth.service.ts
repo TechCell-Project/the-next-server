@@ -21,6 +21,8 @@ import { Session, SessionService } from '~/server/session';
 import { GhnService } from '~/third-party';
 import { MailEventPattern } from '~/communication/mail/mail.pattern';
 import { ClientRMQ } from '@nestjs/microservices';
+import { ImagesService } from '~/server/images';
+import { AvatarSchema } from '../users/schemas/avatar.schema';
 
 @Injectable()
 export class AuthService {
@@ -33,6 +35,7 @@ export class AuthService {
         private readonly sessionService: SessionService,
         private readonly ghnService: GhnService,
         @Inject('COMMUNICATION_SERVICE') private readonly mailService: ClientRMQ,
+        private readonly imagesService: ImagesService,
     ) {
         this.logger.setContext(AuthService.name);
     }
@@ -48,6 +51,11 @@ export class AuthService {
                 },
                 HttpStatus.UNPROCESSABLE_ENTITY,
             );
+        }
+
+        if (dto?.password) {
+            const salt = await bcrypt.genSalt();
+            dto.password = await bcrypt.hash(dto.password, salt);
         }
 
         const userCreated = await this.usersService.usersRepository.create({
@@ -537,13 +545,14 @@ export class AuthService {
         ]);
     }
 
-    async update(
+    async updateUser(
         userJwtPayload: JwtPayloadType,
         userDto: AuthUpdateDto,
     ): Promise<NullableType<User>> {
-        const userData = userDto;
-        if (userData.password) {
-            if (!userData.oldPassword) {
+        const cloneUpdateData: Partial<User> = {};
+
+        if (userDto?.password) {
+            if (!userDto.oldPassword) {
                 throw new HttpException(
                     {
                         status: HttpStatus.UNPROCESSABLE_ENTITY,
@@ -582,7 +591,7 @@ export class AuthService {
             }
 
             const isValidOldPassword = await bcrypt.compare(
-                userData.oldPassword,
+                userDto.oldPassword,
                 currentUser.password,
             );
 
@@ -604,13 +613,15 @@ export class AuthService {
                     excludeId: userJwtPayload.sessionId,
                 });
             }
+
+            cloneUpdateData.password = userDto.password;
         }
 
-        if (userData?.address !== null || userData?.address !== undefined) {
-            if (userData.address?.length === 0) {
-                userData.address = [];
-            } else if (userData.address && userData.address?.length > 0) {
-                const addressPromises = userData.address.map((address) =>
+        if (userDto?.address !== null || userDto?.address !== undefined) {
+            if (userDto.address?.length === 0) {
+                userDto.address = [];
+            } else if (userDto.address && userDto.address?.length > 0) {
+                const addressPromises = userDto.address.map((address) =>
                     this.ghnService.getSelectedAddress(address),
                 );
 
@@ -629,7 +640,7 @@ export class AuthService {
                     );
                 }
 
-                const defaultAddresses = userData.address.filter((address) => address?.isDefault);
+                const defaultAddresses = userDto.address.filter((address) => address?.isDefault);
                 if (defaultAddresses.length > 1) {
                     throw new HttpException(
                         {
@@ -641,12 +652,33 @@ export class AuthService {
                         HttpStatus.UNPROCESSABLE_ENTITY,
                     );
                 } else if (defaultAddresses.length <= 0) {
-                    userData.address[0].isDefault = true;
+                    userDto.address[0].isDefault = true;
                 }
             }
+
+            cloneUpdateData.address = userDto.address;
         }
 
-        await this.usersService.update(userJwtPayload.userId, userData);
+        if (userDto?.avatarImageId) {
+            const image: AvatarSchema = await this.imagesService.getImageByPublicId(
+                userDto.avatarImageId,
+            );
+            if (!image) {
+                throw new HttpException(
+                    {
+                        status: HttpStatus.UNPROCESSABLE_ENTITY,
+                        errors: {
+                            avatarImageId: 'invalidImageId',
+                        },
+                    },
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                );
+            }
+
+            cloneUpdateData.avatar = image;
+        }
+
+        await this.usersService.update(userJwtPayload.userId, cloneUpdateData);
 
         return new User(await this.usersService.findById(userJwtPayload.userId));
     }

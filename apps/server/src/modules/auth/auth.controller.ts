@@ -134,6 +134,6 @@ export class AuthController {
         @Req() request: { user: JwtPayloadType },
         @Body() userDto: AuthUpdateDto,
     ): Promise<NullableType<User>> {
-        return this.authService.update(request.user, userDto);
+        return this.authService.updateUser(request.user, userDto);
     }
 }
