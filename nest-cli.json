@@ -1,10 +1,11 @@
 {
     "$schema": "https://json.schemastore.org/nest-cli",
     "collection": "@nestjs/schematics",
-    "sourceRoot": "src",
+    "sourceRoot": "apps/server/src",
     "compilerOptions": {
         "deleteOutDir": true,
-        "webpack": true
+        "webpack": true,
+        "tsConfigPath": "apps/server/tsconfig.app.json"
     },
     "projects": {
         "logger": {
@@ -42,6 +43,28 @@
             "compilerOptions": {
                 "tsConfigPath": "libs/third-party/tsconfig.lib.json"
             }
+        },
+        "server": {
+            "type": "application",
+            "root": "apps/server",
+            "entryFile": "main",
+            "sourceRoot": "apps/server/src",
+            "compilerOptions": {
+                "tsConfigPath": "apps/server/tsconfig.app.json"
+            }
+        },
+        "communication": {
+            "type": "application",
+            "root": "apps/communication",
+            "entryFile": "main",
+            "sourceRoot": "apps/communication/src",
+            "compilerOptions": {
+                "tsConfigPath": "apps/communication/tsconfig.app.json",
+                "assets": ["**/*.proto", "**/*.hbs"],
+                "watchAssets": true
+            }
         }
-    }
+    },
+    "monorepo": true,
+    "root": "apps/server"
 }

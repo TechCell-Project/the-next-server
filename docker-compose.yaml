@@ -6,7 +6,7 @@ services:
         hostname: api
         build:
             context: .
-            dockerfile: ./Dockerfile
+            dockerfile: .apps/server/Dockerfile
         image: lehuygiang28/the_next_tech_cell:${COMPOSE_TAG:-latest}
         ports:
             - ${API_PORT:-8000}:${API_PORT:-8000}
@@ -18,6 +18,23 @@ services:
             - the_next_techcell_backend
         restart: unless-stopped
 
+    communication:
+        container_name: communication
+        hostname: communication
+        build:
+            context: .
+            dockerfile: .apps/communication/Dockerfile
+        image: lehuygiang28/the_next_tech_cell_communication:${COMPOSE_TAG:-latest}
+        ports:
+            - ${COMMUNICATION_PORT:-8001}:${COMMUNICATION_PORT:-8001}
+        env_file:
+            - .env
+        volumes:
+            - the_next_tech_cell_communication_data:/app
+        networks:
+            - the_next_techcell_backend
+        restart: unless-stopped
+
 networks:
     the_next_techcell_backend:
         driver: bridge
@@ -25,5 +42,5 @@ networks:
 volumes:
     the_next_tech_cell_data:
         driver: local
-    redis_data:
+    the_next_tech_cell_communication_data:
         driver: local

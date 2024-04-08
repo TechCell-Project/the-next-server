@@ -32,6 +32,30 @@ services:
             - the_next_techcell_backend
         restart: unless-stopped
 
+    rabbitmq:
+        container_name: rabbitmq
+        hostname: rabbitmq
+        image: docker.io/bitnami/rabbitmq:3.12
+        ports:
+            - '4369:4369'
+            - '5551:5551'
+            - '5552:5552'
+            - '5672:5672'
+            - '25672:25672'
+            - '15672:15672'
+        environment:
+            - RABBITMQ_SECURE_PASSWORD=yes
+            - RABBITMQ_LOGS=-
+            - RABBITMQ_USERNAME=${RABBITMQ_USERNAME}
+            - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+            - RABBITMQ_NODE_PORT_NUMBER=${RABBITMQ_PORT:-5672}
+            - RABBITMQ_MANAGEMENT_PORT_NUMBER=${RABBITMQ_MANAGEMENT_PORT:-15672}
+        volumes:
+            - 'rabbitmq_data:/bitnami/rabbitmq/mnesia'
+        networks:
+            - the_next_techcell_backend
+        restart: unless-stopped
+
 networks:
     the_next_techcell_backend:
         driver: bridge
@@ -40,4 +64,6 @@ volumes:
     mongodb_data:
         driver: local
     redis_data:
+        driver: local
+    rabbitmq_data:
         driver: local

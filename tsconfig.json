@@ -18,8 +18,10 @@
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
         "paths": {
-            "~/modules": ["src/modules"],
-            "~/modules/*": ["src/modules/*"],
+            "~/modules": ["apps/server/src/modules"],
+            "~/modules/*": ["apps/server/src/modules/*"],
+            "~/communication": ["apps/communication/src/modules"],
+            "~/communication/*": ["apps/communication/src/modules/*"],
             "~/logger": ["libs/logger/src"],
             "~/logger/*": ["libs/logger/src/*"],
             "~/common": ["libs/common/src"],
