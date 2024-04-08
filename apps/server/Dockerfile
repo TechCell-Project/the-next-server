@@ -9,6 +9,7 @@ RUN yarn workspaces focus --all
 
 COPY . . 
 
+RUN yarn run build common
 RUN yarn run build server
 
 FROM node:18-alpine AS production

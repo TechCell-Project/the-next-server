@@ -14,7 +14,7 @@ import { ConfigService } from '@nestjs/config';
             useFactory: (configService: ConfigService) => ({
                 fallbackLanguage: configService.getOrThrow('FALLBACK_LANGUAGE'),
                 loaderOptions: {
-                    path: path.join(process.cwd(), './libs/common/src/i18n/lang/'),
+                    path: path.join(__dirname, '../../libs/common/i18n/lang/'),
                     watch: true,
                 },
                 typesOutputPath: path.join(
