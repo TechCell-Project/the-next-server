@@ -3,10 +3,10 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { UsersModule } from '~/modules/users';
+import { UsersModule } from '~/server/users';
 import { JwtStrategy, AnonymousStrategy, JwtRefreshStrategy } from './strategies';
 import { RedisModule } from '~/common/redis';
-import { SessionModule } from '~/modules/session';
+import { SessionModule } from '~/server/session';
 import { GhnModule } from '~/third-party';
 import { RabbitMQModule } from '~/common';
 

@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { GetShippingFeeDTO, ItemShipping } from './dtos/get-shipping-fee.dto';
 import Ghn, { GhnConfig } from 'giaohangnhanh';
 import { GhnDistrictDTO, GhnProvinceDTO, GhnWardDTO } from './dtos';
-import { UserAddressSchema } from '~/modules/users';
+import { UserAddressSchema } from '~/server/users';
 import { RedisService } from '~/common/redis';
 import { convertTimeString } from 'convert-time-string';
 

@@ -13,8 +13,8 @@ import {
     ValidateNested,
 } from 'class-validator';
 import { isTrueSet } from '~/common/utils';
-import { UserAddressSchema } from '~/modules/users';
-import { UserAddressTypeEnum } from '~/modules/users/enums';
+import { UserAddressSchema } from '~/server/users';
+import { UserAddressTypeEnum } from '~/server/users/enums';
 
 class ProvinceSchemaDTO {
     @ApiProperty({ description: 'The id of province', example: 201, type: Number })

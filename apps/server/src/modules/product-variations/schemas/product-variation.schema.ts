@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 import { Faker } from '@faker-js/faker';
 import { HydratedDocument, ObjectId } from 'mongoose';
 import { VariationStatusEnum } from '../status.enum';
-import { AttributeSchema } from '~/modules/product-models/schemas/attribute.schema';
+import { AttributeSchema } from '~/server/product-models/schemas/attribute.schema';
 import { ImageSchema } from './image.schema';
 import { PriceSchema } from './price.schema';
 

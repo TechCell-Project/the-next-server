@@ -4,7 +4,7 @@ import { AuthService } from '../auth/auth.service';
 import { AuthGoogleService } from './auth-google.service';
 import { AuthGoogleLoginDto } from './auth-google-login.dto';
 import { LoginResponseDto } from '../auth/dtos';
-import { AuthProviderEnum } from '~/modules/users/enums';
+import { AuthProviderEnum } from '~/server/users/enums';
 
 @ApiTags('auth')
 @Controller({

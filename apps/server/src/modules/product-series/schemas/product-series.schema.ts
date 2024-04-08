@@ -5,7 +5,7 @@ import { Factory } from 'nestjs-seeder';
 import { AbstractDocument } from '~/common/abstract';
 import { v4 as uuid } from 'uuid';
 import { Faker } from '@faker-js/faker';
-import { AttributeSchema } from '~/modules/product-models/schemas/attribute.schema';
+import { AttributeSchema } from '~/server/product-models/schemas/attribute.schema';
 import { ImageSchema } from './image.schema';
 
 @Schema({

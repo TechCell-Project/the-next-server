@@ -1,5 +1,5 @@
-import { Session } from '~/modules/session';
-import { User } from '~/modules/users';
+import { Session } from '~/server/session';
+import { User } from '~/server/users';
 
 export type JwtRefreshPayloadType = Pick<User, 'role'> & {
     userId: string;

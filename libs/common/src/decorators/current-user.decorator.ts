@@ -1,6 +1,6 @@
 import { ExecutionContext, createParamDecorator } from '@nestjs/common';
 import { RequestTypeEnum } from '../enums';
-import { JwtPayloadType } from '~/modules/auth/strategies/types';
+import { JwtPayloadType } from '~/server/auth/strategies/types';
 
 export const getCurrentUserByContext = (context: ExecutionContext): JwtPayloadType | null => {
     switch (context.getType()?.toLowerCase()) {

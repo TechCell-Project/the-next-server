@@ -1,7 +1,7 @@
 import { Prop } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { ObjectId } from 'mongoose';
-import { UserAddressSchema } from '~/modules/users/schemas/address.schema';
+import { UserAddressSchema } from '~/server/users/schemas/address.schema';
 
 export class CustomerSchema {
     @ApiProperty({ example: '5f9a7f5d9d8f6d7f5d8f6d7', type: String })

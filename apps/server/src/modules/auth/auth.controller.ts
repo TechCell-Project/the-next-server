@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { ApiNoContentResponse, ApiOkResponse, ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { NullableType } from '~/common/types';
-import { User } from '~/modules/users';
+import { User } from '~/server/users';
 import { AuthService } from './auth.service';
 import {
     AuthSignupDto,
