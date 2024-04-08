@@ -162,6 +162,8 @@ jobs:
 
             - name: Run the web server and generate the OpenAPI YAML
               run: |
+                  yarn run build common
+                  yarn run build server
                   npx concurrently -k -s first -n "SERVER,GET-YAML" -c "magenta,blue" \
                     "yarn run start server" \
                     "npx wait-on http://localhost:8000/docs && node ./scripts/get-swagger-yaml.js"
