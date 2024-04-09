@@ -5,9 +5,25 @@ import { Factory } from 'nestjs-seeder';
 import { Faker } from '@faker-js/faker';
 import { HydratedDocument, Types } from 'mongoose';
 import { v4 as uuid } from 'uuid';
-import { AttributeInProductSchema, ImageSchema } from '~/server/spus/schemas';
+import { AttributeInProductSchema } from '~/server/spus/schemas';
 import { PriceSchema } from './price.schema';
 import { SkuStatusEnum } from '../skus.enum';
+
+export class SkuImageSchema {
+    @ApiProperty({ example: '5f9a7f5d9d8f6d7f5d8f6d7', type: String })
+    @Factory(() => new Types.ObjectId())
+    @Prop({ required: true, type: String })
+    publicId: string;
+
+    @ApiProperty({
+        example:
+            'https://res.cloudinary.com/techcell/image/upload/v1653506588/techcell/5f9a7f5d9d8f6d7f5d8f6d7/iphone-15.png',
+        type: String,
+    })
+    @Factory((faker: Faker) => faker.image.url())
+    @Prop({ required: true, type: String })
+    url: string;
+}
 
 @Schema({
     timestamps: true,
@@ -42,10 +58,10 @@ export class SKU extends AbstractDocument {
     @Prop({ required: true, type: PriceSchema, default: {} })
     price: PriceSchema;
 
-    @ApiProperty({ type: ImageSchema })
+    @ApiProperty({ type: SkuImageSchema })
     @Factory(() => {})
-    @Prop({ required: true, type: ImageSchema, default: {} })
-    image: ImageSchema;
+    @Prop({ required: false, type: SkuImageSchema, default: {} })
+    image?: SkuImageSchema;
 
     @ApiProperty({ example: SkuStatusEnum.Selling, enum: SkuStatusEnum, type: String })
     @Factory((faker: Faker) => faker.helpers.enumValue(SkuStatusEnum))

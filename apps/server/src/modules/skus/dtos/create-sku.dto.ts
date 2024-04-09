@@ -1,4 +1,10 @@
-import { IntersectionType, OmitType, PartialType, PickType } from '@nestjs/swagger';
+import {
+    ApiPropertyOptional,
+    IntersectionType,
+    OmitType,
+    PartialType,
+    PickType,
+} from '@nestjs/swagger';
 import { SKU } from '../schemas';
 import { Types } from 'mongoose';
 import {
@@ -13,7 +19,6 @@ import {
     ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { ImageSchema } from '~/server/spus/schemas';
 import { PriceSchema } from '../schemas/price.schema';
 import { AttributeInProductDto } from '~/server/spus/dtos';
 import { SkuStatusEnum } from '../skus.enum';
@@ -32,8 +37,8 @@ export class PriceDto extends IntersectionType(PriceSchema) {
 }
 
 export class CreateSkuDto extends IntersectionType(
-    OmitType(SKU, ['_id', 'serialNumbers']),
-    PartialType(PickType(SKU, ['image', 'categories'])),
+    OmitType(SKU, ['_id', 'serialNumbers', 'image']),
+    PartialType(PickType(SKU, ['categories'])),
 ) {
     @IsString()
     @IsNotEmpty()
@@ -56,10 +61,10 @@ export class CreateSkuDto extends IntersectionType(
     @Type(() => Types.ObjectId)
     categories: Types.ObjectId[];
 
+    @ApiPropertyOptional({ example: 'public-id-image', type: String })
     @IsOptional()
-    @ValidateNested()
-    @Type(() => ImageSchema)
-    image: ImageSchema;
+    @IsNotEmpty({ message: 'mustBeNotEmpty' })
+    imagePublicId?: string;
 
     @ValidateNested()
     @Type(() => PriceDto)

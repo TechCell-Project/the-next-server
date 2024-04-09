@@ -7,6 +7,7 @@ import { AttributesService } from '../attributes';
 import { ImageSchema, SPU, SPUModelSchema } from './schemas';
 import { convertToObjectId, getSlugFromName } from '~/common';
 import { ImagesService } from '../images';
+import { Types } from 'mongoose';
 
 @Injectable()
 export class SPUService {
@@ -141,7 +142,7 @@ export class SPUService {
         });
     }
 
-    async getSpuById(id: string): Promise<SPU> {
+    async getSpuById(id: string | Types.ObjectId): Promise<SPU> {
         return this.spuRepository.findOneOrThrow({
             filterQuery: {
                 _id: convertToObjectId(id),

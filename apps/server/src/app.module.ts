@@ -6,11 +6,8 @@ import { UsersModule } from './modules/users';
 import { AuthModule } from './modules/auth';
 import { AuthGoogleModule } from './modules/auth-google';
 import { AuthFacebookModule } from './modules/auth-facebook';
-import { ProductModelsModule } from './modules/product-models/product-models.module';
 import { AttributesModule } from './modules/attributes/attributes.module';
 import { BrandsModule } from './modules/brands/brands.module';
-import { ProductSeriesModule } from './modules/product-series/product-series.module';
-import { ProductVariationsModule } from './modules/product-variations/product-variations.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { SPUModule } from './modules/spus';
@@ -33,10 +30,7 @@ import { SKUModule } from './modules/skus';
         ImagesModule,
         AddressModule,
         BrandsModule,
-        ProductModelsModule,
         AttributesModule,
-        ProductSeriesModule,
-        ProductVariationsModule,
         CategoriesModule,
         OrdersModule,
         SPUModule,
