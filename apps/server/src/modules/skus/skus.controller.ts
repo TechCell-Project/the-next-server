@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
 import {
     CreateSkuDto,
     FilterSkuDto,
@@ -21,6 +21,7 @@ export class SkusController {
     constructor(private readonly skusService: SkusService) {}
 
     @Post('/')
+    @HttpCode(HttpStatus.NO_CONTENT)
     async createSku(@Body() data: CreateSkuDto) {
         return this.skusService.createSku(data);
     }
