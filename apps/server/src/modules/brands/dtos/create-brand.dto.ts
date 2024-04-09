@@ -3,11 +3,7 @@ import { Brand } from '../schemas';
 import { ApiPropertyOptional, OmitType } from '@nestjs/swagger';
 import { BrandStatusEnum } from '../enums';
 
-export class CreateBrandDto extends OmitType(Brand, ['_id']) {
-    @IsString()
-    @IsNotEmpty()
-    slug: string;
-
+export class CreateBrandDto extends OmitType(Brand, ['_id', 'slug']) {
     @IsString()
     @IsNotEmpty()
     name: string;

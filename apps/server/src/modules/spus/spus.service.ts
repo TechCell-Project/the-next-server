@@ -5,7 +5,7 @@ import { CreateSpuDto, QuerySpusDto } from './dtos';
 import { BrandsService } from '../brands/brands.service';
 import { AttributesService } from '../attributes';
 import { ImageSchema, SPU, SPUModelSchema } from './schemas';
-import { convertToObjectId } from '~/common';
+import { convertToObjectId, getSlugFromName } from '~/common';
 import { ImagesService } from '../images';
 
 @Injectable()
@@ -19,21 +19,14 @@ export class SPUService {
     ) {}
 
     async createSPU(payload: CreateSpuDto) {
-        const clonePayload: Partial<SPU> = {
-            slug: payload.slug,
-        };
+        const clonePayload: Partial<SPU> = {};
+        let uniqSlug = getSlugFromName(payload.name, false);
+        let suffix = 0;
 
-        if (await this.spuRepository.isExistSpuSlug(clonePayload?.slug ?? payload.slug)) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        slug: 'slugAlreadyExist',
-                    },
-                },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+        while (await this.spuRepository.isExistSpuSlug(uniqSlug)) {
+            uniqSlug = `${getSlugFromName(payload.name)}-${suffix++}`;
         }
+        clonePayload.slug = uniqSlug;
 
         const brand = await this.brandsService.getBrandById(payload.brandId);
         clonePayload.brandId = brand._id;
@@ -48,13 +41,13 @@ export class SPUService {
             clonePayload.models = await Promise.all(
                 payload.models.map(async (model) => {
                     const cloneModel: Partial<SPUModelSchema> = {
-                        slug: model.slug,
+                        slug: getSlugFromName(model.slug, false),
                         name: model.name,
                         description: model.description,
                     };
 
                     const duplicateModel = payload.models.find(
-                        (m) => m !== model && m.slug === model.slug,
+                        (m) => m !== model && m.slug === cloneModel.slug,
                     );
                     if (duplicateModel) {
                         throw new HttpException(

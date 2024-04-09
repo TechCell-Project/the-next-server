@@ -79,7 +79,7 @@ class SPUModelSchemaDto implements Omit<SPUModelSchema, 'images'> {
     attributes: AttributeInProductSchemaDto[];
 }
 
-export class CreateSpuDto implements Omit<SPU, '_id' | 'brandId' | 'models'> {
+export class CreateSpuDto implements Omit<SPU, '_id' | 'brandId' | 'models' | 'slug'> {
     @ApiProperty({
         example: '5f9a7f5d9d8f6d7f5d8f6d7',
         description: 'Brand id',
@@ -107,16 +107,6 @@ export class CreateSpuDto implements Omit<SPU, '_id' | 'brandId' | 'models'> {
     @IsOptional()
     @IsString()
     description: string;
-
-    @ApiProperty({
-        example: 'iphone-15',
-        description: 'Spu label',
-        type: String,
-        uniqueItems: true,
-    })
-    @IsString()
-    @IsNotEmpty()
-    slug: string;
 
     @ApiProperty({
         type: [AttributeInProductSchemaDto],

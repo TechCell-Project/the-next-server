@@ -1,8 +1,8 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateBrandDto, FilterBrandsDto, SortBrandsDto, UpdateBrandDto } from './dtos';
 import { BrandsRepository } from './brands.repository';
 import { BrandStatusEnum } from './enums';
-import { ObjectIdParamDto, TPaginationOptions, convertToObjectId } from '~/common';
+import { ObjectIdParamDto, TPaginationOptions, convertToObjectId, getSlugFromName } from '~/common';
 import { Brand } from './schemas';
 
 @Injectable()
@@ -10,19 +10,18 @@ export class BrandsService {
     constructor(protected readonly brandsRepository: BrandsRepository) {}
 
     async createBrand(data: CreateBrandDto) {
-        const cloneData = { ...data, status: data.status ?? BrandStatusEnum.Active };
-        if (await this.brandsRepository.isSlugExists(cloneData.slug)) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        slug: 'slugAlreadyExists',
-                    },
-                },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+        let uniqSlug = getSlugFromName(data.name, false);
+        let suffix = 0;
+
+        while (await this.brandsRepository.isSlugExists(uniqSlug)) {
+            uniqSlug = `${getSlugFromName(data.name)}-${suffix++}`;
         }
 
+        const cloneData = {
+            ...data,
+            status: data.status ?? BrandStatusEnum.Active,
+            slug: uniqSlug,
+        };
         await this.brandsRepository.create({ document: cloneData });
     }
 
