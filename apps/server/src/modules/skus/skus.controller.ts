@@ -1,12 +1,19 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { CreateSkuDto, QuerySkusDto } from './dtos';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+    CreateSkuDto,
+    FilterSkuDto,
+    QuerySkusDto,
+    SkuInfinityPaginationResult,
+    SortSkuDto,
+} from './dtos';
+import { ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { SkusService } from './skus.service';
 import { infinityPagination } from '~/common/utils';
 import { SKU } from './schemas';
 import { ObjectIdParamDto } from '~/common';
 
 @ApiTags('skus')
+@ApiExtraModels(FilterSkuDto, SortSkuDto)
 @Controller({
     path: 'skus',
 })
@@ -18,6 +25,9 @@ export class SkusController {
         return this.skusService.createSku(data);
     }
 
+    @ApiOkResponse({
+        type: SkuInfinityPaginationResult,
+    })
     @Get('/')
     async getSkus(query: QuerySkusDto) {
         const page = query?.page ?? 1;
