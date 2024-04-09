@@ -9862,6 +9862,7 @@ __metadata:
     reflect-metadata: "npm:^0.2.0"
     regex-vietnamese: "npm:^2.0.1"
     rxjs: "npm:^7.8.1"
+    slugify: "npm:^1.6.6"
     source-map-support: "npm:^0.5.21"
     streamifier: "npm:^0.1.1"
     supertest: "npm:^6.3.3"
@@ -9994,6 +9995,13 @@ __metadata:
   version: 1.12.2
   resolution: "slick@npm:1.12.2"
   checksum: 10c0/fea97c36b2bdcd1b80caea150cd8135dc9d3ffe659bbe04fa6f4b4dff373f5d5aef09a8ef384b331c3fdd9567faf447b75b850ab35d2c69ff8a8a92def3d49e1
+  languageName: node
+  linkType: hard
+
+"slugify@npm:^1.6.6":
+  version: 1.6.6
+  resolution: "slugify@npm:1.6.6"
+  checksum: 10c0/e7e63f08f389a371d6228bc19d64ec84360bf0a538333446cc49dbbf3971751a6d180d2f31551188dd007a65ca771e69f574e0283290a7825a818e90b75ef44d
   languageName: node
   linkType: hard
 

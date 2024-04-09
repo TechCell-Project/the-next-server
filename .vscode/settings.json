@@ -9,6 +9,7 @@
         "promax",
         "proto",
         "Redlock",
+        "skus",
         "spus",
         "streamifier",
         "virtuals"
@@ -36,6 +37,7 @@
         "spus",
         "address",
         "images",
-        "sdk"
+        "sdk",
+        "skus"
     ]
 }

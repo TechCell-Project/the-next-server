@@ -17,6 +17,7 @@ import { SPUModule } from './modules/spus';
 import { AddressModule } from './modules/address';
 import { ImagesModule } from './modules/images';
 import { I18nModule } from '~/common/i18n';
+import { SKUModule } from './modules/skus';
 
 @Module({
     imports: [
@@ -39,6 +40,7 @@ import { I18nModule } from '~/common/i18n';
         CategoriesModule,
         OrdersModule,
         SPUModule,
+        SKUModule,
     ],
 })
 export class AppModule {}
