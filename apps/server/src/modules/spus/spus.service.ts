@@ -251,7 +251,10 @@ export class SPUService {
         }
 
         const newModel = { ...modelFound, ...updatedModels };
-        const validatedModels = await this.validateModels(spu.commonAttributes, [newModel]);
+        const validatedModels = await this.validateModels(spu.commonAttributes, [
+            ...spu.models,
+            newModel,
+        ]);
 
         await this.spuRepository.findOneAndUpdateOrThrow({
             filterQuery: {
