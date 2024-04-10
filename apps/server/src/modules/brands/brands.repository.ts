@@ -4,6 +4,7 @@ import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, FilterQuery, Model } from 'mongoose';
 import { PinoLogger } from 'nestjs-pino';
 import { FilterBrandsDto, SortBrandsDto } from './dtos';
+import { BrandStatusEnum } from './enums';
 
 export class BrandsRepository extends AbstractRepository<Brand> {
     constructor(
@@ -31,9 +32,11 @@ export class BrandsRepository extends AbstractRepository<Brand> {
     }): Promise<Brand[]> {
         const where: FilterQuery<Brand> = {};
         if (filterOptions?.status?.length) {
-            where['status'] = {
+            where.status = {
                 $in: filterOptions.status.map((status) => status.toString()),
             };
+        } else {
+            where.status = { $ne: BrandStatusEnum.Deleted };
         }
 
         const brandObjects = await this.brandModel

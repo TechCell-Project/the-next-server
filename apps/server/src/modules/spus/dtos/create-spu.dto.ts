@@ -1,6 +1,7 @@
 import { SPU } from '../schemas';
 import {
     IsBoolean,
+    IsEnum,
     IsMongoId,
     IsNotEmpty,
     IsOptional,
@@ -13,6 +14,7 @@ import { SPUModelSchema } from '../schemas/spu-model.schema';
 import { ImageSchema } from '../schemas/spu-image.schema';
 import { Transform, Type } from 'class-transformer';
 import { isTrueSet } from '~/common';
+import { SpuStatusEnum } from '../spus.enum';
 
 export class ImageSchemaDto implements Omit<ImageSchema, 'url'> {
     @ApiProperty({ example: '5f9a7f5d9d8f6d7f5d8f6d7', type: String })
@@ -125,4 +127,13 @@ export class CreateSpuDto implements Omit<SPU, '_id' | 'brandId' | 'models' | 's
     @ValidateNested({ each: true })
     @Type(() => SPUModelSchemaDto)
     models: SPUModelSchemaDto[];
+
+    @ApiPropertyOptional({
+        enum: SpuStatusEnum,
+        example: SpuStatusEnum.Available,
+        description: 'Spu status',
+    })
+    @IsOptional()
+    @IsEnum(SpuStatusEnum)
+    status: SpuStatusEnum = SpuStatusEnum.Available;
 }

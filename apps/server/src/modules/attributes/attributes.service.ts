@@ -3,7 +3,6 @@ import { AttributesRepository } from './attributes.repository';
 import { CreateAttributeDto, QueryAttributesDto, UpdateAttributeDto } from './dtos';
 import { Attribute } from './schemas';
 import { convertToObjectId } from '~/common';
-import { AttributeStatusEnum } from './attribute.enum';
 import { AttributeInProductSchema } from '../spus/schemas';
 import { PinoLogger } from 'nestjs-pino';
 
@@ -20,10 +19,7 @@ export class AttributesService {
 
     async getAttributes(payload: QueryAttributesDto): Promise<Attribute[]> {
         return this.attributesRepository.findManyWithPagination({
-            filterOptions: {
-                status: AttributeStatusEnum.Available,
-                ...payload?.filters,
-            },
+            filterOptions: payload?.filters,
             sortOptions: payload?.sort,
             paginationOptions: {
                 limit: payload?.limit,

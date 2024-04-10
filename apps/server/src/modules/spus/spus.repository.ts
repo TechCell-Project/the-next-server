@@ -4,6 +4,7 @@ import { PinoLogger } from 'nestjs-pino';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, FilterQuery, Model } from 'mongoose';
 import { QuerySpusDto } from './dtos';
+import { SpuStatusEnum } from './spus.enum';
 
 export class SPURepository extends AbstractRepository<SPU> {
     constructor(
@@ -33,7 +34,10 @@ export class SPURepository extends AbstractRepository<SPU> {
         paginationOptions: TPaginationOptions;
     }): Promise<SPU[]> {
         const where: FilterQuery<SPU> = {};
-        if (filterOptions) {
+        if (filterOptions?.status?.length) {
+            where.status = { $in: filterOptions.status.map((s) => s.toString()) };
+        } else {
+            where.status = { $ne: SpuStatusEnum.Deleted };
         }
 
         const spusData = await this.spuModel

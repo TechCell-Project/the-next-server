@@ -61,6 +61,14 @@ export class AttributesRepository extends AbstractRepository<Attribute> {
             where.label = filterOptions.label;
         }
 
+        if (filterOptions?.status?.length) {
+            where.status = {
+                $in: filterOptions.status.map((status) => status.toString()),
+            };
+        } else {
+            where.status = { $ne: AttributeStatusEnum.Deleted };
+        }
+
         if (filterOptions?.name) {
             where.name = generateRegexQuery(filterOptions.name);
         }

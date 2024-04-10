@@ -7,6 +7,7 @@ import { Faker } from '@faker-js/faker';
 import { HydratedDocument, Types } from 'mongoose';
 import { AttributeInProductSchema } from './spu-attribute.schema';
 import { SPUModelSchema } from './spu-model.schema';
+import { SpuStatusEnum } from '../spus.enum';
 
 @Schema({
     timestamps: true,
@@ -46,6 +47,10 @@ export class SPU extends AbstractDocument {
     @ApiProperty({ type: [SPUModelSchema] })
     @Prop({ required: true, type: [SPUModelSchema], default: [] })
     models: SPUModelSchema[];
+
+    @ApiProperty({ enum: SpuStatusEnum, example: SpuStatusEnum.Available })
+    @Prop({ required: false, type: String, enum: SpuStatusEnum, default: SpuStatusEnum.Available })
+    status: SpuStatusEnum;
 }
 
 export type SPUDocument = HydratedDocument<SPU>;

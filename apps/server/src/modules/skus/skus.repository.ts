@@ -4,6 +4,7 @@ import { PinoLogger } from 'nestjs-pino';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, FilterQuery, Model } from 'mongoose';
 import { QuerySkusDto } from './dtos';
+import { SkuStatusEnum } from './skus.enum';
 
 export class SkusRepository extends AbstractRepository<SKU> {
     constructor(
@@ -25,7 +26,10 @@ export class SkusRepository extends AbstractRepository<SKU> {
         paginationOptions: TPaginationOptions;
     }): Promise<SKU[]> {
         const where: FilterQuery<SKU> = {};
-        if (filterOptions) {
+        if (filterOptions?.status?.length) {
+            where.status = { $in: filterOptions.status.map((s) => s.toString()) };
+        } else {
+            where.status = { $ne: SkuStatusEnum.Deleted };
         }
 
         const skusData = await this.skuModel

@@ -13,7 +13,7 @@ import { Transform, Type, plainToInstance } from 'class-transformer';
 import { SortCaseEnum } from '~/common/enums';
 import { AttributeStatusEnum } from '../attribute.enum';
 
-export class FilterAttributeDto extends OmitType(PartialType(Attribute), ['_id']) {
+export class FilterAttributeDto extends OmitType(PartialType(Attribute), ['_id', 'status']) {
     @IsOptional()
     @IsString()
     description?: string | undefined;
@@ -26,9 +26,14 @@ export class FilterAttributeDto extends OmitType(PartialType(Attribute), ['_id']
     @IsString()
     name?: string | undefined;
 
+    @ApiPropertyOptional({
+        type: [AttributeStatusEnum],
+        enum: AttributeStatusEnum,
+        example: [AttributeStatusEnum.Available, AttributeStatusEnum.Deleted],
+    })
     @IsOptional()
-    @IsEnum(AttributeStatusEnum)
-    status?: string | undefined;
+    @IsEnum(AttributeStatusEnum, { each: true })
+    status?: AttributeStatusEnum[] | undefined;
 
     @IsOptional()
     @IsString()

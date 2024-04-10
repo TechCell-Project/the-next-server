@@ -3,8 +3,17 @@ import { SKU } from '../schemas';
 import { ApiPropertyOptional, IntersectionType, getSchemaPath } from '@nestjs/swagger';
 import { IsOptional, IsString, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
+import { SkuStatusEnum } from '../skus.enum';
 
-export class FilterSkuDto {}
+export class FilterSkuDto {
+    @ApiPropertyOptional({
+        enum: SkuStatusEnum,
+        isArray: true,
+        example: [SkuStatusEnum.Selling, SkuStatusEnum.Newly],
+        description: 'List of status of SKU',
+    })
+    status?: SkuStatusEnum[];
+}
 
 export class SortSkuDto extends IntersectionType(SortDto<SKU>) {}
 

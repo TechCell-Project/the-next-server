@@ -28,7 +28,7 @@ export class Attribute extends AbstractDocument {
     name: string;
 
     @ApiPropertyOptional({ example: 'GB', type: String, description: 'Attribute unit' })
-    @Prop({ required: false, type: String })
+    @Prop({ required: false, type: String, default: '' })
     unit: string;
 
     @ApiProperty({ example: 'Product RAM information', type: String })

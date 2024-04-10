@@ -1,10 +1,21 @@
 import { JsonTransform, QueryManyWithPaginationDto, SortDto } from '~/common';
 import { SPU } from '../schemas';
 import { ApiPropertyOptional, IntersectionType, getSchemaPath } from '@nestjs/swagger';
-import { IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsEnum, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
+import { SpuStatusEnum } from '../spus.enum';
 
-export class FilterSpuDto {}
+export class FilterSpuDto {
+    @ApiPropertyOptional({
+        enum: SpuStatusEnum,
+        isArray: true,
+        example: [SpuStatusEnum.Available, SpuStatusEnum.Deleted],
+        description: 'List of status of SPU',
+    })
+    @IsOptional()
+    @IsEnum(SpuStatusEnum, { each: true })
+    status?: SpuStatusEnum[];
+}
 
 export class SortSpuDto extends IntersectionType(SortDto<SPU>) {}
 
