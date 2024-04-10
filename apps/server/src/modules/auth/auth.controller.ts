@@ -10,7 +10,7 @@ import {
     Patch,
     UseGuards,
 } from '@nestjs/common';
-import { ApiNoContentResponse, ApiOkResponse, ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiNoContentResponse, ApiOkResponse, ApiTags, ApiBody } from '@nestjs/swagger';
 import { NullableType } from '~/common/types';
 import { User } from '~/server/users';
 import { AuthService } from './auth.service';
@@ -24,6 +24,7 @@ import {
     AuthForgotPasswordDto,
     AuthResetPasswordDto,
     AuthUpdateDto,
+    RefreshTokenDto,
 } from './dtos';
 import { AuthRoles } from './guards';
 import { JwtPayloadType, JwtRefreshPayloadType } from './strategies/types';
@@ -80,7 +81,9 @@ export class AuthController {
         });
     }
 
-    @ApiBearerAuth()
+    @ApiBody({
+        type: RefreshTokenDto,
+    })
     @UseGuards(AuthGuard('jwt-refresh'))
     @SerializeOptions({
         groups: ['me'],
