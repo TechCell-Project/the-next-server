@@ -61,6 +61,7 @@ export class QueryAttributesDto extends IntersectionType(
         type: String,
         description: `JSON string of ${FilterAttributeDto.name}`,
     })
+    @IsOptional()
     @IsString()
     @IsJSON()
     @Transform(({ value }) =>
@@ -75,6 +76,7 @@ export class QueryAttributesDto extends IntersectionType(
         description: `JSON string of ${SortAttributeDto.name}`,
         format: getSchemaPath(SortAttributeDto),
     })
+    @IsOptional()
     @IsString()
     @IsJSON()
     @Transform(({ value }) =>
