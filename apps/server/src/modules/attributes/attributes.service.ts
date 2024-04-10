@@ -98,7 +98,6 @@ export class AttributesService {
                 if (resultMap[attributeInProduct.k]) {
                     return {
                         ...attributeInProduct,
-                        _id: resultMap[attributeInProduct.k]._id,
                         u: attributeInProduct.u ?? resultMap[attributeInProduct.k].unit ?? '',
                     };
                 }

@@ -4,7 +4,7 @@ import { IsMongoId, IsNotEmpty } from 'class-validator';
 export class ObjectIdParamDto {
     @ApiProperty({
         type: String,
-        example: '507f1f77bcf86cd799439011',
+        example: '66164ef6c4165e4833949722',
         format: 'ObjectId',
     })
     @IsMongoId()

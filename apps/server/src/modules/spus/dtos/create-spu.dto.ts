@@ -26,7 +26,7 @@ export class ImageSchemaDto implements Omit<ImageSchema, 'url'> {
     isThumbnail: boolean;
 }
 
-class AttributeInProductSchemaDto implements AttributeInProductSchema {
+export class AttributeInProductSchemaDto implements AttributeInProductSchema {
     @ApiProperty({ example: 'RAM', type: String })
     @IsString()
     @IsNotEmpty()
@@ -49,7 +49,7 @@ class AttributeInProductSchemaDto implements AttributeInProductSchema {
     u: string;
 }
 
-class SPUModelSchemaDto implements Omit<SPUModelSchema, 'images'> {
+export class SPUModelSchemaDto implements Omit<SPUModelSchema, 'images'> {
     @ApiProperty({ example: 'plus', type: String })
     @IsString()
     @IsNotEmpty()
