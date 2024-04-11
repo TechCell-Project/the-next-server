@@ -8,17 +8,20 @@ import { SkusService } from './skus.service';
 import { SPUModule } from '../spus';
 import { ImagesModule } from '../images';
 import { AttributesModule } from '../attributes';
+import { SerialNumber, SerialNumberSchema } from './schemas/serial-number.schema';
+import { SerialNumberRepository } from './serial-number.repository';
 
 @Module({
     imports: [
         MongodbModule,
         MongooseModule.forFeature([{ name: SKU.name, schema: SKUSchema }]),
+        MongooseModule.forFeature([{ name: SerialNumber.name, schema: SerialNumberSchema }]),
         SPUModule,
         ImagesModule,
         AttributesModule,
     ],
     controllers: [SkusController],
-    providers: [SkusRepository, SkusService],
+    providers: [SkusRepository, SkusService, SerialNumberRepository],
     exports: [SkusService],
 })
 export class SKUModule {}

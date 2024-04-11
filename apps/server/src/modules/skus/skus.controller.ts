@@ -1,12 +1,14 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
 import {
+    AddSerialNumberDto,
+    AddSerialNumberResponseDto,
     CreateSkuDto,
     FilterSkuDto,
     QuerySkusDto,
     SkuInfinityPaginationResult,
     SortSkuDto,
 } from './dtos';
-import { ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { SkusService } from './skus.service';
 import { infinityPagination } from '~/common/utils';
 import { SKU } from './schemas';
@@ -54,5 +56,17 @@ export class SkusController {
     @Get('/:id')
     async getSPU(@Param() { id }: ObjectIdParamDto) {
         return this.skusService.getSkuById(id);
+    }
+
+    @ApiCreatedResponse({
+        type: AddSerialNumberResponseDto,
+    })
+    @Post('/:id/serial-numbers')
+    @HttpCode(HttpStatus.CREATED)
+    async addSerialNumbers(
+        @Param() { id }: ObjectIdParamDto,
+        @Body() { serialNumbers }: AddSerialNumberDto,
+    ) {
+        return this.skusService.addSerialNumbers(id, serialNumbers);
     }
 }

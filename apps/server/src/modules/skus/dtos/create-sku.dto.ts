@@ -21,7 +21,7 @@ import {
 import { Type } from 'class-transformer';
 import { PriceSchema } from '../schemas/price.schema';
 import { AttributeInProductDto } from '~/server/spus/dtos';
-import { SkuStatusEnum } from '../skus.enum';
+import { SkuStatusEnum } from '../enums';
 
 export class PriceDto extends IntersectionType(PriceSchema) {
     @IsNumber()
@@ -37,7 +37,7 @@ export class PriceDto extends IntersectionType(PriceSchema) {
 }
 
 export class CreateSkuDto extends IntersectionType(
-    OmitType(SKU, ['_id', 'serialNumbers', 'image']),
+    OmitType(SKU, ['_id', 'image']),
     PartialType(PickType(SKU, ['categories'])),
 ) {
     @IsString()

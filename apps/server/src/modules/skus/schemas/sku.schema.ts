@@ -4,10 +4,9 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Factory } from 'nestjs-seeder';
 import { Faker } from '@faker-js/faker';
 import { HydratedDocument, Types } from 'mongoose';
-import { v4 as uuid } from 'uuid';
 import { AttributeInProductSchema } from '~/server/spus/schemas';
 import { PriceSchema } from './price.schema';
-import { SkuStatusEnum } from '../skus.enum';
+import { SkuStatusEnum } from '../enums';
 
 export class SkuImageSchema {
     @ApiProperty({ example: '5f9a7f5d9d8f6d7f5d8f6d7', type: String })
@@ -77,11 +76,6 @@ export class SKU extends AbstractDocument {
     @Factory(() => [])
     @Prop({ required: true, type: [AttributeInProductSchema], default: [] })
     attributes: AttributeInProductSchema[];
-
-    @ApiProperty({ example: ['ip15prm1234', 'ip15prm1235', 'ip15prm1236'], type: [String] })
-    @Factory(() => [uuid()])
-    @Prop({ required: true, type: [String], default: [uuid()] })
-    serialNumbers: string[];
 
     @ApiProperty({
         example: ['5f9a7f5d9d8f6d7f5d8f6d7'],

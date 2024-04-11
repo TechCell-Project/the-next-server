@@ -3,7 +3,7 @@ import { SKU } from '../schemas';
 import { ApiPropertyOptional, IntersectionType, getSchemaPath } from '@nestjs/swagger';
 import { IsOptional, IsString, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
-import { SkuStatusEnum } from '../skus.enum';
+import { SkuStatusEnum } from '../enums';
 
 export class FilterSkuDto {
     @ApiPropertyOptional({

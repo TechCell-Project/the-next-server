@@ -4,7 +4,7 @@ import { PinoLogger } from 'nestjs-pino';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, FilterQuery, Model } from 'mongoose';
 import { QuerySkusDto } from './dtos';
-import { SkuStatusEnum } from './skus.enum';
+import { SkuStatusEnum } from './enums';
 
 export class SkusRepository extends AbstractRepository<SKU> {
     constructor(
