@@ -65,7 +65,6 @@
         "helmet": "^7.1.0",
         "ioredis": "^5.3.2",
         "mongoose": "^8.2.3",
-        "mongoose-autopopulate": "^1.1.0",
         "multer": "^1.4.5-lts.1",
         "nestjs-i18n": "^10.4.5",
         "nestjs-pino": "^4.0.0",

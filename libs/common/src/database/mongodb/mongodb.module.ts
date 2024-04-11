@@ -1,6 +1,7 @@
 import { Module, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { MongooseModule, MongooseModuleAsyncOptions } from '@nestjs/mongoose';
+import { Connection } from 'mongoose';
 
 @Module({
     imports: [
@@ -8,16 +9,13 @@ import { MongooseModule, MongooseModuleAsyncOptions } from '@nestjs/mongoose';
             useFactory: (configService: ConfigService) => ({
                 uri: configService.getOrThrow<string>('MONGODB_URI'),
                 retryDelay: 1000,
-                connectionFactory: (connection) => {
-                    // eslint-disable-next-line @typescript-eslint/no-var-requires
-                    connection.plugin(require('mongoose-autopopulate'));
-
+                connectionFactory: (connection: Connection) => {
                     connection.on('connected', () => {
                         Logger.debug(
                             `[Mongodb] is connected: ${connection?.host}/${connection?.name}`,
                         );
                     });
-                    connection._events.connected();
+                    connection.emit('connected');
                     return connection;
                 },
             }),
@@ -26,24 +24,19 @@ import { MongooseModule, MongooseModuleAsyncOptions } from '@nestjs/mongoose';
     ],
 })
 export class MongodbModule {
-    static setup(uri: string, name?: string, autopopulate?: boolean) {
+    static setup(uri: string, name?: string) {
         const options: MongooseModuleAsyncOptions = {
             connectionName: name ?? undefined,
             useFactory: () => ({
                 uri,
                 retryDelay: 1000,
-                connectionFactory: (connection) => {
-                    if (autopopulate) {
-                        // eslint-disable-next-line @typescript-eslint/no-var-requires
-                        connection.plugin(require('mongoose-autopopulate'));
-
-                        connection.on('connected', () => {
-                            Logger.debug(
-                                `[Mongodb] is connected: ${connection?.host}/${connection?.name}`,
-                            );
-                        });
-                        connection._events.connected();
-                    }
+                connectionFactory: (connection: Connection) => {
+                    connection.on('connected', () => {
+                        Logger.debug(
+                            `[Mongodb] is connected: ${connection?.host}/${connection?.name}`,
+                        );
+                        connection.emit('connected');
+                    });
                     return connection;
                 },
             }),
