@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: "en-US"
+early_access: true
+reviews:
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+  auto_review:
+    enabled: true
+    ignore_title_keywords:
+      - "[skip review]"
+      - "Automatic PR"
+    drafts: false
+    base_branches:
+      - "development"
+  path_instructions:
+    - path: "**/*.ts"
+      instructions: "Review the TypeScript code to ensure it adheres to the NestJS coding standards and best practices. This includes proper use of modules, services, controllers, and decorators. Also, ensure the code follows the Express.js style guide. Pay attention to the use of middleware, routing, error handling, and data validation. The code should also conform to the ESLint rules configured in the codebase. Highlight any deviations and suggest appropriate corrections. Using repository patterns is encouraged."
+chat:
+  auto_reply: true
