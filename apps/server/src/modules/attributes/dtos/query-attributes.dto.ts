@@ -6,10 +6,10 @@ import {
     OmitType,
     getSchemaPath,
 } from '@nestjs/swagger';
-import { QueryManyWithPaginationDto } from '~/common';
+import { JsonTransform, QueryManyWithPaginationDto } from '~/common';
 import { Attribute } from '../schemas';
-import { IsEnum, IsJSON, IsOptional, IsString, ValidateNested } from 'class-validator';
-import { Transform, Type, plainToInstance } from 'class-transformer';
+import { IsEnum, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { Type } from 'class-transformer';
 import { SortCaseEnum } from '~/common/enums';
 import { AttributeStatusEnum } from '../attribute.enum';
 
@@ -67,11 +67,7 @@ export class QueryAttributesDto extends IntersectionType(
         description: `JSON string of ${FilterAttributeDto.name}`,
     })
     @IsOptional()
-    @IsString()
-    @IsJSON()
-    @Transform(({ value }) =>
-        value ? plainToInstance(FilterAttributeDto, JSON.parse(value)) : undefined,
-    )
+    @JsonTransform(FilterAttributeDto)
     @ValidateNested()
     @Type(() => FilterAttributeDto)
     filters?: FilterAttributeDto | null | undefined;
@@ -82,11 +78,7 @@ export class QueryAttributesDto extends IntersectionType(
         format: getSchemaPath(SortAttributeDto),
     })
     @IsOptional()
-    @IsString()
-    @IsJSON()
-    @Transform(({ value }) =>
-        value ? plainToInstance(SortAttributeDto, JSON.parse(value)) : undefined,
-    )
+    @JsonTransform(SortAttributeDto)
     @ValidateNested({ each: true })
     @Type(() => SortAttributeDto)
     sort?: SortAttributeDto[] | null | undefined;
