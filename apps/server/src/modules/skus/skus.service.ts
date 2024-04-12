@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PinoLogger } from 'nestjs-pino';
 import { SkusRepository } from './skus.repository';
-import { CreateSkuDto, QuerySkusDto } from './dtos';
+import { CreateSkuDto, QuerySkusDto, UpdateSkuDto } from './dtos';
 import { SKU } from './schemas';
 import { SPUService } from '../spus';
 import { ImagesService } from '../images';
@@ -146,6 +146,43 @@ export class SkusService {
                 },
             };
         }
+    }
+
+    async updateSkuById(id: string | Types.ObjectId, data: UpdateSkuDto) {
+        let skuFound = await this.skusRepository.findOneOrThrow({
+            filterQuery: {
+                _id: convertToObjectId(id),
+            },
+        });
+
+        if (data.imagePublicId) {
+            const imageFound = await this.imagesService.getImageByPublicId(data.imagePublicId);
+            skuFound.image = {
+                publicId: imageFound.publicId,
+                url: imageFound.url,
+            };
+            delete data.imagePublicId;
+        }
+
+        if (data?.description) {
+            skuFound.description = sanitizeHtmlString(data.description);
+            delete data.description;
+        }
+
+        if (data?.categories) {
+            skuFound.categories = [];
+            delete data.categories;
+        }
+
+        skuFound = { ...skuFound, ...data };
+        await this.skusRepository.findOneAndUpdateOrThrow({
+            filterQuery: {
+                _id: convertToObjectId(id),
+            },
+            updateQuery: {
+                $set: skuFound,
+            },
+        });
     }
 
     private async validateSku(data: CreateSkuDto) {

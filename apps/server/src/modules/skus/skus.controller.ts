@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
 import {
     AddSerialNumberDto,
     AddSerialNumberResponseDto,
@@ -54,7 +54,7 @@ export class SkusController {
         type: SKU,
     })
     @Get('/:id')
-    async getSPU(@Param() { id }: ObjectIdParamDto) {
+    async getSkuById(@Param() { id }: ObjectIdParamDto) {
         return this.skusService.getSkuById(id);
     }
 
@@ -68,5 +68,11 @@ export class SkusController {
         @Body() { serialNumbers }: AddSerialNumberDto,
     ) {
         return this.skusService.addSerialNumbers(id, serialNumbers);
+    }
+
+    @Patch('/:id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    async updateSkuById(@Param() { id }: ObjectIdParamDto, @Body() data: CreateSkuDto) {
+        return this.skusService.updateSkuById(id, data);
     }
 }
