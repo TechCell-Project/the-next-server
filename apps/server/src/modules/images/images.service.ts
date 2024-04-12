@@ -1,4 +1,9 @@
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import {
+    HttpException,
+    HttpStatus,
+    Injectable,
+    InternalServerErrorException,
+} from '@nestjs/common';
 import { ImageUploadedResponseDTO } from './dtos/image-uploaded-response.dto';
 import { CloudinaryService } from '~/third-party/cloudinary.com';
 import { PinoLogger } from 'nestjs-pino';
@@ -26,15 +31,29 @@ export class ImagesService {
         }
     }
 
+    /**
+     *
+     * @param publicId Public id of image
+     * @returns Image uploaded, otherwise throw http error
+     */
     async getImageByPublicId(publicId: string) {
         try {
             const image = await this.cloudinaryService.getImageByPublicId(publicId);
             return new ImageUploadedResponseDTO(image);
         } catch (error) {
-            this.logger.error(error);
             if (error.http_code === 404) {
-                throw new NotFoundException(`Image with publicId ${publicId} not found`);
+                throw new HttpException(
+                    {
+                        status: HttpStatus.UNPROCESSABLE_ENTITY,
+                        errors: {
+                            image: 'imageNotFound',
+                            publicId,
+                        },
+                    },
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                );
             }
+            this.logger.error(error);
             throw new InternalServerErrorException('Get images failed, please try again later');
         }
     }

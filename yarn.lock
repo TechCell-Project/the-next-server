@@ -8064,15 +8064,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongoose-autopopulate@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "mongoose-autopopulate@npm:1.1.0"
-  peerDependencies:
-    mongoose: 6.x || 7.x || 8.0.0-rc0 || 8.x
-  checksum: 10c0/c4be53d68a1670e74677b2324ade434b779026abd63151a483ce9fb9f19efab11d59c2b6b63a6a03f44de5eb0f93448bfc901115db4cdfe3f744ea44221678fa
-  languageName: node
-  linkType: hard
-
 "mongoose@npm:^8.2.3":
   version: 8.2.3
   resolution: "mongoose@npm:8.2.3"
@@ -9902,7 +9893,6 @@ __metadata:
     ioredis: "npm:^5.3.2"
     jest: "npm:^29.5.0"
     mongoose: "npm:^8.2.3"
-    mongoose-autopopulate: "npm:^1.1.0"
     multer: "npm:^1.4.5-lts.1"
     nestjs-i18n: "npm:^10.4.5"
     nestjs-pino: "npm:^4.0.0"

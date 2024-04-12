@@ -1,20 +1,22 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PinoLogger } from 'nestjs-pino';
 import { SkusRepository } from './skus.repository';
-import { CreateSkuDto, QuerySkusDto } from './dtos';
+import { CreateSkuDto, QuerySkusDto, UpdateSkuDto } from './dtos';
 import { SKU } from './schemas';
 import { SPUService } from '../spus';
 import { ImagesService } from '../images';
 import { AttributesService } from '../attributes';
-import { SkuStatusEnum } from './skus.enum';
-import { convertToObjectId } from '~/common';
+import { SerialNumberStatusEnum, SkuStatusEnum } from './enums';
+import { convertToObjectId, sanitizeHtmlString } from '~/common';
 import { Types } from 'mongoose';
+import { SerialNumberRepository } from './serial-number.repository';
 
 @Injectable()
 export class SkusService {
     constructor(
         private readonly logger: PinoLogger,
         private readonly skusRepository: SkusRepository,
+        private readonly serialNumberRepository: SerialNumberRepository,
         private readonly spusService: SPUService,
         private readonly imagesService: ImagesService,
         private readonly attributesService: AttributesService,
@@ -25,59 +27,34 @@ export class SkusService {
     async createSku(data: CreateSkuDto) {
         const cloneData: Partial<SKU> = {
             name: data.name,
-            description: data.description,
+            description: sanitizeHtmlString(data.description),
             status: data?.status ?? SkuStatusEnum.Newly,
         };
 
-        const spuFound = await this.spusService.getSpuById(data.spuId);
-        const spuModelFound = spuFound.models.find((model) => model.slug === data.spuModelSlug);
-        if (!spuModelFound) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        spuModel: 'spuModelNotFound',
-                    },
-                },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
-        }
+        const { spuFound, spuModelFound, validatedAttributes } = await this.validateSku(data);
 
         cloneData.spuId = spuFound._id;
         cloneData.spuModelSlug = spuModelFound.slug;
+        cloneData.attributes = validatedAttributes;
 
         if (data?.imagePublicId) {
             const imageFound = await this.imagesService.getImageByPublicId(data.imagePublicId);
-            if (!imageFound) {
-                throw new HttpException(
-                    {
-                        status: HttpStatus.UNPROCESSABLE_ENTITY,
-                        errors: {
-                            image: 'imageNotFound',
-                        },
-                    },
-                    HttpStatus.UNPROCESSABLE_ENTITY,
-                );
-            }
-
             cloneData.image = {
                 publicId: imageFound.publicId,
                 url: imageFound.url,
             };
         }
 
-        cloneData.attributes = await this.attributesService.validateAttributes(data.attributes);
         await this.skusRepository.create({
             document: {
-                name: data.name,
-                description: data.description,
+                name: cloneData.name!,
+                description: cloneData.description!,
+                status: cloneData?.status ?? SkuStatusEnum.Newly,
                 spuId: spuFound._id,
                 spuModelSlug: spuModelFound.slug,
-                status: data?.status ?? SkuStatusEnum.Newly,
                 attributes: cloneData.attributes,
-                categories: data.categories ?? [],
-                price: data.price,
-                serialNumbers: [] as string[],
+                categories: cloneData.categories ?? [],
+                price: cloneData?.price ?? data.price,
                 ...(cloneData.image && { image: cloneData.image }),
             },
         });
@@ -102,5 +79,169 @@ export class SkusService {
                 _id: convertToObjectId(id),
             },
         });
+    }
+
+    async addSerialNumbers(skuId: string | Types.ObjectId, serialNumbers: string[]) {
+        const sku = await this.skusRepository.findOneOrThrow({
+            filterQuery: {
+                _id: convertToObjectId(skuId),
+            },
+        });
+        const serialNumbersFound = await this.serialNumberRepository.find({
+            filterQuery: {
+                skuId: sku._id,
+                number: {
+                    $in: serialNumbers,
+                },
+            },
+        });
+
+        const listSoldNumber =
+            serialNumbersFound
+                ?.filter(
+                    (serialNumber) =>
+                        serialNumber.number && serialNumber.status === SerialNumberStatusEnum.Sold,
+                )
+                .map((serialNumber) => serialNumber.number) ?? [];
+        const listAvailableNumber =
+            serialNumbersFound
+                ?.filter(
+                    (serialNumber) =>
+                        serialNumber.number &&
+                        serialNumber.status === SerialNumberStatusEnum.Available,
+                )
+                .map((serialNumber) => serialNumber.number) ?? [];
+
+        const listToAdd = serialNumbers.filter(
+            (serialNumber) =>
+                !listSoldNumber.includes(serialNumber) &&
+                !listAvailableNumber.includes(serialNumber),
+        );
+
+        if (listToAdd?.length <= 0) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        serialNumbers: 'noSerialNumberToAdd',
+                        ...(listSoldNumber?.length > 0 && { existSold: listSoldNumber }),
+                        ...(listAvailableNumber?.length > 0 && {
+                            existAvailable: listAvailableNumber,
+                        }),
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        await this.serialNumberRepository.addMany(sku._id, listToAdd);
+
+        if (listSoldNumber?.length > 0 || listAvailableNumber?.length > 0) {
+            return {
+                errors: {
+                    ...(listSoldNumber?.length > 0 && { existSold: listSoldNumber }),
+                    ...(listAvailableNumber?.length > 0 && {
+                        existAvailable: listAvailableNumber,
+                    }),
+                },
+            };
+        }
+    }
+
+    async updateSkuById(id: string | Types.ObjectId, data: UpdateSkuDto) {
+        let skuFound = await this.skusRepository.findOneOrThrow({
+            filterQuery: {
+                _id: convertToObjectId(id),
+            },
+        });
+
+        if (data.imagePublicId) {
+            const imageFound = await this.imagesService.getImageByPublicId(data.imagePublicId);
+            skuFound.image = {
+                publicId: imageFound.publicId,
+                url: imageFound.url,
+            };
+            delete data.imagePublicId;
+        }
+
+        if (data?.description) {
+            skuFound.description = sanitizeHtmlString(data.description);
+            delete data.description;
+        }
+
+        if (data?.categories) {
+            skuFound.categories = [];
+            delete data.categories;
+        }
+
+        skuFound = { ...skuFound, ...data };
+        await this.skusRepository.findOneAndUpdateOrThrow({
+            filterQuery: {
+                _id: convertToObjectId(id),
+            },
+            updateQuery: {
+                $set: skuFound,
+            },
+        });
+    }
+
+    private async validateSku(data: CreateSkuDto) {
+        const spuFound = await this.spusService.getSpuById(data.spuId);
+        const spuModelFound = spuFound.models.find((model) => model.slug === data.spuModelSlug);
+        if (!spuModelFound) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        spuModel: 'spuModelNotFound',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        const skuFound = await this.skusRepository.findOne({
+            filterQuery: {
+                spuId: spuFound._id,
+                spuModelSlug: spuModelFound.slug,
+            },
+        });
+
+        const validatedAttributes = await this.attributesService.validateAttributes(
+            data.attributes,
+        );
+
+        if (skuFound) {
+            const foundAttributes = skuFound.attributes
+                .map((attribute) => ({
+                    key: attribute.k.toString().toLowerCase(),
+                    value: attribute.v.toString().toLowerCase(),
+                }))
+                .sort((a, b) => a.key.localeCompare(b.key));
+            const comingAttributes = validatedAttributes
+                .map((attribute) => ({
+                    key: attribute.k.toString().toLowerCase(),
+                    value: attribute.v.toString().toLowerCase(),
+                }))
+                .sort((a, b) => a.key.localeCompare(b.key));
+
+            const areArraysEqual =
+                JSON.stringify(foundAttributes) === JSON.stringify(comingAttributes);
+            if (areArraysEqual === true) {
+                throw new HttpException(
+                    {
+                        status: HttpStatus.UNPROCESSABLE_ENTITY,
+                        errors: { skus: 'skuAlreadyExists' },
+                    },
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                );
+            }
+        }
+
+        return {
+            spuFound,
+            spuModelFound,
+            validatedAttributes,
+        };
     }
 }
