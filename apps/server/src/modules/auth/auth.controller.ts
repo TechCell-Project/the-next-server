@@ -120,23 +120,14 @@ export class AuthController {
     @ApiOkResponse({
         type: User,
     })
-    public me(@Req() request: { user: { userId: string } }): Promise<NullableType<User>> {
+    public getMe(@Req() request: { user: { userId: string } }): Promise<NullableType<User>> {
         return this.authService.me(request.user.userId);
     }
 
     @AuthRoles()
-    @SerializeOptions({
-        groups: ['me'],
-    })
     @Patch('me')
-    @HttpCode(HttpStatus.OK)
-    @ApiOkResponse({
-        type: User,
-    })
-    public update(
-        @Req() request: { user: JwtPayloadType },
-        @Body() userDto: AuthUpdateDto,
-    ): Promise<NullableType<User>> {
+    @HttpCode(HttpStatus.NO_CONTENT)
+    public updateMe(@Req() request: { user: JwtPayloadType }, @Body() userDto: AuthUpdateDto) {
         return this.authService.updateUser(request.user, userDto);
     }
 }

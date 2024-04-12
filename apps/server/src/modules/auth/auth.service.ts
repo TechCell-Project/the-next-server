@@ -545,11 +545,11 @@ export class AuthService {
         ]);
     }
 
-    async updateUser(
-        userJwtPayload: JwtPayloadType,
-        userDto: AuthUpdateDto,
-    ): Promise<NullableType<User>> {
-        const cloneUpdateData: Partial<User> = {};
+    async updateUser(userJwtPayload: JwtPayloadType, userDto: AuthUpdateDto) {
+        const cloneUpdateData: Partial<User> = {
+            firstName: userDto.firstName,
+            lastName: userDto.lastName,
+        };
 
         if (userDto?.password) {
             if (!userDto.oldPassword) {
@@ -615,6 +615,8 @@ export class AuthService {
             }
 
             cloneUpdateData.password = userDto.password;
+            delete userDto.password;
+            delete userDto.oldPassword;
         }
 
         if (userDto?.address !== null || userDto?.address !== undefined) {
@@ -657,6 +659,7 @@ export class AuthService {
             }
 
             cloneUpdateData.address = userDto.address;
+            delete userDto.address;
         }
 
         if (userDto?.avatarImageId) {
@@ -676,11 +679,10 @@ export class AuthService {
             }
 
             cloneUpdateData.avatar = image;
+            delete userDto.avatarImageId;
         }
 
         await this.usersService.update(userJwtPayload.userId, cloneUpdateData);
-
-        return new User(await this.usersService.findById(userJwtPayload.userId));
     }
 
     private async getTokensData(data: {
