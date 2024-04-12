@@ -7,7 +7,7 @@ import { SPUService } from '../spus';
 import { ImagesService } from '../images';
 import { AttributesService } from '../attributes';
 import { SerialNumberStatusEnum, SkuStatusEnum } from './enums';
-import { convertToObjectId } from '~/common';
+import { convertToObjectId, sanitizeHtmlString } from '~/common';
 import { Types } from 'mongoose';
 import { SerialNumberRepository } from './serial-number.repository';
 
@@ -27,7 +27,7 @@ export class SkusService {
     async createSku(data: CreateSkuDto) {
         const cloneData: Partial<SKU> = {
             name: data.name,
-            description: data.description,
+            description: sanitizeHtmlString(data.description),
             status: data?.status ?? SkuStatusEnum.Newly,
         };
 
@@ -39,18 +39,6 @@ export class SkusService {
 
         if (data?.imagePublicId) {
             const imageFound = await this.imagesService.getImageByPublicId(data.imagePublicId);
-            if (!imageFound) {
-                throw new HttpException(
-                    {
-                        status: HttpStatus.UNPROCESSABLE_ENTITY,
-                        errors: {
-                            image: 'imageNotFound',
-                        },
-                    },
-                    HttpStatus.UNPROCESSABLE_ENTITY,
-                );
-            }
-
             cloneData.image = {
                 publicId: imageFound.publicId,
                 url: imageFound.url,
@@ -59,14 +47,14 @@ export class SkusService {
 
         await this.skusRepository.create({
             document: {
-                name: data.name,
-                description: data.description,
+                name: cloneData.name!,
+                description: cloneData.description!,
+                status: cloneData?.status ?? SkuStatusEnum.Newly,
                 spuId: spuFound._id,
                 spuModelSlug: spuModelFound.slug,
-                status: data?.status ?? SkuStatusEnum.Newly,
                 attributes: cloneData.attributes,
-                categories: data.categories ?? [],
-                price: data.price,
+                categories: cloneData.categories ?? [],
+                price: cloneData?.price ?? data.price,
                 ...(cloneData.image && { image: cloneData.image }),
             },
         });
