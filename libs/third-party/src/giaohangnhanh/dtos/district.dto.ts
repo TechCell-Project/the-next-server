@@ -5,11 +5,11 @@ import { GhnDistrict } from 'giaohangnhanh';
 
 export class GhnDistrictDTO {
     constructor(data: GhnDistrict) {
-        this.district_id = Number(data.DistrictID);
-        this.district_name = data.DistrictName;
-        this.support_type = Number(data.SupportType);
-        this.name_extension = data.NameExtension;
-        this.can_update_cod = Boolean(data.CanUpdateCOD);
+        this.districtId = Number(data.DistrictID);
+        this.districtName = data.DistrictName;
+        this.supportType = Number(data.SupportType);
+        this.nameExtension = data.NameExtension;
+        this.canUpdateCod = Boolean(data.CanUpdateCOD);
         this.status = Number(data.Status);
     }
 
@@ -18,21 +18,21 @@ export class GhnDistrictDTO {
         description: 'Mã tỉnh thành',
         type: Number,
     })
-    province_id: number;
+    provinceId: number;
 
     @ApiProperty({
         example: 1490,
         description: 'Mã quận huyện',
         type: Number,
     })
-    district_id: number;
+    districtId: number;
 
     @ApiProperty({
         example: 'Quận Hoàng Mai',
         description: 'Tên quận huyện',
         type: String,
     })
-    district_name: string;
+    districtName: string;
 
     @ApiProperty({
         example: 1,
@@ -41,7 +41,7 @@ export class GhnDistrictDTO {
         enum: GhnSupportTypeEnum,
     })
     @IsEnum(GhnSupportTypeEnum)
-    support_type: number;
+    supportType: number;
 
     @ApiProperty({
         example: [
@@ -56,14 +56,14 @@ export class GhnDistrictDTO {
         description: 'Tên quận huyện mở rộng',
         type: [String],
     })
-    name_extension: string[];
+    nameExtension: string[];
 
     @ApiProperty({
         example: true,
         description: 'Có thể cập nhật COD',
         type: Boolean,
     })
-    can_update_cod: boolean;
+    canUpdateCod: boolean;
 
     @ApiProperty({
         example: 1,

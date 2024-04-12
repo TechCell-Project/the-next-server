@@ -95,10 +95,10 @@ export class GhnService {
 
         const dataFee = new GetShippingFeeDTO({
             service_type_id: 2,
-            to_district_id: selectedDistrict.district_id,
-            to_ward_code: selectedWard.ward_code,
+            to_district_id: selectedDistrict.districtId,
+            to_ward_code: selectedWard.wardCode,
             items: integerItems,
-            province_id: selectedDistrict.province_id,
+            province_id: selectedDistrict.provinceId,
             weight,
             height,
             length,
@@ -120,30 +120,28 @@ export class GhnService {
             throw error;
         });
         const selectedProvince = provinceData.find(
-            (province) => province.province_id === address.provinceLevel.provinceId,
+            (province) => province.provinceId === address.provinceLevel.provinceId,
         );
         if (!selectedProvince) {
             throw new Error(`Province not found: ${address.provinceLevel.provinceId}`);
         }
 
-        const districtData = await this.getDistricts(selectedProvince.province_id).catch(
-            (error) => {
-                throw error;
-            },
-        );
+        const districtData = await this.getDistricts(selectedProvince.provinceId).catch((error) => {
+            throw error;
+        });
         const selectedDistrict = districtData.find(
-            (district) => district.district_id === address.districtLevel.districtId,
+            (district) => district.districtId === address.districtLevel.districtId,
         );
 
         if (!selectedDistrict) {
             throw new Error(`District not found: ${address.districtLevel.districtId}`);
         }
 
-        const wardData = await this.getWards(selectedDistrict.district_id).catch((error) => {
+        const wardData = await this.getWards(selectedDistrict.districtId).catch((error) => {
             throw error;
         });
 
-        const selectedWard = wardData.find((ward) => ward.ward_code === address.wardLevel.wardCode);
+        const selectedWard = wardData.find((ward) => ward.wardCode === address.wardLevel.wardCode);
         if (!selectedWard) {
             throw new Error(`Ward not found: ${address.wardLevel.wardCode}`);
         }

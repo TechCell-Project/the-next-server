@@ -5,10 +5,10 @@ import { GhnProvince } from 'giaohangnhanh';
 
 export class GhnProvinceDTO {
     constructor(data: GhnProvince) {
-        this.province_id = Number(data.ProvinceID);
-        this.province_name = data.ProvinceName;
-        this.country_id = Number(data.CountryID);
-        this.name_extension = data.NameExtension;
+        this.provinceId = Number(data.ProvinceID);
+        this.provinceName = data.ProvinceName;
+        this.countryId = Number(data.CountryID);
+        this.nameExtension = data.NameExtension;
         this.status = Number(data.Status);
     }
 
@@ -19,7 +19,7 @@ export class GhnProvinceDTO {
     })
     @IsNumber()
     @IsNotEmpty()
-    province_id: number;
+    provinceId: number;
 
     @ApiProperty({
         example: 'Hà Nội',
@@ -28,7 +28,7 @@ export class GhnProvinceDTO {
     })
     @IsString()
     @IsNotEmpty()
-    province_name: string;
+    provinceName: string;
 
     @ApiProperty({
         example: 1,
@@ -37,7 +37,7 @@ export class GhnProvinceDTO {
     })
     @IsNumber()
     @IsNotEmpty()
-    country_id: number;
+    countryId: number;
 
     @ApiProperty({
         example: [
@@ -54,7 +54,7 @@ export class GhnProvinceDTO {
         type: [String],
     })
     @IsArray()
-    name_extension: string[];
+    nameExtension: string[];
 
     @ApiProperty({
         example: 1,
