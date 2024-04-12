@@ -38,6 +38,7 @@
         "address",
         "images",
         "sdk",
-        "skus"
+        "skus",
+        "tags"
     ]
 }
