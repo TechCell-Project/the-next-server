@@ -4,8 +4,8 @@ import { TagStatusEnum } from '../status.enum';
 
 export class CreateTagDto {
     @ApiProperty({
-        example: 'Apple',
-        description: 'Tên danh mục',
+        example: 'Điện thoại tầm trung',
+        description: 'Tên nhãn',
         type: String,
     })
     @IsString()

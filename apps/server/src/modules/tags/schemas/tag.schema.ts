@@ -12,6 +12,11 @@ import { TagStatusEnum } from '../status.enum';
     collection: 'tags',
 })
 export class Tag extends AbstractDocument {
+    constructor(data: Partial<Tag>) {
+        super();
+        Object.assign(this, data);
+    }
+
     @ApiProperty({ example: 'apple', type: String })
     @Factory(() => uuid())
     @Prop({ unique: true, required: true, type: String })
