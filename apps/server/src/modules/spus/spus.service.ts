@@ -16,7 +16,7 @@ import { ImagesService } from '../images';
 import { Types } from 'mongoose';
 
 @Injectable()
-export class SPUService {
+export class SpusService {
     constructor(
         private readonly logger: PinoLogger,
         private readonly spuRepository: SPURepository,
