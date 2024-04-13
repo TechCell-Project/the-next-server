@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { AttributesRepository } from './attributes.repository';
 import { CreateAttributeDto, QueryAttributesDto, UpdateAttributeDto } from './dtos';
 import { Attribute } from './schemas';
-import { convertToObjectId } from '~/common';
+import { convertToObjectId, sanitizeHtmlString } from '~/common';
 import { AttributeInProductSchema } from '../spus/schemas';
 import { PinoLogger } from 'nestjs-pino';
 
@@ -39,7 +39,10 @@ export class AttributesService {
     async updateAttribute(id: string, payload: UpdateAttributeDto): Promise<void> {
         await this.attributesRepository.findOneAndUpdateOrThrow({
             filterQuery: { _id: convertToObjectId(id) },
-            updateQuery: payload,
+            updateQuery: {
+                ...payload,
+                description: sanitizeHtmlString(payload.description),
+            },
         });
     }
 
