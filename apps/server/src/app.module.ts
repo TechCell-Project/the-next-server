@@ -8,7 +8,7 @@ import { AuthGoogleModule } from './modules/auth-google';
 import { AuthFacebookModule } from './modules/auth-facebook';
 import { AttributesModule } from './modules/attributes/attributes.module';
 import { BrandsModule } from './modules/brands/brands.module';
-import { CategoriesModule } from './modules/categories/categories.module';
+import { TagsModule } from './modules/tags/tags.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { SPUModule } from './modules/spus';
 import { AddressModule } from './modules/address';
@@ -31,7 +31,7 @@ import { SKUModule } from './modules/skus';
         AddressModule,
         BrandsModule,
         AttributesModule,
-        CategoriesModule,
+        TagsModule,
         OrdersModule,
         SPUModule,
         SKUModule,

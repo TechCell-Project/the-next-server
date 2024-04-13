@@ -6,10 +6,10 @@ import { PinoLogger } from 'nestjs-pino';
 
 export class TagRepository extends AbstractRepository<Tag> {
     constructor(
-        @InjectModel(Tag.name) protected readonly categoryModel: Model<Tag>,
+        @InjectModel(Tag.name) protected readonly tagModel: Model<Tag>,
         @InjectConnection() connection: Connection,
         protected readonly logger: PinoLogger,
     ) {
-        super(categoryModel, connection);
+        super(tagModel, connection);
     }
 }

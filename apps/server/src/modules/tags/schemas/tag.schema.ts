@@ -9,7 +9,7 @@ import { TagStatusEnum } from '../status.enum';
 
 @Schema({
     timestamps: true,
-    collection: 'categories',
+    collection: 'tags',
 })
 export class Tag extends AbstractDocument {
     @ApiProperty({ example: 'apple', type: String })

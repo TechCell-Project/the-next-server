@@ -6,5 +6,5 @@ import { CreateTagDto } from './dtos';
 export class TagsService {
     constructor(private readonly categoryRepository: TagRepository) {}
 
-    async createCategory(data: CreateTagDto) {}
+    async createTag(data: CreateTagDto) {}
 }
