@@ -38,7 +38,7 @@ export class PriceDto extends IntersectionType(PriceSchema) {
 
 export class CreateSkuDto extends IntersectionType(
     OmitType(SKU, ['_id', 'image']),
-    PartialType(PickType(SKU, ['categories'])),
+    PartialType(PickType(SKU, ['tags'])),
 ) {
     @IsString()
     @IsNotEmpty()
@@ -59,7 +59,7 @@ export class CreateSkuDto extends IntersectionType(
     @IsOptional()
     @IsMongoId({ each: true })
     @Type(() => Types.ObjectId)
-    categories: Types.ObjectId[];
+    tags: Types.ObjectId[];
 
     @ApiPropertyOptional({ example: 'public-id-image', type: String })
     @IsOptional()

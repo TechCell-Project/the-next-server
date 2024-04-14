@@ -53,7 +53,7 @@ export class SkusService {
                 spuId: spuFound._id,
                 spuModelSlug: spuModelFound.slug,
                 attributes: cloneData.attributes,
-                categories: cloneData.categories ?? [],
+                tags: cloneData.tags ?? [],
                 price: cloneData?.price ?? data.price,
                 ...(cloneData.image && { image: cloneData.image }),
             },
@@ -169,9 +169,9 @@ export class SkusService {
             delete data.description;
         }
 
-        if (data?.categories) {
-            skuFound.categories = [];
-            delete data.categories;
+        if (data?.tags) {
+            skuFound.tags = [];
+            delete data.tags;
         }
 
         skuFound = { ...skuFound, ...data };
