@@ -84,8 +84,8 @@ export class SKU extends AbstractDocument {
         isArray: true,
     })
     @Factory(() => [])
-    @Prop({ required: true, type: [Types.ObjectId], default: [], ref: 'categories' })
-    categories: Types.ObjectId[];
+    @Prop({ required: true, type: [Types.ObjectId], default: [], ref: 'tags' })
+    tags: Types.ObjectId[];
 }
 
 export type SKUDocument = HydratedDocument<SKU>;
