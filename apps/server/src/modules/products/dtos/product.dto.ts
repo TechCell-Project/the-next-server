@@ -62,7 +62,7 @@ export class ProductDto {
         this.productName = model.name;
         this.description = model.description;
         this.attributes = [...spu.commonAttributes, ...model.attributes];
-        this.images = [...model.images] ?? [];
+        this.images = model?.images ?? [];
         this.variations = sku.map((sku) => new VariationDto(model, sku));
     }
 

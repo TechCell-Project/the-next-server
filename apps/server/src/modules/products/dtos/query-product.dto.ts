@@ -63,7 +63,7 @@ export class QueryProductsDto extends IntersectionType(
     @JsonTransform(FilterProductsDto)
     @ValidateNested()
     @Type(() => FilterProductsDto)
-    filters?: FilterProductsDto | null | undefined;
+    filters?: FilterProductsDto | null;
 
     @ApiPropertyOptional({
         type: String,
@@ -74,5 +74,5 @@ export class QueryProductsDto extends IntersectionType(
     @JsonTransform(SortProductsDto)
     @ValidateNested({ each: true })
     @Type(() => SortProductsDto)
-    sort?: SortProductsDto[] | null | undefined;
+    sort?: SortProductsDto[] | null;
 }
