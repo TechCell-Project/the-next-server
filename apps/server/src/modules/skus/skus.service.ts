@@ -211,6 +211,32 @@ export class SkusService {
             data.attributes,
         );
 
+        const commonAttributesKeys = new Set(
+            spuFound.commonAttributes.map((attribute) => attribute.k),
+        );
+        const validatedAttributesKeys = new Set(
+            validatedAttributes.map((attribute) => attribute.k),
+        );
+
+        const duplicateKeys = [];
+        for (const key of commonAttributesKeys) {
+            if (validatedAttributesKeys.has(key)) {
+                duplicateKeys.push(key);
+            }
+        }
+
+        if (duplicateKeys.length > 0) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        attributes: `The following keys already exist: ${duplicateKeys.join(', ')}`,
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
         if (skuFound) {
             const foundAttributes = skuFound.attributes
                 .map((attribute) => ({
