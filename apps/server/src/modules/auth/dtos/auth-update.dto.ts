@@ -39,8 +39,8 @@ class WardSchemaDTO {
     wardCode: string;
 }
 
-export class AddressSchemaDTO implements UserAddressSchema {
-    constructor(address: AddressSchemaDTO) {
+export class UserAddressSchemaDTO implements UserAddressSchema {
+    constructor(address: UserAddressSchemaDTO) {
         Object.assign(this, address);
     }
 
@@ -132,10 +132,10 @@ export class AuthUpdateDto {
     @IsNotEmpty({ message: 'mustBeNotEmpty' })
     oldPassword?: string;
 
-    @ApiPropertyOptional({ type: [AddressSchemaDTO] })
+    @ApiPropertyOptional({ type: [UserAddressSchemaDTO] })
     @IsOptional()
-    @Type(() => AddressSchemaDTO)
-    address?: AddressSchemaDTO[];
+    @Type(() => UserAddressSchemaDTO)
+    address?: UserAddressSchemaDTO[];
 
     @ApiPropertyOptional({ example: 'public-id-image', type: String })
     @IsOptional()
