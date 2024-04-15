@@ -73,7 +73,7 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
         });
 
         if (!document) {
-            this.logger.warn(`${this.model.modelName} not found with filterQuery`, filterQuery);
+            this.logger.warn(`${this.model.modelName} not found with filterQuery: %o`, filterQuery);
             throw new NotFoundException(`${this.model.modelName} not found!`);
         }
 
@@ -123,7 +123,7 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
             session,
         });
         if (!document) {
-            this.logger.warn(`${this.model.modelName} not found with filterQuery:`, filterQuery);
+            this.logger.warn(`${this.model.modelName} not found with filterQuery: %o`, filterQuery);
             throw new NotFoundException(`${this.model.modelName} not found!`);
         }
 
@@ -173,7 +173,10 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
         });
 
         if (!document || document.length <= 0) {
-            this.logger.warn(`${this.model.modelName}s not found with filterQuery:`, filterQuery);
+            this.logger.warn(
+                `${this.model.modelName}s not found with filterQuery: %o`,
+                filterQuery,
+            );
             throw new NotFoundException(`${this.model.modelName}s not found`);
         }
 

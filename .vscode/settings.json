@@ -39,6 +39,7 @@
         "images",
         "sdk",
         "skus",
-        "tags"
+        "tags",
+        "repository"
     ]
 }
