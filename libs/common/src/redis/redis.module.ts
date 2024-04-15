@@ -1,10 +1,11 @@
-import { Logger, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import Redis, { RedisOptions } from 'ioredis';
 import { RedisService, RedlockService } from './services';
 import { RedisStateService } from './services/redis-state.service';
 import { CacheModule } from '@nestjs/cache-manager';
 import { redisStore } from 'cache-manager-ioredis-yet';
+import { PinoLogger } from 'nestjs-pino';
 
 @Module({
     imports: [
@@ -25,13 +26,13 @@ import { redisStore } from 'cache-manager-ioredis-yet';
         {
             provide: 'REDIS_CLIENT',
             inject: [ConfigService],
-            useFactory: (config: ConfigService) => {
+            useFactory: (config: ConfigService, logger: PinoLogger) => {
                 return new Redis({
                     host: config.getOrThrow<string>('REDIS_HOST'),
                     port: config.getOrThrow<number>('REDIS_PORT'),
                     password: config.getOrThrow<string>('REDIS_PASSWORD'),
                     reconnectOnError: (err) => {
-                        Logger.error(err);
+                        logger.error(err);
                         return true;
                     },
                 } as RedisOptions);
