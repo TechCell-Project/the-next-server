@@ -1,11 +1,26 @@
 import { JsonTransform, QueryManyWithPaginationDto, SortDto } from '~/common';
 import { SPU } from '../schemas';
-import { ApiPropertyOptional, IntersectionType, getSchemaPath } from '@nestjs/swagger';
+import {
+    ApiHideProperty,
+    ApiPropertyOptional,
+    IntersectionType,
+    getSchemaPath,
+} from '@nestjs/swagger';
 import { IsEnum, IsOptional, IsString, ValidateNested } from 'class-validator';
-import { Type } from 'class-transformer';
+import { Exclude, Type } from 'class-transformer';
 import { SpuStatusEnum } from '../spus.enum';
+import { Types } from 'mongoose';
 
 export class FilterSpuDto {
+    @ApiPropertyOptional({
+        type: String,
+        example: 'keyword to search',
+        description: 'Search by keyword',
+    })
+    @IsOptional()
+    @IsString()
+    keyword?: string;
+
     @ApiPropertyOptional({
         enum: SpuStatusEnum,
         isArray: true,
@@ -15,6 +30,10 @@ export class FilterSpuDto {
     @IsOptional()
     @IsEnum(SpuStatusEnum, { each: true })
     status?: SpuStatusEnum[];
+
+    @ApiHideProperty()
+    @Exclude()
+    brandIds?: string[] | Types.ObjectId[];
 }
 
 export class SortSpuDto extends IntersectionType(SortDto<SPU>) {}
@@ -28,7 +47,6 @@ export class QuerySpusDto extends IntersectionType(
         description: `JSON string of ${FilterSpuDto.name}`,
     })
     @IsOptional()
-    @IsString()
     @JsonTransform(FilterSpuDto)
     @ValidateNested()
     @Type(() => FilterSpuDto)
@@ -40,7 +58,6 @@ export class QuerySpusDto extends IntersectionType(
         format: getSchemaPath(SortSpuDto),
     })
     @IsOptional()
-    @IsString()
     @JsonTransform(SortSpuDto)
     @ValidateNested({ each: true })
     @Type(() => SortSpuDto)

@@ -21,7 +21,7 @@ export class SPU extends AbstractDocument {
 
     @ApiProperty({ example: '5f9a7f5d9d8f6d7f5d8f6d7', type: String })
     @Factory(() => new Types.ObjectId())
-    @Prop({ type: String, required: true })
+    @Prop({ type: Types.ObjectId, required: true, ref: 'brands' })
     brandId: Types.ObjectId;
 
     @ApiProperty({ example: 'iphone-15', type: String })
