@@ -1,8 +1,8 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ProductsService } from './products.service';
-import { QueryProductsDto } from './dtos';
+import { ProductDto, ProductInfinityPaginationResult, QueryProductsDto } from './dtos';
 import { infinityPagination } from '~/common/utils';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('products')
 @Controller({
@@ -11,6 +11,9 @@ import { ApiTags } from '@nestjs/swagger';
 export class ProductsController {
     constructor(private readonly productsService: ProductsService) {}
 
+    @ApiOkResponse({
+        type: ProductInfinityPaginationResult,
+    })
     @Get('/')
     async getProducts(@Query() query: QueryProductsDto) {
         const page = query?.page ?? 1;
@@ -30,6 +33,9 @@ export class ProductsController {
         );
     }
 
+    @ApiOkResponse({
+        type: ProductDto,
+    })
     @Get('/:productId')
     async getProductById(@Param('productId') productId: string) {
         return this.productsService.getProductById(productId);

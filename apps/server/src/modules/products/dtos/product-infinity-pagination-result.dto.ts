@@ -30,7 +30,7 @@ export class ProductInListDto {
     tags: string[];
 }
 
-export class BrandInfinityPaginationResult
+export class ProductInfinityPaginationResult
     implements InfinityPaginationResultType<ProductInListDto>
 {
     @ApiProperty({
