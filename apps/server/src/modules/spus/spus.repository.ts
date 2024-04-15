@@ -1,10 +1,11 @@
-import { AbstractRepository, TPaginationOptions } from '~/common';
+import { AbstractRepository, TPaginationOptions, convertToObjectId } from '~/common';
 import { SPU } from './schemas';
 import { PinoLogger } from 'nestjs-pino';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, FilterQuery, Model } from 'mongoose';
 import { QuerySpusDto } from './dtos';
 import { SpuStatusEnum } from './spus.enum';
+import { generateRegexQuery } from 'regex-vietnamese';
 
 export class SPURepository extends AbstractRepository<SPU> {
     constructor(
@@ -34,10 +35,32 @@ export class SPURepository extends AbstractRepository<SPU> {
         paginationOptions: TPaginationOptions;
     }): Promise<SPU[]> {
         const where: FilterQuery<SPU> = {};
+
         if (filterOptions?.status?.length) {
             where.status = { $in: filterOptions.status.map((s) => s.toString()) };
         } else {
             where.status = { $ne: SpuStatusEnum.Deleted };
+        }
+
+        if (filterOptions?.keyword) {
+            const keywordQuery = generateRegexQuery(filterOptions.keyword);
+
+            where.$or = [
+                ...(where?.$or || []),
+                { name: keywordQuery },
+                { description: keywordQuery },
+                { slug: keywordQuery },
+                { models: { $elemMatch: { name: keywordQuery } } },
+                { models: { $elemMatch: { description: keywordQuery } } },
+                { models: { $elemMatch: { slug: keywordQuery } } },
+            ];
+        }
+
+        if (filterOptions?.brandIds?.length) {
+            where.$or = where.$or || [];
+            where.$or?.push({
+                brandId: { $in: filterOptions.brandIds.map((b) => convertToObjectId(b)) },
+            });
         }
 
         const spusData = await this.spuModel

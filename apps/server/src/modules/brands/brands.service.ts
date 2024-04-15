@@ -4,6 +4,7 @@ import { BrandsRepository } from './brands.repository';
 import { BrandStatusEnum } from './enums';
 import { ObjectIdParamDto, TPaginationOptions, convertToObjectId, getSlugFromName } from '~/common';
 import { Brand } from './schemas';
+import { FilterQuery, Types } from 'mongoose';
 
 @Injectable()
 export class BrandsService {
@@ -50,9 +51,15 @@ export class BrandsService {
         });
     }
 
-    async getBrandById(id: ObjectIdParamDto['id']) {
+    async getBrandById(id: ObjectIdParamDto['id'] | Types.ObjectId) {
         return this.brandsRepository.findOneOrThrow({
             filterQuery: { _id: convertToObjectId(id) },
+        });
+    }
+
+    async findMany({ filterQuery }: { filterQuery: FilterQuery<Brand> }) {
+        return this.brandsRepository.find({
+            filterQuery: filterQuery,
         });
     }
 }

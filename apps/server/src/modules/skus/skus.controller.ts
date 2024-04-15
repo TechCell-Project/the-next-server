@@ -1,4 +1,14 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    Get,
+    HttpCode,
+    HttpStatus,
+    Param,
+    Patch,
+    Post,
+    Query,
+} from '@nestjs/common';
 import {
     AddSerialNumberDto,
     AddSerialNumberResponseDto,
@@ -32,7 +42,7 @@ export class SkusController {
         type: SkuInfinityPaginationResult,
     })
     @Get('/')
-    async getSkus(query: QuerySkusDto) {
+    async getSkus(@Query() query: QuerySkusDto) {
         const page = query?.page ?? 1;
         let limit = query?.limit ?? 10;
         if (limit > 50) {

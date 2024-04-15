@@ -5,6 +5,7 @@ import { Connection, FilterQuery, Model } from 'mongoose';
 import { PinoLogger } from 'nestjs-pino';
 import { FilterBrandsDto, SortBrandsDto } from './dtos';
 import { BrandStatusEnum } from './enums';
+import { generateRegexQuery } from 'regex-vietnamese';
 
 export class BrandsRepository extends AbstractRepository<Brand> {
     constructor(
@@ -37,6 +38,14 @@ export class BrandsRepository extends AbstractRepository<Brand> {
             };
         } else {
             where.status = { $ne: BrandStatusEnum.Deleted };
+        }
+
+        if (filterOptions?.keyword) {
+            where.$or = [
+                { name: generateRegexQuery(filterOptions.keyword) },
+                { description: generateRegexQuery(filterOptions.keyword) },
+                { slug: generateRegexQuery(filterOptions.keyword) },
+            ];
         }
 
         const brandObjects = await this.brandModel

@@ -4,7 +4,7 @@ import { MongodbModule } from '~/common/database/mongodb';
 import { SPU, SPUSchema } from './schemas';
 import { SPUController } from './spus.controller';
 import { SPURepository } from './spus.repository';
-import { SPUService } from './spus.service';
+import { SpusService } from './spus.service';
 import { BrandsModule } from '../brands/brands.module';
 import { AttributesModule } from '../attributes';
 import { ImagesModule } from '../images';
@@ -18,7 +18,7 @@ import { ImagesModule } from '../images';
         ImagesModule,
     ],
     controllers: [SPUController],
-    providers: [SPURepository, SPUService],
-    exports: [SPUService],
+    providers: [SPURepository, SpusService],
+    exports: [SpusService],
 })
 export class SPUModule {}

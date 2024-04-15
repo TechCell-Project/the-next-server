@@ -28,46 +28,6 @@
                     "stringEnums": true,
                     "sortModelPropertiesByRequiredFlag": true
                 }
-            },
-            "dart": {
-                "generatorName": "dart",
-                "output": "#{cwd}/generated/dart",
-                "glob": "swagger.yaml",
-                "gitHost": "github.com",
-                "gitUserId": "TechCell-Project",
-                "gitRepoId": "dart-sdk",
-                "verbose": false,
-                "globalProperty": {
-                    "apiDocs": true,
-                    "modelDocs": true
-                },
-                "additionalProperties": {
-                    "pubAuthor": "lehuygiang28",
-                    "pubAuthorEmail": "lehuygiang28@gmail.com",
-                    "pubDescription": "Dart SDK for Techcell",
-                    "pubLibrary": "techcell.dart_sdk",
-                    "pubName": "dart_sdk"
-                }
-            },
-            "dart-dio": {
-                "generatorName": "dart-dio",
-                "output": "#{cwd}/generated/dart-dio",
-                "glob": "swagger.yaml",
-                "gitHost": "github.com",
-                "gitUserId": "TechCell-Project",
-                "gitRepoId": "dart-dio-sdk",
-                "verbose": false,
-                "globalProperty": {
-                    "apiDocs": true,
-                    "modelDocs": true
-                },
-                "additionalProperties": {
-                    "pubAuthor": "lehuygiang28",
-                    "pubAuthorEmail": "lehuygiang28@gmail.com",
-                    "pubDescription": "Dart-dio SDK for Techcell",
-                    "pubLibrary": "techcell.dart_dio_sdk",
-                    "pubName": "dart_dio_sdk"
-                }
             }
         }
     }

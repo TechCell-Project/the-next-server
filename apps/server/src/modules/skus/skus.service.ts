@@ -3,7 +3,7 @@ import { PinoLogger } from 'nestjs-pino';
 import { SkusRepository } from './skus.repository';
 import { CreateSkuDto, QuerySkusDto, UpdateSkuDto } from './dtos';
 import { SKU } from './schemas';
-import { SPUService } from '../spus';
+import { SpusService } from '../spus';
 import { ImagesService } from '../images';
 import { AttributesService } from '../attributes';
 import { SerialNumberStatusEnum, SkuStatusEnum } from './enums';
@@ -17,7 +17,7 @@ export class SkusService {
         private readonly logger: PinoLogger,
         private readonly skusRepository: SkusRepository,
         private readonly serialNumberRepository: SerialNumberRepository,
-        private readonly spusService: SPUService,
+        private readonly spusService: SpusService,
         private readonly imagesService: ImagesService,
         private readonly attributesService: AttributesService,
     ) {
@@ -79,6 +79,37 @@ export class SkusService {
                 _id: convertToObjectId(id),
             },
         });
+    }
+
+    async getSkusBySpuId(data: { spuId: string | Types.ObjectId; spuModelSlug: string }) {
+        return this.skusRepository.findOne({
+            filterQuery: {
+                spuId: convertToObjectId(data.spuId),
+                spuModelSlug: data.spuModelSlug,
+            },
+        });
+    }
+
+    async getSkusBySpuIdOrThrow(data: { spuId: string | Types.ObjectId; spuModelSlug: string }) {
+        const result = await this.skusRepository.findOrThrow({
+            filterQuery: {
+                spuId: convertToObjectId(data.spuId),
+                spuModelSlug: data.spuModelSlug,
+            },
+        });
+
+        if (!result) {
+            throw new HttpException(
+                {
+                    errors: {
+                        sku: 'SKU not found',
+                    },
+                },
+                HttpStatus.NOT_FOUND,
+            );
+        }
+
+        return result;
     }
 
     async addSerialNumbers(skuId: string | Types.ObjectId, serialNumbers: string[]) {

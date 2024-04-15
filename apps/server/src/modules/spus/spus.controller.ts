@@ -9,7 +9,7 @@ import {
     Post,
     Query,
 } from '@nestjs/common';
-import { SPUService } from './spus.service';
+import { SpusService } from './spus.service';
 import { ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ObjectIdParamDto, SlugParamDto, infinityPagination } from '~/common';
 import {
@@ -30,12 +30,12 @@ import { SPU } from './schemas';
     path: 'spus',
 })
 export class SPUController {
-    constructor(private readonly spuService: SPUService) {}
+    constructor(private readonly spusService: SpusService) {}
 
     @Post('/')
     @HttpCode(HttpStatus.NO_CONTENT)
     async createSPU(@Body() data: CreateSpuDto) {
-        return this.spuService.createSPU(data);
+        return this.spusService.createSPU(data);
     }
 
     @ApiOkResponse({
@@ -50,7 +50,7 @@ export class SPUController {
         }
 
         return infinityPagination(
-            await this.spuService.getSpus({
+            await this.spusService.getSpus({
                 filters: query?.filters,
                 sort: query?.sort,
                 limit,
@@ -65,19 +65,19 @@ export class SPUController {
     })
     @Get('/:id')
     async getSPU(@Param() { id }: ObjectIdParamDto) {
-        return this.spuService.getSpuById(id);
+        return this.spusService.getSpuById(id);
     }
 
     @Patch('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async updateSPU(@Param() { id }: ObjectIdParamDto, @Body() data: UpdateSpuDto) {
-        return this.spuService.updateSpu(id, data);
+        return this.spusService.updateSpu(id, data);
     }
 
     @Post('/:id/models')
     @HttpCode(HttpStatus.NO_CONTENT)
     async addSpuModels(@Param() { id }: ObjectIdParamDto, @Body() data: AddSpuModelDto) {
-        return this.spuService.addSpuModels(id, data);
+        return this.spusService.addSpuModels(id, data);
     }
 
     @Patch('/:id/models/:slug')
@@ -87,6 +87,6 @@ export class SPUController {
         @Param() { slug }: SlugParamDto,
         @Body() data: UpdateSPUModelSchemaDto,
     ) {
-        return this.spuService.updateSpuModel(id, slug, data);
+        return this.spusService.updateSpuModel(id, slug, data);
     }
 }

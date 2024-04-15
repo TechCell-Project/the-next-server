@@ -1,11 +1,20 @@
 import { JsonTransform, QueryManyWithPaginationDto, SortDto } from '~/common';
 import { Brand } from '../schemas';
 import { ApiPropertyOptional, IntersectionType, getSchemaPath } from '@nestjs/swagger';
-import { IsEnum, IsOptional, ValidateNested } from 'class-validator';
+import { IsEnum, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { BrandStatusEnum } from '../enums';
 import { Type } from 'class-transformer';
 
 export class FilterBrandsDto {
+    @ApiPropertyOptional({
+        type: String,
+        example: 'keyword to search',
+        description: 'Search by keyword',
+    })
+    @IsOptional()
+    @IsString()
+    keyword?: string;
+
     @ApiPropertyOptional({
         type: [BrandStatusEnum],
         enum: BrandStatusEnum,
@@ -13,7 +22,7 @@ export class FilterBrandsDto {
     })
     @IsOptional()
     @IsEnum(BrandStatusEnum, { each: true })
-    status: BrandStatusEnum[] | null;
+    status?: BrandStatusEnum[] | null;
 }
 
 export class SortBrandsDto extends IntersectionType(SortDto<Brand>) {}
