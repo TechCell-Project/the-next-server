@@ -101,7 +101,7 @@ export class CreateSpuDto implements Omit<SPU, '_id' | 'brandId' | 'models' | 's
     @IsNotEmpty()
     name: string;
 
-    @ApiProperty({
+    @ApiPropertyOptional({
         example: 'This is iPhone 15 series',
         description: 'Spu description',
         type: String,
@@ -110,7 +110,7 @@ export class CreateSpuDto implements Omit<SPU, '_id' | 'brandId' | 'models' | 's
     @IsString()
     description: string;
 
-    @ApiProperty({
+    @ApiPropertyOptional({
         type: [AttributeInProductSchemaDto],
         description: 'Common attributes',
     })
@@ -119,7 +119,7 @@ export class CreateSpuDto implements Omit<SPU, '_id' | 'brandId' | 'models' | 's
     @Type(() => AttributeInProductSchemaDto)
     commonAttributes: AttributeInProductSchemaDto[];
 
-    @ApiProperty({
+    @ApiPropertyOptional({
         type: [SPUModelSchemaDto],
         description: 'Models',
     })
