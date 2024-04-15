@@ -45,6 +45,14 @@ export class UserAddressSchema {
     @Prop({ required: true, type: String })
     customerName: string;
 
+    @ApiProperty({
+        description: 'The phone number of customer',
+        example: '0123456789',
+        type: String,
+    })
+    @Prop({ required: true, type: String })
+    phoneNumbers: string;
+
     @ApiProperty({ type: String, enum: UserAddressTypeEnum, default: UserAddressTypeEnum.Other })
     @Prop({ type: String, enum: UserAddressTypeEnum, default: UserAddressTypeEnum.Other })
     type: string;
