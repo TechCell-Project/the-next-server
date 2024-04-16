@@ -132,7 +132,7 @@ export class SpusService {
             );
         }
 
-        await this.spuRepository.create({
+        return await this.spuRepository.create({
             document: clonePayload as SPU,
         });
     }

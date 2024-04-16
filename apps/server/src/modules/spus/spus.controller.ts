@@ -10,7 +10,7 @@ import {
     Query,
 } from '@nestjs/common';
 import { SpusService } from './spus.service';
-import { ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ObjectIdParamDto, SlugParamDto, infinityPagination } from '~/common';
 import {
     CreateSpuDto,
@@ -32,8 +32,11 @@ import { SPU } from './schemas';
 export class SPUController {
     constructor(private readonly spusService: SpusService) {}
 
+    @ApiCreatedResponse({
+        type: SPU,
+    })
     @Post('/')
-    @HttpCode(HttpStatus.NO_CONTENT)
+    @HttpCode(HttpStatus.CREATED)
     async createSPU(@Body() data: CreateSpuDto) {
         return this.spusService.createSPU(data);
     }
