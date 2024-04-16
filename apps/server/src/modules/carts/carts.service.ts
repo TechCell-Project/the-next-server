@@ -115,10 +115,11 @@ export class CartsService {
         options?: QueryOptions<Cart>;
     }): Promise<Cart | null> {
         try {
-            return this.cartRepository.findOne({
+            const res = await this.cartRepository.findOne({
                 filterQuery: { userId, ...filterQueries },
                 queryOptions: options,
             });
+            return res;
         } catch (error) {
             return Promise.resolve(null);
         }
