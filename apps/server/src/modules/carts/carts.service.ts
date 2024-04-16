@@ -5,8 +5,6 @@ import { UpdateCartDto } from './dtos';
 import { IGetCartByProduct } from './interfaces';
 import { Cart } from './schemas';
 import { convertToObjectId } from '~/common/utils';
-import { SpusService } from '../spus';
-import { SkusService } from '../skus';
 import { ProductsService } from '../products/products.service';
 
 @Injectable()
@@ -14,8 +12,6 @@ export class CartsService {
     constructor(
         private readonly cartRepository: CartsRepository,
         private readonly productsService: ProductsService,
-        private readonly spusService: SpusService,
-        private readonly skusService: SkusService,
     ) {}
 
     /**
@@ -44,7 +40,7 @@ export class CartsService {
 
         // Update the quantity of existing products or add new products
         data.products.forEach((newProduct) => {
-            const existingProduct = cartFound.products.find(
+            const existingProduct = cartFound?.products.find(
                 (product) =>
                     product.productId === newProduct.productId &&
                     product.skuId === newProduct.skuId,
@@ -57,17 +53,17 @@ export class CartsService {
                     existingProduct.quantity += newProduct.quantity;
                 }
             } else {
-                cartFound.products.push(newProduct);
+                cartFound?.products.push(newProduct);
             }
         });
 
         // Remove products with quantity less than or equal to 0
-        cartFound.products = cartFound.products.filter((product) => product.quantity > 0);
+        cartFound.products = cartFound?.products.filter((product) => product.quantity > 0);
 
         return this.cartRepository.updateCartLockSession(
             {
                 userId: convertToObjectId(userId),
-                products: cartFound.products,
+                products: cartFound?.products,
             },
             session,
         );

@@ -6,8 +6,6 @@ import { CartsService } from './carts.service';
 import { MongodbModule } from '~/common/database/mongodb';
 import { RedisModule } from '~/common/redis';
 import { CartsController } from './carts.controller';
-import { SPUModule } from '../spus';
-import { SKUModule } from '../skus';
 import { ProductsModule } from '../products/products.module';
 
 @Module({
@@ -21,8 +19,6 @@ import { ProductsModule } from '../products/products.module';
         ]),
         RedisModule,
         ProductsModule,
-        SPUModule,
-        SKUModule,
     ],
     controllers: [CartsController],
     providers: [CartsRepository, CartsService],
