@@ -11,5 +11,6 @@ import { RedisModule } from '~/common/redis';
     imports: [RedisModule, BrandsModule, TagsModule, SPUModule, SKUModule],
     controllers: [ProductsController],
     providers: [ProductsService],
+    exports: [ProductsService],
 })
 export class ProductsModule {}

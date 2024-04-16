@@ -8,7 +8,7 @@ import { ImagesService } from '../images';
 import { AttributesService } from '../attributes';
 import { SerialNumberStatusEnum, SkuStatusEnum } from './enums';
 import { convertToObjectId, sanitizeHtmlString } from '~/common';
-import { Types } from 'mongoose';
+import { FilterQuery, Types } from 'mongoose';
 import { SerialNumberRepository } from './serial-number.repository';
 import { remove as removeDiacritics } from 'diacritics';
 
@@ -111,6 +111,10 @@ export class SkusService {
         }
 
         return result;
+    }
+
+    async findOneOrThrow(data: { filterQuery: FilterQuery<SKU> }) {
+        return this.skusRepository.findOneOrThrow(data);
     }
 
     async addSerialNumbers(skuId: string | Types.ObjectId, serialNumbers: string[]) {
