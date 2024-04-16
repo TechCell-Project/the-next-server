@@ -126,6 +126,8 @@ export class CartsService {
     }
 
     async validateProductInCart({ products }: UpdateCartDto) {
+        const errors: unknown[] = [];
+
         await Promise.all(
             products.map(async (product) => {
                 const res = await this.productsService.getProductByIdWithSku(
@@ -133,16 +135,20 @@ export class CartsService {
                     product.skuId,
                 );
                 if (!res) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                productId: `Product not found: ${product.productId} - sku: ${product.skuId}`,
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
+                    errors.push({
+                        productId: `Product not found: ${product.productId} - sku: ${product.skuId}`,
+                    });
                 }
             }),
         );
+
+        if (errors.length > 0) {
+            throw new HttpException(
+                {
+                    errors: errors,
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
     }
 }
