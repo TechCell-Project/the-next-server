@@ -9,6 +9,8 @@ import { RedisService } from '~/common/redis';
 import { SPU } from '../spus/schemas';
 import { Brand } from '../brands';
 import { SKU } from '../skus/schemas';
+import { Types } from 'mongoose';
+import { convertToObjectId } from '~/common/utils';
 
 @Injectable()
 export class ProductsService {
@@ -18,7 +20,7 @@ export class ProductsService {
         return `${spu._id.toString()}${ProductsService.SPLITTER}${modelSlug}`;
     }
 
-    private static fromProductId(productId: string): {
+    public static fromProductId(productId: string): {
         spuId: string;
         modelSlug: string;
     } {
@@ -57,11 +59,49 @@ export class ProductsService {
     async getProductById(productId: string) {
         const { spuId, modelSlug } = ProductsService.fromProductId(productId);
         const spu = await this.spusService.getSpuById(spuId);
+        if (spu.models.every((m) => m.slug !== modelSlug)) {
+            throw new HttpException(
+                {
+                    errors: {
+                        modelSlug: {
+                            message: 'Model not found: ' + modelSlug,
+                        },
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
         const skus = await this.skusService.getSkusBySpuIdOrThrow({
             spuId: spu._id,
             spuModelSlug: modelSlug,
         });
         return new ProductDto(spu, modelSlug, skus);
+    }
+
+    async getProductByIdWithSku(productId: string, skuId: string | Types.ObjectId) {
+        const { spuId, modelSlug } = ProductsService.fromProductId(productId);
+        const spu = await this.spusService.getSpuById(spuId);
+        if (spu.models.every((m) => m.slug !== modelSlug)) {
+            throw new HttpException(
+                {
+                    errors: {
+                        modelSlug: {
+                            message: 'Model not found: ' + modelSlug,
+                        },
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        const skus = await this.skusService.findOneOrThrow({
+            filterQuery: {
+                _id: convertToObjectId(skuId),
+            },
+        });
+
+        return new ProductDto(spu, modelSlug, [skus]);
     }
 
     async getProducts({ filters, ...payload }: QueryProductsDto) {
