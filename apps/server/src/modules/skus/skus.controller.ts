@@ -32,8 +32,11 @@ import { ObjectIdParamDto } from '~/common';
 export class SkusController {
     constructor(private readonly skusService: SkusService) {}
 
+    @ApiCreatedResponse({
+        type: SKU,
+    })
     @Post('/')
-    @HttpCode(HttpStatus.NO_CONTENT)
+    @HttpCode(HttpStatus.CREATED)
     async createSku(@Body() data: CreateSkuDto) {
         return this.skusService.createSku(data);
     }

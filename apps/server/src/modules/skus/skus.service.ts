@@ -46,7 +46,7 @@ export class SkusService {
             };
         }
 
-        await this.skusRepository.create({
+        return await this.skusRepository.create({
             document: {
                 name: cloneData.name!,
                 description: cloneData.description!,
