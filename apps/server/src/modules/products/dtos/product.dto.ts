@@ -8,8 +8,9 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 
 class VariationDto {
     constructor(model: SPUModelSchema, sku: SKU) {
+        this.skuId = sku._id.toString();
         this.price = sku.price;
-        this.attributes = [...sku.attributes];
+        this.attributes = sku?.attributes || [];
         if (sku.image) {
             this.image = {
                 ...sku.image,
@@ -20,6 +21,9 @@ class VariationDto {
             this.tags = sku.tags.map((tag) => tag.toString());
         }
     }
+
+    @ApiProperty({ type: String, format: 'ObjectId' })
+    skuId: string;
 
     @ApiProperty({
         type: PriceDto,
@@ -61,7 +65,7 @@ export class ProductDto {
         this.productId = ProductsService.toProductId(spu, modelSlug);
         this.productName = model.name;
         this.description = model.description;
-        this.attributes = [...spu.commonAttributes, ...model.attributes];
+        this.attributes = [...(spu?.commonAttributes || []), ...(model?.attributes || [])];
         this.images = model?.images ?? [];
         this.variations = sku.map((sku) => new VariationDto(model, sku));
     }

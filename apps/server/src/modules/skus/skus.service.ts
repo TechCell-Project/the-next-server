@@ -10,6 +10,7 @@ import { SerialNumberStatusEnum, SkuStatusEnum } from './enums';
 import { convertToObjectId, sanitizeHtmlString } from '~/common';
 import { Types } from 'mongoose';
 import { SerialNumberRepository } from './serial-number.repository';
+import { remove as removeDiacritics } from 'diacritics';
 
 @Injectable()
 export class SkusService {
@@ -231,7 +232,7 @@ export class SkusService {
             );
         }
 
-        const skuFound = await this.skusRepository.findOne({
+        const skuFound = await this.skusRepository.find({
             filterQuery: {
                 spuId: spuFound._id,
                 spuModelSlug: spuModelFound.slug,
@@ -269,30 +270,34 @@ export class SkusService {
         }
 
         if (skuFound) {
-            const foundAttributes = skuFound.attributes
-                .map((attribute) => ({
-                    key: attribute.k.toString().toLowerCase(),
-                    value: attribute.v.toString().toLowerCase(),
-                }))
-                .sort((a, b) => a.key.localeCompare(b.key));
-            const comingAttributes = validatedAttributes
-                .map((attribute) => ({
-                    key: attribute.k.toString().toLowerCase(),
-                    value: attribute.v.toString().toLowerCase(),
-                }))
-                .sort((a, b) => a.key.localeCompare(b.key));
+            skuFound.forEach((sku) => {
+                const foundAttributes = sku.attributes
+                    .map((attribute) => ({
+                        key: attribute.k.toString().toLowerCase(),
+                        value: removeDiacritics(attribute.v.toString().toLowerCase()),
+                    }))
+                    .sort((a, b) => a.key.localeCompare(b.key));
 
-            const areArraysEqual =
-                JSON.stringify(foundAttributes) === JSON.stringify(comingAttributes);
-            if (areArraysEqual === true) {
-                throw new HttpException(
-                    {
-                        status: HttpStatus.UNPROCESSABLE_ENTITY,
-                        errors: { skus: 'skuAlreadyExists' },
-                    },
-                    HttpStatus.UNPROCESSABLE_ENTITY,
-                );
-            }
+                const comingAttributes = validatedAttributes
+                    .map((attribute) => ({
+                        key: attribute.k.toString().toLowerCase(),
+                        value: removeDiacritics(attribute.v.toString().toLowerCase()),
+                    }))
+                    .sort((a, b) => a.key.localeCompare(b.key));
+
+                const areArraysEqual =
+                    JSON.stringify(foundAttributes) === JSON.stringify(comingAttributes);
+
+                if (areArraysEqual) {
+                    throw new HttpException(
+                        {
+                            status: HttpStatus.UNPROCESSABLE_ENTITY,
+                            errors: { skus: 'skuAlreadyExists' },
+                        },
+                        HttpStatus.UNPROCESSABLE_ENTITY,
+                    );
+                }
+            });
         }
 
         return {
