@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AddressController } from './address.controller';
 import { AddressService } from './address.service';
-import { RedisModule } from '~/common/redis';
 import { GhnModule } from '~/third-party/giaohangnhanh';
 
 @Module({
@@ -12,7 +11,6 @@ import { GhnModule } from '~/third-party/giaohangnhanh';
             shopId: +process.env.GHN_SHOP_ID!,
             testMode: true,
         }),
-        RedisModule,
     ],
     controllers: [AddressController],
     providers: [AddressService],
