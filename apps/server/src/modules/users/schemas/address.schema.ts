@@ -2,19 +2,19 @@ import { Prop } from '@nestjs/mongoose';
 import { UserAddressTypeEnum } from '../enums';
 import { ApiProperty } from '@nestjs/swagger';
 
-class ProvinceLevel {
+export class ProvinceLevel {
     @ApiProperty({ type: Number, example: 201 })
     @Prop({ required: true, type: Number })
     provinceId: number;
 }
 
-class DistrictLevel {
+export class DistrictLevel {
     @ApiProperty({ type: Number, example: 1490 })
     @Prop({ required: true, type: Number })
     districtId: number;
 }
 
-class WardLevel {
+export class WardLevel {
     @ApiProperty({ type: String, example: '1A0814' })
     @Prop({ required: true, type: String })
     wardCode: string;

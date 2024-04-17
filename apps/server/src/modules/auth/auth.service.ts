@@ -23,6 +23,7 @@ import { MailEventPattern } from '~/communication/mail/mail.pattern';
 import { ClientRMQ } from '@nestjs/microservices';
 import { ImagesService } from '~/server/images';
 import { AvatarSchema } from '../users/schemas/avatar.schema';
+import { GetMeResponseDto } from './dtos/get-me-response.dto';
 
 @Injectable()
 export class AuthService {
@@ -385,7 +386,79 @@ export class AuthService {
     }
 
     async me(userId: User['_id'] | string) {
-        return this.usersService.findById(userId);
+        const userFound = await this.usersService.findById(userId);
+        if (!userFound) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNAUTHORIZED,
+                    errors: {
+                        user: 'userNotFound',
+                    },
+                },
+                HttpStatus.UNAUTHORIZED,
+            );
+        }
+        const provinceIdSet = new Set<number>();
+        const districtIdSet = new Set<number>();
+        const wardCodeSet = new Set<string>();
+
+        (userFound.address || []).forEach((address) => {
+            provinceIdSet.add(address.provinceLevel?.provinceId ?? 0);
+            districtIdSet.add(address.districtLevel?.districtId ?? 0);
+            wardCodeSet.add(address.wardLevel?.wardCode ?? '');
+        });
+
+        const provinceArray = await this.ghnService.getProvinces();
+        const provinceList = new Map(
+            provinceArray
+                .filter((province) => provinceIdSet.has(province.provinceId))
+                .map((province) => [province.provinceId, province]),
+        );
+
+        const districtArray = await Promise.all(
+            Array.from(provinceIdSet).map((provinceId) => this.ghnService.getDistricts(provinceId)),
+        );
+        const districtList = new Map(
+            districtArray.map((districts, index) => [Array.from(provinceIdSet)[index], districts]),
+        );
+
+        const wardArray = await Promise.all(
+            Array.from(districtIdSet).map((districtId) => this.ghnService.getWards(districtId)),
+        );
+        const wardList = new Map(
+            wardArray.map((wards, index) => [Array.from(districtIdSet)[index], wards]),
+        );
+
+        const userWithAddress = new GetMeResponseDto({
+            ...userFound,
+            address: userFound.address?.map((address) => ({
+                ...address,
+                provinceLevel: {
+                    ...address.provinceLevel,
+                    provinceName:
+                        provinceList.get(address.provinceLevel.provinceId)?.provinceName ?? '',
+                },
+                districtLevel: {
+                    ...address.districtLevel,
+                    districtName:
+                        districtList
+                            .get(address.provinceLevel.provinceId)
+                            ?.find(
+                                (district) =>
+                                    district.districtId === address.districtLevel.districtId,
+                            )?.districtName ?? '',
+                },
+                wardLevel: {
+                    ...address.wardLevel,
+                    wardName:
+                        wardList
+                            .get(address.districtLevel.districtId)
+                            ?.find((ward) => ward.wardCode === address.wardLevel.wardCode)
+                            ?.wardName ?? '',
+                },
+            })),
+        });
+        return userWithAddress;
     }
 
     async refreshToken(data: JwtRefreshPayloadType): Promise<Omit<LoginResponseDto, 'user'>> {

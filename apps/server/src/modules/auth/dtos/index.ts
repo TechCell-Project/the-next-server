@@ -8,3 +8,4 @@ export * from './auth-forgot-password.dto';
 export * from './auth-reset-password.dto';
 export * from './auth-update.dto';
 export * from './refresh-token.dto';
+export * from './get-me-response.dto';

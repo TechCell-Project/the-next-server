@@ -11,8 +11,6 @@ import {
     UseGuards,
 } from '@nestjs/common';
 import { ApiNoContentResponse, ApiOkResponse, ApiTags, ApiBody } from '@nestjs/swagger';
-import { NullableType } from '~/common/types';
-import { User } from '~/server/users';
 import { AuthService } from './auth.service';
 import {
     AuthSignupDto,
@@ -25,11 +23,13 @@ import {
     AuthResetPasswordDto,
     AuthUpdateDto,
     RefreshTokenDto,
+    GetMeResponseDto,
 } from './dtos';
 import { AuthRoles } from './guards';
 import { JwtPayloadType, JwtRefreshPayloadType } from './strategies/types';
 import { Types } from 'mongoose';
 import { AuthGuard } from '@nestjs/passport';
+import { CurrentUser } from '~/common';
 
 @ApiTags('auth')
 @Controller({
@@ -118,10 +118,10 @@ export class AuthController {
     @Get('me')
     @HttpCode(HttpStatus.OK)
     @ApiOkResponse({
-        type: User,
+        type: GetMeResponseDto,
     })
-    public getMe(@Req() request: { user: { userId: string } }): Promise<NullableType<User>> {
-        return this.authService.me(request.user.userId);
+    public getMe(@CurrentUser() { userId }: JwtPayloadType): Promise<GetMeResponseDto> {
+        return this.authService.me(userId);
     }
 
     @AuthRoles()
