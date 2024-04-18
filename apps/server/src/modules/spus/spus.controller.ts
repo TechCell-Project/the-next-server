@@ -23,12 +23,14 @@ import {
     UpdateSPUModelSchemaDto,
 } from './dtos';
 import { SPU } from './schemas';
+import { AuthRoles } from '../auth/guards';
 
 @ApiTags('spus')
 @ApiExtraModels(FilterSpuDto, SortSpuDto)
 @Controller({
     path: 'spus',
 })
+@AuthRoles()
 export class SPUController {
     constructor(private readonly spusService: SpusService) {}
 

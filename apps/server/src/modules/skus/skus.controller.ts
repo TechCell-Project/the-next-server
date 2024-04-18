@@ -23,12 +23,14 @@ import { SkusService } from './skus.service';
 import { infinityPagination } from '~/common/utils';
 import { SKU } from './schemas';
 import { ObjectIdParamDto } from '~/common';
+import { AuthRoles } from '../auth/guards';
 
 @ApiTags('skus')
 @ApiExtraModels(FilterSkuDto, SortSkuDto)
 @Controller({
     path: 'skus',
 })
+@AuthRoles()
 export class SkusController {
     constructor(private readonly skusService: SkusService) {}
 
