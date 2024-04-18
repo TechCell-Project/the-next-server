@@ -72,6 +72,6 @@ export function sortedStringify(obj: unknown): string {
         return `[${obj.map(sortedStringify).join(',')}]`;
     }
 
-    const keys = Object.keys(obj as object).sort();
+    const keys = Object.keys(obj as object).sort((a, b) => a.localeCompare(b));
     return `{${keys.map((key) => `"${key}":${sortedStringify((obj as { [key: string]: unknown })[key])}`).join(',')}}`;
 }
