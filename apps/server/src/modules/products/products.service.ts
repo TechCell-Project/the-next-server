@@ -132,7 +132,7 @@ export class ProductsService {
                 brandIds: Array.from(
                     new Set([
                         ...(filters?.brandIds ?? []),
-                        ...brandsWithKeyword?.map((b) => b._id.toString()),
+                        ...(brandsWithKeyword ?? []).map((b) => b._id.toString()),
                     ]),
                 ),
             };
