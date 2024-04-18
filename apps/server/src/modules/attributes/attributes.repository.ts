@@ -77,6 +77,16 @@ export class AttributesRepository extends AbstractRepository<Attribute> {
             where.unit = generateRegexQuery(filterOptions.unit);
         }
 
+        if (filterOptions?.keyword) {
+            const keywordsRegex = generateRegexQuery(filterOptions.keyword);
+            where.$or = [
+                { name: keywordsRegex },
+                { description: keywordsRegex },
+                { label: keywordsRegex },
+                { unit: keywordsRegex },
+            ];
+        }
+
         const attributesData = await this.attributeModel
             .find(where)
             .sort(

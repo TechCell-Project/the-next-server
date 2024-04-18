@@ -14,6 +14,15 @@ import { SortCaseEnum } from '~/common/enums';
 import { AttributeStatusEnum } from '../attribute.enum';
 
 export class FilterAttributeDto extends OmitType(PartialType(Attribute), ['_id', 'status']) {
+    @ApiPropertyOptional({
+        type: String,
+        example: 'keyword to search',
+        description: 'Search by keyword',
+    })
+    @IsOptional()
+    @IsString()
+    keyword?: string;
+
     @IsOptional()
     @IsString()
     description?: string | undefined;
