@@ -1,0 +1,1677 @@
+{
+    "spu": {
+        "brandId": "661681dde3e5984cfc2c28cc",
+        "name": "iPhone X",
+        "description": "This is iPhone X",
+        "commonAttributes": [
+            {
+                "name": "Xuất xứ thương hiệu",
+                "k": "xuat_xu_thuong_hieu",
+                "v": "Mỹ"
+            }
+        ],
+        "models": [
+            {
+                "slug": "iphone-x",
+                "name": "iPhone X",
+                "description": "This is iPhone X",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Hệ điều hành",
+                        "k": "he_dieu_hanh",
+                        "v": "iOS 11.1.1, up to iOS 16.7.5"
+                    },
+                    {
+                        "name": "Chipset",
+                        "k": "chipset",
+                        "v": "Apple A11 Bionic",
+                        "u": "(10 nm)"
+                    },
+                    {
+                        "name": "SIM",
+                        "k": "sim",
+                        "v": "Nano-SIM ",
+                        "u": "(Nano-SIM)"
+                    },
+                    {
+                        "name": "CPU",
+                        "k": "cpu",
+                        "v": "Hexa-core 2.39 GHz",
+                        "u": "(2x Monsoon + 4x Mistral)"
+                    },
+                    {
+                        "name": "GPU",
+                        "k": "gpu",
+                        "v": "Apple GPU",
+                        "u": "(đồ họa 3 nhân)"
+                    },
+                    {
+                        "name": "Thời điểm ra mắt",
+                        "k": "thoi_diem_ra_mat",
+                        "v": "03/11/2017"
+                    },
+                    {
+                        "name": "RAM",
+                        "k": "ram",
+                        "v": "3",
+                        "u": "GB"
+                    },
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "143.6 x 70.9 x 7.7",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "174",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Chống nước & bụi",
+                        "k": "chong_nuoc_bui",
+                        "v": "Chống bụi/nước IP67 ",
+                        "u": "(lên đến 1m trong vòng 30 phút)"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Super Retina OLED, HDR10, Dolby Vision, 625 nits",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "5,8 ",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Oleophobic (ion cường lực)"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1125 x 2436",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.8, 28mm (rộng), 1/3.0\", 1.22µm, PDAF pixel kép, OIS|12 MP (f/1.8, 28mm) + 12 MP (f/2.4, 52mm), tự động lấy nét nhận diện theo giai đoạn, 2x zoom quang học, OIS, 4 LED flash (2 tone)"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Đèn flash hai tông màu bốn đèn LED, HDR (ảnh/toàn cảnh), toàn cảnh, HDR"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/30/60fps | 1080p@30/60/120/240fps"
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "7 MP, f/2.2, 32mm (tiêu chuẩn) SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "1080p@30 khung hình/giây"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac|băng tần kép|điểm phát sóng"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS|GLONASS| GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning,Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning, USB 2.0"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-ion 2716 mAh"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-xs",
+                "name": "iPhone XS",
+                "description": "This is iPhone XS",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Thời điểm ra mắt",
+                        "k": "thoi_diem_ra_mat",
+                        "v": "21/09/2018"
+                    },
+                    {
+                        "name": "RAM",
+                        "k": "ram",
+                        "v": "4",
+                        "u": "GB"
+                    },
+                    {
+                        "name": "SIM",
+                        "k": "sim",
+                        "v": "Nano-SIM và eSIM",
+                        "u": "(Nano-SIM)"
+                    },
+                    {
+                        "name": "CPU",
+                        "k": "cpu",
+                        "v": "Hexa-core",
+                        "u": "(2x2.5 GHz Vortex + 4x1.6 GHz Tempest)"
+                    },
+                    {
+                        "name": "GPU",
+                        "k": "gpu",
+                        "v": "Apple GPU",
+                        "u": "(đồ họa 4 nhân)"
+                    },
+                    {
+                        "name": "Chipset",
+                        "k": "chipset",
+                        "v": "Apple A12 Bionic",
+                        "u": "(7 nm)"
+                    },
+                    {
+                        "name": "Hệ điều hành",
+                        "k": "he_dieu_hanh",
+                        "v": "iOS 12, có thể nâng cấp lên iOS 17.4"
+                    },
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "143.6 x 70.9 x 7.7",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "177",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Chống nước & bụi",
+                        "k": "chong_nuoc_bui",
+                        "v": "Chống bụi/nước theo tiêu chuẩn IP68",
+                        "u": "(lên đến 2m trong vòng 30 phút)"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Super Retina OLED, HDR10, Dolby Vision, 625 nits",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "5.8",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Oleophobic (ion cường lực)"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1125 x 2436",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.8, 26mm (rộng), 1/2.55\", 1.4µm, PDAF pixel kép, OIS |12 MP, f/2.4, 52mm (telephoto), 1/3.4\", 1.0µm, PDAF, OIS, 2x optical zoom"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Đèn flash hai tông màu bốn đèn LED, HDR (ảnh/toàn cảnh)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/30/60fps|1080p@30/60/120/240fps|HDR|âm thanh nổi rec."
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "7 MP, f/2.2, 32mm (tiêu chuẩn) SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "1080p@30/60fps|con quay hồi chuyển-EIS"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac|băng tần kép|điểm phát sóng"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS|GLONASS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning, Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning, USB 2.0"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion 2658 mAh (10,13 Wh)"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-xs-max",
+                "name": "iPhone XS Max",
+                "description": "This is iPhone XS Max",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Thời điểm ra mắt",
+                        "k": "thoi_diem_ra_mat",
+                        "v": "21/09/2018"
+                    },
+                    {
+                        "name": "RAM",
+                        "k": "ram",
+                        "v": "4",
+                        "u": "GB"
+                    },
+                    {
+                        "name": "SIM",
+                        "k": "sim",
+                        "v": "Nano-SIM và eSIM hoặc Dual SIM",
+                        "u": "(Nano-SIM, eSIM, Dual SIM)"
+                    },
+                    {
+                        "name": "CPU",
+                        "k": "cpu",
+                        "v": "Hexa-core",
+                        "u": "(2x2.5 GHz Vortex + 4x1.6 GHz Tempest)"
+                    },
+                    {
+                        "name": "GPU",
+                        "k": "gpu",
+                        "v": "Apple GPU",
+                        "u": "(đồ họa 4 nhân)"
+                    },
+                    {
+                        "name": "Chipset",
+                        "k": "chipset",
+                        "v": "Apple A12 Bionic",
+                        "u": "(7 nm)"
+                    },
+                    {
+                        "name": "Hệ điều hành",
+                        "k": "he_dieu_hanh",
+                        "v": "iOS 12, có thể nâng cấp lên iOS 17.4"
+                    },
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "157.5 x 77.4 x 7.7",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "208",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Chống nước & bụi",
+                        "k": "chong_nuoc_bui",
+                        "v": "Chống bụi/nước theo tiêu chuẩn IP68",
+                        "u": "(lên đến 2m trong vòng 30 phút)"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Super Retina OLED, HDR10, Dolby Vision, 625 nits",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6,5",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Oleophobic (ion cường lực)"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1242 x 2688",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.8, 26mm (rộng), 1/2.55\", 1.4µm, PDAF pixel kép, OIS |12 MP, f/2.4, 52mm (tele), 1/3.4\", 1.0µm, PDAF, OIS, 2x zoom quang học"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Đèn flash hai tông màu bốn đèn LED, HDR (ảnh/toàn cảnh)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/30/60fps|1080p@30/60/120/240fps|HDR|âm thanh nổi rec."
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "7 MP, f/2.2, 32mm (tiêu chuẩn) SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "1080p@30/60fps|con quay hồi chuyển-EIS"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac|băng tần kép|điểm phát sóng"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS|GLONASS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning, Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning, USB 2.0"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion 3174 mAh (12,08 Wh)"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-xr",
+                "name": "iPhone XR",
+                "description": "This is iPhone XR",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Thời điểm ra mắt",
+                        "k": "thoi_diem_ra_mat",
+                        "v": "26/10/2018"
+                    },
+                    {
+                        "name": "RAM",
+                        "k": "ram",
+                        "v": "4",
+                        "u": "GB"
+                    },
+                    {
+                        "name": "SIM",
+                        "k": "sim",
+                        "v": "Nano-SIM và eSIM hoặc Dual SIM",
+                        "u": "(Nano-SIM, eSIM, Dual SIM)"
+                    },
+                    {
+                        "name": "CPU",
+                        "k": "cpu",
+                        "v": "Hexa-core",
+                        "u": "(2x2.5 GHz Vortex + 4x1.6 GHz Tempest)"
+                    },
+                    {
+                        "name": "GPU",
+                        "k": "gpu",
+                        "v": "Apple GPU",
+                        "u": "(đồ họa 4 nhân)"
+                    },
+                    {
+                        "name": "Chipset",
+                        "k": "chipset",
+                        "v": "Apple A12 Bionic",
+                        "u": "(7 nm)"
+                    },
+                    {
+                        "name": "Hệ điều hành",
+                        "k": "he_dieu_hanh",
+                        "v": "iOS 12, có thể nâng cấp lên iOS 17.4"
+                    },
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "150.9 x 75.7 x 8.3",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "194",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Chống nước & bụi",
+                        "k": "chong_nuoc_bui",
+                        "v": "Chống bụi/nước theo tiêu chuẩn IP67",
+                        "u": "(lên đến 1m trong vòng 30 phút)"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Màn hình LCD Retina IPS lỏng, 625 nits",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6,1",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Oleophobic (ion cường lực)"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "828 x 1792",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.8, 26mm (rộng), 1/2.55\", 1.4µm, PDAF, OIS"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Đèn flash hai tông màu bốn đèn LED, HDR (ảnh/toàn cảnh)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/30/60fps|1080p@30/60/120/240fps|HDR|âm thanh nổi rec."
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "7 MP, f/2.2, 32mm (tiêu chuẩn) SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "1080p@60fps"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac|băng tần kép|điểm phát sóng"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS|GLONASS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning, Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning, USB 2.0"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion 2942 mAh (11,16 Wh)"
+                    }
+                ]
+            }
+        ],
+        "status": "available"
+    },
+    "skus": [
+        {
+            "name": "iPhone X 64GB",
+            "description": "This is iPhone X",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-x",
+            "price": {
+                "base": 4990000,
+                "special": 3990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone X 64GB",
+            "description": "This is iPhone X",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-x",
+            "price": {
+                "base": 4990000,
+                "special": 3990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone X 256GB",
+            "description": "This is iPhone X",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-x",
+            "price": {
+                "base": 7990000,
+                "special": 5990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "2566",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone X 256GB",
+            "description": "This is iPhone X",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-x",
+            "price": {
+                "base": 7990000,
+                "special": 5990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "2566",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS 64GB",
+            "description": "This is iPhone XS",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs",
+            "price": {
+                "base": 7990000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS 64GB",
+            "description": "This is iPhone XS",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs",
+            "price": {
+                "base": 7990000,
+                "special": 6990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS 64GB",
+            "description": "This is iPhone XS",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs",
+            "price": {
+                "base": 7990000,
+                "special": 6990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS 256GB",
+            "description": "This is iPhone XS",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs",
+            "price": {
+                "base": 8990000,
+                "special": 7990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS 256GB",
+            "description": "This is iPhone XS",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs",
+            "price": {
+                "base": 8990000,
+                "special": 7990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS 256GB",
+            "description": "This is iPhone XS",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs",
+            "price": {
+                "base": 8990000,
+                "special": 7990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS 512GB",
+            "description": "This is iPhone XS",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs",
+            "price": {
+                "base": 9990000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS 512GB",
+            "description": "This is iPhone XS",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs",
+            "price": {
+                "base": 9990000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS 512GB",
+            "description": "This is iPhone XS",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs",
+            "price": {
+                "base": 9990000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+
+        {
+            "name": "iPhone XR 64GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 11990000,
+                "special": 5690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 64GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 11990000,
+                "special": 5690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 64GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 11990000,
+                "special": 5690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 64GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 11990000,
+                "special": 5690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 64GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 11990000,
+                "special": 5690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Cam"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 64GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 11990000,
+                "special": 5690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 128GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 16990000,
+                "special": 6690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 128GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 16990000,
+                "special": 6690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 128GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 16990000,
+                "special": 6690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 128GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 16990000,
+                "special": 6690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 128GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 16990000,
+                "special": 6690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Cam"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 128GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 16990000,
+                "special": 6690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 256GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 20000000,
+                "special": 7690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 256GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 20000000,
+                "special": 7690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 256GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 20000000,
+                "special": 7690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 256GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 20000000,
+                "special": 7690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 256GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 20000000,
+                "special": 7690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Cam"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XR 256GB",
+            "description": "This is iPhone XR",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xr",
+            "price": {
+                "base": 20000000,
+                "special": 7690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+
+        {
+            "name": "iPhone XS Max 64GB",
+            "description": "This is iPhone XS Max",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs-max",
+            "price": {
+                "base": 9990000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS Max 64GB",
+            "description": "This is iPhone XS Max",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs-max",
+            "price": {
+                "base": 9990000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone X 64GB",
+            "description": "This is iPhone X",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs-max",
+            "price": {
+                "base": 9990000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS Max 256GB",
+            "description": "This is iPhone XS Max",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs-max",
+            "price": {
+                "base": 10990000,
+                "special": 9990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS Max 256GB",
+            "description": "This is iPhone XS Max",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs-max",
+            "price": {
+                "base": 10990000,
+                "special": 9990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS Max 256GB",
+            "description": "This is iPhone XS Max",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs-max",
+            "price": {
+                "base": 10990000,
+                "special": 9990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS Max 512GB",
+            "description": "This is iPhone XS Max",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs-max",
+            "price": {
+                "base": 11990000,
+                "special": 10990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS Max 512GB",
+            "description": "This is iPhone XS Max",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs-max",
+            "price": {
+                "base": 11990000,
+                "special": 10990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone XS Max 512GB",
+            "description": "This is iPhone XS Max",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-xs-max",
+            "price": {
+                "base": 11990000,
+                "special": 10990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        }
+    ]
+}

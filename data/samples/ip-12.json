@@ -1,0 +1,1946 @@
+{
+    "spu": {
+        "brandId": "661681dde3e5984cfc2c28cc",
+        "name": "iPhone 12 series",
+        "description": "This is iPhone 12 series",
+        "commonAttributes": [
+            {
+                "name": "Xuất xứ thương hiệu",
+                "k": "xuat_xu_thuong_hieu",
+                "v": "Mỹ"
+            },
+            {
+                "name": "Chipset",
+                "k": "chipset",
+                "v": "Apple A14 Bionic ",
+                "u": "(5 nm)"
+            },
+            {
+                "name": "GPU",
+                "k": "gpu",
+                "v": "Apple GPU",
+                "u": "(đồ họa 4 nhân)"
+            },
+            {
+                "name": "SIM",
+                "k": "sim",
+                "v": "Nano-SIM và eSIM hoặc Dual SIM ",
+                "u": "(Nano-SIM, dual stand-by)"
+            },
+            {
+                "name": "CPU",
+                "k": "cpu",
+                "v": "Hexa-core",
+                "u": "(2x3.1 GHz Firestorm + 4x1.8 GHz Icestorm)"
+            },
+            {
+                "name": "Hệ điều hành",
+                "k": "he_dieu_hanh",
+                "v": "iOS 14.1, upgradable to iOS 17.4"
+            },
+            {
+                "name": "Thời điểm ra mắt",
+                "k": "thoi_diem_ra_mat",
+                "v": "13/10/2020"
+            },
+            {
+                "name": "Chống nước & bụi",
+                "k": "chong_nuoc_bui",
+                "v": "Chống bụi/nước theo tiêu chuẩn IP68",
+                "u": "(lên đến 6m trong vòng 30 phút)"
+            }
+        ],
+        "models": [
+            {
+                "slug": "iphone-12",
+                "name": "iPhone 12",
+                "description": "This is iPhone 12",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "146.7 x 71.5 x 7.4",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "164",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Super Retina XDR OLED, HDR10, Dolby Vision, 625 nits (HBM), 1200 nits (cực đại)",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.1",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Ceramic Shield"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1170 x 2532",
+                        "u": "pixels"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.6, 26mm (rộng), 1.4µm, PDAF pixel kép, OIS|12 MP, f/2.4, 13mm, 120˚ (siêu rộng), 1/3.6"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Đèn flash hai tông màu LED kép, HDR (ảnh/toàn cảnh)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/30/60fps|1080p@30/60/120/240fps|HDR|Dolby Vision HDR (lên đến 30 khung hình/giây)|Âm thanh nổi rec."
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "12 MP, f/2.2, 23mm (rộng), 1/3.6\" SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "4K@24/30/60fps|1080p@30/60/120fps|con quay hồi chuyển-EIS"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac/6, băng tần kép, điểm phát sóng"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS|GLONASS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning, Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion 2815  mAh (10,78 Wh)"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-12-mini",
+                "name": "iPhone 12 mini",
+                "description": "This is iPhone 12 mini",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "131.5 x 64.2 x 7.4",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "135  ",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Super Retina XDR OLED, HDR10, Dolby Vision, 625 nits (HBM), 1200 nits (cực đại)",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "5,4",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Ceramic Shield"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1080 x 2340",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.6, 26mm (rộng), 1.4µm, PDAF pixel kép, OIS|12 MP, f/2.4, 13mm, 120˚ (siêu rộng), 1/3.6"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Đèn flash hai tông màu LED kép, HDR (ảnh/toàn cảnh)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/30/60fps|1080p@30/60/120/240fps|HDR|Dolby Vision HDR (lên đến 30 khung hình/giây)|âm thanh nổi rec."
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "12 MP, f/2.2, 23mm (rộng), 1/3.6\" SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "4K@24/30/60fps|1080p@30/60/120fps|con quay hồi chuyển-EIS"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac/6, băng tần kép, điểm phát sóng"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS|GLONASS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning, Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion 2227  mAh (8,57 Wh)"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-12-pro",
+                "name": "iPhone 12 pro",
+                "description": "This is iPhone 12 pro",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "146.7 x 71.5 x 7.4",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "RAM",
+                        "k": "ram",
+                        "v": "6",
+                        "u": "GB"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "189   ",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Super Retina XDR OLED, HDR10, Dolby Vision, 800 nits (HBM), 1200 nits (cực đại)",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6,1",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Ceramic Shield"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1170 x 2532",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP|f/1.6|26mm (wide)|1/2.55\"|1.4µm|PDAF pixel kép|OIS|12 MP|f/2.0|52mm (tele)|1/3.4\"|1.0µm|PDAF|OIS|2x zoom quang|12 MP|f/2.4|13mm|120˚ (ultrawide)|1/3.4\"|1.0µm|Máy quét LiDAR TOF 3D (độ sâu)"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Đèn flash hai tông màu LED kép, HDR (ảnh/toàn cảnh)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/30/60fps|1080p@30/60/120/240fps|10‑bit HDR|Dolby Vision HDR (lên đến 60fps)|âm thanh nổi rec."
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "12 MP, f/2.2, 23mm (rộng), 1/3.6\" SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "4K@24/30/60fps|1080p@30/60/120fps|con quay hồi chuyển-EIS"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac/6, băng tần kép, điểm phát sóng"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS|GLONASS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning, Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion 2815 mAh (10,78 Wh)"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-12-pro-max",
+                "name": "iPhone 12 Pro Max",
+                "description": "This is iPhone 12 Pro Max",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "160.8 x 78.1 x 7.4",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "RAM",
+                        "k": "ram",
+                        "v": "6",
+                        "u": "GB"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "228 ",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Super Retina XDR OLED, HDR10, Dolby Vision, 800 nits (HBM), 1200 nits (cực đại)",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.7 ",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Ceramic Shield"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1284 x 2778",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.6, 26mm (wide), 1/1.9\", 1.7µm, PDAF pixel kép, dịch chuyển cảm biến OIS|12 MP, f/2.2, 65mm (tele), 1/3.4\", 1.0µm, PDAF, OIS, zoom quang 2,5x|12 MP, f/2.4, 13mm, 120˚ (ultrawide), 1/3.4\", 1.0µm|Máy quét LiDAR 3D TOF (độ sâu)"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Đèn flash hai tông màu LED kép, HDR (ảnh/toàn cảnh)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/30/60fps, 1080p@30/60/120/240fps, 10‑bit HDR, Dolby Vision HDR (lên đến 60fps), âm thanh nổi rec."
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "12 MP, f/2.2, 23mm (rộng), 1/3.6\" SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "4K@24/30/60fps|1080p@30/60/120fps|con quay hồi chuyển-EIS"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac/6, băng tần kép, điểm phát sóng"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS|GLONASS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning, Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion 3687  mAh (14,13 Wh)"
+                    }
+                ]
+            }
+        ],
+        "status": "available"
+    },
+    "skus": [
+        {
+            "name": "iPhone 12 64GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12",
+            "price": {
+                "base": 15990000,
+                "special": 12190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 64GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12",
+            "price": {
+                "base": 15990000,
+                "special": 12190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 64GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12",
+            "price": {
+                "base": 15990000,
+                "special": 12190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh Lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 64GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12",
+            "price": {
+                "base": 15990000,
+                "special": 12190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 64GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12",
+            "price": {
+                "base": 15990000,
+                "special": 12190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 64GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12",
+            "price": {
+                "base": 15990000,
+                "special": 12190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12",
+            "price": {
+                "base": 28990000,
+                "special": 15190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12",
+            "price": {
+                "base": 28990000,
+                "special": 15190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12",
+            "price": {
+                "base": 28990000,
+                "special": 15190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12",
+            "price": {
+                "base": 28990000,
+                "special": 15190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 512GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12",
+            "price": {
+                "base": 31990000,
+                "special": 16190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 512GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12",
+            "price": {
+                "base": 31990000,
+                "special": 16190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 512GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12",
+            "price": {
+                "base": 31990000,
+                "special": 16190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12",
+            "price": {
+                "base": 31990000,
+                "special": 16190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+
+        {
+            "name": "iPhone 12 Mini 64GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 8990000,
+                "special": 7190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 64GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 8990000,
+                "special": 7190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 64GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 8990000,
+                "special": 7190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh Lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 64GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 8990000,
+                "special": 7190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 64GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 8990000,
+                "special": 7190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 64GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 8990000,
+                "special": 7190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 9990000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 9990000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 9990000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh Lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 9990000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 9990000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 9990000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 256GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 10990000,
+                "special": 9990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 256GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 10990000,
+                "special": 9990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 256GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 10990000,
+                "special": 9990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh Lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 256GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 10990000,
+                "special": 9990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 256GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 10990000,
+                "special": 9990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Mini 256GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-mini",
+            "price": {
+                "base": 10990000,
+                "special": 9990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+
+        {
+            "name": "iPhone 12 Pro 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro",
+            "price": {
+                "base": 26990000,
+                "special": 9990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro",
+            "price": {
+                "base": 26990000,
+                "special": 12890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro",
+            "price": {
+                "base": 26990000,
+                "special": 12890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro",
+            "price": {
+                "base": 26990000,
+                "special": 12890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro 256GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro",
+            "price": {
+                "base": 31990000,
+                "special": 9490000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro 256GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro",
+            "price": {
+                "base": 31990000,
+                "special": 14890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro 256GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro",
+            "price": {
+                "base": 31990000,
+                "special": 14890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro 256GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro",
+            "price": {
+                "base": 31990000,
+                "special": 14890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro 512GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro",
+            "price": {
+                "base": 35990000,
+                "special": 9690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro 512GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro",
+            "price": {
+                "base": 35990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro 512GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro",
+            "price": {
+                "base": 35990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro 512GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro",
+            "price": {
+                "base": 35990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+
+        {
+            "name": "iPhone 12 Pro Max 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro-max",
+            "price": {
+                "base": 28990000,
+                "special": 15890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro Max 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro-max",
+            "price": {
+                "base": 28990000,
+                "special": 15890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro Max 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro-max",
+            "price": {
+                "base": 28990000,
+                "special": 15890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro Max 128GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro-max",
+            "price": {
+                "base": 28990000,
+                "special": 15890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro Max 256GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro-max",
+            "price": {
+                "base": 31990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro Max 256GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro-max",
+            "price": {
+                "base": 31990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro Max 256GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro-max",
+            "price": {
+                "base": 31990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro Max 256GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro-max",
+            "price": {
+                "base": 31990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro Max 512GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro-max",
+            "price": {
+                "base": 35990000,
+                "special": 17890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro Max 512GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro-max",
+            "price": {
+                "base": 35990000,
+                "special": 17890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro Max 512GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro-max",
+            "price": {
+                "base": 35990000,
+                "special": 17890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 12 Pro Max 512GB",
+            "description": "This is iPhone 12 ",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-12-pro-max",
+            "price": {
+                "base": 35990000,
+                "special": 17890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        }
+    ]
+}
