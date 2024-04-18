@@ -35,7 +35,6 @@ export class QuerySkusDto extends IntersectionType(
         description: `JSON string of ${FilterSkuDto.name}`,
     })
     @IsOptional()
-    @IsString()
     @JsonTransform(FilterSkuDto)
     @ValidateNested()
     @Type(() => FilterSkuDto)
@@ -47,7 +46,6 @@ export class QuerySkusDto extends IntersectionType(
         format: getSchemaPath(SortSkuDto),
     })
     @IsOptional()
-    @IsString()
     @JsonTransform(SortSkuDto)
     @ValidateNested({ each: true })
     @Type(() => SortSkuDto)
