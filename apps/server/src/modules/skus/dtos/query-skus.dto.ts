@@ -7,6 +7,15 @@ import { SkuStatusEnum } from '../enums';
 
 export class FilterSkuDto {
     @ApiPropertyOptional({
+        type: String,
+        example: 'keyword to search',
+        description: 'Search by keyword',
+    })
+    @IsOptional()
+    @IsString()
+    keyword?: string;
+
+    @ApiPropertyOptional({
         enum: SkuStatusEnum,
         isArray: true,
         example: [SkuStatusEnum.Selling, SkuStatusEnum.Newly],

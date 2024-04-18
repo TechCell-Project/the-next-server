@@ -5,6 +5,7 @@ import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, FilterQuery, Model } from 'mongoose';
 import { QuerySkusDto } from './dtos';
 import { SkuStatusEnum } from './enums';
+import { generateRegexQuery } from 'regex-vietnamese';
 
 export class SkusRepository extends AbstractRepository<SKU> {
     constructor(
@@ -30,6 +31,11 @@ export class SkusRepository extends AbstractRepository<SKU> {
             where.status = { $in: filterOptions.status.map((s) => s.toString()) };
         } else {
             where.status = { $ne: SkuStatusEnum.Deleted };
+        }
+
+        if (filterOptions?.keyword) {
+            const keywordRegex = generateRegexQuery(filterOptions.keyword);
+            where.$or = [{ name: keywordRegex }, { description: keywordRegex }];
         }
 
         const skusData = await this.skuModel
