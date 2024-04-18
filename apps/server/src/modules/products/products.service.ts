@@ -10,7 +10,8 @@ import { SPU } from '../spus/schemas';
 import { Brand } from '../brands';
 import { SKU } from '../skus/schemas';
 import { Types } from 'mongoose';
-import { convertToObjectId } from '~/common/utils';
+import { convertToObjectId, sortedStringify } from '~/common/utils';
+import { convertTimeString } from 'convert-time-string';
 
 @Injectable()
 export class ProductsService {
@@ -105,8 +106,14 @@ export class ProductsService {
     }
 
     async getProducts({ filters, ...payload }: QueryProductsDto) {
+        const cacheKey = `CACHE_products_${sortedStringify({ filters, ...payload })}`;
+        if (await this.redisService.exists(cacheKey)) {
+            return this.redisService.get<ProductInListDto[]>(cacheKey);
+        }
+
         const { limit, page } = payload;
         const { keyword } = filters || {};
+        let spuFilters: QueryProductsDto['filters'] = {};
 
         if (keyword) {
             const brandsWithKeyword = await this.brandsService.findManyWithPagination({
@@ -119,20 +126,28 @@ export class ProductsService {
                 },
             });
 
-            const spusWithKeyword = await this.spusService.getSpus({
-                limit,
-                page,
-                filters: {
-                    keyword: keyword,
-                    brandIds: brandsWithKeyword?.map((b) => b._id),
-                },
-            });
-
-            const products = await this.assignPopulateToSpu(spusWithKeyword);
-            return this.mapToListProducts(products);
+            spuFilters = {
+                ...spuFilters,
+                keyword: keyword,
+                brandIds: Array.from(
+                    new Set([
+                        ...(filters?.brandIds ?? []),
+                        ...brandsWithKeyword?.map((b) => b._id.toString()),
+                    ]),
+                ),
+            };
         }
 
-        return [] as any;
+        const spus = await this.spusService.getSpus({
+            limit,
+            page,
+            filters: spuFilters,
+        });
+        const products = await this.assignPopulateToSpu(spus);
+        const resultProducts = this.mapToListProducts(products);
+
+        await this.redisService.set(cacheKey, resultProducts, convertTimeString('3m'));
+        return resultProducts;
     }
 
     private async assignPopulateToSpu(spu: SPU[]) {

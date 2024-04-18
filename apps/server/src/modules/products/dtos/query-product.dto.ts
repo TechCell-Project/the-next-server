@@ -17,11 +17,11 @@ export class FilterProductsDto {
     @ApiPropertyOptional({
         type: String,
         isArray: true,
-        example: 'id of brand',
+        example: 'ids of brand',
     })
     @IsOptional()
     @IsMongoId({ each: true })
-    brandId?: string[];
+    brandIds?: string[];
 
     @ApiPropertyOptional({
         type: String,

@@ -57,3 +57,21 @@ export function generateRandomString(
     }
     return result;
 }
+
+/**
+ * Sorts and stringifies an object
+ * @param obj The object to be sorted and stringified
+ * @returns The sorted and stringified object as a string
+ */
+export function sortedStringify(obj: unknown): string {
+    if (typeof obj !== 'object' || obj === null || obj === undefined) {
+        return JSON.stringify(obj);
+    }
+
+    if (Array.isArray(obj)) {
+        return `[${obj.map(sortedStringify).join(',')}]`;
+    }
+
+    const keys = Object.keys(obj as object).sort();
+    return `{${keys.map((key) => `"${key}":${sortedStringify((obj as { [key: string]: unknown })[key])}`).join(',')}}`;
+}
