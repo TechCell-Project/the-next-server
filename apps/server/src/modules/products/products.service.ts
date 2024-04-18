@@ -107,8 +107,9 @@ export class ProductsService {
 
     async getProducts({ filters, ...payload }: QueryProductsDto) {
         const cacheKey = `CACHE_products_${sortedStringify({ filters, ...payload })}`;
-        if (await this.redisService.exists(cacheKey)) {
-            return this.redisService.get<ProductInListDto[]>(cacheKey);
+        const fromCache = await this.redisService.get<ProductInListDto[]>(cacheKey);
+        if (fromCache) {
+            return fromCache;
         }
 
         const { limit, page } = payload;
