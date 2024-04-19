@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { PriceDto } from '~/server/skus';
-import { SKU } from '~/server/skus/schemas';
+import { ImageSchema, SKU } from '~/server/skus/schemas';
 import { AttributeInProductDto, ImageSchemaDto } from '~/server/spus/dtos';
 import { SPU, SPUModelSchema } from '~/server/spus/schemas';
 import { ProductsService } from '../products.service';
@@ -37,9 +37,9 @@ class VariationDto {
     attributes: AttributeInProductDto[];
 
     @ApiPropertyOptional({
-        type: ImageSchemaDto,
+        type: ImageSchema,
     })
-    image?: ImageSchemaDto;
+    image?: ImageSchema;
 
     @ApiProperty({
         type: String,
