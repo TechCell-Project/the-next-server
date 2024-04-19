@@ -48,6 +48,7 @@ export class SkusService {
             cloneData.image = {
                 publicId: imageFound.publicId,
                 url: imageFound.url,
+                isThumbnail: false,
             };
         }
 
@@ -201,6 +202,7 @@ export class SkusService {
             skuFound.image = {
                 publicId: imageFound.publicId,
                 url: imageFound.url,
+                isThumbnail: false,
             };
             delete data.imagePublicId;
         }
