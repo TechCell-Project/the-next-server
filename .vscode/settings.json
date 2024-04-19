@@ -42,6 +42,7 @@
         "tags",
         "repository",
         "products",
-        "carts"
+        "carts",
+        "orders"
     ]
 }

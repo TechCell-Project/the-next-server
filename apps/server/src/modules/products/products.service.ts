@@ -12,13 +12,16 @@ import { SKU } from '../skus/schemas';
 import { Types } from 'mongoose';
 import { convertToObjectId, sortedStringify } from '~/common/utils';
 import { convertTimeString } from 'convert-time-string';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class ProductsService {
     private static readonly SPLITTER = '|';
+    public DIMENSIONS_KEY: string;
+    public WEIGHT_KEY: string;
 
-    public static toProductId(spu: SPU, modelSlug: string): string {
-        return `${spu._id.toString()}${ProductsService.SPLITTER}${modelSlug}`;
+    public static toProductId({ _id }: { _id: Types.ObjectId }, modelSlug: string): string {
+        return `${_id.toString()}${ProductsService.SPLITTER}${modelSlug}`;
     }
 
     public static fromProductId(productId: string): {
@@ -47,6 +50,7 @@ export class ProductsService {
     }
 
     constructor(
+        private readonly configService: ConfigService,
         private readonly logger: PinoLogger,
         private readonly redisService: RedisService,
         private readonly tagsService: TagsService,
@@ -55,6 +59,8 @@ export class ProductsService {
         private readonly skusService: SkusService,
     ) {
         this.logger.setContext(ProductsService.name);
+        this.DIMENSIONS_KEY = this.configService.getOrThrow<string>('DIMENSIONS_ATTRIBUTE_KEY');
+        this.WEIGHT_KEY = this.configService.getOrThrow<string>('WEIGHT_ATTRIBUTE_KEY');
     }
 
     async getProductById(productId: string) {
@@ -149,6 +155,58 @@ export class ProductsService {
 
         await this.redisService.set(cacheKey, resultProducts, convertTimeString('3m'));
         return resultProducts;
+    }
+
+    async getProductDimensions(skuId: string | Types.ObjectId, isCeil = true) {
+        const sku = await this.skusService.getSkuById(skuId);
+        const product = await this.getProductByIdWithSku(
+            ProductsService.toProductId({ _id: sku.spuId }, sku.spuModelSlug),
+            skuId,
+        );
+
+        const attributeList = [...product.attributes, ...product.variations[0].attributes];
+        const weightString = attributeList.find((a) => a.k === this.WEIGHT_KEY)?.v;
+        const dimensionsString = attributeList.find((a) => a.k === this.DIMENSIONS_KEY)?.v;
+        if (!dimensionsString) {
+            throw new HttpException(
+                {
+                    errors: {
+                        dimensions: 'dimensionsNotFound',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+        const [length, width, height] = dimensionsString.split('x').map((d) => {
+            const valueInMm = parseFloat(d.replace(',', '.'));
+            const valueInCm = valueInMm / 10;
+
+            if (isCeil) {
+                return Math.ceil(valueInCm);
+            }
+            return valueInCm;
+        });
+
+        if (!weightString) {
+            throw new HttpException(
+                {
+                    errors: {
+                        weight: 'weightNotFound',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+        const weight = isCeil
+            ? Math.ceil(parseFloat(weightString.replace(',', '.')))
+            : parseFloat(weightString.replace(',', '.'));
+
+        return {
+            length,
+            width,
+            height,
+            weight,
+        };
     }
 
     private async assignPopulateToSpu(spu: SPU[]) {

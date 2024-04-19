@@ -5,6 +5,7 @@ import { GhnDistrictDTO, GhnProvinceDTO, GhnWardDTO } from './dtos';
 import { UserAddressSchema } from '~/server/users';
 import { RedisService } from '~/common/redis';
 import { convertTimeString } from 'convert-time-string';
+import { PreviewOrder } from 'giaohangnhanh/lib/order';
 
 @Injectable()
 export class GhnService {
@@ -112,6 +113,16 @@ export class GhnService {
             });
 
         return fee;
+    }
+
+    public async previewOrder(previewData: PreviewOrder) {
+        const { expected_delivery_time, ...data } =
+            await this.ghnInstance.order.previewOrder(previewData);
+
+        const expected = new Date(expected_delivery_time);
+        expected.setDate(expected.getDate() + 1);
+
+        return { expected_delivery_time: expected, ...data };
     }
 
     // Utils

@@ -3,4 +3,4 @@ export * from './customer.schema';
 export * from './product.schema';
 export * from './payment.schema';
 export * from './shipping.schema';
-export * from './log.schema';
+export * from './order-log.schema';

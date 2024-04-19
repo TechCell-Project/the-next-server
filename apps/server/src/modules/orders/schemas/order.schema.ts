@@ -15,6 +15,11 @@ import { ShippingSchema } from './shipping.schema';
     collection: 'orders',
 })
 export class Order extends AbstractDocument {
+    constructor(data?: Partial<Order>) {
+        super();
+        Object.assign(this, data);
+    }
+
     @ApiProperty({ type: CustomerSchema })
     @Factory(() => {})
     @Prop({ required: true, type: CustomerSchema })
