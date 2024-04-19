@@ -1,0 +1,1 @@
+export const RELEASE_HOLD_SERIAL_NUMBER_QUEUE = 'skus_release_hold_serial_number_queue';

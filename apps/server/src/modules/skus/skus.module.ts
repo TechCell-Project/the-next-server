@@ -10,6 +10,9 @@ import { ImagesModule } from '../images';
 import { AttributesModule } from '../attributes';
 import { SerialNumber, SerialNumberSchema } from './schemas/serial-number.schema';
 import { SerialNumberRepository } from './serial-number.repository';
+import { BullModule } from '@nestjs/bullmq';
+import { ReleaseHoldSerialNumberConsumer } from './queues/release-hold-sku.consumer';
+import { RELEASE_HOLD_SERIAL_NUMBER_QUEUE } from './constants/skus-queue.constant';
 
 @Module({
     imports: [
@@ -19,9 +22,19 @@ import { SerialNumberRepository } from './serial-number.repository';
         SPUModule,
         ImagesModule,
         AttributesModule,
+        BullModule.registerQueue({
+            configKey: 'redis',
+            prefix: `BULLMQ_${RELEASE_HOLD_SERIAL_NUMBER_QUEUE}:`,
+            name: RELEASE_HOLD_SERIAL_NUMBER_QUEUE,
+        }),
     ],
     controllers: [SkusController],
-    providers: [SkusRepository, SkusService, SerialNumberRepository],
+    providers: [
+        SkusRepository,
+        SkusService,
+        SerialNumberRepository,
+        ReleaseHoldSerialNumberConsumer,
+    ],
     exports: [SkusService],
 })
 export class SKUModule {}
