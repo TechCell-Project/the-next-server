@@ -64,6 +64,16 @@ export class OrdersService {
             service_type_id: ServiceTypeId.Standard,
             required_note: RequiredNote.ALLOW_VIEW_NOT_TRY,
         });
+        if (!previewGhn) {
+            throw new HttpException(
+                {
+                    errors: {
+                        ghn: 'cannotPreviewOrder',
+                    },
+                },
+                HttpStatus.INTERNAL_SERVER_ERROR,
+            );
+        }
 
         const orderPreview = new PreviewOrderResponseDto({
             customer: {
@@ -80,7 +90,8 @@ export class OrdersService {
             products: skus.map((sku) => ({
                 skuId: sku._id,
                 unitPrice: sku.price,
-                quantity: 1,
+                quantity:
+                    products.find((p) => p.skuId.toString() === sku._id.toString())?.quantity ?? 1,
                 serialNumber: [],
             })),
             payment: {

@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { HttpException, Inject, Injectable } from '@nestjs/common';
 import { GetShippingFeeDTO, ItemShipping } from './dtos/get-shipping-fee.dto';
 import Ghn, { GhnConfig } from 'giaohangnhanh';
 import { GhnDistrictDTO, GhnProvinceDTO, GhnWardDTO } from './dtos';
@@ -116,13 +116,25 @@ export class GhnService {
     }
 
     public async previewOrder(previewData: PreviewOrder) {
-        const { expected_delivery_time, ...data } =
-            await this.ghnInstance.order.previewOrder(previewData);
+        const maxRetries = 3;
+        let retries = 0;
 
-        const expected = new Date(expected_delivery_time);
-        expected.setDate(expected.getDate() + 1);
+        while (retries < maxRetries) {
+            try {
+                const { expected_delivery_time, ...data } =
+                    await this.ghnInstance.order.previewOrder(previewData);
 
-        return { expected_delivery_time: expected, ...data };
+                const expected = new Date(expected_delivery_time);
+                expected.setDate(expected.getDate() + 1);
+
+                return { expected_delivery_time: expected, ...data };
+            } catch (error) {
+                retries++;
+                if (retries === maxRetries) {
+                    throw new HttpException('Failed to preview order after multiple attempts', 500);
+                }
+            }
+        }
     }
 
     // Utils
