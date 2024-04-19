@@ -27,7 +27,7 @@ export class ReleaseHoldSerialNumberConsumer extends WorkerHost {
 
     async process(job: Job<{ serialNumber: string }>) {
         try {
-            return this.skusService.releaseHoldSerialNumber(job.data.serialNumber);
+            await this.skusService.releaseHoldSerialNumber(job.data.serialNumber);
         } catch (error) {
             this.logger.error(error);
         }
