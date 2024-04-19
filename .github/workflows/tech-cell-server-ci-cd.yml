@@ -155,6 +155,8 @@ jobs:
                   echo REDIS_HOST= '${{secrets.REDIS_HOST}}' >> .env
                   echo REDIS_PORT= '${{secrets.REDIS_PORT}}' >> .env
                   echo REDIS_PASSWORD= '${{secrets.REDIS_PASSWORD}}' >> .env
+                  echo DIMENSIONS_ATTRIBUTE_KEY = 'kich_thuoc' >> .env
+                  echo WEIGHT_ATTRIBUTE_KEY = 'khoi_luong' >> .env
                   cat .env
 
             - name: Install dependencies
