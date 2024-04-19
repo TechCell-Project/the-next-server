@@ -275,7 +275,7 @@ export class ProductsService {
         for (const spu of listSpu) {
             for (const model of spu.models) {
                 const sku = spu.skus.find((sku) => sku?.spuModelSlug === model.slug);
-                const prod = {
+                const prod: ProductInListDto = {
                     id: ProductsService.toProductId(spu, model.slug),
                     name: spu.name,
                     modelName: model.name,

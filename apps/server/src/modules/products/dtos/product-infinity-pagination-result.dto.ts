@@ -5,11 +5,17 @@ import { ImageSchema } from '~/server/skus/schemas';
 
 export class ProductInListDto {
     constructor(data: ProductInListDto) {
+        this.id = data.id;
+        this.modelName = data.modelName;
         this.name = data.name;
         this.brandName = data.brandName;
         this.price = data.price;
         this.images = data.images;
+        this.tags = data.tags;
     }
+
+    @ApiProperty({ type: String, description: 'id of product' })
+    id: string;
 
     @ApiProperty({ type: String, description: 'name of product' })
     name: string;
