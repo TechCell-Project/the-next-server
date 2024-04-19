@@ -8,7 +8,7 @@ import { AttributeInProductSchema } from '~/server/spus/schemas';
 import { PriceSchema } from './price.schema';
 import { SkuStatusEnum } from '../enums';
 
-export class SkuImageSchema {
+export class ImageSchema {
     @ApiProperty({ example: '5f9a7f5d9d8f6d7f5d8f6d7', type: String })
     @Factory(() => new Types.ObjectId())
     @Prop({ required: true, type: String })
@@ -22,6 +22,10 @@ export class SkuImageSchema {
     @Factory((faker: Faker) => faker.image.url())
     @Prop({ required: true, type: String })
     url: string;
+
+    @ApiProperty({ example: true, type: Boolean })
+    @Prop({ required: true, type: Boolean, default: false })
+    isThumbnail: boolean;
 }
 
 @Schema({
@@ -57,10 +61,10 @@ export class SKU extends AbstractDocument {
     @Prop({ required: true, type: PriceSchema, default: {} })
     price: PriceSchema;
 
-    @ApiProperty({ type: SkuImageSchema })
+    @ApiProperty({ type: ImageSchema })
     @Factory(() => {})
-    @Prop({ required: false, type: SkuImageSchema, default: {} })
-    image?: SkuImageSchema;
+    @Prop({ required: false, type: ImageSchema, default: {} })
+    image?: ImageSchema;
 
     @ApiProperty({ example: SkuStatusEnum.Selling, enum: SkuStatusEnum, type: String })
     @Factory((faker: Faker) => faker.helpers.enumValue(SkuStatusEnum))

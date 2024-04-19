@@ -11,6 +11,10 @@ import { convertToObjectId, sanitizeHtmlString } from '~/common';
 import { FilterQuery, Types } from 'mongoose';
 import { SerialNumberRepository } from './serial-number.repository';
 import { remove as removeDiacritics } from 'diacritics';
+import { RELEASE_HOLD_SERIAL_NUMBER_QUEUE } from './constants/skus-queue.constant';
+import { Queue } from 'bullmq';
+import { InjectQueue } from '@nestjs/bullmq';
+import { convertTimeString } from 'convert-time-string';
 
 @Injectable()
 export class SkusService {
@@ -21,6 +25,7 @@ export class SkusService {
         private readonly spusService: SpusService,
         private readonly imagesService: ImagesService,
         private readonly attributesService: AttributesService,
+        @InjectQueue(RELEASE_HOLD_SERIAL_NUMBER_QUEUE) private releaseHoldSkuQueue: Queue,
     ) {
         this.logger.setContext(SkusService.name);
     }
@@ -43,6 +48,7 @@ export class SkusService {
             cloneData.image = {
                 publicId: imageFound.publicId,
                 url: imageFound.url,
+                isThumbnail: false,
             };
         }
 
@@ -196,6 +202,7 @@ export class SkusService {
             skuFound.image = {
                 publicId: imageFound.publicId,
                 url: imageFound.url,
+                isThumbnail: false,
             };
             delete data.imagePublicId;
         }
@@ -217,6 +224,86 @@ export class SkusService {
             },
             updateQuery: {
                 $set: skuFound,
+            },
+        });
+    }
+
+    async countSerialNumberWithSkuId(skuId: string | Types.ObjectId) {
+        return this.serialNumberRepository.count({
+            filterQuery: {
+                skuId: convertToObjectId(skuId),
+                status: SerialNumberStatusEnum.Available,
+            },
+        });
+    }
+
+    async pickSerialNumberToHold(
+        skuId: string | Types.ObjectId,
+        quantity: number,
+        isPreview = true,
+    ) {
+        const serialNumbers = await this.serialNumberRepository.find({
+            filterQuery: {
+                skuId: convertToObjectId(skuId),
+                status: SerialNumberStatusEnum.Available,
+            },
+            queryOptions: {
+                limit: quantity,
+            },
+        });
+        if (!serialNumbers || serialNumbers?.length < quantity) {
+            throw new HttpException(
+                {
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        sku: 'notEnoughQuantity',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        const updatePromises = serialNumbers.map((serialNumber) =>
+            this.serialNumberRepository.findOneAndUpdateOrThrow({
+                filterQuery: {
+                    _id: serialNumber._id,
+                },
+                updateQuery: {
+                    $set: {
+                        status: SerialNumberStatusEnum.Holding,
+                    },
+                },
+            }),
+        );
+
+        const queuePromises = serialNumbers.map((serialNumber) =>
+            this.releaseHoldSkuQueue.add(
+                RELEASE_HOLD_SERIAL_NUMBER_QUEUE,
+                {
+                    serialNumber: serialNumber.number,
+                },
+                {
+                    jobId: `${serialNumber.number}`,
+                    delay: convertTimeString(isPreview ? '5m' : '15m'),
+                },
+            ),
+        );
+
+        await Promise.all([...updatePromises, ...queuePromises]);
+
+        return serialNumbers.map((serialNumber) => serialNumber.number);
+    }
+
+    async releaseHoldSerialNumber(serialNumber: string) {
+        await this.serialNumberRepository.findOneAndUpdate({
+            filterQuery: {
+                number: serialNumber,
+                status: SerialNumberStatusEnum.Holding,
+            },
+            updateQuery: {
+                $set: {
+                    status: SerialNumberStatusEnum.Available,
+                },
             },
         });
     }

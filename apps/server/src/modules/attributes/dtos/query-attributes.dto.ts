@@ -87,7 +87,7 @@ export class QueryAttributesDto extends IntersectionType(
         format: getSchemaPath(SortAttributeDto),
     })
     @IsOptional()
-    @JsonTransform(SortAttributeDto)
+    @JsonTransform(Array<SortAttributeDto>)
     @ValidateNested({ each: true })
     @Type(() => SortAttributeDto)
     sort?: SortAttributeDto[] | null | undefined;

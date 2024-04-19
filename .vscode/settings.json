@@ -42,6 +42,12 @@
         "tags",
         "repository",
         "products",
-        "carts"
-    ]
+        "carts",
+        "orders",
+        "bullmq"
+    ],
+    "sonarlint.connectedMode.project": {
+        "connectionId": "techcell-project",
+        "projectKey": "TechCell-Project_the-next-server"
+    }
 }

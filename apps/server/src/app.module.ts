@@ -17,12 +17,20 @@ import { I18nModule } from '~/common/i18n';
 import { SKUModule } from './modules/skus';
 import { ProductsModule } from './modules/products/products.module';
 import { CartsModule } from './modules/carts';
+import { BullModule } from '@nestjs/bullmq';
 
 @Module({
     imports: [
         AppConfigModule,
         I18nModule,
         RedisModule,
+        BullModule.forRoot('redis', {
+            connection: {
+                host: process.env.REDIS_HOST,
+                port: +process.env.REDIS_PORT!,
+                password: process.env.REDIS_PASSWORD,
+            },
+        }),
         LoggerModule,
         AuthModule,
         AttributesModule,

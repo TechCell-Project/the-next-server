@@ -1,7 +1,7 @@
 import { Prop } from '@nestjs/mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { ShippingProviderEnum } from '../enum';
-import { LogSchema } from './log.schema';
+import { OrderLogSchema } from './order-log.schema';
 
 export class ShippingSchema {
     @ApiProperty({ example: ShippingProviderEnum.GHN, enum: ShippingProviderEnum, type: String })
@@ -17,7 +17,11 @@ export class ShippingSchema {
     @Prop({ required: true, type: Number, default: 0 })
     fee: number;
 
-    @ApiPropertyOptional({ example: [], type: [LogSchema] })
-    @Prop({ required: false, type: [LogSchema], default: [] })
-    logs: LogSchema[];
+    @ApiProperty({ example: new Date(), type: Date })
+    @Prop({ required: true, type: Date })
+    expectedDeliveryTime: Date;
+
+    @ApiPropertyOptional({ example: [], type: [OrderLogSchema] })
+    @Prop({ required: false, type: [OrderLogSchema], default: [] })
+    logs: OrderLogSchema[];
 }

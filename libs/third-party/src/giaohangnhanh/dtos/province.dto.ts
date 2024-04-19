@@ -1,7 +1,7 @@
 import { IsArray, IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { GhnStatusEnum } from '../enums';
 import { ApiProperty } from '@nestjs/swagger';
-import { GhnProvince } from 'giaohangnhanh';
+import { GhnProvince } from 'giaohangnhanh/lib/address';
 
 export class GhnProvinceDTO {
     constructor(data: GhnProvince) {
