@@ -1,19 +1,25 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, Query } from '@nestjs/common';
 import { OrdersService } from './orders.service';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiExcludeEndpoint, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from '~/common';
 import { JwtPayloadType } from '../auth/strategies/types';
-import { PreviewOrderDto, PreviewOrderResponseDto } from './dtos';
+import { PreviewOrderDto, PreviewOrderResponseDto, VnpayIpnUrlDTO } from './dtos';
 import { AuthRoles } from '../auth/guards';
 
 @ApiTags('orders')
 @Controller({
     path: 'orders',
 })
-@AuthRoles()
 export class OrdersController {
     constructor(private readonly ordersService: OrdersService) {}
 
+    @ApiExcludeEndpoint()
+    @Get('/vnpay-ipn')
+    async vnpayIpnUrl(@Query() query: VnpayIpnUrlDTO) {
+        return this.ordersService.verifyVnpayIpn(query);
+    }
+
+    @AuthRoles()
     @ApiOkResponse({
         type: PreviewOrderResponseDto,
     })

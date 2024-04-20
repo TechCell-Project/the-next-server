@@ -12,7 +12,8 @@
         "skus",
         "spus",
         "streamifier",
-        "virtuals"
+        "virtuals",
+        "Vnpay"
     ],
     "conventionalCommits.scopes": [
         "seed",

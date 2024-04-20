@@ -48,6 +48,10 @@ export class Order extends AbstractDocument {
     @Factory(() => {})
     @Prop({ required: true, type: ShippingSchema })
     shipping: ShippingSchema;
+
+    @ApiProperty({ example: 10000, type: Number, description: 'Total price of order' })
+    @Prop({ required: true, type: Number })
+    totalPrice: number;
 }
 
 export type OrderDocument = HydratedDocument<Order>;

@@ -1,9 +1,14 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { OrdersRepository } from './orders.repository';
 import { SkusService } from '../skus';
-import { PreviewOrderDto, PreviewOrderResponseDto, ProductInOrderDto } from './dtos';
+import {
+    PreviewOrderDto,
+    PreviewOrderResponseDto,
+    ProductInOrderDto,
+    VnpayIpnUrlDTO,
+} from './dtos';
 import { UsersService } from '../users/users.service';
-import { GhnService } from '~/third-party';
+import { GhnService, VnpayService } from '~/third-party';
 import { User } from '../users';
 import { SKU } from '../skus/schemas';
 import { SkuStatusEnum } from '../skus/enums';
@@ -11,16 +16,32 @@ import { ItemType } from 'giaohangnhanh/lib/order';
 import { ProductsService } from '../products/products.service';
 import { PaymentTypeId, RequiredNote } from 'giaohangnhanh/lib/order/enums';
 import { ServiceTypeId } from 'giaohangnhanh/lib/enums';
-import { PaymentStatusEnum, ShippingProviderEnum } from './enum';
+import {
+    OrderStatusEnum,
+    PaymentMethodEnum,
+    PaymentStatusEnum,
+    ShippingProviderEnum,
+} from './enum';
+import {
+    InpOrderAlreadyConfirmed,
+    IpnFailChecksum,
+    IpnInvalidAmount,
+    IpnOrderNotFound,
+    IpnSuccess,
+    IpnUnknownError,
+} from 'vnpay';
+import { PinoLogger } from 'nestjs-pino';
 
 @Injectable()
 export class OrdersService {
     constructor(
+        private readonly logger: PinoLogger,
         private readonly ordersRepository: OrdersRepository,
         private readonly skusService: SkusService,
         private readonly usersService: UsersService,
         private readonly ghnService: GhnService,
         private readonly productsService: ProductsService,
+        private readonly vnpayService: VnpayService,
     ) {}
 
     async previewOrder(userId: string, payload: PreviewOrderDto) {
@@ -98,10 +119,64 @@ export class OrdersService {
                 method: paymentMethod,
                 status: PaymentStatusEnum.Pending,
                 url: '',
+                paymentData: {},
             },
         });
 
         return orderPreview;
+    }
+
+    async verifyVnpayIpn(query: VnpayIpnUrlDTO) {
+        try {
+            const isVerified = this.vnpayService.verifyReturnUrl(query);
+            if (!isVerified || !isVerified.isSuccess) {
+                return IpnFailChecksum;
+            }
+
+            const order = await this.ordersRepository.getOrderByIdOrNull(query.vnp_TxnRef);
+            if (!order) {
+                return IpnOrderNotFound;
+            }
+
+            if (order.totalPrice !== Number(query.vnp_Amount) / 100) {
+                return IpnInvalidAmount;
+            }
+
+            // If payment, or order is completed, or canceled, return error
+            if (
+                order.orderStatus === OrderStatusEnum.Completed ||
+                order.payment.status === PaymentStatusEnum.Completed ||
+                order.orderStatus === OrderStatusEnum.Canceled
+            ) {
+                return InpOrderAlreadyConfirmed;
+            }
+
+            order.payment.method = PaymentMethodEnum.VNPAY;
+            if (query.vnp_ResponseCode === '00' || query.vnp_TransactionStatus === '00') {
+                order.payment.status = PaymentStatusEnum.Completed;
+                order.orderStatus = OrderStatusEnum.Pending;
+                this.logger.debug('Payment success');
+            } else {
+                order.payment.status = PaymentStatusEnum.Canceled;
+                order.orderStatus = OrderStatusEnum.Canceled;
+                this.logger.debug('Payment failed');
+            }
+
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const { vnp_SecureHash, ...vnpayQueryData } = query;
+            order.payment.paymentData = vnpayQueryData;
+            this.logger.debug({ order });
+            await this.ordersRepository.findOneAndUpdateOrThrow({
+                filterQuery: {
+                    _id: order._id,
+                },
+                updateQuery: order,
+            });
+            return IpnSuccess;
+        } catch (error) {
+            this.logger.error(error);
+            return IpnUnknownError;
+        }
     }
 
     private async createItemsOfShipping(

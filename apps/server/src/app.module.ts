@@ -42,11 +42,11 @@ import { BullModule } from '@nestjs/bullmq';
         BrandsModule,
         AttributesModule,
         TagsModule,
-        OrdersModule,
         SPUModule,
         SKUModule,
         ProductsModule,
         CartsModule,
+        OrdersModule,
     ],
 })
 export class AppModule {}
