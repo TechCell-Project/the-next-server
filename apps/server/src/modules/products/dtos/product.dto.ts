@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { PriceDto } from '~/server/skus';
 import { ImageSchema, SKU } from '~/server/skus/schemas';
-import { AttributeInProductDto, ImageSchemaDto } from '~/server/spus/dtos';
+import { AttributeInProductDto } from '~/server/spus/dtos';
 import { SPU, SPUModelSchema } from '~/server/spus/schemas';
 import { ProductsService } from '../products.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
@@ -93,9 +93,9 @@ export class ProductDto {
 
     @ApiProperty({
         isArray: true,
-        type: ImageSchemaDto,
+        type: ImageSchema,
     })
-    images: ImageSchemaDto[];
+    images: ImageSchema[];
 
     @ApiProperty({
         isArray: true,
