@@ -34,6 +34,7 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
         const createdDocument = new this.model({
             _id: new Types.ObjectId(),
             ...document,
+            session,
         });
         return (
             await createdDocument.save({ ...saveOptions, session })
@@ -195,11 +196,17 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
 
     async commitTransaction(session: ClientSession): Promise<void> {
         await session.commitTransaction();
-        session.endSession();
+        await session.endSession();
     }
 
     async rollbackTransaction(session: ClientSession): Promise<void> {
         await session.abortTransaction();
-        session.endSession();
+        await session.endSession();
+    }
+
+    async endSession(session: ClientSession): Promise<void> {
+        if (session.inTransaction()) {
+            await session.endSession();
+        }
     }
 }
