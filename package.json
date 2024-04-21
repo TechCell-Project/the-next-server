@@ -62,7 +62,7 @@
         "convert-time-string": "^0.0.2",
         "diacritics": "^1.3.0",
         "fb": "^2.0.0",
-        "giaohangnhanh": "^0.0.2",
+        "giaohangnhanh": "^0.0.3",
         "google-auth-library": "^9.7.0",
         "handlebars": "^4.7.8",
         "helmet": "^7.1.0",

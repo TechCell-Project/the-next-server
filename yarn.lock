@@ -5420,10 +5420,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"giaohangnhanh@npm:^0.0.2":
-  version: 0.0.2
-  resolution: "giaohangnhanh@npm:0.0.2"
-  checksum: 10c0/2e7e25f92885c43d5d5d19720deb17bdafb13b46a13d1e57c4d59b8644505882ff7047d6481a1dab020312af0dee208e2f8d850c546c7b3557142b7499c6e088
+"giaohangnhanh@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "giaohangnhanh@npm:0.0.3"
+  checksum: 10c0/bfbca22bd800cee39835e4b42d9f62b1244d8f1955d5119dcd12a96a77131c8e6b6bc5dab7a740a38c4efe9c2b162726af68e8309114943b5e79a470df2c5489
   languageName: node
   linkType: hard
 
@@ -10059,7 +10059,7 @@ __metadata:
     eslint-config-prettier: "npm:^9.0.0"
     eslint-plugin-prettier: "npm:^5.0.0"
     fb: "npm:^2.0.0"
-    giaohangnhanh: "npm:^0.0.2"
+    giaohangnhanh: "npm:^0.0.3"
     google-auth-library: "npm:^9.7.0"
     handlebars: "npm:^4.7.8"
     helmet: "npm:^7.1.0"
