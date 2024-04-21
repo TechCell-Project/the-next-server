@@ -13,6 +13,7 @@ import { SerialNumberRepository } from './serial-number.repository';
 import { BullModule } from '@nestjs/bullmq';
 import { ReleaseHoldSerialNumberConsumer } from './queues/release-hold-sku.consumer';
 import { RELEASE_HOLD_SERIAL_NUMBER_QUEUE } from './constants/skus-queue.constant';
+import { RedisModule } from '~/common/redis';
 
 @Module({
     imports: [
@@ -27,6 +28,7 @@ import { RELEASE_HOLD_SERIAL_NUMBER_QUEUE } from './constants/skus-queue.constan
             prefix: `BULLMQ_${RELEASE_HOLD_SERIAL_NUMBER_QUEUE}:`,
             name: RELEASE_HOLD_SERIAL_NUMBER_QUEUE,
         }),
+        RedisModule,
     ],
     controllers: [SkusController],
     providers: [

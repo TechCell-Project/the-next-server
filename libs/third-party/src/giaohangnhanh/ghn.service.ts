@@ -117,6 +117,7 @@ export class GhnService {
     }
 
     public async previewOrder(previewData: PreviewOrder) {
+        console.log(previewData);
         const maxRetries = 3;
         let retries = 0;
 
@@ -138,9 +139,29 @@ export class GhnService {
         }
     }
 
+    // public async createOrder(orderData: CreateOrder) {
+    //     console.log(orderData);
+    //     return retry(
+    //         async () => {
+    //             const { expected_delivery_time, ...data } =
+    //                 await this.ghnInstance.order.createOrder(orderData);
+
+    //             const expected = new Date(expected_delivery_time);
+    //             expected.setDate(expected.getDate() + 1);
+
+    //             return { expected_delivery_time: expected, ...data };
+    //         },
+    //         { maxRetries: 3, errorMessage: 'Failed to create order after multiple attempts' },
+    //     );
+    // }
     public async createOrder(orderData: CreateOrder) {
-        return retry(
-            async () => {
+        const maxRetries = 3;
+        let retries = 0;
+
+        while (retries < maxRetries) {
+            try {
+                orderData.pick_shift = (await this.ghnInstance.order.pickShift()).map((s) => s.id);
+
                 const { expected_delivery_time, ...data } =
                     await this.ghnInstance.order.createOrder(orderData);
 
@@ -148,9 +169,14 @@ export class GhnService {
                 expected.setDate(expected.getDate() + 1);
 
                 return { expected_delivery_time: expected, ...data };
-            },
-            { maxRetries: 3, errorMessage: 'Failed to preview order after multiple attempts' },
-        );
+            } catch (error) {
+                console.error(error);
+                retries++;
+                if (retries === maxRetries) {
+                    throw new HttpException('Failed to create order after multiple attempts', 500);
+                }
+            }
+        }
     }
 
     public async cancelOrder(orderCode?: string) {

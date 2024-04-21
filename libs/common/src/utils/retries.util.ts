@@ -19,9 +19,10 @@ export async function retry<T>(
             return res;
         } catch (error) {
             retries++;
+            console.error(error);
             if (retries < maxRetries) {
                 await new Promise((resolve) => setTimeout(resolve, delay));
-                delay *= 2; // Increase delay
+                delay *= retries; // Increase delay
             } else {
                 throw new HttpException(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
             }

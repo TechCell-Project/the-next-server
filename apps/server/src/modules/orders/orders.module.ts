@@ -10,6 +10,7 @@ import { SKUModule } from '../skus';
 import { UsersModule } from '../users';
 import { GhnModule, VnpayModule } from '~/third-party';
 import { ProductsModule } from '../products/products.module';
+import { RedisModule } from '~/common/redis';
 
 @Module({
     imports: [
@@ -31,6 +32,7 @@ import { ProductsModule } from '../products/products.module';
             tmnCode: process.env.VNPAY_TMN_CODE ?? '',
             testMode: true,
         }),
+        RedisModule,
     ],
     controllers: [OrdersController],
     providers: [OrdersRepository, OrdersService],

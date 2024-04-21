@@ -18,6 +18,16 @@ export class Order extends AbstractDocument {
     constructor(data?: Partial<Order>) {
         super();
         Object.assign(this, data);
+
+        this.totalPrice =
+            0 +
+            (this?.shipping?.fee ?? 0) +
+            this.products.reduce((total: number, product) => {
+                return (
+                    total +
+                    (product?.unitPrice?.special || product.unitPrice.base) * product.quantity
+                );
+            }, 0);
     }
 
     @ApiProperty({ type: CustomerSchema })
@@ -46,8 +56,8 @@ export class Order extends AbstractDocument {
 
     @ApiProperty({ type: ShippingSchema })
     @Factory(() => {})
-    @Prop({ required: true, type: ShippingSchema })
-    shipping: ShippingSchema;
+    @Prop({ required: false, type: ShippingSchema })
+    shipping?: ShippingSchema;
 
     @ApiProperty({ example: 10000, type: Number, description: 'Total price of order' })
     @Prop({ required: true, type: Number })
