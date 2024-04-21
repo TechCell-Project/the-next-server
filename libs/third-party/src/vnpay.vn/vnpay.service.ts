@@ -1,6 +1,5 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { CreateVnpayUrlDTO } from './dtos';
-import { VNPay, VNPayConfig, ReturnQueryFromVNPay, QueryDr } from 'vnpay';
+import { VNPay, VNPayConfig, ReturnQueryFromVNPay, QueryDr, BuildPaymentUrl } from 'vnpay';
 
 @Injectable()
 export class VnpayService {
@@ -11,14 +10,8 @@ export class VnpayService {
         this.vnpayInstance = new VNPay(this.config);
     }
 
-    createPaymentUrl(data: CreateVnpayUrlDTO) {
-        try {
-            const url = this.vnpayInstance.buildPaymentUrl(data);
-            return url;
-        } catch (error) {
-            this.logger.error(error);
-            return null;
-        }
+    createPaymentUrl(data: BuildPaymentUrl) {
+        return this.vnpayInstance.buildPaymentUrl(data);
     }
 
     verifyReturnUrl(query: ReturnQueryFromVNPay) {
