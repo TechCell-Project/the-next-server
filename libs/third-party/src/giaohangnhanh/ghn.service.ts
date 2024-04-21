@@ -5,7 +5,8 @@ import { GhnDistrictDTO, GhnProvinceDTO, GhnWardDTO } from './dtos';
 import { UserAddressSchema } from '~/server/users';
 import { RedisService } from '~/common/redis';
 import { convertTimeString } from 'convert-time-string';
-import { PreviewOrder } from 'giaohangnhanh/lib/order';
+import { CreateOrder, PreviewOrder } from 'giaohangnhanh/lib/order';
+import { retry } from '~/common/utils';
 
 @Injectable()
 export class GhnService {
@@ -116,6 +117,7 @@ export class GhnService {
     }
 
     public async previewOrder(previewData: PreviewOrder) {
+        console.log(previewData);
         const maxRetries = 3;
         let retries = 0;
 
@@ -135,6 +137,60 @@ export class GhnService {
                 }
             }
         }
+    }
+
+    // public async createOrder(orderData: CreateOrder) {
+    //     console.log(orderData);
+    //     return retry(
+    //         async () => {
+    //             const { expected_delivery_time, ...data } =
+    //                 await this.ghnInstance.order.createOrder(orderData);
+
+    //             const expected = new Date(expected_delivery_time);
+    //             expected.setDate(expected.getDate() + 1);
+
+    //             return { expected_delivery_time: expected, ...data };
+    //         },
+    //         { maxRetries: 3, errorMessage: 'Failed to create order after multiple attempts' },
+    //     );
+    // }
+    public async createOrder(orderData: CreateOrder) {
+        const maxRetries = 3;
+        let retries = 0;
+
+        while (retries < maxRetries) {
+            try {
+                orderData.pick_shift = (await this.ghnInstance.order.pickShift()).map((s) => s.id);
+
+                const { expected_delivery_time, ...data } =
+                    await this.ghnInstance.order.createOrder(orderData);
+
+                const expected = new Date(expected_delivery_time);
+                expected.setDate(expected.getDate() + 1);
+
+                return { expected_delivery_time: expected, ...data };
+            } catch (error) {
+                console.error(error);
+                retries++;
+                if (retries === maxRetries) {
+                    throw new HttpException('Failed to create order after multiple attempts', 500);
+                }
+            }
+        }
+    }
+
+    public async cancelOrder(orderCode?: string) {
+        if (!orderCode) {
+            return;
+        }
+        return retry(
+            async () => {
+                const cancelPath = `shiip/public-api/v2/switch-status/cancel`;
+                const data = { order_codes: [orderCode] };
+                return this.ghnInstance.sendRequest(cancelPath, data);
+            },
+            { maxRetries: 3, errorMessage: 'Failed to cancel order' },
+        );
     }
 
     // Utils

@@ -1,7 +1,7 @@
-import { AbstractRepository } from '~/common';
+import { AbstractRepository, convertToObjectId } from '~/common';
 import { Order } from './schemas';
 import { PinoLogger } from 'nestjs-pino';
-import { Connection, Model } from 'mongoose';
+import { Connection, Model, Types } from 'mongoose';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 
 export class OrdersRepository extends AbstractRepository<Order> {
@@ -12,5 +12,18 @@ export class OrdersRepository extends AbstractRepository<Order> {
     ) {
         super(orderModel, connection);
         this.logger.setContext(OrdersRepository.name);
+    }
+
+    async getOrderByIdOrNull(id: Types.ObjectId | string) {
+        try {
+            const order = await this.findOne({
+                filterQuery: {
+                    _id: convertToObjectId(id),
+                },
+            });
+            return order;
+        } catch (error) {
+            return null;
+        }
     }
 }

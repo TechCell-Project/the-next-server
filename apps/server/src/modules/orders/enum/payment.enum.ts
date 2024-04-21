@@ -1,10 +1,16 @@
 export enum PaymentMethodEnum {
-    COD = 'cod',
-    VNPAY = 'vnpay',
-    ATM = 'atm',
-    VISA = 'visa',
-    MASTERCARD = 'mastercard',
-    JCB = 'jcb',
+    COD = 'COD',
+    VNPAY = 'VNPAY',
+
+    /**
+     * Vietnam bank
+     */
+    VNBANK = 'VNBANK',
+
+    /**
+     * International card
+     */
+    INTCARD = 'INTCARD',
 }
 
 export enum PaymentStatusEnum {

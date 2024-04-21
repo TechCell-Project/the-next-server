@@ -20,7 +20,7 @@ export class CartsService {
      * @returns updated cart
      */
     async updateCart(
-        { userId, data }: { userId: string; data: UpdateCartDto },
+        { userId, data }: { userId: string | Types.ObjectId; data: UpdateCartDto },
         session?: ClientSession,
     ) {
         let cartFound = await this.cartRepository.findOne({
@@ -70,7 +70,20 @@ export class CartsService {
     }
 
     async getCarts(userId: Types.ObjectId | string) {
-        return this.cartRepository.find({ filterQuery: { userId: convertToObjectId(userId) } });
+        let cartFound = await this.cartRepository.findOne({
+            filterQuery: { userId: convertToObjectId(userId) },
+        });
+
+        if (!cartFound) {
+            cartFound = await this.cartRepository.create({
+                document: {
+                    userId: convertToObjectId(userId),
+                    products: [],
+                },
+            });
+        }
+
+        return cartFound;
     }
 
     async getCartByProduct({ userId, productId, sku }: IGetCartByProduct) {

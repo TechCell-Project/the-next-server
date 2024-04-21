@@ -1,9 +1,27 @@
 import { OmitType } from '@nestjs/swagger';
 import { Order } from '../schemas';
+import { CalculateShippingFeeResponse } from 'giaohangnhanh/lib/calculate-fee';
+
+// export class CalculateShippingFeeResponseDto implements CalculateShippingFeeResponse {
+
+//     total: number;
+// }
 
 export class PreviewOrderResponseDto extends OmitType(Order, ['_id', 'note', 'orderStatus']) {
-    constructor(data: PreviewOrderResponseDto) {
+    constructor(data: Omit<PreviewOrderResponseDto, 'totalPrice'>) {
         super();
         Object.assign(this, data);
+
+        this.totalPrice =
+            0 +
+            (this?.shipping?.fee ?? 0) +
+            this.products.reduce((total: number, product) => {
+                return (
+                    total +
+                    (product?.unitPrice?.special || product.unitPrice.base) * product.quantity
+                );
+            }, 0);
     }
+
+    // shippingList: CalculateShippingFeeResponse[];
 }

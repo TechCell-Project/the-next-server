@@ -19,4 +19,8 @@ export class PaymentSchema {
     @ApiPropertyOptional({ example: 'https://vnpay.com/pay', type: String })
     @Prop({ required: false, type: String, default: '' })
     url: string;
+
+    @ApiPropertyOptional({ type: Object, description: 'additional data of payment' })
+    @Prop({ required: false, type: Object })
+    paymentData?: object;
 }

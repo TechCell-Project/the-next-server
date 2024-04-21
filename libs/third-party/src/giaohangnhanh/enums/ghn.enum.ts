@@ -9,3 +9,9 @@ export enum GhnSupportTypeEnum {
     delivery = 2,
     pickup_delivery_and_return = 3,
 }
+
+export enum GhnServiceTypeIdEnum {
+    Express = 1,
+    Standard = 2,
+    Traditional = 5,
+}

@@ -12,7 +12,8 @@
         "skus",
         "spus",
         "streamifier",
-        "virtuals"
+        "virtuals",
+        "Vnpay"
     ],
     "conventionalCommits.scopes": [
         "seed",
@@ -44,7 +45,8 @@
         "products",
         "carts",
         "orders",
-        "bullmq"
+        "bullmq",
+        "abstract"
     ],
     "sonarlint.connectedMode.project": {
         "connectionId": "techcell-project",

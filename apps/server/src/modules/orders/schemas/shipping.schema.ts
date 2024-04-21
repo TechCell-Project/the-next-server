@@ -4,6 +4,10 @@ import { ShippingProviderEnum } from '../enum';
 import { OrderLogSchema } from './order-log.schema';
 
 export class ShippingSchema {
+    @ApiProperty({ example: '123', type: String })
+    @Prop({ required: true, type: String })
+    orderShipCode: string;
+
     @ApiProperty({ example: ShippingProviderEnum.GHN, enum: ShippingProviderEnum, type: String })
     @Prop({
         required: true,

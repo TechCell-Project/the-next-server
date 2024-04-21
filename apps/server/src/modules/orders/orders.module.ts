@@ -8,8 +8,9 @@ import { OrdersService } from './orders.service';
 import { CartsModule } from '../carts';
 import { SKUModule } from '../skus';
 import { UsersModule } from '../users';
-import { GhnModule } from '~/third-party';
+import { GhnModule, VnpayModule } from '~/third-party';
 import { ProductsModule } from '../products/products.module';
+import { RedisModule } from '~/common/redis';
 
 @Module({
     imports: [
@@ -25,6 +26,13 @@ import { ProductsModule } from '../products/products.module';
         SKUModule,
         CartsModule,
         ProductsModule,
+        VnpayModule.forRoot({
+            vnpayHost: process.env.VNPAY_PAYMENT_URL,
+            secureSecret: process.env.VNPAY_SECRET_KEY ?? '',
+            tmnCode: process.env.VNPAY_TMN_CODE ?? '',
+            testMode: true,
+        }),
+        RedisModule,
     ],
     controllers: [OrdersController],
     providers: [OrdersRepository, OrdersService],

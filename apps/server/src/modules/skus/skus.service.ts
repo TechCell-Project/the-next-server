@@ -8,13 +8,14 @@ import { ImagesService } from '../images';
 import { AttributesService } from '../attributes';
 import { SerialNumberStatusEnum, SkuStatusEnum } from './enums';
 import { convertToObjectId, sanitizeHtmlString } from '~/common';
-import { FilterQuery, Types } from 'mongoose';
+import { ClientSession, FilterQuery, Types } from 'mongoose';
 import { SerialNumberRepository } from './serial-number.repository';
 import { remove as removeDiacritics } from 'diacritics';
 import { RELEASE_HOLD_SERIAL_NUMBER_QUEUE } from './constants/skus-queue.constant';
 import { Queue } from 'bullmq';
 import { InjectQueue } from '@nestjs/bullmq';
-import { convertTimeString } from 'convert-time-string';
+import { RedlockService } from '~/common/redis';
+import { Lock } from 'redlock';
 
 @Injectable()
 export class SkusService {
@@ -26,6 +27,7 @@ export class SkusService {
         private readonly imagesService: ImagesService,
         private readonly attributesService: AttributesService,
         @InjectQueue(RELEASE_HOLD_SERIAL_NUMBER_QUEUE) private releaseHoldSkuQueue: Queue,
+        private readonly redlockService: RedlockService,
     ) {
         this.logger.setContext(SkusService.name);
     }
@@ -240,9 +242,10 @@ export class SkusService {
     async pickSerialNumberToHold(
         skuId: string | Types.ObjectId,
         quantity: number,
-        isPreview = true,
+        session: ClientSession,
     ) {
-        const serialNumbers = await this.serialNumberRepository.find({
+        let resources: string[] = [];
+        let serialNumbers = await this.serialNumberRepository.find({
             filterQuery: {
                 skuId: convertToObjectId(skuId),
                 status: SerialNumberStatusEnum.Available,
@@ -251,6 +254,7 @@ export class SkusService {
                 limit: quantity,
             },
         });
+
         if (!serialNumbers || serialNumbers?.length < quantity) {
             throw new HttpException(
                 {
@@ -262,6 +266,50 @@ export class SkusService {
                 HttpStatus.UNPROCESSABLE_ENTITY,
             );
         }
+        let lock: Lock;
+
+        try {
+            serialNumbers.forEach((serialNumber) => {
+                resources.push(`serialNumber:${serialNumber.number}`);
+            });
+
+            lock = await this.redlockService.lock(resources, 3000);
+        } catch (err) {
+            if (err instanceof HttpException) {
+                throw err;
+            }
+
+            // If lock failed, find other serial numbers excluding the locked ones
+            serialNumbers = await this.serialNumberRepository.find({
+                filterQuery: {
+                    skuId: convertToObjectId(skuId),
+                    status: SerialNumberStatusEnum.Available,
+                    number: { $nin: serialNumbers.map((sn) => sn.number) }, // Exclude locked serial numbers
+                },
+                queryOptions: {
+                    limit: quantity,
+                },
+            });
+            if (!serialNumbers || serialNumbers?.length < quantity) {
+                throw new HttpException(
+                    {
+                        status: HttpStatus.UNPROCESSABLE_ENTITY,
+                        errors: {
+                            sku: 'notEnoughQuantity',
+                        },
+                    },
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                );
+            }
+
+            // Try to lock again
+            resources = [];
+            serialNumbers.forEach((serialNumber) => {
+                resources.push(`serialNumber:${serialNumber.number}`);
+            });
+
+            lock = await this.redlockService.lock(resources, 3000);
+        }
 
         const updatePromises = serialNumbers.map((serialNumber) =>
             this.serialNumberRepository.findOneAndUpdateOrThrow({
@@ -269,29 +317,31 @@ export class SkusService {
                     _id: serialNumber._id,
                 },
                 updateQuery: {
-                    $set: {
-                        status: SerialNumberStatusEnum.Holding,
-                    },
+                    status: SerialNumberStatusEnum.Holding,
                 },
+                session,
             }),
         );
 
-        const queuePromises = serialNumbers.map((serialNumber) =>
-            this.releaseHoldSkuQueue.add(
-                RELEASE_HOLD_SERIAL_NUMBER_QUEUE,
-                {
-                    serialNumber: serialNumber.number,
-                },
-                {
-                    jobId: `${serialNumber.number}`,
-                    delay: convertTimeString(isPreview ? '5m' : '15m'),
-                },
-            ),
+        // const queuePromises = serialNumbers.map((serialNumber) =>
+        //     this.releaseHoldSkuQueue.add(
+        //         RELEASE_HOLD_SERIAL_NUMBER_QUEUE,
+        //         {
+        //             serialNumber: serialNumber.number,
+        //         },
+        //         {
+        //             jobId: `${serialNumber.number}`,
+        //             delay: convertTimeString(isPreview ? '5m' : '15m'),
+        //         },
+        //     ),
+        // );
+
+        const serials = (await Promise.all(updatePromises)).map(
+            (serialNumber) => serialNumber.number,
         );
 
-        await Promise.all([...updatePromises, ...queuePromises]);
-
-        return serialNumbers.map((serialNumber) => serialNumber.number);
+        await this.redlockService.unlock(lock);
+        return serials;
     }
 
     async releaseHoldSerialNumber(serialNumber: string) {
