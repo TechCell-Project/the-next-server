@@ -6,6 +6,7 @@ import {
     PreviewOrderDto,
     PreviewOrderResponseDto,
     ProductInOrderDto,
+    QueryOrdersDto,
     VnpayIpnUrlDTO,
 } from './dtos';
 import { UsersService } from '../users/users.service';
@@ -38,6 +39,7 @@ import { RedlockService } from '~/common/redis';
 import { ClientSession, Types } from 'mongoose';
 import { Lock } from 'redlock';
 import { GhnServiceTypeIdEnum } from '~/third-party/giaohangnhanh/enums';
+import { TPaginationOptions } from '~/common';
 
 @Injectable()
 export class OrdersService {
@@ -102,6 +104,7 @@ export class OrdersService {
             },
             products: skus.map((sku) => ({
                 skuId: sku._id,
+                productName: sku.name,
                 unitPrice: sku.price,
                 quantity:
                     products.find((p) => p.skuId.toString() === sku._id.toString())?.quantity ?? 1,
@@ -157,10 +160,12 @@ export class OrdersService {
             },
             products: skus.map((sku) => ({
                 skuId: sku._id,
+                productName: sku.name,
                 unitPrice: sku.price,
                 quantity:
                     products.find((p) => p.skuId.toString() === sku._id.toString())?.quantity ?? 1,
                 serialNumber: [],
+                images: sku.image,
             })),
             payment: {
                 method: paymentMethod,
@@ -357,7 +362,35 @@ export class OrdersService {
         }
     }
 
-    async updateCartAfterOrderCreation(user: User, orderCreated: Order, session: ClientSession) {
+    async getOrders(
+        userId: string,
+        {
+            filterOptions,
+            sortOptions,
+            paginationOptions,
+        }: {
+            filterOptions?: QueryOrdersDto['filters'] | null;
+            sortOptions?: QueryOrdersDto['sort'] | null;
+            paginationOptions: TPaginationOptions;
+        },
+    ) {
+        return this.ordersRepository.findManyWithPagination({
+            filterOptions,
+            userId,
+            sortOptions,
+            paginationOptions,
+        });
+    }
+
+    async getOrderById({ userId, orderId }: { userId: string; orderId: string }) {
+        return this.ordersRepository.getOrderById(userId, orderId);
+    }
+
+    private async updateCartAfterOrderCreation(
+        user: User,
+        orderCreated: Order,
+        session: ClientSession,
+    ) {
         const cartFound = await this.cartsService.getCarts(user._id);
         const productToDel: string[] = orderCreated.products.map((p) => p.skuId.toString());
         cartFound.products = cartFound.products.filter(

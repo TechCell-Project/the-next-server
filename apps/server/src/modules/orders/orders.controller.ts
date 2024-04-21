@@ -1,10 +1,18 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Ip, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Ip, Post, Query, Req } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { ApiExcludeEndpoint, ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { CurrentUser } from '~/common';
+import { CurrentUser, infinityPagination, ObjectIdParamDto } from '~/common';
 import { JwtPayloadType } from '../auth/strategies/types';
-import { CreateOrderDto, PreviewOrderDto, PreviewOrderResponseDto, VnpayIpnUrlDTO } from './dtos';
+import {
+    CreateOrderDto,
+    OrderInfinityPaginationResult,
+    PreviewOrderDto,
+    PreviewOrderResponseDto,
+    QueryOrdersDto,
+    VnpayIpnUrlDTO,
+} from './dtos';
 import { AuthRoles } from '../auth/guards';
+import { Order } from './schemas';
 
 @ApiTags('orders')
 @Controller({
@@ -38,5 +46,46 @@ export class OrdersController {
         @Body() body: CreateOrderDto,
     ) {
         return this.ordersService.createOrder({ userId, payload: body, ip });
+    }
+
+    @AuthRoles()
+    @ApiOkResponse({
+        type: OrderInfinityPaginationResult,
+    })
+    @Get('/')
+    @HttpCode(HttpStatus.OK)
+    async getOrders(@CurrentUser() { userId }: JwtPayloadType, @Query() query: QueryOrdersDto) {
+        const page = query?.page ?? 1;
+        let limit = query?.limit ?? 10;
+        if (limit > 100) {
+            limit = 100;
+        }
+
+        return infinityPagination(
+            await this.ordersService.getOrders(userId, {
+                filterOptions: query?.filters,
+                sortOptions: query?.sort,
+                paginationOptions: {
+                    page,
+                    limit,
+                },
+            }),
+            { page, limit },
+        );
+    }
+
+    @AuthRoles()
+    @ApiOkResponse({
+        type: Order,
+    })
+    @Get('/:id')
+    async getOrderById(
+        @CurrentUser() { userId }: JwtPayloadType,
+        @Query() { id }: ObjectIdParamDto,
+    ) {
+        return this.ordersService.getOrderById({
+            userId,
+            orderId: id,
+        });
     }
 }
