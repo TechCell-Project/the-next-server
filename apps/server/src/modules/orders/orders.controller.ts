@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Ip, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Ip, Post, Req } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { ApiExcludeEndpoint, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from '~/common';
@@ -15,7 +15,7 @@ export class OrdersController {
 
     @ApiExcludeEndpoint()
     @Get('/vnpay-ipn')
-    async vnpayIpnUrl(@Query() query: VnpayIpnUrlDTO) {
+    async vnpayIpnUrl(@Req() { query }: { query: VnpayIpnUrlDTO }) {
         return this.ordersService.verifyVnpayIpn(query);
     }
 

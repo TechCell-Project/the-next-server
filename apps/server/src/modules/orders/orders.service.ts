@@ -256,6 +256,7 @@ export class OrdersService {
                 provider: ShippingProviderEnum.GHN,
                 logs: [],
             };
+            orderCreated.totalPrice = orderCreated.totalPrice + ghnOrder.total_fee;
 
             // Payment
             if (payload.paymentMethod !== PaymentMethodEnum.COD) {
@@ -303,6 +304,7 @@ export class OrdersService {
     }
 
     async verifyVnpayIpn(query: VnpayIpnUrlDTO) {
+        this.logger.debug(`Verify VNPAY IPN: ${JSON.stringify(query)}`);
         try {
             const isVerified = this.vnpayService.verifyReturnUrl(query);
             if (!isVerified || !isVerified.isSuccess) {
