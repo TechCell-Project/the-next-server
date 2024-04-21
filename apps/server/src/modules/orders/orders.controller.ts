@@ -1,4 +1,15 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Ip, Post, Query, Req } from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    Get,
+    HttpCode,
+    HttpStatus,
+    Ip,
+    Param,
+    Post,
+    Query,
+    Req,
+} from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { ApiExcludeEndpoint, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { CurrentUser, infinityPagination, ObjectIdParamDto } from '~/common';
@@ -81,7 +92,7 @@ export class OrdersController {
     @Get('/:id')
     async getOrderById(
         @CurrentUser() { userId }: JwtPayloadType,
-        @Query() { id }: ObjectIdParamDto,
+        @Param() { id }: ObjectIdParamDto,
     ) {
         return this.ordersService.getOrderById({
             userId,
