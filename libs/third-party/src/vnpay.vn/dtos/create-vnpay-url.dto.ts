@@ -1,7 +1,15 @@
-import { IsOptional } from 'class-validator';
 import { ProductCode } from '../enums';
 import { BankCode } from '../enums/bank-code.enum';
-import { IsNotEmpty, IsString, IsNumber, Min, Max, IsIP, IsEnum } from 'class-validator';
+import {
+    IsNotEmpty,
+    IsString,
+    IsNumber,
+    Min,
+    Max,
+    IsIP,
+    IsEnum,
+    IsOptional,
+} from 'class-validator';
 
 export class CreateVnpayUrlDTO {
     @IsOptional()
