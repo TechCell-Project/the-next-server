@@ -64,7 +64,7 @@ export class SPURepository extends AbstractRepository<SPU> {
             where._id = { $in: filterOptions.spuIds.map((s) => convertToObjectId(s)) };
         }
 
-        this.logger.info({ whereSpu: where });
+        this.logger.info({ where }, 'spu-where');
         const spusData = await this.spuModel
             .find(where)
             .sort(

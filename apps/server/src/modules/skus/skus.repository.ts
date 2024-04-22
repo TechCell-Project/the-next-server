@@ -44,6 +44,7 @@ export class SkusRepository extends AbstractRepository<SKU> {
             };
         }
 
+        this.logger.info({ where }, 'sku-where');
         const skusData = await this.skuModel
             .find(where)
             .sort(

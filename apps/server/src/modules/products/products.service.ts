@@ -14,6 +14,7 @@ import { convertToObjectId, sortedStringify } from '~/common/utils';
 import { convertTimeString } from 'convert-time-string';
 import { ConfigService } from '@nestjs/config';
 import { QuerySpusDto } from '../spus/dtos';
+import { Tag } from '../tags';
 
 @Injectable()
 export class ProductsService {
@@ -173,7 +174,6 @@ export class ProductsService {
                     },
                 });
             }
-            this.logger.debug(skuWithTag);
             spuFilters = {
                 ...spuFilters,
                 spuIds: Array.from(new Set([...(skuWithTag ?? []).map((b) => b.spuId.toString())])),
@@ -309,20 +309,26 @@ export class ProductsService {
 
         const tagsString: string[] = [];
 
-        listSpu.forEach((spu) => {
-            spu.skus.forEach((sku) => {
-                sku.tags.forEach((t) => tagsString.push(t._id.toString()));
-            });
-        });
+        for (const spu of listSpu) {
+            for (const sku of spu.skus) {
+                sku.tags.forEach((tagId) => tagsString.push(tagId.toString()));
+            }
+        }
 
-        const tagPromise = Array.from(new Set(tagsString)).map((t) =>
-            this.tagsService.getTagById(t),
-        );
+        const uniqueTagIds = Array.from(new Set(tagsString));
+        const tagPromise = uniqueTagIds.map((t) => this.tagsService.getTagById(t));
         const tags = await Promise.all(tagPromise);
+        const tagMap = new Map(tags.map((tag) => [tag._id.toString(), tag]));
 
         for (const spu of listSpu) {
             for (const model of spu.models) {
                 const sku = spu.skus.find((sku) => sku?.spuModelSlug === model.slug);
+
+                const productTags =
+                    sku?.tags
+                        .map((tagId) => tagMap.get(tagId.toString()))
+                        .filter((tag): tag is Tag => tag !== undefined && tag !== null) ?? [];
+
                 const prod: ProductInListDto = {
                     id: ProductsService.toProductId(spu, model.slug),
                     name: spu.name,
@@ -330,9 +336,7 @@ export class ProductsService {
                     brandName: spu.brand.name,
                     images: model.images ?? [],
                     price: sku?.price ? sku.price : spu.skus[0].price,
-                    tags: sku?.tags
-                        ? tags.filter((t) => sku.tags.some((tagId) => tagId.equals(t._id)))
-                        : [],
+                    tags: productTags,
                 };
                 if (sku?.image) {
                     prod.images.push({ ...sku.image, isThumbnail: false });
