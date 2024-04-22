@@ -1,7 +1,8 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { InfinityPaginationResultType } from '~/common/types';
 import { PriceDto } from '~/server/skus';
 import { ImageSchema } from '~/server/skus/schemas';
+import { Tag } from '~/server/tags';
 
 export class ProductInListDto {
     constructor(data: ProductInListDto) {
@@ -32,8 +33,8 @@ export class ProductInListDto {
     @ApiProperty({ type: [ImageSchema] })
     images: ImageSchema[];
 
-    @ApiProperty({ type: [String] })
-    tags: string[];
+    @ApiPropertyOptional({ type: Tag, isArray: true })
+    tags?: Tag[];
 }
 
 export class ProductInfinityPaginationResult

@@ -1,10 +1,17 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ProductsService } from './products.service';
-import { ProductDto, ProductInfinityPaginationResult, QueryProductsDto } from './dtos';
+import {
+    FilterProductsDto,
+    ProductDto,
+    ProductInfinityPaginationResult,
+    QueryProductsDto,
+    SortProductsDto,
+} from './dtos';
 import { infinityPagination } from '~/common/utils';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('products')
+@ApiExtraModels(FilterProductsDto, SortProductsDto)
 @Controller({
     path: '/products',
 })

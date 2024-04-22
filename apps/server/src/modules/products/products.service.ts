@@ -151,7 +151,7 @@ export class ProductsService {
             filters: spuFilters,
         });
         const products = await this.assignPopulateToSpu(spus);
-        const resultProducts = this.mapToListProducts(products);
+        const resultProducts = await this.mapToListProducts(products);
 
         await this.redisService.set(cacheKey, resultProducts, convertTimeString('3m'));
         return resultProducts;
@@ -267,10 +267,24 @@ export class ProductsService {
         });
     }
 
-    private mapToListProducts(
+    private async mapToListProducts(
         listSpu: ({ skus: SKU[]; brand: Brand } & SPU)[],
-    ): ProductInListDto[] {
+    ): Promise<ProductInListDto[]> {
         const products: ProductInListDto[] = [];
+
+        const tagsString: string[] = [];
+
+        for (const spu of listSpu) {
+            for (const model of spu.models) {
+                const sku = spu.skus.find((sku) => sku?.spuModelSlug === model.slug);
+                sku?.tags.map((t) => tagsString.push(t._id.toString()));
+            }
+        }
+
+        const tagPromise = Array.from(new Set(...tagsString)).map((t) =>
+            this.tagsService.getTagById(t),
+        );
+        const tags = await Promise.all(tagPromise);
 
         for (const spu of listSpu) {
             for (const model of spu.models) {
@@ -282,7 +296,7 @@ export class ProductsService {
                     brandName: spu.brand.name,
                     images: model.images ?? [],
                     price: sku?.price ? sku.price : spu.skus[0].price,
-                    tags: sku?.tags ? sku.tags.map((tag) => tag.toString()) : [],
+                    tags: sku?.tags ? tags.filter((t) => sku.tags.includes(t._id)) : [],
                 };
                 if (sku?.image) {
                     prod.images.push({ ...sku.image, isThumbnail: false });

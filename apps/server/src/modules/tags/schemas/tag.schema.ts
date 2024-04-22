@@ -17,17 +17,17 @@ export class Tag extends AbstractDocument {
         Object.assign(this, data);
     }
 
-    @ApiProperty({ example: 'apple', type: String })
+    @ApiProperty({ example: 'tren-20-trieu', type: String })
     @Factory(() => uuid())
     @Prop({ unique: true, required: true, type: String })
     slug: string;
 
-    @ApiProperty({ example: 'Apple', type: String })
+    @ApiProperty({ example: 'Trên 20 triệu', type: String })
     @Factory((faker: Faker) => faker.company.name())
     @Prop({ required: true, type: String })
     name: string;
 
-    @ApiProperty({ example: 'A great product...', type: String })
+    @ApiProperty({ example: 'Tầm giá', type: String })
     @Factory((faker: Faker) => faker.company.catchPhrase())
     @Prop({ required: false, type: String, default: '' })
     description: string;

@@ -12,11 +12,12 @@ import {
     SerializeOptions,
 } from '@nestjs/common';
 import { OrdersService } from './orders.service';
-import { ApiExcludeEndpoint, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiExcludeEndpoint, ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { CurrentUser, infinityPagination, ObjectIdParamDto } from '~/common';
 import { JwtPayloadType } from '../auth/strategies/types';
 import {
     CreateOrderDto,
+    FilterOrdersDto,
     OrderInfinityPaginationResult,
     PreviewOrderDto,
     PreviewOrderResponseDto,
@@ -28,6 +29,7 @@ import { Order } from './schemas';
 import { UserRoleEnum } from '../users/enums';
 
 @ApiTags('orders')
+@ApiExtraModels(FilterOrdersDto, QueryOrdersDto)
 @Controller({
     path: 'orders',
 })
