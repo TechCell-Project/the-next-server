@@ -46,7 +46,8 @@
         "carts",
         "orders",
         "bullmq",
-        "abstract"
+        "abstract",
+        "docs"
     ],
     "sonarlint.connectedMode.project": {
         "connectionId": "techcell-project",

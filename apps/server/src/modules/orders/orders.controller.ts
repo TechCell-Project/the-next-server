@@ -9,6 +9,7 @@ import {
     Post,
     Query,
     Req,
+    SerializeOptions,
 } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { ApiExcludeEndpoint, ApiOkResponse, ApiTags } from '@nestjs/swagger';
@@ -24,6 +25,7 @@ import {
 } from './dtos';
 import { AuthRoles } from '../auth/guards';
 import { Order } from './schemas';
+import { UserRoleEnum } from '../users/enums';
 
 @ApiTags('orders')
 @Controller({
@@ -59,6 +61,7 @@ export class OrdersController {
         return this.ordersService.createOrder({ userId, payload: body, ip });
     }
 
+    @SerializeOptions({ groups: [UserRoleEnum.Customer] })
     @AuthRoles()
     @ApiOkResponse({
         type: OrderInfinityPaginationResult,
@@ -85,6 +88,7 @@ export class OrdersController {
         );
     }
 
+    @SerializeOptions({ groups: [UserRoleEnum.Customer] })
     @AuthRoles()
     @ApiOkResponse({
         type: Order,
