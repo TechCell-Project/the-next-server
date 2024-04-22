@@ -32,7 +32,8 @@
         "compose:restart:ssl": "yarn compose:down:ssl && yarn compose:up:ssl",
         "compose:up:infra": "docker compose -f docker-compose.infra.yaml up -d",
         "compose:down:infra": "docker compose -f docker-compose.infra.yaml down",
-        "compose:restart:infra": "yarn compose:down:infra && yarn compose:up:infra"
+        "compose:restart:infra": "yarn compose:down:infra && yarn compose:up:infra",
+        "compodoc": "node ./scripts/run-compodoc.js"
     },
     "dependencies": {
         "@casl/ability": "^6.7.0",
