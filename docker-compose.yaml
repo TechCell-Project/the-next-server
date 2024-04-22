@@ -11,7 +11,7 @@ services:
         ports:
             - 9001:${COMPODOC_PORT:-9001}
         networks:
-            - techcell_backend
+            - the_next_techcell_backend
         restart: unless-stopped
 
     api:
