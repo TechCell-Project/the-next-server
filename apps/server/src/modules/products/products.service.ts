@@ -114,13 +114,15 @@ export class ProductsService {
     }
 
     async getProducts({ filters, ...payload }: QueryProductsDto) {
+        const { limit, page } = payload;
+        const start = (page - 1) * limit;
+
         const cacheKey = `CACHE_products_${sortedStringify({ filters, ...payload })}`;
         const fromCache = await this.redisService.get<ProductInListDto[]>(cacheKey);
         if (fromCache) {
-            return fromCache;
+            return fromCache.slice(start, start + limit);
         }
 
-        const { limit, page } = payload;
         const { keyword } = filters || {};
         let spuFilters: QuerySpusDto['filters'] = {};
 
@@ -188,8 +190,8 @@ export class ProductsService {
         const products = await this.assignPopulateToSpu(spus);
         const resultProducts = await this.mapToListProducts(products);
 
-        await this.redisService.set(cacheKey, resultProducts, convertTimeString('3m'));
-        return resultProducts;
+        await this.redisService.set(cacheKey, resultProducts, convertTimeString('5m'));
+        return resultProducts.slice(start, start + limit);
     }
 
     async getProductDimensions(skuId: string | Types.ObjectId, isCeil = true) {
