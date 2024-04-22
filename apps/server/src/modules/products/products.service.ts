@@ -309,12 +309,11 @@ export class ProductsService {
 
         const tagsString: string[] = [];
 
-        for (const spu of listSpu) {
-            for (const model of spu.models) {
-                const sku = spu.skus.find((sku) => sku?.spuModelSlug === model.slug);
-                sku?.tags.map((t) => tagsString.push(t._id.toString()));
-            }
-        }
+        listSpu.forEach((spu) => {
+            spu.skus.forEach((sku) => {
+                sku.tags.forEach((t) => tagsString.push(t._id.toString()));
+            });
+        });
 
         const tagPromise = Array.from(new Set(tagsString)).map((t) =>
             this.tagsService.getTagById(t),
@@ -331,7 +330,9 @@ export class ProductsService {
                     brandName: spu.brand.name,
                     images: model.images ?? [],
                     price: sku?.price ? sku.price : spu.skus[0].price,
-                    tags: sku?.tags ? tags.filter((t) => sku.tags.includes(t._id)) : [],
+                    tags: sku?.tags
+                        ? tags.filter((t) => sku.tags.some((tagId) => tagId.equals(t._id)))
+                        : [],
                 };
                 if (sku?.image) {
                     prod.images.push({ ...sku.image, isThumbnail: false });

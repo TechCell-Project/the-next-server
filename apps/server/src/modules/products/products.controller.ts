@@ -24,9 +24,9 @@ export class ProductsController {
     @Get('/')
     async getProducts(@Query() query: QueryProductsDto) {
         const page = query?.page ?? 1;
-        let limit = query?.limit ?? 10;
-        if (limit > 50) {
-            limit = 50;
+        let limit = query?.limit ?? 20;
+        if (limit > 100) {
+            limit = 100;
         }
 
         return infinityPagination(
