@@ -34,6 +34,10 @@ export class FilterSpuDto {
     @ApiHideProperty()
     @Exclude()
     brandIds?: string[] | Types.ObjectId[];
+
+    @ApiHideProperty()
+    @Exclude()
+    spuIds?: string[] | Types.ObjectId[];
 }
 
 export class SortSpuDto extends IntersectionType(SortDto<SPU>) {}

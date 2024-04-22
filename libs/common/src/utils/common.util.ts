@@ -4,7 +4,7 @@ export function convertToObjectId(
     input: string | Types.ObjectId | Uint8Array | number | Condition<ObjectId>,
 ): Types.ObjectId {
     if (!isValidObjectId(input)) {
-        throw new Error('Invalid object id');
+        throw new Error(`Invalid object id: ${input}`);
     }
     return new Types.ObjectId(input);
 }

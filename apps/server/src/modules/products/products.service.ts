@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { PinoLogger } from 'nestjs-pino';
 import { TagsService } from '../tags/tags.service';
 import { BrandsService } from '../brands/brands.service';
@@ -13,6 +13,7 @@ import { Types } from 'mongoose';
 import { convertToObjectId, sortedStringify } from '~/common/utils';
 import { convertTimeString } from 'convert-time-string';
 import { ConfigService } from '@nestjs/config';
+import { QuerySpusDto } from '../spus/dtos';
 
 @Injectable()
 export class ProductsService {
@@ -120,7 +121,7 @@ export class ProductsService {
 
         const { limit, page } = payload;
         const { keyword } = filters || {};
-        let spuFilters: QueryProductsDto['filters'] = {};
+        let spuFilters: QuerySpusDto['filters'] = {};
 
         if (keyword) {
             const brandsWithKeyword = await this.brandsService.findManyWithPagination({
@@ -142,6 +143,40 @@ export class ProductsService {
                         ...(brandsWithKeyword ?? []).map((b) => b._id.toString()),
                     ]),
                 ),
+            };
+        }
+
+        if (filters?.brandIds) {
+            spuFilters = {
+                ...spuFilters,
+                brandIds: Array.from(
+                    new Set([
+                        ...(spuFilters?.brandIds?.map((b) => b.toString()) || []),
+                        ...filters.brandIds,
+                    ]),
+                ),
+            };
+        }
+
+        if (filters?.tagIds) {
+            const skuWithTag = await this.skusService.getSkus({
+                filters: {
+                    tagIds: filters.tagIds?.map((tagId) => convertToObjectId(tagId)),
+                },
+                limit,
+                page,
+            });
+            if (!skuWithTag.length) {
+                throw new NotFoundException({
+                    errors: {
+                        tag: 'productsWithTagNotFound',
+                    },
+                });
+            }
+            this.logger.debug(skuWithTag);
+            spuFilters = {
+                ...spuFilters,
+                spuIds: Array.from(new Set([...(skuWithTag ?? []).map((b) => b.spuId.toString())])),
             };
         }
 
@@ -281,7 +316,7 @@ export class ProductsService {
             }
         }
 
-        const tagPromise = Array.from(new Set(...tagsString)).map((t) =>
+        const tagPromise = Array.from(new Set(tagsString)).map((t) =>
             this.tagsService.getTagById(t),
         );
         const tags = await Promise.all(tagPromise);

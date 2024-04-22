@@ -30,7 +30,7 @@ export class FilterProductsDto {
     })
     @IsOptional()
     @IsMongoId({ each: true })
-    tagId?: string[];
+    tagIds?: string[];
 }
 
 export class SortProductsDto {

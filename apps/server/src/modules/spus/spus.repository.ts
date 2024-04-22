@@ -57,12 +57,14 @@ export class SPURepository extends AbstractRepository<SPU> {
         }
 
         if (filterOptions?.brandIds?.length) {
-            where.$or = where.$or || [];
-            where.$or?.push({
-                brandId: { $in: filterOptions.brandIds.map((b) => convertToObjectId(b)) },
-            });
+            where.brandId = { $in: filterOptions.brandIds.map((b) => convertToObjectId(b)) };
         }
 
+        if (filterOptions?.spuIds?.length) {
+            where._id = { $in: filterOptions.spuIds.map((s) => convertToObjectId(s)) };
+        }
+
+        this.logger.info({ whereSpu: where });
         const spusData = await this.spuModel
             .find(where)
             .sort(

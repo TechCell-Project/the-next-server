@@ -1,4 +1,4 @@
-import { AbstractRepository, TPaginationOptions } from '~/common';
+import { AbstractRepository, convertToObjectId, TPaginationOptions } from '~/common';
 import { SKU } from './schemas';
 import { PinoLogger } from 'nestjs-pino';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
@@ -36,6 +36,12 @@ export class SkusRepository extends AbstractRepository<SKU> {
         if (filterOptions?.keyword) {
             const keywordRegex = generateRegexQuery(filterOptions.keyword);
             where.$or = [{ name: keywordRegex }, { description: keywordRegex }];
+        }
+
+        if (filterOptions?.tagIds?.length) {
+            where.tags = {
+                $elemMatch: { $in: filterOptions.tagIds.map((s) => convertToObjectId(s)) },
+            };
         }
 
         const skusData = await this.skuModel
