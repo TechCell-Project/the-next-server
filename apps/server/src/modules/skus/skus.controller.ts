@@ -13,9 +13,12 @@ import {
     AddSerialNumberDto,
     AddSerialNumberResponseDto,
     CreateSkuDto,
+    FilterSerialNumberDto,
     FilterSkuDto,
+    QuerySerialNumberDto,
     QuerySkusDto,
     SkuInfinityPaginationResult,
+    SortSerialNumberDto,
     SortSkuDto,
 } from './dtos';
 import { ApiCreatedResponse, ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
@@ -24,9 +27,11 @@ import { infinityPagination } from '~/common/utils';
 import { SKU } from './schemas';
 import { ObjectIdParamDto } from '~/common';
 import { AuthRoles } from '../auth/guards';
+import { SerialNumber } from './schemas/serial-number.schema';
+import { UserRoleEnum } from '../users/enums';
 
 @ApiTags('skus')
-@ApiExtraModels(FilterSkuDto, SortSkuDto)
+@ApiExtraModels(FilterSkuDto, SortSkuDto, FilterSerialNumberDto, SortSerialNumberDto)
 @Controller({
     path: 'skus',
 })
@@ -73,6 +78,34 @@ export class SkusController {
         return this.skusService.getSkuById(id);
     }
 
+    @AuthRoles(UserRoleEnum.Warehouse)
+    @ApiOkResponse({
+        type: SerialNumber,
+        isArray: true,
+    })
+    @Get('/:id/serial-numbers')
+    async getSerialNumbers(
+        @Param() { id }: ObjectIdParamDto,
+        @Query() query: QuerySerialNumberDto,
+    ) {
+        const page = query?.page ?? 1;
+        let limit = query?.limit ?? 10;
+        if (limit > 100) {
+            limit = 100;
+        }
+
+        return infinityPagination(
+            await this.skusService.getSerialNumbers({
+                filters: { ...query?.filters, skuId: id },
+                sort: query?.sort,
+                limit,
+                page,
+            }),
+            { page, limit },
+        );
+    }
+
+    @AuthRoles(UserRoleEnum.Warehouse)
     @ApiCreatedResponse({
         type: AddSerialNumberResponseDto,
     })

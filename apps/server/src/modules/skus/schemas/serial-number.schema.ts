@@ -8,6 +8,11 @@ import { HydratedDocument, Types } from 'mongoose';
     collection: 'serial-numbers',
 })
 export class SerialNumber extends AbstractDocument {
+    constructor(document: Partial<SerialNumber>) {
+        super();
+        Object.assign(this, document);
+    }
+
     @Prop({ required: true, type: String, unique: true })
     number: string;
 
