@@ -1,6 +1,6 @@
-import { Controller, Get, Query, SerializeOptions } from '@nestjs/common';
+import { Controller, Get, Param, Query, SerializeOptions } from '@nestjs/common';
 import { ApiExtraModels, ApiTags } from '@nestjs/swagger';
-import { CurrentUser, infinityPagination } from '~/common';
+import { CurrentUser, infinityPagination, ObjectIdParamDto } from '~/common';
 import { JwtPayloadType } from '../auth/strategies/types';
 import { FilterOrdersMntDto, QueryOrdersMntDto } from './dtos';
 import { AuthRoles } from '../auth/guards';
@@ -37,5 +37,14 @@ export class OrdersMntController {
             }),
             { page, limit },
         );
+    }
+
+    @SerializeOptions({
+        groups: [UserRoleEnum.Sales, UserRoleEnum.Accountant, UserRoleEnum.Warehouse],
+    })
+    @AuthRoles(UserRoleEnum.Sales, UserRoleEnum.Accountant, UserRoleEnum.Warehouse)
+    @Get('/:id')
+    async getOrdersMntById(@CurrentUser() user: JwtPayloadType, @Param() { id }: ObjectIdParamDto) {
+        return this.ordersMntService.getOrdersMntById(user, id);
     }
 }

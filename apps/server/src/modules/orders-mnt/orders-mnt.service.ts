@@ -19,6 +19,45 @@ export class OrdersMntService {
         private readonly redlockService: RedlockService,
     ) {}
 
+    async getOrdersMntById(user: JwtPayloadType, orderId: string) {
+        const filters: FilterQuery<Order> = {
+            _id: convertToObjectId(orderId),
+        };
+        filters.$or = filters.$or || [];
+        filters.$or.push({
+            orderLogs: {
+                $elemMatch: {
+                    actorId: convertToObjectId(user.userId),
+                },
+            },
+        });
+
+        switch (user.role) {
+            case UserRoleEnum.Sales:
+                filters.$or.push({
+                    orderStatus: OrderStatusEnum.Pending,
+                });
+                break;
+            case UserRoleEnum.Warehouse:
+                filters.$or.push({
+                    orderStatus: OrderStatusEnum.Preparing,
+                });
+                break;
+            case UserRoleEnum.Accountant:
+                filters.$or = [];
+                break;
+            default:
+                throw new HttpException('Forbidden orders-mnt access', HttpStatus.FORBIDDEN);
+        }
+
+        this.logger.debug({ filters }, 'getOrdersMntById');
+        const order = await this.ordersMntRepository.findOneOrThrow({
+            filterQuery: filters,
+        });
+
+        return new Order(order);
+    }
+
     async getOrdersMnt(
         user: JwtPayloadType,
         query: {
