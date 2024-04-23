@@ -37,7 +37,7 @@ import { Order } from './schemas';
 import { CartsService } from '../carts';
 import { RedlockService } from '~/common/redis';
 import { ClientSession, Types } from 'mongoose';
-import { Lock } from 'redlock';
+import { ExecutionError, Lock } from 'redlock';
 import { GhnServiceTypeIdEnum } from '~/third-party/giaohangnhanh/enums';
 import { TPaginationOptions } from '~/common';
 
@@ -176,11 +176,12 @@ export class OrdersService {
         });
 
         const session = await this.ordersRepository.startTransaction();
-        const lockOrder: Lock = await this.redlockService.lock(resources, 5000);
+        let lockOrder: Lock | null = null;
 
         let order: Order;
         let ghnOrder;
         try {
+            lockOrder = await this.redlockService.lock(resources, 5000);
             const orderCreated = await this.ordersRepository.create({
                 document: {
                     ...orderPreview,
@@ -284,8 +285,8 @@ export class OrdersService {
                 };
             }
 
-            order = await this.ordersRepository.findOneAndUpdateOrThrow({
-                filterQuery: { _id: orderCreated._id },
+            order = await this.ordersRepository.updateOrderById({
+                orderId: orderCreated._id,
                 updateQuery: new Order(orderCreated),
                 session,
             });
@@ -296,13 +297,27 @@ export class OrdersService {
                 this.ordersRepository.rollbackTransaction(session),
                 this.ghnService.cancelOrder(ghnOrder?.order_code),
             ]);
+            if (error instanceof ExecutionError) {
+                throw new HttpException(
+                    {
+                        status: HttpStatus.CONFLICT,
+                        errors: {
+                            order: 'orderInCreating',
+                        },
+                    },
+                    HttpStatus.CONFLICT,
+                );
+            }
             this.logger.error(error);
             throw error;
         } finally {
-            await Promise.all([
-                this.redlockService.unlock(lockOrder),
-                this.ordersRepository.endSession(session),
-            ]);
+            const promises: Promise<unknown>[] = [this.ordersRepository.endSession(session)];
+
+            if (lockOrder) {
+                promises.push(this.redlockService.unlock(lockOrder));
+            }
+
+            await Promise.all(promises);
         }
 
         return order;
@@ -337,22 +352,17 @@ export class OrdersService {
             order.payment.method = PaymentMethodEnum.VNPAY;
             if (query.vnp_ResponseCode === '00' || query.vnp_TransactionStatus === '00') {
                 order.payment.status = PaymentStatusEnum.Completed;
-                order.orderStatus = OrderStatusEnum.Pending;
                 this.logger.debug('Payment success');
             } else {
-                order.payment.status = PaymentStatusEnum.Canceled;
-                order.orderStatus = OrderStatusEnum.Canceled;
+                order.payment.status = PaymentStatusEnum.Failed;
                 this.logger.debug('Payment failed');
             }
 
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const { vnp_SecureHash, ...vnpayQueryData } = query;
             order.payment.paymentData = vnpayQueryData;
-            this.logger.debug({ order });
-            await this.ordersRepository.findOneAndUpdateOrThrow({
-                filterQuery: {
-                    _id: order._id,
-                },
+            await this.ordersRepository.updateOrderById({
+                orderId: order._id,
                 updateQuery: order,
             });
             return IpnSuccess;

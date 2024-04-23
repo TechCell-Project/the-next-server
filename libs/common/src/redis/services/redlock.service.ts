@@ -18,17 +18,14 @@ export class RedlockService {
     }
 
     public async lock(resources: string[], ttl: number): Promise<Lock> {
-        return await this.redLock
+        return this.redLock
             .acquire(resources, ttl)
             .then((lock) => {
                 this.logger.debug(`Acquired lock: '${lock.resources.join(', ')}'`);
                 return lock;
             })
             .catch((err: ExecutionError) => {
-                if (
-                    err.message ===
-                    'The operation was unable to achieve a quorum during its retry window.'
-                ) {
+                if (err.message.includes('unable to achieve a quorum')) {
                     throw new ExecutionError(
                         `Cannot lock: '${resources.join(', ')}'`,
                         err.attempts,
@@ -41,7 +38,7 @@ export class RedlockService {
     }
 
     public async extend(lock: Lock, ttl: number): Promise<Lock> {
-        return await lock
+        return lock
             .extend(ttl)
             .then((lock) => {
                 this.logger.debug(`Extend lock: '${lock.resources.join(', ')}'`);
@@ -53,7 +50,7 @@ export class RedlockService {
     }
 
     public async unlock(lock: Lock): Promise<ExecutionResult> {
-        return await lock.release().then((result) => {
+        return lock.release().then((result) => {
             if (result) {
                 this.logger.debug(`Released lock: '${lock.resources.join(', ')}'`);
             }

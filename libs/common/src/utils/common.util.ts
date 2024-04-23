@@ -75,3 +75,13 @@ export function sortedStringify(obj: unknown): string {
     const keys = Object.keys(obj as object).sort((a, b) => a.localeCompare(b));
     return `{${keys.map((key) => `"${key}":${sortedStringify((obj as { [key: string]: unknown })[key])}`).join(',')}}`;
 }
+
+/**
+ * Sleeps for a given number of milliseconds.
+ *
+ * @param {number} ms - The number of milliseconds to sleep.
+ * @return {Promise<void>} A promise that resolves after the sleep.
+ */
+export function sleep(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}

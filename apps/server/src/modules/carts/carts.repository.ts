@@ -1,11 +1,12 @@
 import { AbstractRepository } from '~/common/abstract';
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { ClientSession, Connection, Model } from 'mongoose';
 import { Cart } from './schemas';
 import { PinoLogger } from 'nestjs-pino';
 import { NullableType } from '~/common';
 import { RedlockService } from '~/common/redis';
+import { ExecutionError, Lock } from 'redlock';
 
 @Injectable()
 export class CartsRepository extends AbstractRepository<Cart> {
@@ -21,16 +22,31 @@ export class CartsRepository extends AbstractRepository<Cart> {
 
     async updateCartLockSession({ userId, products }: Omit<Cart, '_id'>, session?: ClientSession) {
         let result: NullableType<Cart>;
-        const lock = await this.redLock.lock([`update_cart:${userId}`], 1000);
+        let lock: Lock | null = null;
 
         try {
+            lock = await this.redLock.lock([`update_cart:${userId}`], 3000);
             result = await this.findOneAndUpdate({
                 filterQuery: { userId },
                 updateQuery: { products },
                 ...(session ? { session } : {}),
             });
+        } catch (error) {
+            if (error instanceof ExecutionError) {
+                throw new HttpException(
+                    {
+                        errors: {
+                            cart: 'cartIsUpdating',
+                        },
+                    },
+                    HttpStatus.CONFLICT,
+                );
+            }
+            throw error;
         } finally {
-            await this.redLock.unlock(lock);
+            if (lock) {
+                await this.redLock.unlock(lock);
+            }
         }
 
         return result;
