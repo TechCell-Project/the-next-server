@@ -1,34 +1,21 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { OrdersRepository } from './orders.repository';
-import { SkusService } from '../skus';
 import { QueryOrdersMntDto } from './dtos';
-import { UsersService } from '../users/users.service';
-import { GhnService, VnpayService } from '~/third-party';
-import { ProductsService } from '../products/products.service';
-import { OrderStatusEnum } from './enum';
 import { PinoLogger } from 'nestjs-pino';
 import { ConfigService } from '@nestjs/config';
-import { Order } from './schemas';
-import { CartsService } from '../carts';
 import { RedlockService } from '~/common/redis';
 import { convertToObjectId, TPaginationOptions } from '~/common';
 import { JwtPayloadType } from '../auth/strategies/types';
 import { UserRoleEnum } from '../users/enums';
-import { SelectOrderTypeEnum } from './enum/query-type.enum';
 import { FilterQuery } from 'mongoose';
+import { OrdersMntRepository } from './orders-mnt.repository';
+import { Order, OrderStatusEnum, SelectOrderTypeEnum } from '~/server/orders';
 
 @Injectable()
 export class OrdersMntService {
     constructor(
         private readonly logger: PinoLogger,
         private readonly configService: ConfigService,
-        private readonly ordersRepository: OrdersRepository,
-        private readonly skusService: SkusService,
-        private readonly usersService: UsersService,
-        private readonly ghnService: GhnService,
-        private readonly productsService: ProductsService,
-        private readonly vnpayService: VnpayService,
-        private readonly cartsService: CartsService,
+        private readonly ordersMntRepository: OrdersMntRepository,
         private readonly redlockService: RedlockService,
     ) {}
 
@@ -94,7 +81,7 @@ export class OrdersMntService {
                 break;
         }
 
-        return this.ordersRepository.findManyWithPaginationMnt({
+        return this.ordersMntRepository.findManyWithPaginationMnt({
             filterQuery: where,
             sortOptions,
             paginationOptions,
@@ -140,7 +127,7 @@ export class OrdersMntService {
                 break;
         }
 
-        return this.ordersRepository.findManyWithPaginationMnt({
+        return this.ordersMntRepository.findManyWithPaginationMnt({
             filterQuery: where,
             sortOptions,
             paginationOptions,
@@ -193,7 +180,7 @@ export class OrdersMntService {
                 break;
         }
 
-        return this.ordersRepository.findManyWithPaginationMnt({
+        return this.ordersMntRepository.findManyWithPaginationMnt({
             filterQuery: where,
             sortOptions,
             paginationOptions,

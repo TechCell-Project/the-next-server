@@ -1,27 +1,21 @@
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongodbModule } from '~/common/database/mongodb';
-import { Order, OrderSchema } from './schemas';
 import { Module } from '@nestjs/common';
-import { OrdersController } from './orders.controller';
-import { OrdersRepository } from './orders.repository';
-import { OrdersService } from './orders.service';
+import { OrdersMntController } from './orders-mnt.controller';
 import { CartsModule } from '../carts';
 import { SKUModule } from '../skus';
 import { UsersModule } from '../users';
-import { GhnModule, VnpayModule } from '~/third-party';
+import { VnpayModule } from '~/third-party';
 import { ProductsModule } from '../products/products.module';
 import { RedisModule } from '~/common/redis';
+import { OrdersMntService } from './orders-mnt.service';
+import { OrdersMntRepository } from './orders-mnt.repository';
+import { Order, OrderSchema } from '~/server/orders';
 
 @Module({
     imports: [
         MongodbModule,
         MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema }]),
-        GhnModule.forRoot({
-            host: process.env.GHN_URL!,
-            token: process.env.GHN_API_TOKEN!,
-            shopId: +process.env.GHN_SHOP_ID!,
-            testMode: true,
-        }),
         UsersModule,
         SKUModule,
         CartsModule,
@@ -34,8 +28,8 @@ import { RedisModule } from '~/common/redis';
         }),
         RedisModule,
     ],
-    controllers: [OrdersController],
-    providers: [OrdersRepository, OrdersService],
-    exports: [OrdersService],
+    controllers: [OrdersMntController],
+    providers: [OrdersMntRepository, OrdersMntService],
+    exports: [OrdersMntService],
 })
-export class OrdersModule {}
+export class OrdersMntModule {}
