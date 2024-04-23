@@ -238,19 +238,19 @@ declare module 'swagger-stats' {
         http: {
             request: {
                 url: string;
-                headers?: IncomingHttpHeaders | undefined;
-                clength?: number | undefined;
-                route_path?: string | undefined;
-                params?: Record<string, any> | undefined;
-                query?: Record<string, any> | undefined;
+                headers?: IncomingHttpHeaders;
+                clength?: number;
+                route_path?: string;
+                params?: Record<string, any>;
+                query?: Record<string, any>;
                 body?: any;
             };
             response: {
                 code: string;
                 class: string;
                 phrase: string;
-                headers?: OutgoingHttpHeaders | undefined;
-                clength?: number | undefined;
+                headers?: OutgoingHttpHeaders;
+                clength?: number;
             };
         };
         ip: string;
@@ -260,23 +260,23 @@ declare module 'swagger-stats' {
         api: {
             path: string;
             query: string;
-            swagger?: string | undefined;
-            deprecated?: string | undefined;
-            operationId?: string | undefined;
-            tags?: string | undefined;
-            params?: string | undefined;
+            swagger?: string;
+            deprecated?: string;
+            operationId?: string;
+            tags?: string;
+            params?: string;
         };
-        attrs?: Record<string, string> | undefined;
-        attrsint?: Record<string, number> | undefined;
+        attrs?: Record<string, string>;
+        attrsint?: Record<string, number>;
         [field: string]: any;
     }
 
     export interface APIOperationDefinition {
         swagger: boolean;
         deprecated: boolean;
-        description?: string | undefined;
-        operationId?: string | undefined;
-        summary?: string | undefined;
+        description?: string;
+        operationId?: string;
+        summary?: string;
         tags?: any;
     }
 
@@ -287,9 +287,9 @@ declare module 'swagger-stats' {
     }
 
     export interface APIOperationStats {
-        defs?: APIOperationDefinition | undefined;
-        stats?: APIOperationDefinition | undefined;
-        details?: APIOperationDefinition | undefined;
+        defs?: APIOperationDefinition;
+        stats?: APIOperationDefinition;
+        details?: APIOperationDefinition;
     }
 
     export interface CoreStats {
@@ -302,14 +302,14 @@ declare module 'swagger-stats' {
         hostname: string;
         ip: string;
         apdexThreshold: number;
-        method?: Record<HTTPMethodSubset, ReqResStats> | undefined;
-        timeline?: TimelineStats | undefined;
-        lasterrors?: RequestResponseRecord[] | undefined;
-        longestreq?: RequestResponseRecord[] | undefined;
-        apidefs?: Record<string, Record<HTTPMethod, APIOperationDefinition>> | undefined;
-        apistats?: Record<string, Record<HTTPMethod, ReqResStats>> | undefined;
-        errors?: ErrorsStats | undefined;
-        apiop?: Record<string, Record<HTTPMethod, APIOperationStats>> | undefined;
+        method?: Record<HTTPMethodSubset, ReqResStats>;
+        timeline?: TimelineStats;
+        lasterrors?: RequestResponseRecord[];
+        longestreq?: RequestResponseRecord[];
+        apidefs?: Record<string, Record<HTTPMethod, APIOperationDefinition>>;
+        apistats?: Record<string, Record<HTTPMethod, ReqResStats>>;
+        errors?: ErrorsStats;
+        apiop?: Record<string, Record<HTTPMethod, APIOperationStats>>;
     }
 
     export function getCoreStats(): CoreStats;

@@ -37,7 +37,7 @@ export class QueryOrdersDto extends QueryManyWithPaginationDto<FilterOrdersDto, 
     @JsonTransform(FilterOrdersDto)
     @ValidateNested()
     @Type(() => FilterOrdersDto)
-    filters?: FilterOrdersDto | null | undefined;
+    filters?: FilterOrdersDto | null;
 
     @ApiPropertyOptional({
         type: String,

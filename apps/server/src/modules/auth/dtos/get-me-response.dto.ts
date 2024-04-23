@@ -40,5 +40,5 @@ export class GetMeResponseDto extends IntersectionType(User) {
     }
 
     @ApiProperty({ type: UserAddressResponseDto, isArray: true })
-    address?: UserAddressResponseDto[] | undefined;
+    address?: UserAddressResponseDto[];
 }

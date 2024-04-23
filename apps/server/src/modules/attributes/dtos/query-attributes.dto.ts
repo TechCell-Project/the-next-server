@@ -25,15 +25,15 @@ export class FilterAttributeDto extends OmitType(PartialType(Attribute), ['_id',
 
     @IsOptional()
     @IsString()
-    description?: string | undefined;
+    description?: string;
 
     @IsOptional()
     @IsString()
-    label?: string | undefined;
+    label?: string;
 
     @IsOptional()
     @IsString()
-    name?: string | undefined;
+    name?: string;
 
     @ApiPropertyOptional({
         type: [AttributeStatusEnum],
@@ -42,11 +42,11 @@ export class FilterAttributeDto extends OmitType(PartialType(Attribute), ['_id',
     })
     @IsOptional()
     @IsEnum(AttributeStatusEnum, { each: true })
-    status?: AttributeStatusEnum[] | undefined;
+    status?: AttributeStatusEnum[];
 
     @IsOptional()
     @IsString()
-    unit?: string | undefined;
+    unit?: string;
 }
 
 export class SortAttributeDto {
@@ -79,7 +79,7 @@ export class QueryAttributesDto extends IntersectionType(
     @JsonTransform(FilterAttributeDto)
     @ValidateNested()
     @Type(() => FilterAttributeDto)
-    filters?: FilterAttributeDto | null | undefined;
+    filters?: FilterAttributeDto | null;
 
     @ApiPropertyOptional({
         type: String,
@@ -90,5 +90,5 @@ export class QueryAttributesDto extends IntersectionType(
     @JsonTransform(Array<SortAttributeDto>)
     @ValidateNested({ each: true })
     @Type(() => SortAttributeDto)
-    sort?: SortAttributeDto[] | null | undefined;
+    sort?: SortAttributeDto[] | null;
 }
