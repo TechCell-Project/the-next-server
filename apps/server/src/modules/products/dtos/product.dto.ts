@@ -62,7 +62,7 @@ export class ProductDto {
             );
         }
 
-        this.productId = ProductsService.toProductId(spu, modelSlug);
+        this.productId = ProductsService.toProductId(spu._id, modelSlug);
         this.productName = model.name;
         this.description = model.description;
         this.attributes = [...(spu?.commonAttributes || []), ...(model?.attributes || [])];

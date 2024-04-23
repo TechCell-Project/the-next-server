@@ -7,18 +7,19 @@ import { SpusService } from '../spus';
 import { ImagesService } from '../images';
 import { AttributesService } from '../attributes';
 import { SerialNumberStatusEnum, SkuStatusEnum } from './enums';
-import { convertToObjectId, sanitizeHtmlString } from '~/common';
+import { AbstractService, convertToObjectId, sanitizeHtmlString } from '~/common';
 import { ClientSession, FilterQuery, Types } from 'mongoose';
 import { SerialNumberRepository } from './serial-number.repository';
 import { remove as removeDiacritics } from 'diacritics';
 import { RELEASE_HOLD_SERIAL_NUMBER_QUEUE } from './constants/skus-queue.constant';
 import { Queue } from 'bullmq';
 import { InjectQueue } from '@nestjs/bullmq';
-import { RedlockService } from '~/common/redis';
+import { RedisService, RedlockService } from '~/common/redis';
 import { Lock } from 'redlock';
+import { convertTimeString } from 'convert-time-string';
 
 @Injectable()
-export class SkusService {
+export class SkusService extends AbstractService {
     constructor(
         private readonly logger: PinoLogger,
         private readonly skusRepository: SkusRepository,
@@ -28,7 +29,9 @@ export class SkusService {
         private readonly attributesService: AttributesService,
         @InjectQueue(RELEASE_HOLD_SERIAL_NUMBER_QUEUE) private releaseHoldSkuQueue: Queue,
         private readonly redlockService: RedlockService,
+        private readonly redisService: RedisService,
     ) {
+        super('CACHE_SKU');
         this.logger.setContext(SkusService.name);
     }
 
@@ -70,7 +73,13 @@ export class SkusService {
     }
 
     async getSkus(query: QuerySkusDto) {
-        return this.skusRepository.findManyWithPagination({
+        const cacheKey = this.buildCacheKey(this.getSkus.name, query);
+        const fromCache = await this.redisService.get<SKU[]>(cacheKey);
+        if (fromCache) {
+            return fromCache;
+        }
+
+        const skus = await this.skusRepository.findManyWithPagination({
             filterOptions: {
                 ...query?.filters,
             },
@@ -80,23 +89,39 @@ export class SkusService {
                 page: query?.page,
             },
         });
+
+        await this.redisService.set(cacheKey, skus, convertTimeString('3m'));
+        return skus;
+    }
+
+    async getSkusOrThrow(data: { filterQuery: FilterQuery<SKU> }) {
+        const cacheKey = this.buildCacheKey(this.getSkusOrThrow.name, data);
+        const fromCache = await this.redisService.get<SKU[]>(cacheKey);
+        if (fromCache) {
+            return fromCache;
+        }
+
+        const skus = await this.skusRepository.findOrThrow({ filterQuery: data.filterQuery });
+
+        await this.redisService.set(cacheKey, skus, convertTimeString('3m'));
+        return skus;
     }
 
     async getSkuById(id: string | Types.ObjectId) {
-        return this.skusRepository.findOneOrThrow({
+        const cacheKey = this.buildCacheKey(this.getSkuById.name, id);
+        const fromCache = await this.redisService.get<SKU>(cacheKey);
+        if (fromCache) {
+            return fromCache;
+        }
+
+        const sku = await this.skusRepository.findOneOrThrow({
             filterQuery: {
                 _id: convertToObjectId(id),
             },
         });
-    }
 
-    async getSkusBySpuId(data: { spuId: string | Types.ObjectId; spuModelSlug: string }) {
-        return this.skusRepository.findOne({
-            filterQuery: {
-                spuId: convertToObjectId(data.spuId),
-                spuModelSlug: data.spuModelSlug,
-            },
-        });
+        await this.redisService.set(cacheKey, sku, convertTimeString('3m'));
+        return sku;
     }
 
     async getSkusBySpuIdOrThrow(data: { spuId: string | Types.ObjectId; spuModelSlug: string }) {
@@ -122,7 +147,16 @@ export class SkusService {
     }
 
     async findOneOrThrow(data: { filterQuery: FilterQuery<SKU> }) {
-        return this.skusRepository.findOneOrThrow(data);
+        const cacheKey = this.buildCacheKey(this.findOneOrThrow.name, data);
+        const fromCache = await this.redisService.get<SKU>(cacheKey);
+        if (fromCache) {
+            return fromCache;
+        }
+
+        const res = await this.skusRepository.findOneOrThrow(data);
+
+        await this.redisService.set(cacheKey, res, convertTimeString('3m'));
+        return res;
     }
 
     async addSerialNumbers(skuId: string | Types.ObjectId, serialNumbers: string[]) {
@@ -220,14 +254,17 @@ export class SkusService {
         }
 
         skuFound = { ...skuFound, ...data };
-        await this.skusRepository.findOneAndUpdateOrThrow({
-            filterQuery: {
-                _id: convertToObjectId(id),
-            },
-            updateQuery: {
-                $set: skuFound,
-            },
-        });
+        await Promise.all([
+            this.skusRepository.findOneAndUpdateOrThrow({
+                filterQuery: {
+                    _id: convertToObjectId(id),
+                },
+                updateQuery: {
+                    $set: skuFound,
+                },
+            }),
+            this.redisService.del(this.buildCacheKey(this.getSkuById.name, id)),
+        ]);
     }
 
     async countSerialNumberWithSkuId(skuId: string | Types.ObjectId) {

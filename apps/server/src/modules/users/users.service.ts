@@ -336,7 +336,7 @@ export class UsersService {
             );
         }
 
-        const actLogs = (targetUser.block && targetUser?.block?.activityLogs) || [];
+        const actLogs = targetUser?.block?.activityLogs || [];
         actLogs.push({
             action,
             actionAt: new Date(),

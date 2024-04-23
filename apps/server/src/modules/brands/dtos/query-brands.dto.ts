@@ -37,7 +37,7 @@ export class QueryBrandsDto extends QueryManyWithPaginationDto<FilterBrandsDto, 
     @JsonTransform(FilterBrandsDto)
     @ValidateNested()
     @Type(() => FilterBrandsDto)
-    filters?: FilterBrandsDto | null | undefined;
+    filters?: FilterBrandsDto | null;
 
     @ApiPropertyOptional({
         type: String,

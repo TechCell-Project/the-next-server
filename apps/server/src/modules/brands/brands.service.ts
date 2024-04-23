@@ -2,13 +2,26 @@ import { Injectable } from '@nestjs/common';
 import { CreateBrandDto, FilterBrandsDto, SortBrandsDto, UpdateBrandDto } from './dtos';
 import { BrandsRepository } from './brands.repository';
 import { BrandStatusEnum } from './enums';
-import { ObjectIdParamDto, TPaginationOptions, convertToObjectId, getSlugFromName } from '~/common';
+import {
+    AbstractService,
+    ObjectIdParamDto,
+    TPaginationOptions,
+    convertToObjectId,
+    getSlugFromName,
+} from '~/common';
 import { Brand } from './schemas';
 import { FilterQuery, Types } from 'mongoose';
+import { RedisService } from '~/common/redis';
+import { convertTimeString } from 'convert-time-string';
 
 @Injectable()
-export class BrandsService {
-    constructor(protected readonly brandsRepository: BrandsRepository) {}
+export class BrandsService extends AbstractService {
+    constructor(
+        protected readonly brandsRepository: BrandsRepository,
+        private readonly redisService: RedisService,
+    ) {
+        super('CACHE_SPU');
+    }
 
     async createBrand(data: CreateBrandDto) {
         let uniqSlug = getSlugFromName(data.name, false);
@@ -27,12 +40,15 @@ export class BrandsService {
     }
 
     async updateBrand(id: ObjectIdParamDto['id'], updateData: UpdateBrandDto) {
-        await this.brandsRepository.findOneAndUpdateOrThrow({
-            filterQuery: {
-                _id: convertToObjectId(id),
-            },
-            updateQuery: updateData,
-        });
+        await Promise.all([
+            this.brandsRepository.findOneAndUpdateOrThrow({
+                filterQuery: {
+                    _id: convertToObjectId(id),
+                },
+                updateQuery: updateData,
+            }),
+            this.redisService.del(this.buildCacheKey(this.updateBrand.name, id)),
+        ]);
     }
 
     async findManyWithPagination({
@@ -44,22 +60,55 @@ export class BrandsService {
         sortOptions?: SortBrandsDto[] | null;
         paginationOptions: TPaginationOptions;
     }): Promise<Brand[]> {
-        return this.brandsRepository.findManyWithPagination({
+        const cacheKey = this.buildCacheKey(this.findManyWithPagination.name, {
             filterOptions,
             sortOptions,
             paginationOptions,
         });
+        const fromCache = await this.redisService.get<Brand[]>(cacheKey);
+        if (fromCache) {
+            return fromCache;
+        }
+
+        const res = await this.brandsRepository.findManyWithPagination({
+            filterOptions,
+            sortOptions,
+            paginationOptions,
+        });
+
+        await this.redisService.set(cacheKey, res, convertTimeString('3m'));
+        return res;
     }
 
     async getBrandById(id: ObjectIdParamDto['id'] | Types.ObjectId) {
-        return this.brandsRepository.findOneOrThrow({
+        const cacheKey = this.buildCacheKey(this.getBrandById.name, id);
+        const fromCache = await this.redisService.get<Brand>(cacheKey);
+        if (fromCache) {
+            return fromCache;
+        }
+
+        const res = await this.brandsRepository.findOneOrThrow({
             filterQuery: { _id: convertToObjectId(id) },
         });
+        await this.redisService.set(cacheKey, res, convertTimeString('3m'));
+        return res;
     }
 
     async findMany({ filterQuery }: { filterQuery: FilterQuery<Brand> }) {
-        return this.brandsRepository.find({
+        const cacheKey = this.buildCacheKey(this.findMany.name, { filterQuery });
+        const fromCache = await this.redisService.get<Brand[]>(cacheKey);
+        if (fromCache) {
+            return fromCache;
+        }
+
+        const res = await this.brandsRepository.find({
             filterQuery: filterQuery,
         });
+        if (!res) {
+            return res;
+        }
+
+        await this.redisService.set(cacheKey, res, convertTimeString('3m'));
+        return res;
     }
 }

@@ -9,14 +9,14 @@ export class UpdateAttributeDto extends PartialType(
     @IsOptional()
     @IsNotEmpty()
     @IsString()
-    name?: string | undefined;
+    name?: string;
 
     @IsOptional()
     @IsNotEmpty()
     @IsString()
-    description?: string | undefined;
+    description?: string;
 
     @IsOptional()
     @IsEnum(AttributeStatusEnum)
-    status?: AttributeStatusEnum | undefined;
+    status?: AttributeStatusEnum;
 }

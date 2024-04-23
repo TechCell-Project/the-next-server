@@ -1,6 +1,5 @@
 import { OmitType } from '@nestjs/swagger';
 import { Order } from '../schemas';
-import { CalculateShippingFeeResponse } from 'giaohangnhanh/lib/calculate-fee';
 
 // export class CalculateShippingFeeResponseDto implements CalculateShippingFeeResponse {
 

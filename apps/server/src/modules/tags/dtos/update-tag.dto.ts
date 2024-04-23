@@ -7,14 +7,14 @@ export class UpdateTagDto extends PartialType(PickType(Tag, ['status', 'name', '
     @IsOptional()
     @IsNotEmpty()
     @IsString()
-    name?: string | undefined;
+    name?: string;
 
     @IsOptional()
     @IsNotEmpty()
     @IsString()
-    description?: string | undefined;
+    description?: string;
 
     @IsOptional()
     @IsEnum(TagStatusEnum)
-    status?: TagStatusEnum | undefined;
+    status?: TagStatusEnum;
 }
