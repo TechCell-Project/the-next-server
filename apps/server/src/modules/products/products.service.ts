@@ -232,7 +232,7 @@ export class ProductsService {
     async getProductInListFromSku(sku: SKU): Promise<ProductInListDto> {
         const [spu, ...tag] = await Promise.all([
             this.spusService.getSpuById(sku.spuId),
-            ...sku.tags?.map((tagId) => this.tagsService.getTagById(tagId.toString())),
+            ...(sku.tags?.map((tagId) => this.tagsService.getTagById(tagId.toString())) || []),
         ]);
         const brand = await this.brandsService.getBrandById(spu.brandId);
         const model = spu.models.find((m) => m.slug === sku.spuModelSlug)!;
