@@ -117,7 +117,7 @@ export class ProductsService {
         const { limit, page } = payload;
         const start = (page - 1) * limit;
 
-        const cacheKey = `CACHE_products_${sortedStringify({ filters, ...payload })}`;
+        const cacheKey = `CACHE_products_${sortedStringify({ filters })}`;
         const fromCache = await this.redisService.get<ProductInListDto[]>(cacheKey);
         if (fromCache) {
             return fromCache.slice(start, start + limit);
@@ -132,7 +132,7 @@ export class ProductsService {
                     keyword: keyword,
                 },
                 paginationOptions: {
-                    limit,
+                    limit: 0,
                     page,
                 },
             });
@@ -166,7 +166,7 @@ export class ProductsService {
                 filters: {
                     tagIds: filters.tagIds?.map((tagId) => convertToObjectId(tagId)),
                 },
-                limit,
+                limit: 0,
                 page,
             });
             if (!skuWithTag.length) {
@@ -183,7 +183,7 @@ export class ProductsService {
         }
 
         const spus = await this.spusService.getSpus({
-            limit,
+            limit: 0,
             page,
             filters: spuFilters,
         });
