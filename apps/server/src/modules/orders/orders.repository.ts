@@ -42,18 +42,18 @@ export class OrdersRepository extends AbstractRepository<Order> {
     }
 
     async findManyWithPagination({
-        userId,
+        customerId: customerId,
         filterOptions,
         sortOptions,
         paginationOptions,
     }: {
-        userId: string;
+        customerId: string;
         filterOptions?: FilterOrdersDto | null;
         sortOptions?: SortOrdersDto[] | null;
         paginationOptions: TPaginationOptions;
     }): Promise<Order[]> {
         const where: FilterQuery<Order> = {
-            'customer.customerId': convertToObjectId(userId),
+            'customer.customerId': convertToObjectId(customerId),
         };
 
         if (filterOptions?.status?.length) {
@@ -73,7 +73,7 @@ export class OrdersRepository extends AbstractRepository<Order> {
             ];
         }
 
-        const brandObjects = await this.orderModel
+        const orders = await this.orderModel
             .find(where)
             .sort(
                 sortOptions?.reduce(
@@ -88,7 +88,35 @@ export class OrdersRepository extends AbstractRepository<Order> {
             .limit(paginationOptions.limit)
             .lean(true);
 
-        return brandObjects.map((userObject) => new Order(userObject));
+        return orders.map((od) => new Order(od));
+    }
+
+    async findManyWithPaginationMnt({
+        filterQuery,
+        sortOptions,
+        paginationOptions,
+    }: {
+        filterQuery: FilterQuery<Order>;
+        sortOptions?: SortOrdersDto[] | null;
+        paginationOptions: TPaginationOptions;
+    }): Promise<Order[]> {
+        console.log(filterQuery);
+        const orderObjects = await this.orderModel
+            .find(filterQuery)
+            .sort(
+                sortOptions?.reduce(
+                    (accumulator, sort) => ({
+                        ...accumulator,
+                        [sort.orderBy]: sort.order.toUpperCase() === 'ASC' ? 1 : -1,
+                    }),
+                    {},
+                ),
+            )
+            .skip((paginationOptions.page - 1) * paginationOptions.limit)
+            .limit(paginationOptions.limit)
+            .lean(true);
+
+        return orderObjects.map((order) => new Order(order));
     }
 
     async getOrderById(userId: string, orderId: string) {

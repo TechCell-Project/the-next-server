@@ -123,6 +123,7 @@ export class OrdersService {
                 url: '',
                 paymentData: {},
             },
+            orderLogs: [],
         });
 
         return orderPreview;
@@ -173,6 +174,7 @@ export class OrdersService {
                 url: '',
                 paymentData: {},
             },
+            orderLogs: [],
         });
 
         const session = await this.ordersRepository.startTransaction();
@@ -386,7 +388,7 @@ export class OrdersService {
     ) {
         return this.ordersRepository.findManyWithPagination({
             filterOptions,
-            userId,
+            customerId: userId,
             sortOptions,
             paginationOptions,
         });

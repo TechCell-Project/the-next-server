@@ -9,6 +9,7 @@ import { PaymentSchema } from './payment.schema';
 import { OrderStatusEnum } from '../enum';
 import { ProductSchema } from './product.schema';
 import { ShippingSchema } from './shipping.schema';
+import { OrderLogSchema } from './order-log.schema';
 
 @Schema({
     timestamps: true,
@@ -58,6 +59,10 @@ export class Order extends AbstractDocument {
     @Factory(() => {})
     @Prop({ required: false, type: ShippingSchema })
     shipping?: ShippingSchema;
+
+    @ApiProperty({ type: [OrderLogSchema], description: 'Order logs' })
+    @Prop({ required: false, type: [OrderLogSchema], default: [] })
+    orderLogs: OrderLogSchema[];
 
     @ApiProperty({ example: 10000, type: Number, description: 'Total price of order' })
     @Prop({ required: true, type: Number })
