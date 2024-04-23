@@ -400,12 +400,10 @@ export class AuthService {
         }
         const provinceIdSet = new Set<number>();
         const districtIdSet = new Set<number>();
-        const wardCodeSet = new Set<string>();
 
         (userFound.address || []).forEach((address) => {
             provinceIdSet.add(address.provinceLevel?.provinceId ?? 0);
             districtIdSet.add(address.districtLevel?.districtId ?? 0);
-            wardCodeSet.add(address.wardLevel?.wardCode ?? '');
         });
 
         const provinceArray = await this.ghnService.getProvinces();

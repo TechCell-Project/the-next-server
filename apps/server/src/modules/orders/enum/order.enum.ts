@@ -1,10 +1,10 @@
 export enum OrderStatusEnum {
     Pending = 'pending',
+    Confirmed = 'confirmed',
     Preparing = 'preparing',
     Prepared = 'prepared',
-    Confirmed = 'confirmed',
     Shipping = 'shipping',
-    Completed = 'completed',
     Canceled = 'canceled',
     Failed = 'failed',
+    Completed = 'completed',
 }

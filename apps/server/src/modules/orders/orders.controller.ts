@@ -22,11 +22,13 @@ import {
     PreviewOrderDto,
     PreviewOrderResponseDto,
     QueryOrdersDto,
+    QueryOrdersMntDto,
     VnpayIpnUrlDTO,
 } from './dtos';
 import { AuthRoles } from '../auth/guards';
 import { Order } from './schemas';
 import { UserRoleEnum } from '../users/enums';
+import { OrdersMntService } from './orders-mnt.service';
 
 @ApiTags('orders')
 @ApiExtraModels(FilterOrdersDto, QueryOrdersDto)
@@ -34,7 +36,10 @@ import { UserRoleEnum } from '../users/enums';
     path: 'orders',
 })
 export class OrdersController {
-    constructor(private readonly ordersService: OrdersService) {}
+    constructor(
+        private readonly ordersService: OrdersService,
+        private readonly ordersMntService: OrdersMntService,
+    ) {}
 
     @ApiExcludeEndpoint()
     @Get('/vnpay-ipn')
@@ -79,6 +84,30 @@ export class OrdersController {
 
         return infinityPagination(
             await this.ordersService.getOrders(userId, {
+                filterOptions: query?.filters,
+                sortOptions: query?.sort,
+                paginationOptions: {
+                    page,
+                    limit,
+                },
+            }),
+            { page, limit },
+        );
+    }
+
+    @SerializeOptions({
+        groups: [UserRoleEnum.Sales, UserRoleEnum.Accountant, UserRoleEnum.Warehouse],
+    })
+    @AuthRoles(UserRoleEnum.Sales, UserRoleEnum.Accountant, UserRoleEnum.Warehouse)
+    @Get('/mnt')
+    async getOrdersMnt(@CurrentUser() user: JwtPayloadType, @Query() query: QueryOrdersMntDto) {
+        const page = query?.page ?? 1;
+        let limit = query?.limit ?? 10;
+        if (limit > 100) {
+            limit = 100;
+        }
+        return infinityPagination(
+            await this.ordersMntService.getOrdersMnt(user, {
                 filterOptions: query?.filters,
                 sortOptions: query?.sort,
                 paginationOptions: {

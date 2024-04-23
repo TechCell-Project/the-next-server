@@ -79,3 +79,13 @@ export function sortedStringify(arg: unknown): string {
     });
     return '{' + keyValuePairs.join(',') + '}';
 }
+
+/**
+ * Sleeps for a given number of milliseconds.
+ *
+ * @param {number} ms - The number of milliseconds to sleep.
+ * @return {Promise<void>} A promise that resolves after the sleep.
+ */
+export function sleep(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}

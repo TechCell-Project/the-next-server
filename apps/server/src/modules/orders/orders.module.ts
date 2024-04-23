@@ -11,6 +11,7 @@ import { UsersModule } from '../users';
 import { GhnModule, VnpayModule } from '~/third-party';
 import { ProductsModule } from '../products/products.module';
 import { RedisModule } from '~/common/redis';
+import { OrdersMntService } from './orders-mnt.service';
 
 @Module({
     imports: [
@@ -35,7 +36,7 @@ import { RedisModule } from '~/common/redis';
         RedisModule,
     ],
     controllers: [OrdersController],
-    providers: [OrdersRepository, OrdersService],
+    providers: [OrdersRepository, OrdersService, OrdersMntService],
     exports: [OrdersService],
 })
 export class OrdersModule {}
