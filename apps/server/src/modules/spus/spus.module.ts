@@ -8,6 +8,7 @@ import { SpusService } from './spus.service';
 import { BrandsModule } from '../brands/brands.module';
 import { AttributesModule } from '../attributes';
 import { ImagesModule } from '../images';
+import { RedisModule } from '~/common/redis';
 
 @Module({
     imports: [
@@ -16,6 +17,7 @@ import { ImagesModule } from '../images';
         AttributesModule,
         BrandsModule,
         ImagesModule,
+        RedisModule,
     ],
     controllers: [SPUController],
     providers: [SPURepository, SpusService],

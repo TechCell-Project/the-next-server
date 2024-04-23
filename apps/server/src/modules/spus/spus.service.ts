@@ -11,19 +11,24 @@ import {
 import { BrandsService } from '../brands/brands.service';
 import { AttributesService } from '../attributes';
 import { ImageSchema, SPU, SPUModelSchema } from './schemas';
-import { convertToObjectId, getSlugFromName, sanitizeHtmlString } from '~/common';
+import { AbstractService, convertToObjectId, getSlugFromName, sanitizeHtmlString } from '~/common';
 import { ImagesService } from '../images';
 import { Types } from 'mongoose';
+import { RedisService } from '~/common/redis';
+import { convertTimeString } from 'convert-time-string';
 
 @Injectable()
-export class SpusService {
+export class SpusService extends AbstractService {
     constructor(
         private readonly logger: PinoLogger,
         private readonly spuRepository: SPURepository,
         private readonly attributesService: AttributesService,
         private readonly brandsService: BrandsService,
         private readonly imagesService: ImagesService,
-    ) {}
+        private readonly redisService: RedisService,
+    ) {
+        super('CACHE_SPU');
+    }
 
     async createSPU(payload: CreateSpuDto) {
         const clonePayload: Partial<SPU> = {
@@ -138,7 +143,13 @@ export class SpusService {
     }
 
     async getSpus(payload: QuerySpusDto): Promise<SPU[]> {
-        return this.spuRepository.findManyWithPagination({
+        const cacheKey = this.buildCacheKey(this.getSpus.name, payload);
+        const fromCache = await this.redisService.get<SPU[]>(cacheKey);
+        if (fromCache) {
+            return fromCache;
+        }
+
+        const res = await this.spuRepository.findManyWithPagination({
             filterOptions: {
                 ...payload?.filters,
             },
@@ -148,14 +159,26 @@ export class SpusService {
                 page: payload?.page,
             },
         });
+
+        await this.redisService.set(cacheKey, res, convertTimeString('3m'));
+        return res;
     }
 
     async getSpuById(id: string | Types.ObjectId): Promise<SPU> {
-        return this.spuRepository.findOneOrThrow({
+        const cacheKey = this.buildCacheKey(this.getSpuById.name, id);
+        const fromCache = await this.redisService.get<SPU>(cacheKey);
+        if (fromCache) {
+            return fromCache;
+        }
+
+        const res = await this.spuRepository.findOneOrThrow({
             filterQuery: {
                 _id: convertToObjectId(id),
             },
         });
+
+        await this.redisService.set(cacheKey, res, convertTimeString('3m'));
+        return res;
     }
 
     async updateSpu(id: string | Types.ObjectId, payload: UpdateSpuDto) {
@@ -198,12 +221,15 @@ export class SpusService {
             );
         }
 
-        await this.spuRepository.findOneAndUpdateOrThrow({
-            filterQuery: {
-                _id: convertToObjectId(id),
-            },
-            updateQuery: cloneUpdateData,
-        });
+        await Promise.all([
+            this.spuRepository.findOneAndUpdateOrThrow({
+                filterQuery: {
+                    _id: convertToObjectId(id),
+                },
+                updateQuery: cloneUpdateData,
+            }),
+            this.redisService.del(this.buildCacheKey(this.getSpuById.name, id)),
+        ]);
     }
 
     async addSpuModels(id: string | Types.ObjectId, { models: addedModels }: AddSpuModelDto) {
@@ -256,14 +282,17 @@ export class SpusService {
             newModel,
         ]);
 
-        await this.spuRepository.findOneAndUpdateOrThrow({
-            filterQuery: {
-                _id: convertToObjectId(id),
-            },
-            updateQuery: {
-                models: validatedModels,
-            },
-        });
+        await Promise.all([
+            this.spuRepository.findOneAndUpdateOrThrow({
+                filterQuery: {
+                    _id: convertToObjectId(id),
+                },
+                updateQuery: {
+                    models: validatedModels,
+                },
+            }),
+            this.redisService.del(this.buildCacheKey(this.getSpuById.name, id)),
+        ]);
     }
 
     private async validateModels(

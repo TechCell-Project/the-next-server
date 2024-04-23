@@ -59,19 +59,19 @@ export function generateRandomString(
 }
 
 /**
- * Sorts and stringifies an object
- * @param obj The object to be sorted and stringified
- * @returns The sorted and stringified object as a string
+ * Sorts and stringifies an argument
+ * @param arg The argument to be sorted and stringified
+ * @returns The sorted and stringified argument as a string
  */
-export function sortedStringify(obj: unknown): string {
-    if (typeof obj !== 'object' || obj === null || obj === undefined) {
-        return JSON.stringify(obj);
+export function sortedStringify(arg: unknown): string {
+    if (typeof arg !== 'object' || arg === null || arg === undefined) {
+        return JSON.stringify(arg);
     }
 
-    if (Array.isArray(obj)) {
-        return `[${obj.map(sortedStringify).join(',')}]`;
+    if (Array.isArray(arg)) {
+        return `[${arg.map(sortedStringify).join(',')}]`;
     }
 
-    const keys = Object.keys(obj as object).sort((a, b) => a.localeCompare(b));
-    return `{${keys.map((key) => `"${key}":${sortedStringify((obj as { [key: string]: unknown })[key])}`).join(',')}}`;
+    const keys = Object.keys(arg as object).sort((a, b) => a.localeCompare(b));
+    return `{${keys.map((key) => `"${key}":${sortedStringify((arg as { [key: string]: unknown })[key])}`).join(',')}}`;
 }

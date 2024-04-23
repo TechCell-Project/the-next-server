@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PinoLogger } from 'nestjs-pino';
 import { TagsService } from '../tags/tags.service';
 import { BrandsService } from '../brands/brands.service';
@@ -6,15 +6,12 @@ import { SkusService } from '../skus';
 import { SpusService } from '../spus';
 import { ProductDto, ProductInListDto, QueryProductsDto } from './dtos';
 import { RedisService } from '~/common/redis';
-import { SPU } from '../spus/schemas';
-import { Brand } from '../brands';
 import { SKU } from '../skus/schemas';
-import { Types } from 'mongoose';
+import { FilterQuery, Types } from 'mongoose';
 import { convertToObjectId, sortedStringify } from '~/common/utils';
 import { convertTimeString } from 'convert-time-string';
 import { ConfigService } from '@nestjs/config';
 import { QuerySpusDto } from '../spus/dtos';
-import { Tag } from '../tags';
 
 @Injectable()
 export class ProductsService {
@@ -22,8 +19,8 @@ export class ProductsService {
     public DIMENSIONS_KEY: string;
     public WEIGHT_KEY: string;
 
-    public static toProductId({ _id }: { _id: Types.ObjectId }, modelSlug: string): string {
-        return `${_id.toString()}${ProductsService.SPLITTER}${modelSlug}`;
+    public static toProductId(spuId: Types.ObjectId, modelSlug: string): string {
+        return `${modelSlug}${ProductsService.SPLITTER}${spuId.toString()}`;
     }
 
     public static fromProductId(productId: string): {
@@ -31,7 +28,7 @@ export class ProductsService {
         modelSlug: string;
     } {
         try {
-            const [spuId, modelSlug] = productId.split(ProductsService.SPLITTER);
+            const [modelSlug, spuId] = productId.split(ProductsService.SPLITTER);
             if (!spuId || !modelSlug) {
                 throw new HttpException(
                     {
@@ -124,7 +121,8 @@ export class ProductsService {
         }
 
         const { keyword } = filters || {};
-        let spuFilters: QuerySpusDto['filters'] = {};
+        const spuFilters: QuerySpusDto['filters'] = {};
+        const skuFilters: FilterQuery<SKU> = {};
 
         if (keyword) {
             const brandsWithKeyword = await this.brandsService.findManyWithPagination({
@@ -137,49 +135,22 @@ export class ProductsService {
                 },
             });
 
-            spuFilters = {
-                ...spuFilters,
-                keyword: keyword,
-                brandIds: Array.from(
-                    new Set([
-                        ...(filters?.brandIds ?? []),
-                        ...(brandsWithKeyword ?? []).map((b) => b._id.toString()),
-                    ]),
-                ),
-            };
+            spuFilters.keyword = keyword;
+            spuFilters.brandIds = Array.from(
+                new Set([
+                    ...(filters?.brandIds ?? []),
+                    ...(brandsWithKeyword ?? []).map((b) => b._id.toString()),
+                ]),
+            );
         }
 
         if (filters?.brandIds) {
-            spuFilters = {
-                ...spuFilters,
-                brandIds: Array.from(
-                    new Set([
-                        ...(spuFilters?.brandIds?.map((b) => b.toString()) || []),
-                        ...filters.brandIds,
-                    ]),
-                ),
-            };
-        }
-
-        if (filters?.tagIds) {
-            const skuWithTag = await this.skusService.getSkus({
-                filters: {
-                    tagIds: filters.tagIds?.map((tagId) => convertToObjectId(tagId)),
-                },
-                limit: 0,
-                page,
-            });
-            if (!skuWithTag.length) {
-                throw new NotFoundException({
-                    errors: {
-                        tag: 'productsWithTagNotFound',
-                    },
-                });
-            }
-            spuFilters = {
-                ...spuFilters,
-                spuIds: Array.from(new Set([...(skuWithTag ?? []).map((b) => b.spuId.toString())])),
-            };
+            spuFilters.brandIds = Array.from(
+                new Set([
+                    ...(spuFilters?.brandIds?.map((b) => b.toString()) || []),
+                    ...filters.brandIds,
+                ]),
+            );
         }
 
         const spus = await this.spusService.getSpus({
@@ -187,9 +158,21 @@ export class ProductsService {
             page,
             filters: spuFilters,
         });
-        const products = await this.assignPopulateToSpu(spus);
-        const resultProducts = await this.mapToListProducts(products);
 
+        if (filters?.tagIds) {
+            skuFilters.tags = {
+                $in: filters.tagIds.map((t) => convertToObjectId(t)),
+            };
+            skuFilters.spuId = {
+                $in: spus.map((s) => s._id),
+            };
+        }
+
+        const skus = await this.skusService.getSkusOrThrow({
+            filterQuery: skuFilters,
+        });
+
+        const resultProducts = await Promise.all(skus.map((s) => this.getProductInListFromSku(s)));
         await this.redisService.set(cacheKey, resultProducts, convertTimeString('5m'));
         return resultProducts.slice(start, start + limit);
     }
@@ -197,7 +180,7 @@ export class ProductsService {
     async getProductDimensions(skuId: string | Types.ObjectId, isCeil = true) {
         const sku = await this.skusService.getSkuById(skuId);
         const product = await this.getProductByIdWithSku(
-            ProductsService.toProductId({ _id: sku.spuId }, sku.spuModelSlug),
+            ProductsService.toProductId(sku.spuId, sku.spuModelSlug),
             skuId,
         );
 
@@ -246,107 +229,30 @@ export class ProductsService {
         };
     }
 
-    private async assignPopulateToSpu(spu: SPU[]) {
-        let products = [];
-        products = await this.assignBrandToSpu(spu);
-        products = await this.assignSkusToSpu(products);
+    async getProductInListFromSku(sku: SKU): Promise<ProductInListDto> {
+        const [spu, ...tag] = await Promise.all([
+            this.spusService.getSpuById(sku.spuId),
+            ...sku.tags?.map((tagId) => this.tagsService.getTagById(tagId.toString())),
+        ]);
+        const brand = await this.brandsService.getBrandById(spu.brandId);
+        const model = spu.models.find((m) => m.slug === sku.spuModelSlug)!;
 
-        return products as ({ skus: SKU[]; brand: Brand } & SPU)[];
+        const product = new ProductInListDto({
+            brandName: brand.name,
+            id: ProductsService.toProductId(spu._id, model.slug),
+            images: [],
+            modelName: model.name,
+            name: spu.name,
+            price: sku.price,
+            tags: tag,
+        });
+        return product;
     }
 
-    private async assignBrandToSpu(
-        spus: SPU[],
-        brands: Brand[] = [],
-    ): Promise<({ brand: Brand } & SPU)[]> {
-        const brandIds = Array.from(new Set(spus?.map((b) => b.brandId.toString())));
-        const brandsMap: Map<string, Brand> = new Map();
-
-        // Populate brandsMap with the provided brands
-        brands?.forEach((b) => {
-            brandsMap.set(b._id.toString(), b);
-        });
-
-        // Get the brandIds that are not already in brandsMap
-        const missingBrandIds = brandIds.filter((b) => !brandsMap.has(b));
-
-        // Fetch the missing brands
-        const getMissingBrands = await Promise.all(
-            missingBrandIds.map((b) => this.brandsService.getBrandById(b)),
-        );
-
-        getMissingBrands.forEach((b) => {
-            brandsMap.set(b._id.toString(), b);
-        });
-
-        return spus.map((s: SPU & { brand: Brand }) => {
-            const brand = brandsMap.get(s.brandId.toString()) || ({} as Brand);
-            return { ...s, brand };
-        });
-    }
-
-    private async assignSkusToSpu(
-        spus: ({ brand: Brand } & SPU)[],
-    ): Promise<({ skus: SKU[]; brand: Brand } & SPU)[]> {
-        const spuIds: { spuId: string; spuModelSlug: string }[] =
-            spus?.flatMap((b) =>
-                b.models.map((m) => ({
-                    spuId: b._id.toString(),
-                    spuModelSlug: m.slug,
-                })),
-            ) || [];
-        const skus = await Promise.all(spuIds.map((s) => this.skusService.getSkusBySpuId(s)));
-
-        return spus.map((s) => {
-            Object.assign(s, {
-                skus: skus.filter((sku) => sku?.spuId.toString() === s._id.toString()),
-            });
-            return s as { skus: SKU[]; brand: Brand } & SPU;
-        });
-    }
-
-    private async mapToListProducts(
-        listSpu: ({ skus: SKU[]; brand: Brand } & SPU)[],
-    ): Promise<ProductInListDto[]> {
-        const products: ProductInListDto[] = [];
-
-        const tagsString: string[] = [];
-
-        for (const spu of listSpu) {
-            for (const sku of spu.skus) {
-                sku.tags.forEach((tagId) => tagsString.push(tagId.toString()));
-            }
-        }
-
-        const uniqueTagIds = Array.from(new Set(tagsString));
-        const tagPromise = uniqueTagIds.map((t) => this.tagsService.getTagById(t));
-        const tags = await Promise.all(tagPromise);
-        const tagMap = new Map(tags.map((tag) => [tag._id.toString(), tag]));
-
-        for (const spu of listSpu) {
-            for (const model of spu.models) {
-                const sku = spu.skus.find((sku) => sku?.spuModelSlug === model.slug);
-
-                const productTags =
-                    sku?.tags
-                        .map((tagId) => tagMap.get(tagId.toString()))
-                        .filter((tag): tag is Tag => tag !== undefined && tag !== null) ?? [];
-
-                const prod: ProductInListDto = {
-                    id: ProductsService.toProductId(spu, model.slug),
-                    name: spu.name,
-                    modelName: model.name,
-                    brandName: spu.brand.name,
-                    images: model.images ?? [],
-                    price: sku?.price ? sku.price : spu.skus[0].price,
-                    tags: productTags,
-                };
-                if (sku?.image) {
-                    prod.images.push({ ...sku.image, isThumbnail: false });
-                }
-                products.push(prod);
-            }
-        }
-
-        return products;
+    async getProductFromSku(sku: SKU) {
+        const spu = await this.spusService.getSpuById(sku.spuId);
+        const modelSlug = spu.models.find((m) => m.slug === sku.spuModelSlug)!.slug;
+        const product = new ProductDto(spu, modelSlug, [sku]);
+        return product;
     }
 }
