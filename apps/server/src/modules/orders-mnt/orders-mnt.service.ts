@@ -110,7 +110,11 @@ export class OrdersMntService {
                 };
                 break;
             case SelectOrderTypeEnum.onlyNeed:
-                where.orderStatus = {};
+                where.orderStatus = {
+                    $in: [OrderStatusEnum.Confirmed, OrderStatusEnum.Prepared],
+                };
+                break;
+            case SelectOrderTypeEnum.allForAccountant:
                 break;
             case SelectOrderTypeEnum.both:
             default:
