@@ -1,0 +1,2445 @@
+{
+    "spu": {
+        "brandId": "661681dde3e5984cfc2c28cc",
+        "name": "iPhone 13 series",
+        "description": "This is iPhone 13 series",
+        "commonAttributes": [
+            {
+                "name": "Xuất xứ thương hiệu",
+                "k": "xuat_xu_thuong_hieu",
+                "v": "Mỹ"
+            },
+            {
+                "name": "Chipset",
+                "k": "chipset",
+                "v": "Apple A15 Bionic",
+                "u": "(5 nm )"
+            },
+            {
+                "name": "SIM",
+                "k": "sim",
+                "v": "Nano-SIM và eSIM hoặc Dual SIM ",
+                "u": "(Nano-SIM, dual stand-by)"
+            },
+            {
+                "name": "CPU",
+                "k": "cpu",
+                "v": "Hexa-core",
+                "u": "(2x3,23 GHz Avalanche + 4x1,82 GHz Blizzard)"
+            },
+            {
+                "name": "Hệ điều hành",
+                "k": "he_dieu_hanh",
+                "v": "iOS 15, có thể nâng cấp lên iOS 17.4"
+            },
+            {
+                "name": "Thời điểm ra mắt",
+                "k": "thoi_diem_ra_mat",
+                "v": "24/09/2021"
+            }
+        ],
+        "models": [
+            {
+                "slug": "iphone-13",
+                "name": "iPhone 13",
+                "description": "This is iPhone 13",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "GPU",
+                        "k": "gpu",
+                        "v": "Apple GPU",
+                        "u": "(đồ họa 4 nhân)"
+                    },
+                    {
+                        "name": "RAM",
+                        "k": "ram",
+                        "v": "4",
+                        "u": "GB"
+                    },
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "146.7 x 71.5 x 7.7 ",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "174",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Chống nước & bụi",
+                        "k": "chong_nuoc_bui",
+                        "v": "Chống bụi/nước theo tiêu chuẩn IP68",
+                        "u": "(lên đến 6m trong vòng 30 phút)"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Super Retina XDR OLED, HDR10, Dolby Vision, 800 nits (HBM), 1200 nits (cực đại)",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.1",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Ceramic Shield"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1170 x 2532",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.6, 26mm (wide), 1/1.9\", 1.7µm, PDAF pixel kép, dịch chuyển cảm biến OIS | 12 MP, f/2.4, 120˚, 13mm (ultrawide), 1/3.4\", 1.0µm"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Đèn flash hai tông màu LED kép, HDR (ảnh/toàn cảnh)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/30/60fps, 1080p@30/60/120/240fps, HDR, Dolby Vision HDR (lên đến 60fps), âm thanh nổi rec."
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "12 MP, f/2.2, 23mm (rộng), 1/3.6\" SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "4K@24/25/30/60fps, 1080p@30/60/120fps, con quay hồi chuyển-EIS"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac/6, băng tần kép, điểm phát sóng"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS| GLONASS| GALILEO| BDS| QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning, Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion 3240 mAh (12,41 Wh)"
+                    }
+                ]
+            },
+
+            {
+                "slug": "iphone-13-mini",
+                "name": "iPhone 13 Mini",
+                "description": "This is iPhone 13 Mini",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "RAM",
+                        "k": "ram",
+                        "v": "4",
+                        "u": "GB"
+                    },
+                    {
+                        "name": "GPU",
+                        "k": "gpu",
+                        "v": "Apple GPU",
+                        "u": "(đồ họa 4 nhân)"
+                    },
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "131.5 x 64.2 x 7.7",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "141",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Chống nước & bụi",
+                        "k": "chong_nuoc_bui",
+                        "v": "Chống bụi/nước theo tiêu chuẩn IP68",
+                        "u": "(lên đến 6m trong vòng 30 phút)"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Super Retina XDR OLED, HDR10, Dolby Vision, 800 nits (HBM), 1200 nits (cực đại)",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "5.4",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Ceramic Shield"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1080 x 2340",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.6, 26mm (wide), 1/1.9\", 1.7µm, PDAF pixel kép, dịch chuyển cảm biến OIS | 12 MP, f/2.4, 120˚, 13mm (ultrawide) , 1/3.4\", 1.0µm"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Đèn flash hai tông màu LED kép, HDR (ảnh/toàn cảnh)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/30/60fps, 1080p@30/60/120/240fps, HDR, Dolby Vision HDR (lên đến 60fps), âm thanh nổi rec."
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "12 MP, f/2.2, 23mm (rộng), 1/3.6\" SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "4K@24/25/30/60fps, 1080p@30/60/120fps, con quay hồi chuyển-EIS"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac/6, băng tần kép, điểm phát sóng"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS| GLONASS| GALILEO| BDS| QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning, Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion 2438 mAh (9,34 Wh)"
+                    }
+                ]
+            },
+
+            {
+                "slug": "iphone-13-pro",
+                "name": "iPhone 13 Pro",
+                "description": "This is iPhone 13 Pro",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "GPU",
+                        "k": "gpu",
+                        "v": "Apple GPU",
+                        "u": "(đồ họa 5 lõi)"
+                    },
+                    {
+                        "name": "RAM",
+                        "k": "ram",
+                        "v": "6",
+                        "u": "GB"
+                    },
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "146.7 x 71.5 x 7.7",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "204",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Chống nước & bụi",
+                        "k": "chong_nuoc_bui",
+                        "v": "Chống bụi/nước theo tiêu chuẩn IP68",
+                        "u": "(lên đến 6m trong vòng 30 phút)"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Super Retina XDR OLED, 120Hz, HDR10, Dolby Vision, 1000 nits (HBM), 1200 nits (đỉnh)",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.1",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Ceramic Shield"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1170 x 2532",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.5, 26mm (wide), 1/1.7\", 1.9µm, PDAF pixel kép, dịch chuyển cảm biến OIS | 12 MP, f/2.8, 77mm (tele), PDAF, 1/3.4\", 1.0µm, OIS, zoom quang 3x | 12 MP, f/1.8, 13mm, 120˚ (ultrawide), 1/3.4\", 1.0µm | máy quét LiDAR 3D PDAF TOF (độ sâu)"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Đèn flash hai tông màu LED kép, HDR (ảnh/toàn cảnh)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/30/60fps, 1080p@30/60/120/240fps, 10‑bit HDR, Dolby Vision HDR (lên đến 60fps), ProRes, Chế độ quay phim (1080p@30fps), âm thanh nổi rec."
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "12 MP, f/2.2, 23mm (rộng), 1/3.6\" SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "4K@24/25/30/60fps, 1080p@30/60/120fps, con quay hồi chuyển-EIS"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac/6, băng tần kép, điểm phát sóng"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS| GLONASS| GALILEO| BDS| QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning, Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion 3095 mAh (12,11 Wh)"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-13-pro-max",
+                "name": "iPhone 13 Pro Max",
+                "description": "This is iPhone 13 Pro Max",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "GPU",
+                        "k": "gpu",
+                        "v": "Apple GPU",
+                        "u": "(đồ họa 5 lõi)"
+                    },
+                    {
+                        "name": "RAM",
+                        "k": "ram",
+                        "v": "6",
+                        "u": "GB"
+                    },
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "160.8 x 78.1 x 7.7",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "240",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Chống nước & bụi",
+                        "k": "chong_nuoc_bui",
+                        "v": "Chống bụi/nước theo tiêu chuẩn IP68",
+                        "u": "(lên đến 6m trong vòng 30 phút)"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Super Retina XDR OLED, 120Hz, HDR10, Dolby Vision, 1000 nits (HBM), 1200 nits (đỉnh)",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.7",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Ceramic Shield"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1284 x 2778",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.5, 26mm (wide), 1/1.7\", 1.9µm, PDAF pixel kép, dịch chuyển cảm biến OIS | 12 MP, f/2.8, 77mm (tele), PDAF, 1/3.4\", 1.0µm, OIS, zoom quang 3x |12 MP, f/1.8, 13mm, 120˚ (ultrawide), 1/3.4\", 1.0µm | máy quét LiDAR 3D PDAF TOF (độ sâu)"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Đèn flash hai tông màu LED kép, HDR (ảnh/toàn cảnh)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/30/60fps, 1080p@30/60/120/240fps, 10-bit HDR, Dolby Vision HDR (lên đến 60 khung hình/giây), ProRes, Chế độ điện ảnh (1080p@30 khung hình/giây), âm thanh nổi rec."
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "12 MP, f/2.2, 23mm (rộng), 1/3.6\" SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "4K@24/25/30/60fps, 1080p@30/60/120fps, con quay hồi chuyển-EIS"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac/6, băng tần kép, điểm phát sóng"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS| GLONASS| GALILEO| BDS| QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning, Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion 4352 mAh (16,75 Wh)"
+                    }
+                ]
+            }
+        ]
+    },
+    "skus": [
+        {
+            "name": "iPhone 13 128GB",
+            "description": "This is iPhone 13 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 18990000,
+                "special": 13190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 128GB",
+            "description": "This is iPhone 13 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 18990000,
+                "special": 13190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 128GB",
+            "description": "This is iPhone 13 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 18990000,
+                "special": 13190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Hồng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 128GB",
+            "description": "This is iPhone 13 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 18990000,
+                "special": 13190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 128GB",
+            "description": "This is iPhone 13 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 18990000,
+                "special": 13190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 128GB",
+            "description": "This is iPhone 13 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 18990000,
+                "special": 13190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 256GB",
+            "description": "This is iPhone 13 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 21990000,
+                "special": 17190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 256GB",
+            "description": "This is iPhone 13 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 21990000,
+                "special": 17190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 256GB",
+            "description": "This is iPhone 13 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 21990000,
+                "special": 17190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Hồng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 256GB",
+            "description": "This is iPhone 13 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 21990000,
+                "special": 17190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 256GB",
+            "description": "This is iPhone 13 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 21990000,
+                "special": 17190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 256GB",
+            "description": "This is iPhone 13 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 21990000,
+                "special": 17190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 512GB",
+            "description": "This is iPhone 13 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 26990000,
+                "special": 19190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 512GB",
+            "description": "This is iPhone 13 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 26990000,
+                "special": 19190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 512GB",
+            "description": "This is iPhone 13 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 26990000,
+                "special": 19190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Hồng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 512GB",
+            "description": "This is iPhone 13 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 26990000,
+                "special": 19190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 512GB",
+            "description": "This is iPhone 13 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 26990000,
+                "special": 19190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 512GB",
+            "description": "This is iPhone 13 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13",
+            "price": {
+                "base": 26990000,
+                "special": 19190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+
+        {
+            "name": "iPhone 13 Mini 128GB",
+            "description": "This is iPhone 13 Mini 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 21990000,
+                "special": 11190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 128GB",
+            "description": "This is iPhone 13 Mini 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 21990000,
+                "special": 11190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 128GB",
+            "description": "This is iPhone 13 Mini 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 21990000,
+                "special": 11190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Hồng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 128GB",
+            "description": "This is iPhone 13 Mini 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 21990000,
+                "special": 11190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 128GB",
+            "description": "This is iPhone 13 Mini 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 21990000,
+                "special": 11190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 128GB",
+            "description": "This is iPhone 13 Mini 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 21990000,
+                "special": 11190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 256GB",
+            "description": "This is iPhone 13 Mini 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 24990000,
+                "special": 11690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 256GB",
+            "description": "This is iPhone 13 Mini 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 24990000,
+                "special": 11690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Hồng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 256GB",
+            "description": "This is iPhone 13 Mini 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 24990000,
+                "special": 11690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 256GB",
+            "description": "This is iPhone 13 Mini 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 24990000,
+                "special": 11690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 256GB",
+            "description": "This is iPhone 13 Mini 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 24990000,
+                "special": 11690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 512GB",
+            "description": "This is iPhone 13 Mini 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 26990000,
+                "special": 13690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 512GB",
+            "description": "This is iPhone 13 Mini 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 26990000,
+                "special": 13690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Hồng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 512GB",
+            "description": "This is iPhone 13 Mini 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 26990000,
+                "special": 13690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 512GB",
+            "description": "This is iPhone 13 Mini 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 26990000,
+                "special": 13690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Mini 512GB",
+            "description": "This is iPhone 13 Mini 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-mini",
+            "price": {
+                "base": 26990000,
+                "special": 13690000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+
+        {
+            "name": "iPhone 13 Pro 128GB",
+            "description": "This is iPhone 13 Pro 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 23990000,
+                "special": 15190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 128GB",
+            "description": "This is iPhone 13 Pro 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 23990000,
+                "special": 15190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 128GB",
+            "description": "This is iPhone 13 Pro 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 23990000,
+                "special": 15190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 128GB",
+            "description": "This is iPhone 13 Pro 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 23990000,
+                "special": 15190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 128GB",
+            "description": "This is iPhone 13 Pro 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 23990000,
+                "special": 15190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 256GB",
+            "description": "This is iPhone 13 Pro 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 26990000,
+                "special": 17190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 256GB",
+            "description": "This is iPhone 13 Pro 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 26990000,
+                "special": 17190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 256GB",
+            "description": "This is iPhone 13 Pro 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 26990000,
+                "special": 17190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 256GB",
+            "description": "This is iPhone 13 Pro 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 26990000,
+                "special": 17190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 256GB",
+            "description": "This is iPhone 13 Pro 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 26990000,
+                "special": 17190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 512GB",
+            "description": "This is iPhone 13 Pro 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 29990000,
+                "special": 19190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 512GB",
+            "description": "This is iPhone 13 Pro 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 29990000,
+                "special": 19190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 512GB",
+            "description": "This is iPhone 13 Pro 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 29990000,
+                "special": 19190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 512GB",
+            "description": "This is iPhone 13 Pro 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 29990000,
+                "special": 19190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 512GB",
+            "description": "This is iPhone 13 Pro 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 29990000,
+                "special": 19190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 1TB",
+            "description": "This is iPhone 13 Pro 1TB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 30990000,
+                "special": 25190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 1TB",
+            "description": "This is iPhone 13 Pro 1TB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 30990000,
+                "special": 25190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 1TB",
+            "description": "This is iPhone 13 Pro 1TB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 30990000,
+                "special": 25190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 1TB",
+            "description": "This is iPhone 13 Pro 1TB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 30990000,
+                "special": 25190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro 1TB",
+            "description": "This is iPhone 13 Pro 1TB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro",
+            "price": {
+                "base": 30990000,
+                "special": 25190000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+
+        {
+            "name": "iPhone 13 Pro Max 128GB",
+            "description": "This is iPhone 13 Pro Max 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 31990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 128GB",
+            "description": "This is iPhone 13 Pro Max 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 31990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 128GB",
+            "description": "This is iPhone 13 Pro Max 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 31990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 128GB",
+            "description": "This is iPhone 13 Pro Max 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 31990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 128GB",
+            "description": "This is iPhone 13 Pro Max 128GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 31990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 256GB",
+            "description": "This is iPhone 13 Pro Max 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 31990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 256GB",
+            "description": "This is iPhone 13 Pro Max 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 31990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 256GB",
+            "description": "This is iPhone 13 Pro Max 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 31990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 256GB",
+            "description": "This is iPhone 13 Pro Max 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 31990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 256GB",
+            "description": "This is iPhone 13 Pro Max 256GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 31990000,
+                "special": 16890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 512GB",
+            "description": "This is iPhone 13 Pro Max 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 33990000,
+                "special": 18890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 512GB",
+            "description": "This is iPhone 13 Pro Max 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 33990000,
+                "special": 18890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 512GB",
+            "description": "This is iPhone 13 Pro Max 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 33990000,
+                "special": 18890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 512GB",
+            "description": "This is iPhone 13 Pro Max 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 33990000,
+                "special": 18890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 512GB",
+            "description": "This is iPhone 13 Pro Max 512GB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 33990000,
+                "special": 18890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 1TB",
+            "description": "This is iPhone 13 Pro Max 1TB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 35990000,
+                "special": 27890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 1TB",
+            "description": "This is iPhone 13 Pro Max 1TB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 35990000,
+                "special": 27890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 1TB",
+            "description": "This is iPhone 13 Pro Max 1TB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 35990000,
+                "special": 27890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 1TB",
+            "description": "This is iPhone 13 Pro Max 1TB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 35990000,
+                "special": 27890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 13 Pro Max 1TB",
+            "description": "This is iPhone 13 Pro Max 1TB",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-13-pro-max",
+            "price": {
+                "base": 35990000,
+                "special": 27890000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        }
+    ]
+}

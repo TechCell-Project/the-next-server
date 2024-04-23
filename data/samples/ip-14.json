@@ -1,0 +1,2190 @@
+{
+    "spu": {
+        "brandId": "661681dde3e5984cfc2c28cc",
+        "name": "iPhone 14 series",
+        "description": "This is iPhone 14 series",
+        "commonAttributes": [
+            {
+                "name": "Xuất xứ thương hiệu",
+                "k": "xuat_xu_thuong_hieu",
+                "v": "Mỹ"
+            },
+            {
+                "name": "Công nghệ",
+                "k": "cong_nghe",
+                "v": "GSM|CDMA|HSPA|EVDO|LTE|5G"
+            },
+            {
+                "name": "SIM",
+                "k": "sim",
+                "v": "Nano-SIM và eSIM hoặc Dual SIM",
+                "u": "(Nano-SIM, dual stand-by)"
+            },
+            {
+                "name": "GPU",
+                "k": "gpu",
+                "v": "Apple GPU",
+                "u": "(5-core graphics)"
+            },
+            {
+                "name": "Hệ điều hành",
+                "k": "he_dieu_hanh",
+                "v": "iOS 16, upgradable to iOS 17.4"
+            },
+            {
+                "name": "Quay phim camera trước",
+                "k": "quay_phim_camera_truoc",
+                "v": "4K@24/25/30/60fps|1080p@25/30/60/120fps|Con quay hồi chuyển-EIS"
+            },
+            {
+                "name": "Loa",
+                "k": "loa",
+                "v": "Có, với loa âm thanh nổi"
+            },
+            {
+                "name": "Wi-Fi",
+                "k": "wi_fi",
+                "v": "Wi-Fi 802.11 a/b/g/n/ac/6|băng tần kép|điểm phát sóng"
+            },
+            {
+                "name": "Bluetooth",
+                "k": "bluetooth",
+                "v": "5.3|A2DP|LE"
+            },
+            {
+                "name": "NFC",
+                "k": "nfc",
+                "v": "Có"
+            },
+            {
+                "name": "Cổng kết nối USB",
+                "k": "cong_ket_noi_usb",
+                "v": "Lightning|USB 2.0"
+            },
+            {
+                "name": "Cảm biến",
+                "k": "cam_bien",
+                "v": "Face ID, gia tốc kế, con quay hồi chuyển, độ gần, la bàn, phong vũ biểu|Hỗ trợ băng thông siêu rộng (UWB)|SOS khẩn cấp qua vệ tinh (gửi/nhận SMS)"
+            },
+            {
+                "name": "RAM",
+                "k": "ram",
+                "v": "6",
+                "u": "GB"
+            },
+            {
+                "name": "Bảo mật",
+                "k": "bao_mat",
+                "v": "Mở khoá khuôn mặt Face ID"
+            }
+        ],
+        "models": [
+            {
+                "slug": "iphone-14",
+                "name": "iPhone 14",
+                "description": "This is iPhone 14",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Thời điểm ra mắt",
+                        "k": "thoi_diem_ra_mat",
+                        "v": "16/09/2022"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.5, 26mm (wide), 1/1.7\", 1.9µm, dual pixel PDAF, sensor-shift OIS|12 MP, f/2.4, 13mm, 120˚ (ultrawide)"
+                    },
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "146.7 x 71.5 x 7.8",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "172",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Kiểu màn hình",
+                        "k": "kieu_man_hinh",
+                        "v": "Super Retina XDR OLED|HDR10|Dolby Vision"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.1",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1170 x 2532",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Chipset",
+                        "k": "chipset",
+                        "v": "Apple A15 Bionic"
+                    },
+                    {
+                        "name": "CPU",
+                        "k": "cpu",
+                        "v": "Hexa-core (2x3.23 GHz Avalanche + 4x1.82 GHz Blizzard)"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "PDAF pixel kép|OIS dịch chuyển cảm biến|Video siêu ổn định|PDAF|OIS|zoom quang học 3x|120˚ (siêu rộng)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/25/30/60fps|1080p@25/30/60/120/240fps|HDR|Dolby Vision HDR (lên đến 60 khung hình/giây)|Chế độ điện ảnh (4K@30 khung hình/giây)|Âm thanh nổi rec"
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "HDR|Chế độ điện ảnh (4K@30fps)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "112 MP, f/1.9, 23mm (rộng)|PDA|SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS|GLONASS|BDS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion"
+                    },
+                    {
+                        "name": "Dung lượng pin",
+                        "k": "dung_luong_pin",
+                        "v": "3279",
+                        "u": "mAh"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Có dây, PD2.0|50% trong 30 phút|Không dây 15W|Không dây 15W (Qi2) - yêu cầu cập nhật iOS 17.2"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-14-plus",
+                "name": "iPhone 14 Plus",
+                "description": "This is iPhone 14 Plus",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Thời điểm ra mắt",
+                        "k": "thoi_diem_ra_mat",
+                        "v": "07/10/2022"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.5, 26mm (wide), 1/1.7\", 1.9µm, dual pixel PDAF, sensor-shift OIS|12 MP, f/2.4, 13mm, 120˚ (ultrawide)"
+                    },
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "160.8 x 78.1 x 7.8",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "203",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Kiểu màn hình",
+                        "k": "kieu_man_hinh",
+                        "v": "Super Retina XDR OLED|HDR10|Dolby Vision"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.7",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1284 x 2778",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Chipset",
+                        "k": "chipset",
+                        "v": "Apple A15 Bionic (5 nm)"
+                    },
+                    {
+                        "name": "CPU",
+                        "k": "cpu",
+                        "v": "Hexa-core (2x3.23 GHz Avalanche + 4x1.82 GHz Blizzard)"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "PDAF pixel kép|OIS dịch chuyển cảm biến|Video siêu ổn định|PDAF|OIS|zoom quang học 3x|120˚ (siêu rộng)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/25/30/60fps|1080p@25/30/60/120/240fps|HDR|Dolby Vision HDR (lên đến 60 khung hình/giây)|Chế độ điện ảnh (4K@30 khung hình/giây)|Âm thanh nổi rec"
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "HDR|Chế độ điện ảnh (4K@30fps)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "112 MP, f/1.9, 23mm (rộng)|PDA|SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS|GLONASS|BDS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion"
+                    },
+                    {
+                        "name": "Dung lượng pin",
+                        "k": "dung_luong_pin",
+                        "v": "4323",
+                        "u": "mAh"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Có dây, PD2.0|50% trong 30 phút|Không dây 15W|Không dây 15W (Qi2) - yêu cầu cập nhật iOS 17.2"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-14-pro",
+                "name": "iPhone 14 Pro",
+                "description": "This is iPhone 14 Pro",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Thời điểm ra mắt",
+                        "k": "thoi_diem_ra_mat",
+                        "v": "16/09/2022"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "48 MP, f/1.8, 24mm (wide), 1/1.28\", 1.22µm, dual pixel PDAF, sensor-shift OIS|12 MP, f/2.8, 77mm (telephoto), 1/3.5\", 1.0µm, PDAF, OIS, 3x optical zoom|12 MP, f/2.2, 13mm, 120˚ (ultrawide), 1/2.55\", 1.4µm, dual pixel PDAF|TOF 3D LiDAR scanner (depth)"
+                    },
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "147.5 x 71.5 x 7.9",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "206",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Kiểu màn hình",
+                        "k": "kieu_man_hinh",
+                        "v": "LTPO Super Retina XDR OLED|HDR10|Dolby Vision"
+                    },
+                    {
+                        "name": "Tần số quét",
+                        "k": "tan_so_quet",
+                        "v": "120",
+                        "u": "Hz"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.1",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1179 x 2556",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Chipset",
+                        "k": "chipset",
+                        "v": "Apple A16 Bionic"
+                    },
+                    {
+                        "name": "CPU",
+                        "k": "cpu",
+                        "v": "Hexa-core (2x3.46 GHz Everest + 4x2.02 GHz Sawtooth)"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "PDAF pixel kép|OIS dịch chuyển cảm biến|Video siêu ổn định|PDAF|OIS|zoom quang học 3x|120˚ (siêu rộng)|Máy quét LiDAR 3D TOF (độ sâu)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/25/30/60fps|1080p@25/30/60/120/240fps|10-bit HDR|Dolby Vision HDR (lên đến 60 khung hình/giây)|ProRes|Chế độ điện ảnh (4K@24/30 khung hình/giây)|âm thanh nổi"
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "112 MP, f/1.9, 23mm (rộng)|PDA|SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR|Cinematic mode (4K@24/30fps)"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS (L1+L5)|GLONASS|BDS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion"
+                    },
+                    {
+                        "name": "Dung lượng pin",
+                        "k": "dung_luong_pin",
+                        "v": "3200",
+                        "u": "mAh"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Có dây, PD2.0|50% trong 30 phút|Không dây 15W|Không dây 15W (Qi2) - yêu cầu cập nhật iOS 17.2"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-14-pro-max",
+                "name": "iPhone 14 Pro Max",
+                "description": "This is iPhone 14 Pro Max",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Thời điểm ra mắt",
+                        "k": "thoi_diem_ra_mat",
+                        "v": "16/09/2022"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "48 MP, f/1.8, 24mm (wide), 1/1.28\", 1.22µm, dual pixel PDAF, sensor-shift OIS|12 MP, f/2.8, 77mm (telephoto), 1/3.5\", 1.0µm, PDAF, OIS, 3x optical zoom|12 MP, f/2.2, 13mm, 120˚ (ultrawide), 1/2.55\", 1.4µm, dual pixel PDAF|TOF 3D LiDAR scanner (depth)"
+                    },
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "160.7 x 77.6 x 7.9",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "240",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Kiểu màn hình",
+                        "k": "kieu_man_hinh",
+                        "v": "LTPO Super Retina XDR OLED||HDR10|Dolby Vision"
+                    },
+                    {
+                        "name": "Tần số quét",
+                        "k": "tan_so_quet",
+                        "v": "120",
+                        "u": "Hz"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.7",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1290 x 2796",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Chipset",
+                        "k": "chipset",
+                        "v": "Apple A16 Bionic"
+                    },
+                    {
+                        "name": "CPU",
+                        "k": "cpu",
+                        "v": "Hexa-core (2x3.46 GHz Everest + 4x2.02 GHz Sawtooth)"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "48 MP|26mm (rộng)|PDAF pixel kép|OIS dịch chuyển cảm biến|Video siêu ổn định|PDAF|OIS|zoom quang học 3x|120˚ (siêu rộng)|Máy quét LiDAR 3D TOF (độ sâu)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/25/30/60fps|1080p@25/30/60/120/240fps|10-bit HDR|Dolby Vision HDR (lên đến 60 khung hình/giây)|ProRes|Chế độ điện ảnh (4K@24/30 khung hình/giây)|âm thanh nổi"
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "HDR|Cinematic mode (4K@24/30fps)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "112 MP, f/1.9, 23mm (rộng)|PDA|SL 3D, (cảm biến độ sâu/sinh trắc học)|OIS"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS (L1+L5)|GLONASS|BDS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion"
+                    },
+                    {
+                        "name": "Dung lượng pin",
+                        "k": "dung_luong_pin",
+                        "v": "4323",
+                        "u": "mAh"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Có dây, PD2.0|50% trong 30 phút|Không dây 15W|Không dây 15W (Qi2) - yêu cầu cập nhật iOS 17.2"
+                    }
+                ]
+            }
+        ]
+    },
+    "skus": [
+        {
+            "name": "iPhone 14 128GB",
+            "description": "This is iPhone 14 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 23990000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 128GB",
+            "description": "This is iPhone 14 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 23990000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím Nhạt"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 128GB",
+            "description": "This is iPhone 14 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 23990000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 128GB",
+            "description": "This is iPhone 14 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 23990000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh Dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 128GB",
+            "description": "This is iPhone 14 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 23990000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 128GB",
+            "description": "This is iPhone 14 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 23990000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 256GB",
+            "description": "This is iPhone 14 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 24990000,
+                "special": 19990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 256GB",
+            "description": "This is iPhone 14 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 24990000,
+                "special": 19990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím Nhạt"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 256GB",
+            "description": "This is iPhone 14 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 24990000,
+                "special": 19990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 256GB",
+            "description": "This is iPhone 14 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 24990000,
+                "special": 19990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh Dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 256GB",
+            "description": "This is iPhone 14 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 24990000,
+                "special": 19990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 256GB",
+            "description": "This is iPhone 14 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 24990000,
+                "special": 19990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 512GB",
+            "description": "This is iPhone 14 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 25990000,
+                "special": 20990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 512GB",
+            "description": "This is iPhone 14 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 25990000,
+                "special": 20990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím Nhạt"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 512GB",
+            "description": "This is iPhone 14 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 25990000,
+                "special": 20990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 512GB",
+            "description": "This is iPhone 14 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 25990000,
+                "special": 20990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh Dương"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 512GB",
+            "description": "This is iPhone 14 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 25990000,
+                "special": 20990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 512GB",
+            "description": "This is iPhone 14 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14",
+            "price": {
+                "base": 25990000,
+                "special": 20990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 128GB",
+            "description": "This is iPhone 14 Pro 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 33990000,
+                "special": 17390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 128GB",
+            "description": "This is iPhone 14 Pro 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 33990000,
+                "special": 17390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím Nhạt"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 128GB",
+            "description": "This is iPhone 14 Pro 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 33990000,
+                "special": 17390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 128GB",
+            "description": "This is iPhone 14 Pro 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 33990000,
+                "special": 17390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 256GB",
+            "description": "This is iPhone 14 Pro 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 35990000,
+                "special": 21390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 256GB",
+            "description": "This is iPhone 14 Pro 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 35990000,
+                "special": 21390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím Nhạt"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 256GB",
+            "description": "This is iPhone 14 Pro 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 35990000,
+                "special": 21390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 256GB",
+            "description": "This is iPhone 14 Pro 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 35990000,
+                "special": 21390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 512GB",
+            "description": "This is iPhone 14 Pro 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 37990000,
+                "special": 21390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 512GB",
+            "description": "This is iPhone 14 Pro 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 37990000,
+                "special": 21390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím Nhạt"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 512GB",
+            "description": "This is iPhone 14 Pro 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 37990000,
+                "special": 21390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 512GB",
+            "description": "This is iPhone 14 Pro 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 37990000,
+                "special": 21390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 1TB",
+            "description": "This is iPhone 14 Pro 1TB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 39990000,
+                "special": 30390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 1TB",
+            "description": "This is iPhone 14 Pro 1TB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 39990000,
+                "special": 30390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím Nhạt"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 1TB",
+            "description": "This is iPhone 14 Pro 1TB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 39990000,
+                "special": 30390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro 1TB",
+            "description": "This is iPhone 14 Pro 1TB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro",
+            "price": {
+                "base": 39990000,
+                "special": 30390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 128GB",
+            "description": "This is iPhone 14 Plus 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 22990000,
+                "special": 19790000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 128GB",
+            "description": "This is iPhone 14 Plus 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 27290000,
+                "special": 23290000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 128GB",
+            "description": "This is iPhone 14 Plus 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 22990000,
+                "special": 19790000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 128GB",
+            "description": "This is iPhone 14 Plus 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 22990000,
+                "special": 19790000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 128GB",
+            "description": "This is iPhone 14 Plus 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 22990000,
+                "special": 19790000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 128GB",
+            "description": "This is iPhone 14 Plus 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 22990000,
+                "special": 19790000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 256GB",
+            "description": "This is iPhone 14 Plus 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 27290000,
+                "special": 23290000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 256GB",
+            "description": "This is iPhone 14 Plus 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 27290000,
+                "special": 23290000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 256GB",
+            "description": "This is iPhone 14 Plus 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 27290000,
+                "special": 23290000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 256GB",
+            "description": "This is iPhone 14 Plus 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 27290000,
+                "special": 23290000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 256GB",
+            "description": "This is iPhone 14 Plus 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 27290000,
+                "special": 23290000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 256GB",
+            "description": "This is iPhone 14 Plus 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 27290000,
+                "special": 23290000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 512GB",
+            "description": "This is iPhone 14 Plus 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 32990000,
+                "special": 24990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 512GB",
+            "description": "This is iPhone 14 Plus 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 32990000,
+                "special": 24990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 512GB",
+            "description": "This is iPhone 14 Plus 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 32990000,
+                "special": 24990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 512GB",
+            "description": "This is iPhone 14 Plus 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 32990000,
+                "special": 24990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 512GB",
+            "description": "This is iPhone 14 Plus 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 32990000,
+                "special": 24990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Plus 512GB",
+            "description": "This is iPhone 14 Plus 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-plus",
+            "price": {
+                "base": 32990000,
+                "special": 24990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 128GB",
+            "description": "This is iPhone 14 Pro Max 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 29990000,
+                "special": 27390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 128GB",
+            "description": "This is iPhone 14 Pro Max 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 29990000,
+                "special": 27390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím Nhạt"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 128GB",
+            "description": "This is iPhone 14 Pro Max 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 29990000,
+                "special": 27390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 128GB",
+            "description": "This is iPhone 14 Pro Max 128GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 29990000,
+                "special": 27390000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 256GB",
+            "description": "This is iPhone 14 Pro Max 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 32990000,
+                "special": 28990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 256GB",
+            "description": "This is iPhone 14 Pro Max 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 32990000,
+                "special": 28990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím Nhạt"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 256GB",
+            "description": "This is iPhone 14 Pro Max 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 32990000,
+                "special": 28990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 256GB",
+            "description": "This is iPhone 14 Pro Max 256GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 32990000,
+                "special": 28990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 512GB",
+            "description": "This is iPhone 14 Pro Max 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 37990000,
+                "special": 33990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 512GB",
+            "description": "This is iPhone 14 Pro Max 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 37990000,
+                "special": 33990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím Nhạt"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 512GB",
+            "description": "This is iPhone 14 Pro Max 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 37990000,
+                "special": 33990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 512GB",
+            "description": "This is iPhone 14 Pro Max 512GB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 37990000,
+                "special": 33990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 1TB",
+            "description": "This is iPhone 14 Pro Max 1TB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 43990000,
+                "special": 38990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 1TB",
+            "description": "This is iPhone 14 Pro Max 1TB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 43990000,
+                "special": 38990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím Nhạt"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 1TB",
+            "description": "This is iPhone 14 Pro Max 1TB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 43990000,
+                "special": 38990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 14 Pro Max 1TB",
+            "description": "This is iPhone 14 Pro Max 1TB",
+            "spuId": "",
+            "spuModelSlug": "iphone-14-pro-max",
+            "price": {
+                "base": 43990000,
+                "special": 38990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "1",
+                    "u": "TB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        }
+    ]
+}

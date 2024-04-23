@@ -1,0 +1,1600 @@
+{
+    "spu": {
+        "brandId": "661681dde3e5984cfc2c28cc",
+        "name": "iPhone 15 series",
+        "description": "This is iPhone 15 series",
+        "commonAttributes": [
+            {
+                "name": "Xuất xứ thương hiệu",
+                "k": "xuat_xu_thuong_hieu",
+                "v": "Mỹ"
+            },
+            {
+                "name": "Công nghệ",
+                "k": "cong_nghe",
+                "v": "GSM|CDMA|HSPA|EVDO|LTE|5G"
+            },
+            {
+                "name": "SIM",
+                "k": "sim",
+                "v": "SIM kép (nano-SIM và eSIM)|Hỗ trợ hai eSIM"
+            },
+            {
+                "name": "Hệ điều hành",
+                "k": "he_dieu_hanh",
+                "v": "iOS 17, upgradable to iOS 17.4"
+            },
+            {
+                "name": "Camera sau",
+                "k": "camera_sau",
+                "v": "Đèn flash hai tông màu LED kép|HDR (ảnh/toàn cảnh)"
+            },
+            {
+                "name": "Quay phim camera trước",
+                "k": "quay_phim_camera_truoc",
+                "v": "4K@24/25/30/60fps|1080p@25/30/60/120fps|Con quay hồi chuyển-EIS"
+            },
+            {
+                "name": "Loa",
+                "k": "loa",
+                "v": "Có, với loa âm thanh nổi"
+            },
+            {
+                "name": "Bluetooth",
+                "k": "bluetooth",
+                "v": "5.3|A2DP|LE"
+            },
+            {
+                "name": "NFC",
+                "k": "nfc",
+                "v": "Có"
+            },
+            {
+                "name": "Cảm biến",
+                "k": "cam_bien",
+                "v": "Face ID, gia tốc kế, con quay hồi chuyển, độ gần, la bàn, phong vũ biểu|Hỗ trợ băng thông siêu rộng (UWB)|SOS khẩn cấp qua vệ tinh (gửi/nhận SMS)"
+            },
+            {
+                "name": "Thời điểm ra mắt",
+                "k": "thoi_diem_ra_mat",
+                "v": "22/09/2023"
+            },
+            {
+                "name": "Bảo mật",
+                "k": "bao_mat",
+                "v": "Mở khoá khuôn mặt Face ID"
+            }
+        ],
+        "models": [
+            {
+                "slug": "iphone-15",
+                "name": "iPhone 15",
+                "description": "This is iPhone 15",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "147.6 x 71.6 x 7.8",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "171",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Kiểu màn hình",
+                        "k": "kieu_man_hinh",
+                        "v": "Super Retina XDR OLED|HDR10|Dolby Vision"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.1",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1179 x 2556",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Chipset",
+                        "k": "chipset",
+                        "v": "Apple A16 Bionic"
+                    },
+                    {
+                        "name": "CPU",
+                        "k": "cpu",
+                        "v": "Hexa-core (2x3.46 GHz Everest + 4x2.02 GHz Sawtooth)"
+                    },
+                    {
+                        "name": "GPU",
+                        "k": "gpu",
+                        "v": "Apple GPU (5-core graphics)"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "12 MP|26mm (rộng)|PDAF pixel kép|OIS dịch chuyển cảm biến|Video siêu ổn định|PDAF|OIS|zoom quang học 3x|120˚ (siêu rộng)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "Quay video 4K ở tốc độ 24 fps, 25 fps, 30 fps, hoặc 60 fps|Quay video HD 1080p ở tốc độ 25 fps, 30 fps, hoặc 60 fps|Chế độ Điện Ảnh để quay video với độ sâu trường ảnh nông (lên đến 4K HDR ở tốc độ 30 fps)|Chế độ Hành Động|Quay video HDR với công nghệ Dolby Vision lên đến 4K ở tốc độ 60 fps|Hỗ trợ quay video chậm 1080p ở tốc độ 120 fps hoặc 240 fps|Video tua nhanh có chống rung|Tua nhanh ở chế độ Ban Đêm|Chế độ quay video QuickTake|Chống rung quang học dịch chuyển cảm biến cho video|Phóng đại âm thanh|Thu âm stereo"
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "HDR|Chế độ điện ảnh (4K@30fps)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "112 MP, f/1.9, 23mm (rộng)|PDA|SL 3D, (cảm biến độ sâu/sinh trắc học)"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac/6|băng tần kép|điểm phát sóng"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "USB Type-C 2.0|DisplayPort"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS|GLONASS|BDS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion"
+                    },
+                    {
+                        "name": "Dung lượng pin",
+                        "k": "dung_luong_pin",
+                        "v": "3249",
+                        "u": "mAh"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Có dây, PD2.0|50% trong 30 phút|Không dây 15W|Không dây 15W (Qi2) - yêu cầu cập nhật iOS 17.2"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-15-plus",
+                "name": "iPhone 15 Plus",
+                "description": "This is iPhone 15 Plus",
+                "images": [],
+                "attributes": [
+                    {
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "name": "Công nghệ màn hình và hiển thị",
+                        "v": "Màn hình Super Retina XDR|Tấm nền OLED|Dynamic Island|Màn hình HDR|Tỷ lệ tương phản 2.000.000:1|Màn hình có dải màu rộng (P3)|Haptic Touch"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1290 x 2796",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.7",
+                        "u": "inch"
+                    },
+                    {
+                        "k": "do_sang_man_hinh",
+                        "name": "Độ sáng màn hình",
+                        "v": "Độ sáng tối đa 1000 nit|Độ sáng đỉnh 1600 nit (HDR)|Độ sáng cao nhất 2000 nit (ngoài trời)"
+                    },
+                    {
+                        "name": "Chipset",
+                        "k": "chipset",
+                        "v": "Apple A16 Bionic (4 nm)"
+                    },
+                    {
+                        "name": "CPU",
+                        "k": "cpu",
+                        "v": "Hexa-core (2x3.46 GHz Everest + 4x2.02 GHz Sawtooth)"
+                    },
+                    {
+                        "name": "GPU",
+                        "k": "gpu",
+                        "v": "Apple GPU (5-core graphics)"
+                    },
+                    {
+                        "name": "RAM",
+                        "k": "ram",
+                        "v": "6",
+                        "u": "GB"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS, GLONASS, Galileo, QZSS và BeiDou|La bàn kỹ thuật số|Wi‑Fi|Mạng di động|Định vị vi mô iBeacon"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi‑Fi 6 (802.11ax) với 2x2 MIMO"
+                    },
+                    {
+                        "name": "Cảm biến",
+                        "k": "cam_bien",
+                        "v": "Face ID|Áp kế|Con quay hồi chuyển độ lệch tương phản cao|Gia tốc kế lực G cao|Cảm biến tiệm cận|Hai cảm biến ánh sáng môi trường"
+                    },
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "160.9 x 77.8 x 7.8",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "201",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "Chính: 48MP, khẩu độ ƒ/1.6|Ultra Wide: 12MP, khẩu độ ƒ/2.4"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Chống rung quang học dịch chuyển cảm biến|Các lựa chọn thu phóng quang học 0,5x, 1x, 2x|Photonic Engine|Deep Fusion|HDR thông minh thế hệ 5 cho ảnh|Ảnh chân dung thế hệ mới với Focus và Depth Control|Hiệu ứng Chiếu Sáng Chân Dung với sáu chế độ|Chế độ Ban Đêm|Phong Cách Nhiếp Ảnh"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "Quay video 4K ở tốc độ 24 fps, 25 fps, 30 fps, hoặc 60 fps|Quay video HD 1080p ở tốc độ 25 fps, 30 fps, hoặc 60 fps|Chế độ Điện Ảnh để quay video với độ sâu trường ảnh nông (lên đến 4K HDR ở tốc độ 30 fps)|Chế độ Hành Động|Quay video HDR với công nghệ Dolby Vision lên đến 4K ở tốc độ 60 fps|Hỗ trợ quay video chậm 1080p ở tốc độ 120 fps hoặc 240 fps|Video tua nhanh có chống rung|Tua nhanh ở chế độ Ban Đêm|Chế độ quay video QuickTake|Chống rung quang học dịch chuyển cảm biến cho video|Phóng đại âm thanh|Thu âm stereo"
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "TrueDepth 12MP, khẩu độ ƒ/1.9"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "Quay video 4K ở tốc độ 24 fps, 25 fps, 30 fps, hoặc 60 fps|Quay video HD 1080p ở tốc độ 25 fps, 30 fps, hoặc 60 fps|Chế độ Điện Ảnh hỗ trợ độ phân giải lên đến 4K HDR ở tốc độ 30 fps|Quay video HDR với công nghệ Dolby Vision lên đến 4K ở tốc độ 60 fps|Hỗ trợ quay video chậm 1080p ở tốc độ 120 fps|Chế độ quay video QuickTake|Chống rung video kỹ thuật số (4K, 1080p, và 720p)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "Flash Retina|Photonic Engine|Deep Fusion|HDR thông minh thế hệ 5 cho ảnh|Ảnh chân dung thế hệ mới với Focus và Depth Control|Hiệu ứng Chiếu Sáng Chân Dung với sáu chế độ|Animoji và Memoji|Chế độ Ban Đêm|Phong Cách Nhiếp Ảnh"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "USB Type-C 2.0|DisplayPort"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion"
+                    },
+                    {
+                        "name": "Dung lượng pin",
+                        "k": "dung_luong_pin",
+                        "v": "3249",
+                        "u": "mAh"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Có dây, PD2.0|50% trong 30 phút|Không dây 15W|Không dây 15W (Qi2) - yêu cầu cập nhật iOS 17.2"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-15-pro",
+                "name": "iPhone 15 Pro",
+                "description": "This is iPhone 15 Pro",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "146.6 x 70.6 x 8.3",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Kiểu màn hình",
+                        "k": "kieu_man_hinh",
+                        "v": "LTPO Super Retina XDR OLED|HDR10|Dolby Vision"
+                    },
+                    {
+                        "name": "Tần số quét",
+                        "k": "tan_so_quet",
+                        "v": "120",
+                        "u": "Hz"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.1",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1179 x 2556",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Chipset",
+                        "k": "chipset",
+                        "u": "Apple A17 Pro"
+                    },
+                    {
+                        "name": "CPU",
+                        "k": "cpu",
+                        "u": "Hexa-core (2x3.78 GHz + 4x2.11 GHz)"
+                    },
+                    {
+                        "name": "GPU",
+                        "k": "gpu",
+                        "v": "Apple GPU (6-core graphics)"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "48 MP|26mm (rộng)|PDAF pixel kép|OIS dịch chuyển cảm biến|Video siêu ổn định|PDAF|OIS|zoom quang học 3x|120˚ (siêu rộng)|Máy quét LiDAR 3D TOF (độ sâu)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/25/30/60fps|1080p@25/30/60/120/240fps|10-bit HDR|Dolby Vision HDR (lên đến 60 khung hình/giây)|ProRes|Chế độ điện ảnh (4K@24/30 khung hình/giây)|âm thanh nổi"
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "HDR|Cinematic mode (4K@24/30fps)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "112 MP, f/1.9, 23mm (rộng)|PDA|SL 3D, (cảm biến độ sâu/sinh trắc học)|OIS"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac/6e|băng tần kép|điểm phát sóng"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "USB Type-C 3.2 Gen 2|DisplayPort"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS (L1+L5)|GLONASS|BDS|GALILEO|QZSS|NavIC"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion"
+                    },
+                    {
+                        "name": "Dung lượng pin",
+                        "k": "dung_luong_pin",
+                        "v": "3274",
+                        "u": "mAh"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Có dây, PD2.0|50% trong 30 phút|Không dây 15W|Không dây 15W (Qi2) - yêu cầu cập nhật iOS 17.2"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-15-pro-max",
+                "name": "iPhone 15 Pro Max",
+                "description": "This is iPhone 15 Pro Max",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "159.9 x 76.7 x 8.3",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Kiểu màn hình",
+                        "k": "kieu_man_hinh",
+                        "v": "LTPO Super Retina XDR OLED||HDR10|Dolby Vision"
+                    },
+                    {
+                        "name": "Tần số quét",
+                        "k": "tan_so_quet",
+                        "v": "120",
+                        "u": "Hz"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.7",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1290 x 2796",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Chipset",
+                        "k": "chipset",
+                        "u": "Apple A17 Pro"
+                    },
+                    {
+                        "name": "CPU",
+                        "k": "cpu",
+                        "u": "Hexa-core (2x3.78 GHz + 4x2.11 GHz)"
+                    },
+                    {
+                        "name": "GPU",
+                        "k": "gpu",
+                        "v": "Apple GPU (6-core graphics)"
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "48 MP|26mm (rộng)|PDAF pixel kép|OIS dịch chuyển cảm biến|Video siêu ổn định|PDAF|OIS|zoom quang học 3x|120˚ (siêu rộng)|Máy quét LiDAR 3D TOF (độ sâu)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K@24/25/30/60fps|1080p@25/30/60/120/240fps|10-bit HDR|Dolby Vision HDR (lên đến 60 khung hình/giây)|ProRes|Chế độ điện ảnh (4K@24/30 khung hình/giây)|âm thanh nổi"
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "HDR|Cinematic mode (4K@24/30fps)"
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "112 MP, f/1.9, 23mm (rộng)|PDA|SL 3D, (cảm biến độ sâu/sinh trắc học)|OIS"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Wi-Fi 802.11 a/b/g/n/ac/6e|băng tần kép|điểm phát sóng"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "USB Type-C 3.2 Gen 2|DisplayPort"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS (L1+L5)|GLONASS|BDS|GALILEO|QZSS|NavIC"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion"
+                    },
+                    {
+                        "name": "Dung lượng pin",
+                        "k": "dung_luong_pin",
+                        "v": "4441",
+                        "u": "mAh"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Có dây, PD2.0|50% trong 30 phút|Không dây 15W|Không dây 15W (Qi2) - yêu cầu cập nhật iOS 17.2"
+                    }
+                ]
+            }
+        ]
+    },
+    "skus": [
+        {
+            "name": "iPhone 15 128GB 6GB RAM",
+            "description": "This is iPhone 15 128GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 50990000,
+                "special": 40990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 128GB 6GB RAM",
+            "description": "This is iPhone 15 128GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 50990000,
+                "special": 40990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh da trời"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 128GB 6GB RAM",
+            "description": "This is iPhone 15 128GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 50990000,
+                "special": 40990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 128GB 6GB RAM",
+            "description": "This is iPhone 15 128GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 50990000,
+                "special": 40990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 128GB 6GB RAM",
+            "description": "This is iPhone 15 128GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 50990000,
+                "special": 40990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 256GB 6GB RAM",
+            "description": "This is iPhone 15 256GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 42990000,
+                "special": 30990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 256GB 6GB RAM",
+            "description": "This is iPhone 15 256GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 42990000,
+                "special": 30990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 256GB 6GB RAM",
+            "description": "This is iPhone 15 256GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 42990000,
+                "special": 30990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh da trời"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 256GB 6GB RAM",
+            "description": "This is iPhone 15 256GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 42990000,
+                "special": 30990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 256GB 6GB RAM",
+            "description": "This is iPhone 15 256GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 42990000,
+                "special": 30990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 512GB 6GB RAM",
+            "description": "This is iPhone 15 512GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 44990000,
+                "special": 25990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 512GB 6GB RAM",
+            "description": "This is iPhone 15 512GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 44990000,
+                "special": 25990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 512GB 6GB RAM",
+            "description": "This is iPhone 15 512GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 44990000,
+                "special": 25990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh da trời"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 512GB 6GB RAM",
+            "description": "This is iPhone 15 512GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 44990000,
+                "special": 25990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh lá"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 512GB 6GB RAM",
+            "description": "This is iPhone 15 512GB 6GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15",
+            "price": {
+                "iphone-15": 44990000,
+                "special": 25990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "6",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        }
+    ],
+    "skus-pro": [
+        {
+            "name": "iPhone 15 Pro 128GB 8GB RAM",
+            "description": "This is iPhone 15 Pro 128GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro",
+            "price": {
+                "iphone-15": 52990000,
+                "special": 42990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Black Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro 128GB 8GB RAM",
+            "description": "This is iPhone 15 Pro 128GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro",
+            "price": {
+                "iphone-15": 52990000,
+                "special": 42990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": " White Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro 128GB 8GB RAM",
+            "description": "This is iPhone 15 Pro 128GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro",
+            "price": {
+                "iphone-15": 52990000,
+                "special": 42990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Blue Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro 128GB 8GB RAM",
+            "description": "This is iPhone 15 Pro 128GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro",
+            "price": {
+                "iphone-15": 52990000,
+                "special": 42990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": " Natural Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro 256GB 8GB RAM",
+            "description": "This is iPhone 15 Pro 256GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro",
+            "price": {
+                "iphone-15": 54990000,
+                "special": 44990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Black Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro 256GB 8GB RAM",
+            "description": "This is iPhone 15 Pro 256GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro",
+            "price": {
+                "iphone-15": 54990000,
+                "special": 44990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Blue Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro 256GB 8GB RAM",
+            "description": "This is iPhone 15 Pro 256GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro",
+            "price": {
+                "iphone-15": 54990000,
+                "special": 44990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": " White Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro 256GB 8GB RAM",
+            "description": "This is iPhone 15 Pro 256GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro",
+            "price": {
+                "iphone-15": 54990000,
+                "special": 44990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": " Natural Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro 512GB 8GB RAM",
+            "description": "This is iPhone 15 Pro 512GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro",
+            "price": {
+                "iphone-15": 64990000,
+                "special": 54990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Black Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro 512GB 8GB RAM",
+            "description": "This is iPhone 15 Pro 512GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro",
+            "price": {
+                "iphone-15": 64990000,
+                "special": 54990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Blue Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro 512GB 8GB RAM",
+            "description": "This is iPhone 15 Pro 512GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro",
+            "price": {
+                "iphone-15": 64990000,
+                "special": 54990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": " White Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro 512GB 8GB RAM",
+            "description": "This is iPhone 15 Pro 512GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro",
+            "price": {
+                "iphone-15": 64990000,
+                "special": 54990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": " Natural Titanium"
+                }
+            ],
+            "tags": []
+        }
+    ],
+    "skus-pro-max": [
+        {
+            "name": "iPhone 15 Pro Max 256GB 8GB RAM",
+            "description": "This is iPhone 15 Pro Max 256GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro-max",
+            "price": {
+                "iphone-15": 74990000,
+                "special": 54990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Black Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro Max 256GB 8GB RAM",
+            "description": "This is iPhone 15 Pro Max 256GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro-max",
+            "price": {
+                "iphone-15": 74990000,
+                "special": 54990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Blue Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro Max 256GB 8GB RAM",
+            "description": "This is iPhone 15 Pro Max 256GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro-max",
+            "price": {
+                "iphone-15": 74990000,
+                "special": 54990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": " White Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro Max 256GB 8GB RAM",
+            "description": "This is iPhone 15 Pro Max 256GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro-max",
+            "price": {
+                "iphone-15": 74990000,
+                "special": 54990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": " Natural Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro Max 512GB 8GB RAM",
+            "description": "This is iPhone 15 Pro Max 512GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro-max",
+            "price": {
+                "iphone-15": 84990000,
+                "special": 64990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Black Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro Max 512GB 8GB RAM",
+            "description": "This is iPhone 15 Pro Max 512GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro-max",
+            "price": {
+                "iphone-15": 84990000,
+                "special": 64990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Blue Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro Max 512GB 8GB RAM",
+            "description": "This is iPhone 15 Pro Max 512GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro-max",
+            "price": {
+                "iphone-15": 84990000,
+                "special": 64990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": " White Titanium"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 15 Pro Max 512GB 8GB RAM",
+            "description": "This is iPhone 15 Pro Max 512GB 8GB RAM",
+            "spuId": "",
+            "spuModelSlug": "iphone-15-pro-max",
+            "price": {
+                "iphone-15": 84990000,
+                "special": 64990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "RAM",
+                    "k": "ram",
+                    "v": "8",
+                    "u": "GB"
+                },
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "512",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": " Natural Titanium"
+                }
+            ],
+            "tags": []
+        }
+    ]
+}

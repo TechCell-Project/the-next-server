@@ -1,0 +1,59 @@
+version: '3'
+
+services:
+    compodoc-techcell:
+        container_name: compodoc-techcell
+        hostname: compodoc-techcell
+        build:
+            context: ./
+            dockerfile: ./containers/compodoc-techcell/Dockerfile
+        image: lehuygiang28/compodoc-techcell:${COMPOSE_TAG:-latest}
+        ports:
+            - 9001:${COMPODOC_PORT:-9001}
+        networks:
+            - the_next_techcell_backend
+        restart: unless-stopped
+
+    api:
+        container_name: api
+        hostname: api
+        build:
+            context: .
+            dockerfile: ./apps/server/Dockerfile
+        image: lehuygiang28/the_next_tech_cell:${COMPOSE_TAG:-latest}
+        ports:
+            - ${API_PORT:-8000}:${API_PORT:-8000}
+        env_file:
+            - .env
+        volumes:
+            - the_next_tech_cell_data:/app
+        networks:
+            - the_next_techcell_backend
+        restart: unless-stopped
+
+    communication:
+        container_name: communication
+        hostname: communication
+        build:
+            context: .
+            dockerfile: ./apps/communication/Dockerfile
+        image: lehuygiang28/the_next_tech_cell_communication:${COMPOSE_TAG:-latest}
+        ports:
+            - ${COMMUNICATION_PORT:-8001}:${COMMUNICATION_PORT:-8001}
+        env_file:
+            - .env
+        volumes:
+            - the_next_tech_cell_communication_data:/app
+        networks:
+            - the_next_techcell_backend
+        restart: unless-stopped
+
+networks:
+    the_next_techcell_backend:
+        driver: bridge
+
+volumes:
+    the_next_tech_cell_data:
+        driver: local
+    the_next_tech_cell_communication_data:
+        driver: local

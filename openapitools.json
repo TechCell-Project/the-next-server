@@ -1,0 +1,34 @@
+{
+    "$schema": "node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+    "spaces": 4,
+    "generator-cli": {
+        "version": "7.4.0",
+        "generators": {
+            "node": {
+                "generatorName": "typescript-axios",
+                "output": "#{cwd}/generated/node",
+                "glob": "swagger.yaml",
+                "gitHost": "github.com",
+                "gitUserId": "TechCell-Project",
+                "gitRepoId": "node-sdk",
+                "verbose": false,
+                "globalProperty": {
+                    "apiDocs": true,
+                    "modelDocs": true
+                },
+                "additionalProperties": {
+                    "npmName": "@techcell/node-sdk",
+                    "npmRepository": "https://registry.npmjs.org",
+                    "npmVersion": "latest",
+                    "supportsES6": true,
+                    "apiPackage": "services",
+                    "modelPackage": "models",
+                    "withSeparateModelsAndApi": true,
+                    "useSingleRequestParameter": true,
+                    "stringEnums": true,
+                    "sortModelPropertiesByRequiredFlag": true
+                }
+            }
+        }
+    }
+}

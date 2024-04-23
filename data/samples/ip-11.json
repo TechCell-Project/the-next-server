@@ -1,0 +1,1483 @@
+{
+    "spu": {
+        "brandId": "661681dde3e5984cfc2c28cc",
+        "name": "iPhone 11 series",
+        "description": "This is iPhone 11 series",
+        "commonAttributes": [
+            {
+                "name": "Xuất xứ thương hiệu",
+                "k": "xuat_xu_thuong_hieu",
+                "v": "Mỹ"
+            },
+            {
+                "name": "Chipset",
+                "k": "chipset",
+                "v": "Apple A13 Bionic",
+                "u": "(7 nm+)"
+            },
+            {
+                "name": "GPU",
+                "k": "gpu",
+                "v": "Apple GPU",
+                "u": "(đồ họa 4 nhân)"
+            },
+            {
+                "name": "SIM",
+                "k": "sim",
+                "v": "Nano-SIM và eSIM hoặc Dual SIM",
+                "u": "(Nano-SIM, dual stand-by)"
+            },
+            {
+                "name": "CPU",
+                "k": "cpu",
+                "v": "Hexa-core",
+                "u": "(2x2.65 GHz Lightning + 4x1.8 GHz Thunder)"
+            },
+            {
+                "name": "Hệ điều hành",
+                "k": "he_dieu_hanh",
+                "v": "iOS 13, upgradable to iOS 17.4"
+            },
+            {
+                "name": "Thời điểm ra mắt",
+                "k": "thoi_diem_ra_mat",
+                "v": "20/10/2019"
+            },
+            {
+                "name": "RAM",
+                "k": "ram",
+                "v": "4",
+                "u": "GB"
+            }
+        ],
+        "models": [
+            {
+                "slug": "iphone-11",
+                "name": "iPhone 11",
+                "description": "This is iPhone 11",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "150.9 x 75.7 x 8.3",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "194",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Chống nước & bụi",
+                        "k": "chong_nuoc_bui",
+                        "v": "Chống bụi/nước theo tiêu chuẩn IP68",
+                        "u": "(lên đến 2m trong vòng 30 phút)"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Liquid Retina IPS LCD, 625 nits",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.1",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Oleophobic (ion cường lực)"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "828 x 1792",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.8, 26mm (góc rộng), 1/2.55\", 1.4µm, dual pixel PDAF, OIS|12 MP, f/2.4, 120˚, 13mm (góc siêu rộng), 1/3.6\""
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Ban đêm (Night Mode)|Chạm lấy nét|Góc rộng (Wide)|Góc siêu rộng (Ultrawide)|HDR|Nhận diện khuôn mặt|Quay chậm (Slow Motion)|Toàn cảnh (Panorama)|Trôi nhanh thời gian (Time Lapse)|Tự động lấy nét (AF)|Xóa phông|Zoom quang học"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K 2160p@24fps|4K 2160p@30fps|4K 2160p@60fps|FullHD 1080p@120fps|FullHD 1080p@240fps|FullHD 1080p@30fps|FullHD 1080p@60fps|HD 720p@30fps"
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "12 MP, f/2.2, 23mm (wide), 1/3.6\""
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR|Nhãn dán (AR Stickers)|Nhận diện khuôn mặt|Quay chậm (Slow Motion)|Retina Flash|Tự động lấy nét (AF)|Xóa phông"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "4K 2160p@24fps|4K 2160p@30fps|4K 2160p@60fps|FullHD 1080p@120fps|FullHD 1080p@30fps|FullHD 1080p@60fps"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Dual-band (2.4 GHz/5 GHz)|Wi-Fi 802.11 a/b/g/n/ac/ax|Wi-Fi hotspot"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS|A-GPS|BDS|GLONASS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning, Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion 3110 mAh (11.91 Wh)"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-11-pro",
+                "name": "iPhone 11 Pro",
+                "description": "This is iPhone 11 Pro",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "144 x 71.4 x 8.1",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "188",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Chống nước & bụi",
+                        "k": "chong_nuoc_bui",
+                        "v": "Chống bụi/nước theo tiêu chuẩn IP68",
+                        "u": "(lên đến 4m trong vòng 30 phút)"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Super Retina XDR OLED, HDR10, Dolby Vision",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "5.8",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Oleophobic (ion cường lực)"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1125 x 2436",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.8, 26mm (góc rộng), 1/2.55\", 1.4µm, dual pixel PDAF, OIS|12 MP, f/2.0, 52mm (telephoto), 1/3.4\", 1.0µm, PDAF, OIS, 2x optical zoom|12 MP, f/2.4, 120˚, 13mm (góc siêu rộng), 1/3.6\""
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Ban đêm (Night Mode)|Chạm lấy nét|Góc rộng (Wide)|Góc siêu rộng (Ultrawide)|HDR|Nhận diện khuôn mặt|Quay chậm (Slow Motion)|Toàn cảnh (Panorama)|Trôi nhanh thời gian (Time Lapse)|Tự động lấy nét (AF)|Xóa phông|Siêu cận (Macro)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K 2160p@24fps|4K 2160p@30fps|4K 2160p@60fps|FullHD 1080p@120fps|FullHD 1080p@240fps|FullHD 1080p@30fps|FullHD 1080p@60fps|HD 720p@30fps"
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "12 MP, f/2.2, 23mm (wide), 1/3.6\""
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR|Nhãn dán (AR Stickers)|Nhận diện khuôn mặt|Quay chậm (Slow Motion)|Retina Flash|Tự động lấy nét (AF)|Xóa phông"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "4K 2160p@24fps|4K 2160p@30fps|4K 2160p@60fps|FullHD 1080p@120fps|FullHD 1080p@30fps|FullHD 1080p@60fps"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Dual-band (2.4 GHz/5 GHz)|Wi-Fi 802.11 a/b/g/n/ac/ax|Wi-Fi hotspot"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS|A-GPS|BDS|GLONASS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning, Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion 3046 mAh (11.67 Wh)"
+                    }
+                ]
+            },
+            {
+                "slug": "iphone-11-pro-max",
+                "name": "iPhone 11 Pro Max",
+                "description": "This is iPhone 11 Pro Max",
+                "images": [],
+                "attributes": [
+                    {
+                        "name": "Kích thước",
+                        "k": "kich_thuoc",
+                        "v": "158 x 77.8 x 8.1",
+                        "u": "mm"
+                    },
+                    {
+                        "name": "Khối lượng",
+                        "k": "khoi_luong",
+                        "v": "226",
+                        "u": "grams"
+                    },
+                    {
+                        "name": "Chống nước & bụi",
+                        "k": "chong_nuoc_bui",
+                        "v": "Chống bụi/nước theo tiêu chuẩn IP68",
+                        "u": "(lên đến 4m trong vòng 30 phút)"
+                    },
+                    {
+                        "name": "Công nghệ màn hình & hiển thị",
+                        "k": "cong_nghe_man_hinh_hien_thi",
+                        "v": "Super Retina XDR OLED, HDR10, Dolby Vision",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Kích thước màn hình",
+                        "k": "kich_thuoc_man_hinh",
+                        "v": "6.5",
+                        "u": "inch"
+                    },
+                    {
+                        "name": "Mặt kính cảm ứng",
+                        "k": "mat_kinh_cam_ung",
+                        "v": "Kính cường lực Oleophobic (ion cường lực)"
+                    },
+                    {
+                        "name": "Độ phân giải",
+                        "k": "do_phan_giai",
+                        "v": "1242 x 2688",
+                        "u": "pixel"
+                    },
+                    {
+                        "name": "Camera sau",
+                        "k": "camera_sau",
+                        "v": "12 MP, f/1.8, 26mm (góc rộng), 1/2.55\", 1.4µm, dual pixel PDAF, OIS|12 MP, f/2.0, 52mm (telephoto), 1/3.4\", 1.0µm, PDAF, OIS, 2x optical zoom|12 MP, f/2.4, 120˚, 13mm (góc siêu rộng), 1/3.6\""
+                    },
+                    {
+                        "name": "Tính năng camera sau",
+                        "k": "tinh_nang_camera_sau",
+                        "v": "Ban đêm (Night Mode)|Chạm lấy nét|Góc rộng (Wide)|Góc siêu rộng (Ultrawide)|HDR|Nhận diện khuôn mặt|Quay chậm (Slow Motion)|Toàn cảnh (Panorama)|Trôi nhanh thời gian (Time Lapse)|Tự động lấy nét (AF)|Xóa phông|Siêu cận (Macro)"
+                    },
+                    {
+                        "name": "Quay phim camera sau",
+                        "k": "quay_phim_camera_sau",
+                        "v": "4K 2160p@24fps|4K 2160p@30fps|4K 2160p@60fps|FullHD 1080p@120fps|FullHD 1080p@240fps|FullHD 1080p@30fps|FullHD 1080p@60fps|HD 720p@30fps"
+                    },
+                    {
+                        "name": "Camera trước",
+                        "k": "camera_truoc",
+                        "v": "12 MP, f/2.2, 23mm (wide), 1/3.6\""
+                    },
+                    {
+                        "name": "Tính năng camera trước",
+                        "k": "tinh_nang_camera_truoc",
+                        "v": "HDR|Nhãn dán (AR Stickers)|Nhận diện khuôn mặt|Quay chậm (Slow Motion)|Retina Flash|Tự động lấy nét (AF)|Xóa phông"
+                    },
+                    {
+                        "name": "Quay phim camera trước",
+                        "k": "quay_phim_camera_truoc",
+                        "v": "4K 2160p@24fps|4K 2160p@30fps|4K 2160p@60fps|FullHD 1080p@120fps|FullHD 1080p@30fps|FullHD 1080p@60fps"
+                    },
+                    {
+                        "name": "Wi-Fi",
+                        "k": "wi_fi",
+                        "v": "Dual-band (2.4 GHz/5 GHz)|Wi-Fi 802.11 a/b/g/n/ac/ax|Wi-Fi hotspot"
+                    },
+                    {
+                        "name": "Định vị",
+                        "k": "dinh_vi",
+                        "v": "GPS|A-GPS|BDS|GLONASS|GALILEO|QZSS"
+                    },
+                    {
+                        "name": "Bluetooth",
+                        "k": "bluetooth",
+                        "v": "5.0|A2DP|LE"
+                    },
+                    {
+                        "name": "NFC",
+                        "k": "nfc",
+                        "v": "Có"
+                    },
+                    {
+                        "name": "Cổng sạc",
+                        "k": "cong_sac",
+                        "v": "Lightning, Không dây (Qi)"
+                    },
+                    {
+                        "name": "Cổng kết nối USB",
+                        "k": "cong_ket_noi_usb",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Cổng tai nghe",
+                        "k": "cong_tai_nghe",
+                        "v": "Lightning"
+                    },
+                    {
+                        "name": "Bảo mật",
+                        "k": "bao_mat",
+                        "v": "Mở khoá khuôn mặt Face ID"
+                    },
+                    {
+                        "name": "Pin",
+                        "k": "pin",
+                        "v": "Li-Ion 3969 mAh (15.04 Wh)"
+                    }
+                ]
+            }
+        ],
+        "status": "available"
+    },
+    "skus": [
+        {
+            "name": "iPhone 11 64GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 64GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 64GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 64GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 64GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 64GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 64GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 128GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 128GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 128GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 128GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 128GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 256GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Trắng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 256GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đen"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 256GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Tím"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 256GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Đỏ"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 256GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 256GB",
+            "description": "This is iPhone 11 ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11",
+            "price": {
+                "base": 11790000,
+                "special": 8990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+
+        {
+            "name": "iPhone 11 Pro 64GB",
+            "description": "This is iPhone 11 Pro ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro",
+            "price": {
+                "base": 15790000,
+                "special": 12990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro 64GB",
+            "description": "This is iPhone 11 Pro ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro",
+            "price": {
+                "base": 15790000,
+                "special": 12990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro 64GB",
+            "description": "This is iPhone 11 Pro ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro",
+            "price": {
+                "base": 15790000,
+                "special": 12990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro 64GB",
+            "description": "This is iPhone 11 Pro ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro",
+            "price": {
+                "base": 15790000,
+                "special": 12990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro 64GB",
+            "description": "This is iPhone 11 Pro ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro",
+            "price": {
+                "base": 15790000,
+                "special": 12990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro 128GB",
+            "description": "This is iPhone 11 Pro ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro",
+            "price": {
+                "base": 15790000,
+                "special": 12990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro 128GB",
+            "description": "This is iPhone 11 Pro ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro",
+            "price": {
+                "base": 15790000,
+                "special": 12990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro 128GB",
+            "description": "This is iPhone 11 Pro ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro",
+            "price": {
+                "base": 15790000,
+                "special": 12990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro 256GB",
+            "description": "This is iPhone 11 Pro ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro",
+            "price": {
+                "base": 15790000,
+                "special": 12990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro 256GB",
+            "description": "This is iPhone 11 Pro ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro",
+            "price": {
+                "base": 15790000,
+                "special": 12990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro 256GB",
+            "description": "This is iPhone 11 Pro ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro",
+            "price": {
+                "base": 15790000,
+                "special": 12990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro 256GB",
+            "description": "This is iPhone 11 Pro ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro",
+            "price": {
+                "base": 15790000,
+                "special": 12990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+
+        {
+            "name": "iPhone 11 Pro Max 64GB",
+            "description": "This is iPhone 11 Pro Max ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro-max",
+            "price": {
+                "base": 20790000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro Max 64GB",
+            "description": "This is iPhone 11 Pro Max ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro-max",
+            "price": {
+                "base": 20790000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro Max 64GB",
+            "description": "This is iPhone 11 Pro Max ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro-max",
+            "price": {
+                "base": 20790000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro Max 64GB",
+            "description": "This is iPhone 11 Pro Max ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro-max",
+            "price": {
+                "base": 20790000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "64",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro Max 64GB",
+            "description": "This is iPhone 11 Pro Max ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro-max",
+            "price": {
+                "base": 20790000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro Max 128GB",
+            "description": "This is iPhone 11 Pro Max ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro-max",
+            "price": {
+                "base": 20790000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro Max 128GB",
+            "description": "This is iPhone 11 Pro Max ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro-max",
+            "price": {
+                "base": 20790000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro Max 128GB",
+            "description": "This is iPhone 11 Pro Max ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro-max",
+            "price": {
+                "base": 20790000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "128",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro Max 256GB",
+            "description": "This is iPhone 11 Pro Max ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro-max",
+            "price": {
+                "base": 20790000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xám"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro Max 256GB",
+            "description": "This is iPhone 11 Pro Max ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro-max",
+            "price": {
+                "base": 20790000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Bạc"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro Max 256GB",
+            "description": "This is iPhone 11 Pro Max ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro-max",
+            "price": {
+                "base": 20790000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Vàng"
+                }
+            ],
+            "tags": []
+        },
+        {
+            "name": "iPhone 11 Pro Max 256GB",
+            "description": "This is iPhone 11 Pro Max ...",
+            "spuId": "661e29a9c815e07f8e6637d3",
+            "spuModelSlug": "iphone-11-pro-max",
+            "price": {
+                "base": 20790000,
+                "special": 17990000
+            },
+            "status": "selling",
+            "attributes": [
+                {
+                    "name": "Bô nhớ trong",
+                    "k": "bo_nho_trong",
+                    "v": "256",
+                    "u": "GB"
+                },
+                {
+                    "name": "Màu sắc",
+                    "k": "mau_sac",
+                    "v": "Xanh"
+                }
+            ],
+            "tags": []
+        }
+    ]
+}

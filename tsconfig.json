@@ -1,21 +1,35 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "ES2021",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true,
-    "skipLibCheck": true,
-    "strictNullChecks": true,
-    "noImplicitAny": true,
-    "strictBindCallApply": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true
-  }
+    "compilerOptions": {
+        "module": "commonjs",
+        "declaration": true,
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "target": "ES2021",
+        "sourceMap": true,
+        "outDir": "./dist",
+        "baseUrl": "./",
+        "incremental": true,
+        "skipLibCheck": true,
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "strictBindCallApply": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "paths": {
+            "~/server": ["apps/server/src/modules"],
+            "~/server/*": ["apps/server/src/modules/*"],
+            "~/communication": ["apps/communication/src/modules"],
+            "~/communication/*": ["apps/communication/src/modules/*"],
+            "~/logger": ["libs/logger/src"],
+            "~/logger/*": ["libs/logger/src/*"],
+            "~/common": ["libs/common/src"],
+            "~/common/*": ["libs/common/src/*"],
+            "~/casl": ["libs/casl/src"],
+            "~/casl/*": ["libs/casl/src/*"],
+            "~/third-party": ["libs/third-party/src"],
+            "~/third-party/*": ["libs/third-party/src/*"]
+        }
+    }
 }
