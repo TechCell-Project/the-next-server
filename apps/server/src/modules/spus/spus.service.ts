@@ -329,7 +329,7 @@ export class SpusService extends AbstractService {
                 }
 
                 if ((commonAttributes?.length ?? 0) > 0) {
-                    const commonAttKeyList = commonAttributes!.map((attribute) => attribute.k);
+                    const commonAttKeyList = commonAttributes.map((attribute) => attribute.k);
                     const duplicateKeys = model?.attributes
                         ?.map((attribute) => attribute.k)
                         ?.filter((key) => commonAttKeyList.includes(key));
