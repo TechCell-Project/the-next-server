@@ -69,9 +69,13 @@ export function sortedStringify(arg: unknown): string {
     }
 
     if (Array.isArray(arg)) {
-        return `[${arg.map(sortedStringify).join(',')}]`;
+        return '[' + arg.map(sortedStringify).join(',') + ']';
     }
 
     const keys = Object.keys(arg as object).sort((a, b) => a.localeCompare(b));
-    return `{${keys.map((key) => `"${key}":${sortedStringify((arg as { [key: string]: unknown })[key])}`).join(',')}}`;
+    const keyValuePairs = keys.map((key) => {
+        const value = sortedStringify((arg as { [key: string]: unknown })[key]);
+        return '"' + key + '":' + value;
+    });
+    return '{' + keyValuePairs.join(',') + '}';
 }
