@@ -7,6 +7,7 @@ import { ProductInOrderDto } from '~/server/orders/dtos';
 
 @ValidatorConstraint({ async: false })
 export class IsUniqueSkuIdInObject implements ValidatorConstraintInterface {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     validate(values: ProductInOrderDto[], args: ValidationArguments) {
         const skuIds = values.map((v) => v.skuId);
         const uniqueSkuIds = [...new Set(skuIds)];

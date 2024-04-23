@@ -21,11 +21,11 @@ export class FilterTagDto extends PartialType(PickType(Tag, ['slug'])) {
     })
     @IsOptional()
     @IsString()
-    keyword?: string | undefined;
+    keyword?: string;
 
     @IsOptional()
     @IsString()
-    slug?: string | undefined;
+    slug?: string;
 
     @ApiProperty({
         example: TagStatusEnum.Active,
@@ -68,7 +68,7 @@ export class QueryTagsDto extends IntersectionType(
     @JsonTransform(FilterTagDto)
     @ValidateNested()
     @Type(() => FilterTagDto)
-    filters?: FilterTagDto | null | undefined;
+    filters?: FilterTagDto | null;
 
     @ApiPropertyOptional({
         type: String,
@@ -79,5 +79,5 @@ export class QueryTagsDto extends IntersectionType(
     @JsonTransform(SortTagDto)
     @ValidateNested({ each: true })
     @Type(() => SortTagDto)
-    sort?: SortTagDto[] | null | undefined;
+    sort?: SortTagDto[] | null;
 }

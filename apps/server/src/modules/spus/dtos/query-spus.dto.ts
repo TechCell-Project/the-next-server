@@ -54,7 +54,7 @@ export class QuerySpusDto extends IntersectionType(
     @JsonTransform(FilterSpuDto)
     @ValidateNested()
     @Type(() => FilterSpuDto)
-    filters?: FilterSpuDto | null | undefined;
+    filters?: FilterSpuDto | null;
 
     @ApiPropertyOptional({
         type: String,
@@ -65,5 +65,5 @@ export class QuerySpusDto extends IntersectionType(
     @JsonTransform(SortSpuDto)
     @ValidateNested({ each: true })
     @Type(() => SortSpuDto)
-    sort?: SortSpuDto[] | null | undefined;
+    sort?: SortSpuDto[] | null;
 }
