@@ -1,4 +1,3 @@
-// import { REDIS_CLIENT, REDIS_STORE } from '~libs/common/constants';
 import { Inject, Injectable, Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { Redis } from 'ioredis';
 

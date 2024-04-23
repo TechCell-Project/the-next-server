@@ -1,4 +1,3 @@
-// import { REDIS_CLIENT } from '~libs/common/constants';
 import { Injectable, Inject, Logger } from '@nestjs/common';
 import { Redis } from 'ioredis';
 import Redlock, { Lock, ExecutionResult, ExecutionError } from 'redlock';
