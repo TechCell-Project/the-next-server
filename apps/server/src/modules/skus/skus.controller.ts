@@ -20,6 +20,7 @@ import {
     SkuInfinityPaginationResult,
     SortSerialNumberDto,
     SortSkuDto,
+    UpdateSkuDto,
 } from './dtos';
 import { ApiCreatedResponse, ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { SkusService } from './skus.service';
@@ -120,7 +121,7 @@ export class SkusController {
 
     @Patch('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
-    async updateSkuById(@Param() { id }: ObjectIdParamDto, @Body() data: CreateSkuDto) {
+    async updateSkuById(@Param() { id }: ObjectIdParamDto, @Body() data: UpdateSkuDto) {
         return this.skusService.updateSkuById(id, data);
     }
 }
