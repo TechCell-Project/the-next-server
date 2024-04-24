@@ -12,7 +12,7 @@ import { FilterUserDto, SortUserDto, UpdateUserMntDto } from './dtos';
 export class UsersService {
     constructor(public readonly usersRepository: UsersRepository) {}
 
-    async create(createProfileDto: CreateUserDto): Promise<User> {
+    async create(createProfileDto: CreateUserDto, isSocialAuth = false): Promise<User> {
         const clonedPayload = {
             provider: AuthProviderEnum.Email,
             emailVerified: false,
@@ -67,7 +67,7 @@ export class UsersService {
                 HttpStatus.UNPROCESSABLE_ENTITY,
             );
         }
-        if (clonedPayload.role === UserRoleEnum.Customer) {
+        if (clonedPayload.role === UserRoleEnum.Customer && !isSocialAuth) {
             throw new HttpException(
                 {
                     status: HttpStatus.UNPROCESSABLE_ENTITY,

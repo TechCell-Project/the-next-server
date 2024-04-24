@@ -320,15 +320,18 @@ export class AuthService {
         } else if (userByEmail) {
             user = userByEmail;
         } else if (socialData.id && socialEmail) {
-            user = await this.usersService.create({
-                email: socialEmail,
-                socialId: socialData.id,
-                provider: authProvider,
-                role: UserRoleEnum.Customer,
-                firstName: socialData?.firstName ?? faker.person.firstName(),
-                lastName: socialData?.lastName ?? faker.person.lastName(),
-                password: socialData.id + faker.string.alphanumeric(20) + uuid(),
-            });
+            user = await this.usersService.create(
+                {
+                    email: socialEmail,
+                    socialId: socialData.id,
+                    provider: authProvider,
+                    role: UserRoleEnum.Customer,
+                    firstName: socialData?.firstName ?? faker.person.firstName(),
+                    lastName: socialData?.lastName ?? faker.person.lastName(),
+                    password: socialData.id + faker.string.alphanumeric(20) + uuid(),
+                },
+                true,
+            );
 
             user = await this.usersService.findById(user._id);
         }
