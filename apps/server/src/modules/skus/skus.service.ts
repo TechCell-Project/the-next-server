@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PinoLogger } from 'nestjs-pino';
 import { SkusRepository } from './skus.repository';
-import { CreateSkuDto, QuerySkusDto, UpdateSkuDto } from './dtos';
+import { CreateSkuDto, QuerySerialNumberDto, QuerySkusDto, UpdateSkuDto } from './dtos';
 import { SKU } from './schemas';
 import { SpusService } from '../spus';
 import { ImagesService } from '../images';
@@ -379,6 +379,26 @@ export class SkusService extends AbstractService {
 
         await this.redlockService.unlock(lock);
         return serials;
+    }
+
+    async getSerialNumber(query: QuerySerialNumberDto) {
+        return this.serialNumberRepository.findOneOrThrow({
+            filterQuery: {
+                skuId: convertToObjectId(query.filters?.skuId),
+                status: SerialNumberStatusEnum.Available,
+            },
+        });
+    }
+
+    async getSerialNumbers(query: QuerySerialNumberDto) {
+        return this.serialNumberRepository.findManyWithPagination({
+            filterOptions: query?.filters,
+            sortOptions: query?.sort,
+            paginationOptions: {
+                limit: query?.limit,
+                page: query?.page,
+            },
+        });
     }
 
     async releaseHoldSerialNumber(serialNumber: string) {

@@ -45,8 +45,8 @@ async function bootstrap() {
             'https://github.com/TechCell-Project/the-next-server?tab=MIT-1-ov-file',
         )
         .setExternalDoc('TechCell Github', 'https://github.com/TechCell-Project/the-next-server')
-        .addServer('https://api.techcell.cloud')
         .addServer('http://localhost:8000')
+        .addServer('https://api.techcell.cloud')
         .addBearerAuth()
         .build();
 

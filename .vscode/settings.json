@@ -48,7 +48,8 @@
         "bullmq",
         "abstract",
         "docs",
-        "lock"
+        "lock",
+        "orders-mnt"
     ],
     "sonarlint.connectedMode.project": {
         "connectionId": "techcell-project",

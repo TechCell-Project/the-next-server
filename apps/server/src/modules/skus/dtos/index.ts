@@ -4,3 +4,4 @@ export * from './sku-infinity-pagination-result.dto';
 export * from './add-serial-number.dto';
 export * from './add-serial-number-response.dto';
 export * from './update-sku.dto';
+export * from './query-serial-number.dto';

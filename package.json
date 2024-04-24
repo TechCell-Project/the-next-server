@@ -139,7 +139,10 @@
             "ts"
         ],
         "rootDir": ".",
-        "testRegex": ".*\\.spec\\.ts$",
+        "testRegex": [
+            ".*\\.spec\\.ts$",
+            ".*\\.test\\.ts$"
+        ],
         "transform": {
             "^.+\\.(t|j)s$": "ts-jest"
         },
@@ -153,6 +156,7 @@
             "<rootDir>/apps/"
         ],
         "moduleNameMapper": {
+            "^~/server(|/.*)$": "<rootDir>/apps/server/src/modules/$1",
             "^~/logger(|/.*)$": "<rootDir>/libs/logger/src/$1",
             "^~/common(|/.*)$": "<rootDir>/libs/common/src/$1",
             "^~/casl(|/.*)$": "<rootDir>/libs/casl/src/$1",
