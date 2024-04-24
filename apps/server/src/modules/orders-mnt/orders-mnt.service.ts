@@ -82,7 +82,6 @@ export class OrdersMntService {
                         HttpStatus.UNPROCESSABLE_ENTITY,
                     );
                 }
-                promises.push(this.soldSerialNumber(order, updateSerialNumbers));
                 order.orderStatus = OrderStatusEnum.Preparing;
                 order.orderLogs.push({
                     actorId: convertToObjectId(user.userId),
@@ -114,6 +113,7 @@ export class OrdersMntService {
                         HttpStatus.UNPROCESSABLE_ENTITY,
                     );
                 }
+                promises.push(this.soldSerialNumber(order, updateSerialNumbers));
                 order.orderStatus = OrderStatusEnum.Prepared;
                 order.orderLogs.push({
                     actorId: convertToObjectId(user.userId),
@@ -260,10 +260,13 @@ export class OrdersMntService {
                 throw new BadRequestException('Invalid order status');
         }
 
-        await this.ordersMntRepository.updateOrderById({
-            orderId: convertToObjectId(orderId),
-            updateQuery: order,
-        });
+        await Promise.all([
+            this.ordersMntRepository.updateOrderById({
+                orderId: convertToObjectId(orderId),
+                updateQuery: order,
+            }),
+            ...promises,
+        ]);
     }
 
     async getOrdersMntById(user: JwtPayloadType, orderId: string) {
