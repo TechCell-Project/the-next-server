@@ -19,6 +19,7 @@ import { SKUModule } from '~/server/skus';
 import { ProductsModule } from '~/server/products';
 import { CartsModule } from '~/server/carts';
 import { OrdersMntModule } from '~/server/orders-mnt';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
     imports: [
@@ -32,6 +33,12 @@ import { OrdersMntModule } from '~/server/orders-mnt';
                 password: process.env.REDIS_PASSWORD,
             },
         }),
+        ThrottlerModule.forRoot([
+            {
+                ttl: 1000 * 60,
+                limit: 1000,
+            },
+        ]),
         LoggerModule,
         AuthModule,
         AttributesModule,
