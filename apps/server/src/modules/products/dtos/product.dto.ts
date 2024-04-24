@@ -5,6 +5,7 @@ import { AttributeInProductDto } from '~/server/spus/dtos';
 import { SPU, SPUModelSchema } from '~/server/spus/schemas';
 import { ProductsService } from '../products.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
+import { Brand } from '~/server/brands';
 
 class VariationDto {
     constructor(model: SPUModelSchema, sku: SKU) {
@@ -49,7 +50,7 @@ class VariationDto {
 }
 
 export class ProductDto {
-    constructor(spu: SPU, modelSlug: string, sku: SKU[]) {
+    constructor(spu: SPU, modelSlug: string, sku: SKU[], brand: Brand) {
         const model = spu.models.find((model) => model.slug === modelSlug);
         if (!model) {
             throw new HttpException(
@@ -64,6 +65,7 @@ export class ProductDto {
 
         this.productId = ProductsService.toProductId(spu._id, modelSlug);
         this.productName = model.name;
+        this.brandName = brand.name;
         this.description = model.description;
         this.attributes = [...(spu?.commonAttributes || []), ...(model?.attributes || [])];
         this.images = model?.images ?? [];
@@ -71,16 +73,25 @@ export class ProductDto {
     }
 
     @ApiProperty({
+        type: String,
         example: 'a_product_id',
     })
     productId: string;
 
     @ApiProperty({
+        type: String,
         example: 'a product name',
     })
     productName: string;
 
     @ApiProperty({
+        type: String,
+        example: 'Apple',
+    })
+    brandName: string;
+
+    @ApiProperty({
+        type: String,
         example: 'a generic description',
     })
     description: string;

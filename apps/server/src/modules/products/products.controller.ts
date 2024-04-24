@@ -8,7 +8,7 @@ import {
     SortProductsDto,
 } from './dtos';
 import { infinityPagination } from '~/common/utils';
-import { ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiExtraModels, ApiOkResponse, ApiTags, ApiOperation } from '@nestjs/swagger';
 
 @ApiTags('products')
 @ApiExtraModels(FilterProductsDto, SortProductsDto)
@@ -18,6 +18,10 @@ import { ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 export class ProductsController {
     constructor(private readonly productsService: ProductsService) {}
 
+    @ApiOperation({
+        description: 'Get product list with pagination and filter',
+        summary: 'Get products',
+    })
     @ApiOkResponse({
         type: ProductInfinityPaginationResult,
     })
@@ -40,6 +44,10 @@ export class ProductsController {
         );
     }
 
+    @ApiOperation({
+        description: 'Get product by id',
+        summary: 'Get product',
+    })
     @ApiOkResponse({
         type: ProductDto,
     })

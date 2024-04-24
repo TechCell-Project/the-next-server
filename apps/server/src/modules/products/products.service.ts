@@ -77,12 +77,13 @@ export class ProductsService {
                 HttpStatus.UNPROCESSABLE_ENTITY,
             );
         }
+        const brand = await this.brandsService.getBrandById(spu.brandId);
 
         const skus = await this.skusService.getSkusBySpuIdOrThrow({
             spuId: spu._id,
             spuModelSlug: modelSlug,
         });
-        return new ProductDto(spu, modelSlug, skus);
+        return new ProductDto(spu, modelSlug, skus, brand);
     }
 
     async getProductByIdWithSku(productId: string, skuId: string | Types.ObjectId) {
@@ -106,8 +107,9 @@ export class ProductsService {
                 _id: convertToObjectId(skuId),
             },
         });
+        const brand = await this.brandsService.getBrandById(spu.brandId);
 
-        return new ProductDto(spu, modelSlug, [skus]);
+        return new ProductDto(spu, modelSlug, [skus], brand);
     }
 
     async getProducts({ filters, ...payload }: QueryProductsDto) {
@@ -251,8 +253,9 @@ export class ProductsService {
 
     async getProductFromSku(sku: SKU) {
         const spu = await this.spusService.getSpuById(sku.spuId);
+        const brand = await this.brandsService.getBrandById(spu.brandId);
         const modelSlug = spu.models.find((m) => m.slug === sku.spuModelSlug)!.slug;
-        const product = new ProductDto(spu, modelSlug, [sku]);
+        const product = new ProductDto(spu, modelSlug, [sku], brand);
         return product;
     }
 }
