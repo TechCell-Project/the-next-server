@@ -162,6 +162,7 @@ export class OrdersService {
             products: skus.map((sku) => ({
                 skuId: sku._id,
                 productName: sku.name,
+                productType: sku.attributes.map((a) => a.v + (a.u ? a.u : '')).join('-'),
                 unitPrice: sku.price,
                 quantity:
                     products.find((p) => p.skuId.toString() === sku._id.toString())?.quantity ?? 1,

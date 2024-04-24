@@ -13,6 +13,10 @@ export class ProductSchema {
     @Prop({ required: true, type: String })
     productName: string;
 
+    @ApiPropertyOptional({ example: '512GB - Gold', type: String })
+    @Prop({ required: false, type: String })
+    productType?: string;
+
     @ApiProperty({ type: ImageSchema })
     @Prop({ required: false, type: ImageSchema, default: {} })
     image?: ImageSchema;
