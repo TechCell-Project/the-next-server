@@ -25,6 +25,10 @@ export class ShippingSchema {
     @Prop({ required: true, type: Date })
     expectedDeliveryTime: Date;
 
+    @ApiProperty({ example: 'https://tracking.ghn.dev/?order_code=LF9WF3', type: String })
+    @Prop({ required: true, type: String })
+    trackingLink: string;
+
     @ApiPropertyOptional({ example: [], type: [OrderLogSchema] })
     @Prop({ required: false, type: [OrderLogSchema], default: [] })
     logs: OrderLogSchema[];

@@ -116,6 +116,7 @@ export class OrdersService {
                 fee: previewGhn.total_fee,
                 expectedDeliveryTime: previewGhn.expected_delivery_time,
                 logs: [],
+                trackingLink: '',
             },
             payment: {
                 method: paymentMethod,
@@ -263,6 +264,7 @@ export class OrdersService {
                 fee: ghnOrder.total_fee,
                 expectedDeliveryTime: ghnOrder.expected_delivery_time,
                 provider: ShippingProviderEnum.GHN,
+                trackingLink: this.ghnService.getTrackingLink(ghnOrder.order_code),
                 logs: [],
             };
             orderCreated.totalPrice = orderCreated.totalPrice + ghnOrder.total_fee;

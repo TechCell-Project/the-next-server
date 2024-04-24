@@ -5,8 +5,9 @@ import { GhnDistrictDTO, GhnProvinceDTO, GhnWardDTO } from './dtos';
 import { UserAddressSchema } from '~/server/users';
 import { RedisService } from '~/common/redis';
 import { convertTimeString } from 'convert-time-string';
-import { CreateOrder, PreviewOrder } from 'giaohangnhanh/lib/order';
+import { CreateOrder, PreviewOrder, CreateOrderResponse } from 'giaohangnhanh/lib/order';
 import { retry } from '~/common/utils';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class GhnService {
@@ -15,6 +16,7 @@ export class GhnService {
     constructor(
         @Inject('GHN_INIT_OPTIONS') private readonly config: GhnConfig,
         private readonly redisService: RedisService,
+        private readonly configService: ConfigService,
     ) {
         this.ghnInstance = new Ghn(this.config);
     }
@@ -191,6 +193,27 @@ export class GhnService {
             },
             { maxRetries: 3, errorMessage: 'Failed to cancel order' },
         );
+    }
+
+    public async getOrderInfo(orderCode: string): Promise<CreateOrderResponse> {
+        return (await retry(
+            async () => {
+                const path = `shiip/public-api/v2/shipping-order/detail`;
+                const data = { order_code: orderCode };
+                return this.ghnInstance.sendRequest(path, data);
+            },
+            { maxRetries: 3, errorMessage: 'Failed to get order info' },
+        )) as CreateOrderResponse;
+    }
+
+    public getTrackingLink(orderCode: string) {
+        const trackingHost =
+            this.configService.get<string>('GHN_TRACKING_HOST') ?? 'https://tracking.ghn.dev';
+
+        const url = new URL('/', trackingHost);
+        url.searchParams.append('order_code', orderCode);
+
+        return url.toString();
     }
 
     // Utils
