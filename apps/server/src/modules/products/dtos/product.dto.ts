@@ -65,7 +65,7 @@ export class ProductDto {
 
         this.productId = ProductsService.toProductId(spu._id, modelSlug);
         this.productName = model.name;
-        this.brandName = brand.name;
+        this.brand = brand;
         this.description = model.description;
         this.attributes = [...(spu?.commonAttributes || []), ...(model?.attributes || [])];
         this.images = model?.images ?? [];
@@ -85,10 +85,9 @@ export class ProductDto {
     productName: string;
 
     @ApiProperty({
-        type: String,
-        example: 'Apple',
+        type: Brand,
     })
-    brandName: string;
+    brand: Brand;
 
     @ApiProperty({
         type: String,
