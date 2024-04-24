@@ -9,6 +9,7 @@ import { BrandsModule } from '../brands/brands.module';
 import { AttributesModule } from '../attributes';
 import { ImagesModule } from '../images';
 import { RedisModule } from '~/common/redis';
+import { RabbitMQService } from '~/common/rabbitmq';
 
 @Module({
     imports: [
@@ -20,7 +21,7 @@ import { RedisModule } from '~/common/redis';
         RedisModule,
     ],
     controllers: [SPUController],
-    providers: [SPURepository, SpusService],
+    providers: [SPURepository, SpusService, RabbitMQService],
     exports: [SpusService],
 })
 export class SPUModule {}

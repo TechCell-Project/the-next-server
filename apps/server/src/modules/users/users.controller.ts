@@ -29,16 +29,21 @@ import { instanceToPlain } from 'class-transformer';
 import { JwtPayloadType } from '../auth/strategies/types';
 import { UserRoleEnum } from './enums';
 import { CurrentUser } from '~/common/decorators';
+import { RabbitMQService } from '~/common/rabbitmq';
+import { Ctx, MessagePattern, Payload, RmqContext } from '@nestjs/microservices';
+import { UsersPattern } from './users.pattern';
 // import { UserRole } from './enums';
 
 @ApiTags('users')
-@ApiBearerAuth()
 @ApiExtraModels(FilterUserDto, SortUserDto)
 @Controller({
     path: '/users',
 })
 export class UsersController {
-    constructor(private readonly usersService: UsersService) {}
+    constructor(
+        private readonly usersService: UsersService,
+        private readonly rabbitMqService: RabbitMQService,
+    ) {}
 
     // @AuthRoles()
     @AuthRoles(UserRoleEnum.Manager)
@@ -121,5 +126,14 @@ export class UsersController {
         @CurrentUser() user: JwtPayloadType,
     ): Promise<void> {
         return this.usersService.updateUserMnt(id, user.userId, updateProfileDto);
+    }
+
+    @MessagePattern(UsersPattern.isImageInUse)
+    async isImageInUse(
+        @Ctx() context: RmqContext,
+        @Payload() { publicId = '' }: { publicId: string },
+    ) {
+        this.rabbitMqService.acknowledgeMessage(context);
+        return this.usersService.isImageInUse(publicId);
     }
 }

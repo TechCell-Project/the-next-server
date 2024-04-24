@@ -1,6 +1,6 @@
 import { PinoLogger } from 'nestjs-pino';
 import { SPURepository } from './spus.repository';
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import {
     AddSpuModelDto,
     CreateSpuDto,
@@ -293,6 +293,21 @@ export class SpusService extends AbstractService {
             }),
             this.redisService.del(this.buildCacheKey(this.getSpuById.name, id)),
         ]);
+    }
+
+    public async isImageInUse(publicId: string): Promise<boolean> {
+        if (!publicId) {
+            throw new BadRequestException('publicId is required');
+        }
+        return (
+            (await this.spuRepository.count({
+                'models.images': {
+                    $elemMatch: {
+                        publicId,
+                    },
+                },
+            })) > 0
+        );
     }
 
     private async validateModels(

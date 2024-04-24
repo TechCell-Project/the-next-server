@@ -14,6 +14,7 @@ import { BullModule } from '@nestjs/bullmq';
 import { ReleaseHoldSerialNumberConsumer } from './queues/release-hold-sku.consumer';
 import { RELEASE_HOLD_SERIAL_NUMBER_QUEUE } from './constants/skus-queue.constant';
 import { RedisModule } from '~/common/redis';
+import { RabbitMQService } from '~/common/rabbitmq';
 
 @Module({
     imports: [
@@ -36,6 +37,7 @@ import { RedisModule } from '~/common/redis';
         SkusService,
         SerialNumberRepository,
         ReleaseHoldSerialNumberConsumer,
+        RabbitMQService,
     ],
     exports: [SkusService],
 })

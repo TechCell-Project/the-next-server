@@ -14,11 +14,18 @@ import {
 import { ResolvePromisesInterceptor } from '~/common/utils';
 import * as swaggerStats from 'swagger-stats';
 import { SwaggerTheme, SwaggerThemeNameEnum } from 'swagger-themes';
+import { RabbitMQService } from '~/common/rabbitmq';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, { bufferLogs: true });
     const logger = app.get(Logger);
     const configService = app.get(ConfigService);
+
+    RabbitMQService.connectRabbitMQ({
+        app,
+        queueNameEnv: 'SERVER_QUEUE',
+        logger,
+    });
 
     app.enableCors();
     app.useLogger(app.get(Logger));
@@ -84,6 +91,7 @@ async function bootstrap() {
         }),
     );
 
+    await app.startAllMicroservices();
     await app.listen(configService.getOrThrow('API_PORT')).then(() => {
         logger.log(`API live: http://localhost:${configService.getOrThrow('API_PORT')}`);
         logger.log(`API stats: http://localhost:${configService.getOrThrow('API_PORT')}/api-stats`);

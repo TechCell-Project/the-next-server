@@ -26,20 +26,25 @@ import { ApiCreatedResponse, ApiExtraModels, ApiOkResponse, ApiTags } from '@nes
 import { SkusService } from './skus.service';
 import { infinityPagination } from '~/common/utils';
 import { SKU } from './schemas';
-import { ObjectIdParamDto } from '~/common';
+import { ObjectIdParamDto, RabbitMQService } from '~/common';
 import { AuthRoles } from '../auth/guards';
 import { SerialNumber } from './schemas/serial-number.schema';
 import { UserRoleEnum } from '../users/enums';
+import { Ctx, MessagePattern, Payload, RmqContext } from '@nestjs/microservices';
+import { SkusPattern } from './skus.pattern';
 
 @ApiTags('skus')
 @ApiExtraModels(FilterSkuDto, SortSkuDto, FilterSerialNumberDto, SortSerialNumberDto)
 @Controller({
     path: 'skus',
 })
-@AuthRoles()
 export class SkusController {
-    constructor(private readonly skusService: SkusService) {}
+    constructor(
+        private readonly skusService: SkusService,
+        private readonly rabbitMqService: RabbitMQService,
+    ) {}
 
+    @AuthRoles()
     @ApiCreatedResponse({
         type: SKU,
     })
@@ -49,6 +54,7 @@ export class SkusController {
         return this.skusService.createSku(data);
     }
 
+    @AuthRoles()
     @ApiOkResponse({
         type: SkuInfinityPaginationResult,
     })
@@ -71,6 +77,7 @@ export class SkusController {
         );
     }
 
+    @AuthRoles()
     @ApiOkResponse({
         type: SKU,
     })
@@ -119,9 +126,19 @@ export class SkusController {
         return this.skusService.addSerialNumbers(id, serialNumbers);
     }
 
+    @AuthRoles()
     @Patch('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async updateSkuById(@Param() { id }: ObjectIdParamDto, @Body() data: UpdateSkuDto) {
         return this.skusService.updateSkuById(id, data);
+    }
+
+    @MessagePattern(SkusPattern.isImageInUse)
+    async isImageInUse(
+        @Ctx() context: RmqContext,
+        @Payload() { publicId = '' }: { publicId: string },
+    ) {
+        this.rabbitMqService.acknowledgeMessage(context);
+        return this.skusService.isImageInUse(publicId);
     }
 }

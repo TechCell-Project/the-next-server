@@ -49,7 +49,8 @@
         "abstract",
         "docs",
         "lock",
-        "orders-mnt"
+        "orders-mnt",
+        "task"
     ],
     "sonarlint.connectedMode.project": {
         "connectionId": "techcell-project",

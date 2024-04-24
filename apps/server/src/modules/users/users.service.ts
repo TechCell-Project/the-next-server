@@ -232,6 +232,10 @@ export class UsersService {
         });
     }
 
+    public async isImageInUse(publicId: string): Promise<boolean> {
+        return (await this.usersRepository.count({ 'avatar.publicId': publicId })) > 0;
+    }
+
     private changeRole({
         targetUser,
         actor,

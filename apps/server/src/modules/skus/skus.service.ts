@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PinoLogger } from 'nestjs-pino';
 import { SkusRepository } from './skus.repository';
 import { CreateSkuDto, QuerySerialNumberDto, QuerySkusDto, UpdateSkuDto } from './dtos';
@@ -11,9 +11,6 @@ import { AbstractService, convertToObjectId, sanitizeHtmlString } from '~/common
 import { ClientSession, FilterQuery, Types, UpdateQuery } from 'mongoose';
 import { SerialNumberRepository } from './serial-number.repository';
 import { remove as removeDiacritics } from 'diacritics';
-import { RELEASE_HOLD_SERIAL_NUMBER_QUEUE } from './constants/skus-queue.constant';
-import { Queue } from 'bullmq';
-import { InjectQueue } from '@nestjs/bullmq';
 import { RedisService, RedlockService } from '~/common/redis';
 import { ExecutionError, Lock } from 'redlock';
 import { convertTimeString } from 'convert-time-string';
@@ -27,7 +24,6 @@ export class SkusService extends AbstractService {
         private readonly spusService: SpusService,
         private readonly imagesService: ImagesService,
         private readonly attributesService: AttributesService,
-        @InjectQueue(RELEASE_HOLD_SERIAL_NUMBER_QUEUE) private releaseHoldSkuQueue: Queue,
         private readonly redlockService: RedlockService,
         private readonly redisService: RedisService,
     ) {
@@ -500,6 +496,13 @@ export class SkusService extends AbstractService {
                 },
             },
         });
+    }
+
+    public async isImageInUse(publicId: string): Promise<boolean> {
+        if (!publicId) {
+            throw new BadRequestException('publicId is required');
+        }
+        return (await this.skusRepository.count({ 'image.publicId': publicId })) > 0;
     }
 
     private async validateSku(data: CreateSkuDto) {
