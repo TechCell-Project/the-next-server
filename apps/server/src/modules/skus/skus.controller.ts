@@ -96,7 +96,7 @@ export class SkusController {
         }
 
         return infinityPagination(
-            await this.skusService.getSerialNumbers({
+            await this.skusService.getSerialNumbersWithPagination({
                 filters: { ...query?.filters, skuId: id },
                 sort: query?.sort,
                 limit,

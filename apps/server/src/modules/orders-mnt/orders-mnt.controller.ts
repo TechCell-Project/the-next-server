@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, SerializeOptions } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Query, SerializeOptions } from '@nestjs/common';
 import { ApiExtraModels, ApiTags } from '@nestjs/swagger';
 import { CurrentUser, infinityPagination, ObjectIdParamDto } from '~/common';
 import { JwtPayloadType } from '../auth/strategies/types';
@@ -6,6 +6,7 @@ import { FilterOrdersMntDto, QueryOrdersMntDto } from './dtos';
 import { AuthRoles } from '../auth/guards';
 import { UserRoleEnum } from '../users/enums';
 import { OrdersMntService } from './orders-mnt.service';
+import { UpdateOrderStatusDto } from './dtos/update-order-status.dto';
 
 @ApiTags('orders-mnt')
 @ApiExtraModels(FilterOrdersMntDto, QueryOrdersMntDto)
@@ -46,5 +47,18 @@ export class OrdersMntController {
     @Get('/:id')
     async getOrdersMntById(@CurrentUser() user: JwtPayloadType, @Param() { id }: ObjectIdParamDto) {
         return this.ordersMntService.getOrdersMntById(user, id);
+    }
+
+    @SerializeOptions({
+        groups: [UserRoleEnum.Sales, UserRoleEnum.Accountant, UserRoleEnum.Warehouse],
+    })
+    @AuthRoles(UserRoleEnum.Sales, UserRoleEnum.Accountant, UserRoleEnum.Warehouse)
+    @Patch('/:id')
+    async updateOrderStatus(
+        @CurrentUser() user: JwtPayloadType,
+        @Param() { id }: ObjectIdParamDto,
+        @Body() data: UpdateOrderStatusDto,
+    ) {
+        return this.ordersMntService.updateOrderStatus(user, id, data);
     }
 }

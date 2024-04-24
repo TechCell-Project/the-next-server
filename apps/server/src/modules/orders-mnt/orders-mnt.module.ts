@@ -9,8 +9,8 @@ import { VnpayModule } from '~/third-party';
 import { ProductsModule } from '../products/products.module';
 import { RedisModule } from '~/common/redis';
 import { OrdersMntService } from './orders-mnt.service';
-import { OrdersMntRepository } from './orders-mnt.repository';
 import { Order, OrderSchema } from '~/server/orders';
+import { OrdersRepository } from '../orders/orders.repository';
 
 @Module({
     imports: [
@@ -29,7 +29,7 @@ import { Order, OrderSchema } from '~/server/orders';
         RedisModule,
     ],
     controllers: [OrdersMntController],
-    providers: [OrdersMntRepository, OrdersMntService],
+    providers: [OrdersRepository, OrdersMntService],
     exports: [OrdersMntService],
 })
 export class OrdersMntModule {}
