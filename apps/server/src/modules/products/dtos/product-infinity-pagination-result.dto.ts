@@ -18,6 +18,9 @@ export class ProductInListDto {
     @ApiProperty({ type: String, description: 'id of product' })
     id: string;
 
+    @ApiProperty({ type: String, description: 'id of sku' })
+    skuId: string;
+
     @ApiProperty({ type: String, description: 'name of product' })
     name: string;
 

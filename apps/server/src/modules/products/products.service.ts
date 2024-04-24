@@ -242,12 +242,19 @@ export class ProductsService {
         const product = new ProductInListDto({
             brandName: brand.name,
             id: ProductsService.toProductId(spu._id, model.slug),
+            skuId: sku._id.toString(),
             images: [],
-            modelName: model.name,
+            modelName: sku.name,
             name: spu.name,
             price: sku.price,
             tags: tag,
         });
+        if (sku.image) {
+            product.images.push(sku.image);
+        }
+        if (model.images) {
+            product.images.push(...model.images);
+        }
         return product;
     }
 
