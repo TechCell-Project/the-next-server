@@ -42,7 +42,7 @@ export class OrdersController {
         return this.ordersService.verifyVnpayIpn(query);
     }
 
-    @AuthRoles()
+    @AuthRoles(UserRoleEnum.Customer)
     @ApiOkResponse({
         type: PreviewOrderResponseDto,
     })
@@ -52,7 +52,7 @@ export class OrdersController {
         return this.ordersService.previewOrder(userId, body);
     }
 
-    @AuthRoles()
+    @AuthRoles(UserRoleEnum.Customer)
     @Post('/')
     @HttpCode(HttpStatus.OK)
     async createOrder(
@@ -63,6 +63,7 @@ export class OrdersController {
         return this.ordersService.createOrder({ userId, payload: body, ip });
     }
 
+    @AuthRoles(UserRoleEnum.Customer)
     @SerializeOptions({ groups: [UserRoleEnum.Customer] })
     @AuthRoles()
     @ApiOkResponse({
@@ -90,8 +91,8 @@ export class OrdersController {
         );
     }
 
+    @AuthRoles(UserRoleEnum.Customer)
     @SerializeOptions({ groups: [UserRoleEnum.Customer] })
-    @AuthRoles()
     @ApiOkResponse({
         type: Order,
     })

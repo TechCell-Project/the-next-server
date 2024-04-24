@@ -11,7 +11,7 @@ export class OrderLogSchema {
     @Prop({ required: true, type: String })
     action: string;
 
-    @ApiPropertyOptional({ example: 'blocked due to ...', type: String })
+    @ApiPropertyOptional({ example: 'confirm order, pass order to warehouse', type: String })
     @Prop({ required: false, type: String, default: '' })
-    reason: string;
+    note: string;
 }

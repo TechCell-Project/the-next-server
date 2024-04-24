@@ -2,20 +2,20 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PinoLogger } from 'nestjs-pino';
 import { SkusRepository } from './skus.repository';
 import { CreateSkuDto, QuerySerialNumberDto, QuerySkusDto, UpdateSkuDto } from './dtos';
-import { SKU } from './schemas';
+import { SerialNumber, SKU } from './schemas';
 import { SpusService } from '../spus';
 import { ImagesService } from '../images';
 import { AttributesService } from '../attributes';
 import { SerialNumberStatusEnum, SkuStatusEnum } from './enums';
 import { AbstractService, convertToObjectId, sanitizeHtmlString } from '~/common';
-import { ClientSession, FilterQuery, Types } from 'mongoose';
+import { ClientSession, FilterQuery, Types, UpdateQuery } from 'mongoose';
 import { SerialNumberRepository } from './serial-number.repository';
 import { remove as removeDiacritics } from 'diacritics';
 import { RELEASE_HOLD_SERIAL_NUMBER_QUEUE } from './constants/skus-queue.constant';
 import { Queue } from 'bullmq';
 import { InjectQueue } from '@nestjs/bullmq';
 import { RedisService, RedlockService } from '~/common/redis';
-import { Lock } from 'redlock';
+import { ExecutionError, Lock } from 'redlock';
 import { convertTimeString } from 'convert-time-string';
 
 @Injectable()
@@ -381,16 +381,103 @@ export class SkusService extends AbstractService {
         return serials;
     }
 
-    async getSerialNumber(query: QuerySerialNumberDto) {
+    async changeSerialNumberToOther(
+        skuId: string | Types.ObjectId,
+        currentSNs: string[],
+        updateSNs: string[],
+    ) {
+        const current = await this.getSerialNumbers({
+            skuId: convertToObjectId(skuId),
+            number: { $in: currentSNs },
+            status: SerialNumberStatusEnum.Holding,
+        });
+        const update = await this.getSerialNumbers({
+            skuId: convertToObjectId(skuId),
+            number: { $in: updateSNs },
+            status: SerialNumberStatusEnum.Available,
+        });
+
+        if (current.length !== currentSNs.length || update.length !== updateSNs.length) {
+            throw new HttpException(
+                {
+                    errors: {
+                        serialNumbers: `quantity of serial number not match: ${skuId}`,
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        await Promise.all([
+            current.map((sn) =>
+                this.updateSerialNumber(sn.number, {
+                    status: SerialNumberStatusEnum.Available,
+                }),
+            ),
+            update.map((sn) =>
+                this.updateSerialNumber(sn.number, { status: SerialNumberStatusEnum.Sold }),
+            ),
+        ]);
+    }
+
+    async confirmSerialNumber(serialNumber: string[]) {
+        await Promise.all(
+            serialNumber.map((sn) =>
+                this.updateSerialNumber(sn, {
+                    status: SerialNumberStatusEnum.Sold,
+                }),
+            ),
+        );
+    }
+
+    async updateSerialNumber(serialNumber: string, update: UpdateQuery<SerialNumber>) {
+        const lockKey = `serialNumber:${serialNumber}`;
+        let lock: Lock | null = null;
+        try {
+            lock = await this.redlockService.lock([lockKey], 3000);
+            await this.serialNumberRepository.findOneAndUpdateOrThrow({
+                filterQuery: {
+                    number: serialNumber,
+                },
+                updateQuery: update,
+            });
+        } catch (error) {
+            if (error instanceof ExecutionError) {
+                throw new HttpException(
+                    {
+                        errors: {
+                            serialNumber: 'serialNumberIsUpdating: ' + serialNumber,
+                        },
+                    },
+                    HttpStatus.CONFLICT,
+                );
+            }
+        } finally {
+            if (lock) {
+                await this.redlockService.unlock(lock);
+            }
+        }
+    }
+
+    async getSerialNumber(filter: FilterQuery<SerialNumber>) {
         return this.serialNumberRepository.findOneOrThrow({
             filterQuery: {
-                skuId: convertToObjectId(query.filters?.skuId),
                 status: SerialNumberStatusEnum.Available,
+                ...filter,
             },
         });
     }
 
-    async getSerialNumbers(query: QuerySerialNumberDto) {
+    async getSerialNumbers(filter: FilterQuery<SerialNumber>) {
+        return this.serialNumberRepository.findOrThrow({
+            filterQuery: {
+                status: SerialNumberStatusEnum.Available,
+                ...filter,
+            },
+        });
+    }
+
+    async getSerialNumbersWithPagination(query: QuerySerialNumberDto) {
         return this.serialNumberRepository.findManyWithPagination({
             filterOptions: query?.filters,
             sortOptions: query?.sort,
