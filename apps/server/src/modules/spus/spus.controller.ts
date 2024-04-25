@@ -28,7 +28,7 @@ import { Ctx, MessagePattern, Payload, RmqContext } from '@nestjs/microservices'
 import { SpusPattern } from './spus.pattern';
 
 @ApiTags('spus')
-@ApiExtraModels(FilterSpuDto, SortSpuDto)
+@ApiExtraModels(QuerySpusDto, FilterSpuDto, SortSpuDto)
 @Controller({
     path: 'spus',
 })

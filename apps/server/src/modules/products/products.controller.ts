@@ -11,7 +11,7 @@ import { infinityPagination } from '~/common/utils';
 import { ApiExtraModels, ApiOkResponse, ApiTags, ApiOperation } from '@nestjs/swagger';
 
 @ApiTags('products')
-@ApiExtraModels(FilterProductsDto, SortProductsDto)
+@ApiExtraModels(QueryProductsDto, FilterProductsDto, SortProductsDto)
 @Controller({
     path: '/products',
 })

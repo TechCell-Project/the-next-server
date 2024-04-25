@@ -35,7 +35,7 @@ import { UsersPattern } from './users.pattern';
 // import { UserRole } from './enums';
 
 @ApiTags('users')
-@ApiExtraModels(FilterUserDto, SortUserDto)
+@ApiExtraModels(QueryUsersDto, FilterUserDto, SortUserDto)
 @Controller({
     path: '/users',
 })

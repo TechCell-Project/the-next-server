@@ -34,7 +34,14 @@ import { Ctx, MessagePattern, Payload, RmqContext } from '@nestjs/microservices'
 import { SkusPattern } from './skus.pattern';
 
 @ApiTags('skus')
-@ApiExtraModels(FilterSkuDto, SortSkuDto, FilterSerialNumberDto, SortSerialNumberDto)
+@ApiExtraModels(
+    QuerySkusDto,
+    FilterSkuDto,
+    SortSkuDto,
+    QuerySerialNumberDto,
+    FilterSerialNumberDto,
+    SortSerialNumberDto,
+)
 @Controller({
     path: 'skus',
 })

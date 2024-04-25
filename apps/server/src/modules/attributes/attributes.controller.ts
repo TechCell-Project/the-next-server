@@ -35,7 +35,7 @@ import { Attribute } from './schemas';
 import { AttributeStatusEnum } from './attribute.enum';
 
 @ApiTags('attributes')
-@ApiExtraModels(FilterAttributeDto, SortAttributeDto)
+@ApiExtraModels(QueryAttributesDto, FilterAttributeDto, SortAttributeDto)
 @ApiBearerAuth()
 @Controller({
     path: 'attributes',

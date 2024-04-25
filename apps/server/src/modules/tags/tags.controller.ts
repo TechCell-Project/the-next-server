@@ -26,7 +26,7 @@ import { ObjectIdParamDto } from '~/common';
 import { Tag } from './schemas';
 
 @ApiTags('tags')
-@ApiExtraModels(FilterTagDto, SortTagDto)
+@ApiExtraModels(QueryTagsDto, FilterTagDto, SortTagDto)
 @Controller({
     path: 'tags',
 })

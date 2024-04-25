@@ -26,7 +26,7 @@ import { Brand } from './schemas';
 import { SortAttributeDto } from '../attributes/dtos';
 
 @ApiTags('brands')
-@ApiExtraModels(FilterBrandsDto, SortAttributeDto)
+@ApiExtraModels(QueryBrandsDto, FilterBrandsDto, SortAttributeDto)
 @Controller({
     path: 'brands',
 })

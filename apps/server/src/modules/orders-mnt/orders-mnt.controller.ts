@@ -21,7 +21,7 @@ import { OrderInfinityPaginationResult } from '../orders/dtos';
 import { Order } from '../orders/schemas';
 
 @ApiTags('orders-mnt')
-@ApiExtraModels(FilterOrdersMntDto, QueryOrdersMntDto)
+@ApiExtraModels(QueryOrdersMntDto, FilterOrdersMntDto, QueryOrdersMntDto)
 @Controller({
     path: 'orders-mnt',
 })

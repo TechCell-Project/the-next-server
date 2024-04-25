@@ -29,7 +29,7 @@ import { Order } from './schemas';
 import { UserRoleEnum } from '../users/enums';
 
 @ApiTags('orders')
-@ApiExtraModels(FilterOrdersDto, QueryOrdersDto)
+@ApiExtraModels(QueryOrdersDto, FilterOrdersDto, QueryOrdersDto)
 @Controller({
     path: 'orders',
 })
