@@ -75,7 +75,8 @@ export class ImagesController {
     @ApiConsumes('multipart/form-data')
     @ApiCreatedResponse({
         description: 'Images uploaded',
-        type: [ImageUploadedResponseDTO],
+        type: ImageUploadedResponseDTO,
+        isArray: true,
     })
     @ApiPayloadTooLargeResponse({
         description: `Image size too large, maximum ${IMAGE_FILE_MAX_SIZE_IN_MB} MB, and maximum ${MULTI_IMAGE_FILE_MAX_COUNT} images`,
@@ -142,7 +143,7 @@ export class ImagesController {
             }),
         )
         images: Express.Multer.File[],
-    ) {
+    ): Promise<(ImageUploadedResponseDTO | undefined)[]> {
         return this.imagesService.uploadArrayImage({
             images,
         });

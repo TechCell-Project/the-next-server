@@ -81,8 +81,6 @@ export class ImagesService {
             }),
         );
 
-        return {
-            data: uploadedImages.filter(Boolean), // filter out undefined values
-        };
+        return uploadedImages;
     }
 }
