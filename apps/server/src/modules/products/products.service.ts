@@ -7,7 +7,7 @@ import { SpusService } from '../spus';
 import { ProductDto, ProductInListDto, QueryProductsDto } from './dtos';
 import { RedisService } from '~/common/redis';
 import { SKU } from '../skus/schemas';
-import { FilterQuery, Types } from 'mongoose';
+import { FilterQuery, isValidObjectId, Types } from 'mongoose';
 import { convertToObjectId, sortedStringify } from '~/common/utils';
 import { convertTimeString } from 'convert-time-string';
 import { ConfigService } from '@nestjs/config';
@@ -30,6 +30,14 @@ export class ProductsService {
         try {
             const [modelSlug, spuId] = productId.split(ProductsService.SPLITTER);
             if (!spuId || !modelSlug) {
+                throw new HttpException(
+                    {
+                        message: 'Invalid productId format',
+                    },
+                    HttpStatus.BAD_REQUEST,
+                );
+            }
+            if (!isValidObjectId(spuId)) {
                 throw new HttpException(
                     {
                         message: 'Invalid productId format',

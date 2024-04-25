@@ -9,7 +9,8 @@ export class ProductCartSchema {
     @ApiProperty({
         type: String,
         description: 'Product ID',
-        example: '5f9d5f3b9d6b2b0017b6d5a0|base',
+        example: 'iphone-11-pro|6626121ee7c00c46f9747999',
+        format: 'slug|ObjectId',
     })
     @Prop({ type: String, required: true })
     productId: string;
@@ -17,7 +18,7 @@ export class ProductCartSchema {
     @ApiProperty({
         type: String,
         description: 'Sku ID',
-        example: '5f9d5f3b9d6b2b0017b6d5a0',
+        example: '6626122ae7c00c46f9747ecd',
         format: 'ObjectId',
     })
     @Prop({ type: Types.ObjectId, ref: SKU.name })
@@ -26,7 +27,7 @@ export class ProductCartSchema {
     @ApiProperty({
         type: Number,
         description: 'Product quantity',
-        example: 2,
+        example: 1,
     })
     @Prop({ type: Number, required: true })
     quantity: number;
