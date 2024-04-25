@@ -277,10 +277,11 @@ export class SpusService extends AbstractService {
         }
 
         const newModel = { ...modelFound, ...updatedModels };
-        const validatedModels = await this.validateModels(spu.commonAttributes, [
-            ...spu.models,
-            newModel,
-        ]);
+        const validatedModels = await this.validateModels(
+            spu.commonAttributes,
+            [...spu.models, newModel],
+            true,
+        );
 
         await Promise.all([
             this.spuRepository.findOneAndUpdateOrThrow({
@@ -313,6 +314,7 @@ export class SpusService extends AbstractService {
     private async validateModels(
         commonAttributes: CreateSpuDto['commonAttributes'],
         models: CreateSpuDto['models'],
+        isUpdate = false,
     ): Promise<SPUModelSchema[]> {
         return await Promise.all(
             models.map(async (model) => {
@@ -325,7 +327,7 @@ export class SpusService extends AbstractService {
                 const duplicateModel = models.find(
                     (m) => m !== model && m.slug === cloneModel.slug,
                 );
-                if (duplicateModel) {
+                if (duplicateModel && !isUpdate) {
                     throw new HttpException(
                         {
                             status: HttpStatus.UNPROCESSABLE_ENTITY,
