@@ -5,6 +5,15 @@ import { Transform, Type } from 'class-transformer';
 import { isTrueSet } from '~/common';
 
 export class CreateOrderDto extends IntersectionType(PreviewOrderDto) {
+    @ApiProperty({
+        description: 'The return url after payment success',
+        example: 'http://localhost:3000/order/123',
+        required: false,
+    })
+    @IsString()
+    @IsUrl({ require_tld: false }) // allow localhost
+    paymentReturnUrl: string;
+
     @ApiProperty({ example: 'Bọc kĩ giúp em nha!', type: String })
     @IsOptional()
     @IsString()
@@ -14,16 +23,6 @@ export class CreateOrderDto extends IntersectionType(PreviewOrderDto) {
     @IsOptional()
     @IsString()
     shipNote?: string;
-
-    @ApiProperty({
-        description: 'The return url after payment success',
-        example: 'http://localhost:3000/order/123',
-        required: false,
-    })
-    @IsOptional()
-    @IsString()
-    @IsUrl({ require_tld: false }) // allow localhost
-    paymentReturnUrl: string;
 
     @ApiProperty({
         type: Boolean,
