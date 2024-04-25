@@ -1,3 +1,4 @@
+import { BadRequestException } from '@nestjs/common';
 import {
     ValidationArguments,
     ValidatorConstraint,
@@ -9,9 +10,13 @@ import { ProductInOrderDto } from '~/server/orders/dtos';
 export class IsUniqueSkuIdInObject implements ValidatorConstraintInterface {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     validate(values: ProductInOrderDto[], args: ValidationArguments) {
-        const skuIds = values.map((v) => v.skuId);
+        if (!values) {
+            throw new BadRequestException(`${args.property} is required`);
+        }
+
+        const skuIds = values?.map((v) => v.skuId);
         const uniqueSkuIds = [...new Set(skuIds)];
-        return uniqueSkuIds.length === skuIds.length;
+        return uniqueSkuIds?.length === skuIds?.length;
     }
 
     defaultMessage(args: ValidationArguments) {

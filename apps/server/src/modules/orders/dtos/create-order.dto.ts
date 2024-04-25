@@ -1,6 +1,8 @@
 import { ApiProperty, IntersectionType } from '@nestjs/swagger';
 import { PreviewOrderDto } from './preview-order.dto';
-import { IsOptional, IsString, IsUrl } from 'class-validator';
+import { IsBoolean, IsOptional, IsString, IsUrl } from 'class-validator';
+import { Transform, Type } from 'class-transformer';
+import { isTrueSet } from '~/common';
 
 export class CreateOrderDto extends IntersectionType(PreviewOrderDto) {
     @ApiProperty({ example: 'Bọc kĩ giúp em nha!', type: String })
@@ -28,5 +30,9 @@ export class CreateOrderDto extends IntersectionType(PreviewOrderDto) {
         example: true,
         description: 'If true, it will be selected from cart',
     })
+    @IsOptional()
+    @IsBoolean()
+    @Transform(({ value }) => isTrueSet(value))
+    @Type(() => Boolean)
     isSelectFromCart?: boolean;
 }

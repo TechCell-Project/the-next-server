@@ -15,7 +15,44 @@
                 "slug": "iphone-x",
                 "name": "iPhone X",
                 "description": "This is iPhone X",
-                "images": [],
+                "images": [
+                    {
+                        "publicId": "TechCell/1_jpg_1714044403_evJedhI",
+                        "isThumbnail": false
+                    },
+                    {
+                        "publicId": "TechCell/2_jpg_1714045400_stzLpYd",
+                        "isThumbnail": false
+                    },
+                    {
+                        "publicId": "TechCell/3_jpg_1714045400_9P1tTlg",
+                        "isThumbnail": false
+                    },
+                    {
+                        "publicId": "TechCell/4_jpg_1714045400_Rx6EMS8",
+                        "isThumbnail": false
+                    },
+                    {
+                        "publicId": "TechCell/5_jpg_1714046592_KOVmxeK",
+                        "isThumbnail": false
+                    },
+                    {
+                        "publicId": "TechCell/6_jpg_1714046592_dB78J0W",
+                        "isThumbnail": false
+                    },
+                    {
+                        "publicId": "TechCell/7_jpg_1714046723_jnoZr6U",
+                        "isThumbnail": false
+                    },
+                    {
+                        "publicId": "TechCell/8_jpg_1714046723_Bl8vDbg",
+                        "isThumbnail": true
+                    },
+                    {
+                        "publicId": "TechCell/9_jpg_1714046723_maFXj5d",
+                        "isThumbnail": false
+                    }
+                ],
                 "attributes": [
                     {
                         "name": "Hệ điều hành",

@@ -4,6 +4,7 @@ import {
     ArrayNotEmpty,
     IsEnum,
     IsMongoId,
+    IsNotEmpty,
     IsNumber,
     IsString,
     Max,
@@ -38,6 +39,7 @@ export class PreviewOrderDto {
         isArray: true,
         type: ProductInOrderDto,
     })
+    @IsNotEmpty()
     @ValidateNested({ each: true })
     @Type(() => ProductInOrderDto)
     @ArrayNotEmpty()
