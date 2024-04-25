@@ -35,7 +35,7 @@ class UserAddressResponseDto extends IntersectionType(UserAddressSchema) {
 }
 
 export class GetMeResponseDto extends IntersectionType(User) {
-    constructor(data: GetMeResponseDto) {
+    constructor(data: Partial<GetMeResponseDto>) {
         super();
         Object.assign(this, data);
     }
