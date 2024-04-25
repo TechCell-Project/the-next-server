@@ -80,7 +80,10 @@ export class UsersService {
         }
 
         const userCreated = await this.usersRepository.create({
-            document: clonedPayload,
+            document: {
+                ...clonedPayload,
+                emailVerified: isSocialAuth,
+            },
         });
         return userCreated;
     }
