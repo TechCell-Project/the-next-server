@@ -164,7 +164,6 @@ export class SkusService extends AbstractService {
         });
         const serialNumbersFound = await this.serialNumberRepository.find({
             filterQuery: {
-                skuId: sku._id,
                 number: {
                     $in: serialNumbers,
                 },
