@@ -53,7 +53,7 @@ export class UserAddressSchema {
     @Prop({ required: true, type: String })
     phoneNumbers: string;
 
-    @ApiProperty({ type: String, enum: UserAddressTypeEnum, default: UserAddressTypeEnum.Other })
-    @Prop({ type: String, enum: UserAddressTypeEnum, default: UserAddressTypeEnum.Other })
+    @ApiProperty({ type: String, default: UserAddressTypeEnum.Other })
+    @Prop({ type: String, default: UserAddressTypeEnum.Other })
     type: string;
 }
