@@ -217,7 +217,11 @@ export class GhnService {
     }
 
     // Utils
-    public async getSelectedAddress(address: UserAddressSchema) {
+    public async getSelectedAddress(address: {
+        provinceLevel: { provinceId: number };
+        districtLevel: { districtId: number };
+        wardLevel: { wardCode: string };
+    }) {
         const provinceData = await this.getProvinces().catch((error) => {
             throw error;
         });

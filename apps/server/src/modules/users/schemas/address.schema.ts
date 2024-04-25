@@ -6,21 +6,37 @@ export class ProvinceLevel {
     @ApiProperty({ type: Number, example: 201 })
     @Prop({ required: true, type: Number })
     provinceId: number;
+
+    @ApiProperty({ type: String, example: 'Ha Noi' })
+    @Prop({ required: true, type: String })
+    provinceName: string;
 }
 
 export class DistrictLevel {
     @ApiProperty({ type: Number, example: 1490 })
     @Prop({ required: true, type: Number })
     districtId: number;
+
+    @ApiProperty({ type: String, example: 'Quan Hoang Mai' })
+    @Prop({ required: true, type: String })
+    districtName: string;
 }
 
 export class WardLevel {
     @ApiProperty({ type: String, example: '1A0814' })
     @Prop({ required: true, type: String })
     wardCode: string;
+
+    @ApiProperty({ type: String, example: 'Mai Dong' })
+    @Prop({ required: true, type: String })
+    wardName: string;
 }
 
 export class UserAddressSchema {
+    constructor(address: Partial<UserAddressSchema>) {
+        Object.assign(this, address);
+    }
+
     @ApiProperty({ type: ProvinceLevel })
     @Prop({ required: true, type: ProvinceLevel })
     provinceLevel: ProvinceLevel;

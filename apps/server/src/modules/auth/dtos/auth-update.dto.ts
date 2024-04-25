@@ -1,4 +1,4 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, OmitType } from '@nestjs/swagger';
 import { Transform, Type } from 'class-transformer';
 import {
     IsBoolean,
@@ -39,8 +39,13 @@ class WardSchemaDTO {
     wardCode: string;
 }
 
-export class UserAddressSchemaDTO implements UserAddressSchema {
-    constructor(address: UserAddressSchemaDTO) {
+export class UserAddressSchemaDTO extends OmitType(UserAddressSchema, [
+    'provinceLevel',
+    'districtLevel',
+    'wardLevel',
+]) {
+    constructor(address: Partial<UserAddressSchemaDTO>) {
+        super();
         Object.assign(this, address);
     }
 

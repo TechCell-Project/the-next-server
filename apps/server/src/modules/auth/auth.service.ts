@@ -7,7 +7,7 @@ import { AuthProviderEnum, UserRoleEnum } from '../users/enums';
 import { PinoLogger } from 'nestjs-pino';
 import { SocialInterface } from './social/social.interface';
 import { NullableType } from '~/common/types';
-import { User } from '~/server/users';
+import { User, UserAddressSchema } from '~/server/users';
 import { faker } from '@faker-js/faker';
 import * as crypto from 'crypto';
 import { v4 as uuid } from 'uuid';
@@ -18,7 +18,7 @@ import { RedisService } from '~/common/redis';
 import { PREFIX_REVOKE_ACCESS_TOKEN, PREFIX_REVOKE_REFRESH_TOKEN } from './auth.constant';
 import { JwtPayloadType, JwtRefreshPayloadType } from './strategies/types';
 import { Session, SessionService } from '~/server/session';
-import { GhnService } from '~/third-party';
+import { GhnDistrictDTO, GhnProvinceDTO, GhnService, GhnWardDTO } from '~/third-party';
 import { MailEventPattern } from '~/communication/mail/mail.pattern';
 import { ClientRMQ } from '@nestjs/microservices';
 import { ImagesService } from '~/server/images';
@@ -696,13 +696,20 @@ export class AuthService {
         if (userDto?.address !== null || userDto?.address !== undefined) {
             if (userDto.address?.length === 0) {
                 userDto.address = [];
+                cloneUpdateData.address = [];
             } else if (userDto.address && userDto.address?.length > 0) {
                 const addressPromises = userDto.address.map((address) =>
                     this.ghnService.getSelectedAddress(address),
                 );
 
+                let addressData: {
+                    selectedProvince: GhnProvinceDTO;
+                    selectedDistrict: GhnDistrictDTO;
+                    selectedWard: GhnWardDTO;
+                }[] = [];
+
                 try {
-                    await Promise.all(addressPromises ?? []);
+                    addressData = await Promise.all(addressPromises ?? []);
                 } catch (error) {
                     throw new HttpException(
                         {
@@ -730,9 +737,25 @@ export class AuthService {
                 } else if (defaultAddresses.length <= 0) {
                     userDto.address[0].isDefault = true;
                 }
-            }
 
-            cloneUpdateData.address = userDto.address;
+                cloneUpdateData.address = userDto.address.map((address, index) => {
+                    return new UserAddressSchema({
+                        ...address,
+                        provinceLevel: {
+                            provinceId: addressData[index]?.selectedProvince?.provinceId,
+                            provinceName: addressData[index]?.selectedProvince?.provinceName,
+                        },
+                        districtLevel: {
+                            districtId: addressData[index]?.selectedDistrict?.districtId,
+                            districtName: addressData[index]?.selectedDistrict?.districtName,
+                        },
+                        wardLevel: {
+                            wardCode: addressData[index]?.selectedWard?.wardCode,
+                            wardName: addressData[index]?.selectedWard?.wardName,
+                        },
+                    });
+                });
+            }
             delete userDto.address;
         }
 
