@@ -75,7 +75,7 @@ export class SkusService extends AbstractService {
             return fromCache;
         }
 
-        const skus = await this.skusRepository.findManyWithPagination({
+        let skus = await this.skusRepository.findManyWithPagination({
             filterOptions: {
                 ...query?.filters,
             },
@@ -85,6 +85,7 @@ export class SkusService extends AbstractService {
                 page: query?.page,
             },
         });
+        skus = skus.map((sku) => new SKU(sku));
 
         await this.redisService.set(cacheKey, skus, convertTimeString('3m'));
         return skus;
