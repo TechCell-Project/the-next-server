@@ -1,4 +1,5 @@
 import { ApiProperty, IntersectionType } from '@nestjs/swagger';
+import { Types } from 'mongoose';
 import {
     DistrictLevel,
     ProvinceLevel,
@@ -38,6 +39,14 @@ export class GetMeResponseDto extends IntersectionType(User) {
         super();
         Object.assign(this, data);
     }
+    @ApiProperty({ type: String })
+    _id: Types.ObjectId;
+
+    @ApiProperty({ type: Date })
+    createdAt: Date;
+
+    @ApiProperty({ type: Date })
+    updatedAt: Date;
 
     @ApiProperty({ type: UserAddressResponseDto, isArray: true })
     address?: UserAddressResponseDto[];
