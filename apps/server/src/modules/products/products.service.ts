@@ -182,7 +182,9 @@ export class ProductsService {
             filterQuery: skuFilters,
         });
 
-        const resultProducts = await Promise.all(skus.map((s) => this.getProductInListFromSku(s)));
+        const resultProducts = this.avoidProductSameSpu(
+            await Promise.all(skus.map((s) => this.getProductInListFromSku(s))),
+        );
         await this.redisService.set(cacheKey, resultProducts, convertTimeString('5m'));
         return resultProducts.slice(start, start + limit);
     }
@@ -264,6 +266,17 @@ export class ProductsService {
             product.images.push(...model.images);
         }
         return product;
+    }
+
+    avoidProductSameSpu(products: ProductInListDto[]) {
+        const spuIds = new Set<string>();
+        return products.filter((p) => {
+            if (spuIds.has(p.id)) {
+                return false;
+            }
+            spuIds.add(p.id);
+            return true;
+        });
     }
 
     async getProductFromSku(sku: SKU) {
