@@ -20,6 +20,7 @@ import { ProductsModule } from '~/server/products';
 import { CartsModule } from '~/server/carts';
 import { OrdersMntModule } from '~/server/orders-mnt';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { AppController } from './app.controller';
 
 @Module({
     imports: [
@@ -57,5 +58,6 @@ import { ThrottlerModule } from '@nestjs/throttler';
         OrdersModule,
         OrdersMntModule,
     ],
+    controllers: [AppController],
 })
 export class AppModule {}

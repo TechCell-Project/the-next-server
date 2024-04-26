@@ -10,6 +10,10 @@ export class RedisService {
     }
 
     public async get<T = string>(key: string): Promise<T | null> {
+        const isUse = await this.redisClient.get('IS_USE_CACHE');
+        if (isUse != null && isUse != undefined && isUse === 'false' && key.startsWith('CACHE')) {
+            return null;
+        }
         const value = await this.redisClient.get(key);
         return value ? (JSON.parse(value) as T) : null;
     }
