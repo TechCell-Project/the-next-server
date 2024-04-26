@@ -515,6 +515,11 @@ export class AuthService {
     async forgotPassword({ email, returnUrl }: AuthForgotPasswordDto): Promise<any> {
         const user = await this.usersService.findByEmail(email);
 
+        returnUrl = returnUrl?.trim() ?? 'https://techcell.cloud/mat-khau-moi';
+        if (!/^https?:\/\//i.test(returnUrl)) {
+            returnUrl = 'https://' + returnUrl;
+        }
+
         if (!user) {
             throw new HttpException(
                 {
