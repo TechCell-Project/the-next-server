@@ -14,6 +14,7 @@ import { Cart } from './schemas';
 import { CurrentUser } from '~/common/decorators';
 import { JwtPayloadType } from '../auth/strategies/types';
 import { UpdateCartDto } from './dtos';
+import { UserRoleEnum } from '../users/enums';
 
 @ApiBadRequestResponse({
     description: 'Invalid request, please check your request data!',
@@ -31,7 +32,7 @@ import { UpdateCartDto } from './dtos';
 @Controller({
     path: 'carts',
 })
-@AuthRoles()
+@AuthRoles(UserRoleEnum.Customer)
 export class CartsController {
     constructor(private readonly cartsService: CartsService) {}
 

@@ -10,7 +10,7 @@ import {
     Body,
     Patch,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags, ApiOkResponse, ApiExtraModels } from '@nestjs/swagger';
+import { ApiTags, ApiOkResponse, ApiExtraModels } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import {
     CreateUserDto,
@@ -39,14 +39,13 @@ import { UsersPattern } from './users.pattern';
 @Controller({
     path: '/users',
 })
+@AuthRoles(UserRoleEnum.Manager)
 export class UsersController {
     constructor(
         private readonly usersService: UsersService,
         private readonly rabbitMqService: RabbitMQService,
     ) {}
 
-    // @AuthRoles()
-    @AuthRoles(UserRoleEnum.Manager)
     @SerializeOptions({
         groups: [UserRoleEnum.Manager],
     })
@@ -59,8 +58,6 @@ export class UsersController {
         return this.usersService.create(createProfileDto);
     }
 
-    @AuthRoles()
-    // @AuthRoles(UserRole.Manager)
     @SerializeOptions({
         groups: [UserRoleEnum.Manager],
     })
@@ -89,7 +86,6 @@ export class UsersController {
         );
     }
 
-    @AuthRoles()
     @Get('/:id')
     @HttpCode(HttpStatus.OK)
     @ApiOkResponse({
@@ -110,8 +106,6 @@ export class UsersController {
         return serializedUser as NullableType<User>;
     }
 
-    // @AuthRoles()
-    @AuthRoles(UserRoleEnum.Manager)
     @SerializeOptions({
         groups: [UserRoleEnum.Manager],
     })

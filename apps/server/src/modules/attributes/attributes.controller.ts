@@ -21,7 +21,6 @@ import {
     UpdateAttributeDto,
 } from './dtos';
 import {
-    ApiBearerAuth,
     ApiCreatedResponse,
     ApiExtraModels,
     ApiNoContentResponse,
@@ -36,7 +35,6 @@ import { AttributeStatusEnum } from './attribute.enum';
 
 @ApiTags('attributes')
 @ApiExtraModels(QueryAttributesDto, FilterAttributeDto, SortAttributeDto)
-@ApiBearerAuth()
 @Controller({
     path: 'attributes',
 })
@@ -46,18 +44,15 @@ export class AttributesController {
     @ApiCreatedResponse({
         description: 'Attribute created',
     })
-    @AuthRoles()
-    // @AuthRoles(UserRole.Warehouse)
+    @AuthRoles(UserRoleEnum.DataEntry)
     @Post('/')
     @HttpCode(HttpStatus.CREATED)
     async createAttribute(@Body() payload: CreateAttributeDto) {
         return this.attributesService.createAttribute(payload);
     }
 
-    @AuthRoles()
-    // @AuthRoles(UserRole.Warehouse)
     @SerializeOptions({
-        groups: [UserRoleEnum.Warehouse],
+        groups: [UserRoleEnum.DataEntry],
     })
     @ApiOkResponse({
         description: 'Get attributes successfully',
@@ -90,8 +85,7 @@ export class AttributesController {
         return this.attributesService.getAttribute(id);
     }
 
-    @AuthRoles()
-    // @AuthRoles(UserRole.Warehouse)
+    @AuthRoles(UserRoleEnum.DataEntry)
     @ApiNoContentResponse({
         description: 'Update attribute successfully',
     })
@@ -101,8 +95,7 @@ export class AttributesController {
         return this.attributesService.updateAttribute(id, payload);
     }
 
-    @AuthRoles()
-    // @AuthRoles(UserRole.Warehouse)
+    @AuthRoles(UserRoleEnum.DataEntry)
     @ApiNoContentResponse({
         description: 'Delete attribute successfully',
     })

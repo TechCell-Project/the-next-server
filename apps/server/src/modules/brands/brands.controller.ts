@@ -24,6 +24,7 @@ import { BrandStatusEnum } from './enums';
 import { AuthRoles } from '../auth/guards';
 import { Brand } from './schemas';
 import { SortAttributeDto } from '../attributes/dtos';
+import { UserRoleEnum } from '../users/enums';
 
 @ApiTags('brands')
 @ApiExtraModels(QueryBrandsDto, FilterBrandsDto, SortAttributeDto)
@@ -33,7 +34,7 @@ import { SortAttributeDto } from '../attributes/dtos';
 export class BrandsController {
     constructor(private readonly brandsService: BrandsService) {}
 
-    @AuthRoles()
+    @AuthRoles(UserRoleEnum.DataEntry)
     @Post('/')
     @HttpCode(HttpStatus.CREATED)
     async createBrand(@Body() data: CreateBrandDto) {
@@ -74,14 +75,14 @@ export class BrandsController {
         return this.brandsService.getBrandById(id);
     }
 
-    @AuthRoles()
+    @AuthRoles(UserRoleEnum.DataEntry)
     @Patch('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async updateBrand(@Param() { id }: ObjectIdParamDto, @Body() data: UpdateBrandDto) {
         return this.brandsService.updateBrand(id, data);
     }
 
-    @AuthRoles()
+    @AuthRoles(UserRoleEnum.DataEntry)
     @Delete('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async deleteBrand(@Param() { id }: ObjectIdParamDto) {

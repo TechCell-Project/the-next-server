@@ -26,6 +26,7 @@ import { SPU } from './schemas';
 import { AuthRoles } from '../auth/guards';
 import { Ctx, MessagePattern, Payload, RmqContext } from '@nestjs/microservices';
 import { SpusPattern } from './spus.pattern';
+import { UserRoleEnum } from '../users/enums';
 
 @ApiTags('spus')
 @ApiExtraModels(QuerySpusDto, FilterSpuDto, SortSpuDto)
@@ -38,7 +39,7 @@ export class SPUController {
         private readonly rabbitMqService: RabbitMQService,
     ) {}
 
-    @AuthRoles()
+    @AuthRoles(UserRoleEnum.Warehouse)
     @ApiCreatedResponse({
         type: SPU,
     })
@@ -80,21 +81,21 @@ export class SPUController {
         return this.spusService.getSpuById(id);
     }
 
-    @AuthRoles()
+    @AuthRoles(UserRoleEnum.Warehouse)
     @Patch('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async updateSPU(@Param() { id }: ObjectIdParamDto, @Body() data: UpdateSpuDto) {
         return this.spusService.updateSpu(id, data);
     }
 
-    @AuthRoles()
+    @AuthRoles(UserRoleEnum.Warehouse)
     @Post('/:id/models')
     @HttpCode(HttpStatus.NO_CONTENT)
     async addSpuModels(@Param() { id }: ObjectIdParamDto, @Body() data: AddSpuModelDto) {
         return this.spusService.addSpuModels(id, data);
     }
 
-    @AuthRoles()
+    @AuthRoles(UserRoleEnum.Warehouse)
     @Patch('/:id/models/:slug')
     @HttpCode(HttpStatus.NO_CONTENT)
     async updateSpuModel(
