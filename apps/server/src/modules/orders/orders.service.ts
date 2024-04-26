@@ -39,7 +39,8 @@ import { RedlockService } from '~/common/redis';
 import { ClientSession, Types } from 'mongoose';
 import { ExecutionError, Lock } from 'redlock';
 import { GhnServiceTypeIdEnum } from '~/third-party/giaohangnhanh/enums';
-import { TPaginationOptions } from '~/common';
+import { convertToObjectId, TPaginationOptions } from '~/common';
+import { CancelOrderDto } from './dtos/cancel-order.dto';
 
 @Injectable()
 export class OrdersService {
@@ -399,6 +400,60 @@ export class OrdersService {
 
     async getOrderById({ userId, orderId }: { userId: string; orderId: string }) {
         return this.ordersRepository.getOrderById(userId, orderId);
+    }
+
+    async cancelOrder({
+        orderId,
+        userId,
+        cancel,
+    }: {
+        orderId: string;
+        userId: string;
+        cancel: CancelOrderDto;
+    }) {
+        const order = await this.ordersRepository.findOneOrThrow({
+            filterQuery: {
+                _id: convertToObjectId(orderId),
+                'customer.customerId': convertToObjectId(userId),
+            },
+        });
+        if (order.orderStatus !== OrderStatusEnum.Pending) {
+            throw new HttpException(
+                {
+                    errors: {
+                        order: 'Order is not pending, please contact support',
+                        code: 'ORDER_NOT_PENDING',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+        if (order.payment.status === PaymentStatusEnum.Completed) {
+            throw new HttpException(
+                {
+                    errors: {
+                        order: 'Payment order is completed, please contact support',
+                        code: 'PAYMENT_COMPLETED',
+                    },
+                },
+                HttpStatus.UNPROCESSABLE_ENTITY,
+            );
+        }
+
+        order.orderLogs = order?.orderLogs || [];
+        order.orderLogs.push({
+            action: 'cancel',
+            actorId: order.customer.customerId,
+            note: cancel?.reason ?? '',
+        });
+        order.orderStatus = OrderStatusEnum.Canceled;
+        order.payment.status = PaymentStatusEnum.Canceled;
+        order.payment.url = '';
+
+        await this.ordersRepository.updateOrderById({
+            orderId: order._id,
+            updateQuery: order,
+        });
     }
 
     private async updateCartAfterOrderCreation(

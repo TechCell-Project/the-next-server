@@ -6,6 +6,7 @@ import {
     HttpStatus,
     Ip,
     Param,
+    Patch,
     Post,
     Query,
     Req,
@@ -27,6 +28,7 @@ import {
 import { AuthRoles } from '../auth/guards';
 import { Order } from './schemas';
 import { UserRoleEnum } from '../users/enums';
+import { CancelOrderDto } from './dtos/cancel-order.dto';
 
 @ApiTags('orders')
 @ApiExtraModels(QueryOrdersDto, FilterOrdersDto, QueryOrdersDto)
@@ -105,5 +107,17 @@ export class OrdersController {
             userId,
             orderId: id,
         });
+    }
+
+    @AuthRoles(UserRoleEnum.Customer)
+    @SerializeOptions({ groups: [UserRoleEnum.Customer] })
+    @Patch('/:id/cancel')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    async cancelOrder(
+        @Param() { id }: ObjectIdParamDto,
+        @CurrentUser() { userId }: JwtPayloadType,
+        @Body() body: CancelOrderDto,
+    ) {
+        return this.ordersService.cancelOrder({ orderId: id, userId, cancel: body });
     }
 }
