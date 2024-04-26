@@ -12,7 +12,7 @@ import {
 import { ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { CurrentUser, infinityPagination, ObjectIdParamDto } from '~/common';
 import { JwtPayloadType } from '../auth/strategies/types';
-import { FilterOrdersMntDto, QueryOrdersMntDto } from './dtos';
+import { FilterOrdersMntDto, QueryOrdersMntDto, SortOrdersMntDto } from './dtos';
 import { AuthRoles } from '../auth/guards';
 import { UserRoleEnum } from '../users/enums';
 import { OrdersMntService } from './orders-mnt.service';
@@ -21,7 +21,7 @@ import { OrderInfinityPaginationResult } from '../orders/dtos';
 import { Order } from '../orders/schemas';
 
 @ApiTags('orders-mnt')
-@ApiExtraModels(QueryOrdersMntDto, FilterOrdersMntDto, QueryOrdersMntDto)
+@ApiExtraModels(QueryOrdersMntDto, FilterOrdersMntDto, SortOrdersMntDto)
 @Controller({
     path: 'orders-mnt',
 })
