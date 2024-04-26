@@ -133,6 +133,7 @@ export class GhnService {
 
                 return { expected_delivery_time: expected, ...data };
             } catch (error) {
+                console.log(error);
                 retries++;
                 if (retries === maxRetries) {
                     throw new HttpException('Failed to preview order after multiple attempts', 500);
