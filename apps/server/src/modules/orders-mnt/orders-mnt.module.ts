@@ -5,7 +5,7 @@ import { OrdersMntController } from './orders-mnt.controller';
 import { CartsModule } from '../carts';
 import { SKUModule } from '../skus';
 import { UsersModule } from '../users';
-import { VnpayModule } from '~/third-party';
+import { GhnModule, VnpayModule } from '~/third-party';
 import { ProductsModule } from '../products/products.module';
 import { RedisModule } from '~/common/redis';
 import { OrdersMntService } from './orders-mnt.service';
@@ -27,6 +27,12 @@ import { OrdersRepository } from '../orders/orders.repository';
             testMode: true,
         }),
         RedisModule,
+        GhnModule.forRoot({
+            host: process.env.GHN_URL!,
+            token: process.env.GHN_API_TOKEN!,
+            shopId: +process.env.GHN_SHOP_ID!,
+            testMode: true,
+        }),
     ],
     controllers: [OrdersMntController],
     providers: [OrdersRepository, OrdersMntService],

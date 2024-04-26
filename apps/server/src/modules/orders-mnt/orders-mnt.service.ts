@@ -1,8 +1,6 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { QueryOrdersMntDto } from './dtos';
 import { PinoLogger } from 'nestjs-pino';
-import { ConfigService } from '@nestjs/config';
-import { RedlockService } from '~/common/redis';
 import { convertToObjectId, TPaginationOptions } from '~/common';
 import { JwtPayloadType } from '../auth/strategies/types';
 import { UserRoleEnum } from '../users/enums';
@@ -12,6 +10,7 @@ import { OrdersRepository } from '../orders/orders.repository';
 import { UpdateOrderStatusDto } from './dtos/update-order-status.dto';
 import { SkusService } from '../skus';
 import { SerialNumberStatusEnum } from '../skus/enums';
+import { GhnService } from '~/third-party/giaohangnhanh';
 
 @Injectable()
 export class OrdersMntService {
@@ -19,6 +18,7 @@ export class OrdersMntService {
         private readonly logger: PinoLogger,
         private readonly ordersMntRepository: OrdersRepository,
         private readonly skusService: SkusService,
+        private readonly ghnService: GhnService,
     ) {}
 
     async updateOrderStatus(
@@ -254,6 +254,10 @@ export class OrdersMntService {
                         );
                     });
                 });
+
+                if (order.shipping?.orderShipCode && order.shipping.orderShipCode !== '') {
+                    promises.push(this.ghnService.cancelOrder(order.shipping.orderShipCode));
+                }
                 break;
             }
             default:
