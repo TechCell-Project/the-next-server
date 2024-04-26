@@ -1,7 +1,9 @@
 import { Controller, Get, Query } from '@nestjs/common';
+import { ApiExcludeController } from '@nestjs/swagger';
 import { convertTimeString } from 'convert-time-string';
 import { RedisService } from '~/common/redis';
 
+@ApiExcludeController()
 @Controller({
     path: '/rd',
 })
