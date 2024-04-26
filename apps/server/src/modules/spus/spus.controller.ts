@@ -39,7 +39,7 @@ export class SPUController {
         private readonly rabbitMqService: RabbitMQService,
     ) {}
 
-    @AuthRoles(UserRoleEnum.Warehouse)
+    @AuthRoles(UserRoleEnum.DataEntry)
     @ApiCreatedResponse({
         type: SPU,
     })
@@ -88,14 +88,14 @@ export class SPUController {
         return this.spusService.updateSpu(id, data);
     }
 
-    @AuthRoles(UserRoleEnum.Warehouse)
+    @AuthRoles(UserRoleEnum.DataEntry)
     @Post('/:id/models')
     @HttpCode(HttpStatus.NO_CONTENT)
     async addSpuModels(@Param() { id }: ObjectIdParamDto, @Body() data: AddSpuModelDto) {
         return this.spusService.addSpuModels(id, data);
     }
 
-    @AuthRoles(UserRoleEnum.Warehouse)
+    @AuthRoles(UserRoleEnum.DataEntry)
     @Patch('/:id/models/:slug')
     @HttpCode(HttpStatus.NO_CONTENT)
     async updateSpuModel(
