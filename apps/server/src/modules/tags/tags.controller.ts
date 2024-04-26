@@ -24,6 +24,7 @@ import { infinityPagination } from '~/common/utils';
 import { UserRoleEnum } from '../users/enums';
 import { ObjectIdParamDto } from '~/common';
 import { Tag } from './schemas';
+import { AuthRoles } from '../auth/guards';
 
 @ApiTags('tags')
 @ApiExtraModels(QueryTagsDto, FilterTagDto, SortTagDto)
@@ -33,6 +34,7 @@ import { Tag } from './schemas';
 export class TagsController {
     constructor(private readonly tagsService: TagsService) {}
 
+    @AuthRoles(UserRoleEnum.DataEntry)
     @Post('/')
     @HttpCode(HttpStatus.NO_CONTENT)
     async createTag(@Body() data: CreateTagDto) {
@@ -40,7 +42,7 @@ export class TagsController {
     }
 
     @SerializeOptions({
-        groups: [UserRoleEnum.Warehouse],
+        groups: [UserRoleEnum.DataEntry],
     })
     @ApiOkResponse({
         description: 'Get tags successfully',
@@ -73,6 +75,7 @@ export class TagsController {
         return this.tagsService.getTagById(id);
     }
 
+    @AuthRoles(UserRoleEnum.DataEntry)
     @Patch('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async updateTag(@Param() { id }: ObjectIdParamDto, @Body() data: UpdateTagDto) {
