@@ -15,7 +15,7 @@ export class FilterOrdersMntDto {
     keyword?: string;
 
     @ApiPropertyOptional({
-        type: [SelectOrderTypeEnum],
+        type: String,
         enum: SelectOrderTypeEnum,
         example: SelectOrderTypeEnum.both,
     })
