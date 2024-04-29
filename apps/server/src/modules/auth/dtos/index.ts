@@ -9,3 +9,4 @@ export * from './auth-reset-password.dto';
 export * from './auth-update.dto';
 export * from './refresh-token.dto';
 export * from './get-me-response.dto';
+export * from './auth-http-exception.dto';

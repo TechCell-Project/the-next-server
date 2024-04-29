@@ -10,7 +10,13 @@ import {
     Patch,
     UseGuards,
 } from '@nestjs/common';
-import { ApiNoContentResponse, ApiOkResponse, ApiTags, ApiBody } from '@nestjs/swagger';
+import {
+    ApiNoContentResponse,
+    ApiOkResponse,
+    ApiTags,
+    ApiBody,
+    ApiExtraModels,
+} from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import {
     AuthSignupDto,
@@ -24,6 +30,7 @@ import {
     AuthUpdateDto,
     RefreshTokenDto,
     GetMeResponseDto,
+    AuthHttpExceptionDto,
 } from './dtos';
 import { AuthRoles } from './guards';
 import { JwtPayloadType, JwtRefreshPayloadType } from './strategies/types';
@@ -31,6 +38,7 @@ import { Types } from 'mongoose';
 import { AuthGuard } from '@nestjs/passport';
 import { CurrentUser } from '~/common';
 
+@ApiExtraModels(AuthHttpExceptionDto)
 @ApiTags('auth')
 @Controller({
     path: 'auth',

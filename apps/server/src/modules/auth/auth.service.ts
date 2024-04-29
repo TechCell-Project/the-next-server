@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
@@ -24,6 +24,8 @@ import { ClientRMQ } from '@nestjs/microservices';
 import { ImagesService } from '~/server/images';
 import { AvatarSchema } from '../users/schemas/avatar.schema';
 import { GetMeResponseDto } from './dtos/get-me-response.dto';
+import { AuthErrorCodeEnum } from './enums';
+import { HttpExceptionDto } from '~/common';
 
 @Injectable()
 export class AuthService {
@@ -43,15 +45,13 @@ export class AuthService {
 
     async register(dto: AuthSignupDto): Promise<any> {
         if (await this.usersService.findByEmail(dto.email)) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        email: 'emailAlreadyExists',
-                    },
+            throw new HttpExceptionDto({
+                code: AuthErrorCodeEnum.EmailAlreadyExists,
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                errors: {
+                    email: 'emailAlreadyExists',
                 },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+            });
         }
 
         if (dto?.password) {
@@ -101,29 +101,25 @@ export class AuthService {
     async resendConfirmEmail(email: string): Promise<void> {
         const userFound = await this.usersService.findByEmail(email);
         if (!userFound) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        user: 'userNotFound',
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                errors: {
+                    user: 'userNotFound',
                 },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+                code: AuthErrorCodeEnum.UserNotFound,
+            });
         }
 
         const key = `auth:confirmEmailHash:${userFound._id.toString()}`;
 
         if (userFound.emailVerified === true) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        user: 'alreadyConfirmed',
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                errors: {
+                    user: 'alreadyConfirmed',
                 },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+                code: AuthErrorCodeEnum.EmailAlreadyConfirmed,
+            });
         }
 
         const hash = await this.jwtService.signAsync(
@@ -168,53 +164,47 @@ export class AuthService {
 
             userId = jwtData.confirmEmailUserId;
         } catch {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        hash: `invalidHash`,
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                errors: {
+                    hash: `invalidHash`,
                 },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+                code: AuthErrorCodeEnum.InvalidHash,
+            });
         }
 
         const user = await this.usersService.findById(userId);
 
         if (!user) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.NOT_FOUND,
-                    error: `notFound`,
+            throw new HttpExceptionDto({
+                status: HttpStatus.NOT_FOUND,
+                errors: {
+                    users: 'userNotFound',
                 },
-                HttpStatus.NOT_FOUND,
-            );
+                code: AuthErrorCodeEnum.UserNotFound,
+            });
         }
 
         const key = `auth:confirmEmailHash:${user._id.toString()}`;
 
         if (!(await this.redisService.existsUniqueKey(key))) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        hash: `invalidHash`,
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                errors: {
+                    hash: `invalidHash`,
                 },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+                code: AuthErrorCodeEnum.InvalidHash,
+            });
         }
 
         if (user.emailVerified === true) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        user: 'alreadyConfirmed',
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                errors: {
+                    user: 'alreadyConfirmed',
                 },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+                code: AuthErrorCodeEnum.EmailAlreadyConfirmed,
+            });
         }
 
         user.emailVerified = true;
@@ -225,53 +215,42 @@ export class AuthService {
         const user = await this.usersService.findByEmail(loginDto.email);
 
         if (!user) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        email: 'notFound',
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                errors: {
+                    email: 'notFound',
                 },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+                code: AuthErrorCodeEnum.WrongEmailOrPassword,
+            });
         }
 
         if (user.provider !== AuthProviderEnum.Email) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        email: `needLoginViaProvider:${user.provider}`,
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                errors: {
+                    email: `needLoginViaProvider:${user.provider}`,
                 },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+                code: AuthErrorCodeEnum.WrongProvider,
+            });
         }
 
         if (!user.password) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        password: 'incorrectPassword',
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                errors: {
+                    password: 'incorrectPassword',
                 },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+                code: AuthErrorCodeEnum.WrongEmailOrPassword,
+            });
         }
 
         const isValidPassword = await bcrypt.compare(loginDto.password, user.password);
 
         if (!isValidPassword) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        password: 'incorrectPassword',
-                    },
-                },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                code: AuthErrorCodeEnum.WrongEmailOrPassword,
+            });
         }
 
         const hash = crypto
@@ -337,15 +316,13 @@ export class AuthService {
         }
 
         if (!user) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        user: 'userNotFound',
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                errors: {
+                    user: 'userNotFound',
                 },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+                code: AuthErrorCodeEnum.UserNotFound,
+            });
         }
 
         const hash = crypto
@@ -391,15 +368,13 @@ export class AuthService {
     async me(userId: User['_id'] | string) {
         const userFound = await this.usersService.findById(userId);
         if (!userFound) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNAUTHORIZED,
-                    errors: {
-                        user: 'userNotFound',
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNAUTHORIZED,
+                errors: {
+                    user: 'userNotFound',
                 },
-                HttpStatus.UNAUTHORIZED,
-            );
+                code: AuthErrorCodeEnum.UserNotFound,
+            });
         }
         const provinceIdSet = new Set<number>();
         const districtIdSet = new Set<number>();
@@ -468,15 +443,13 @@ export class AuthService {
         });
 
         if (!session || session.hash !== data.hash) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNAUTHORIZED,
-                    errors: {
-                        token: 'tokenDataDoesNotMatch',
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNAUTHORIZED,
+                errors: {
+                    token: 'tokenDataDoesNotMatch',
                 },
-                HttpStatus.UNAUTHORIZED,
-            );
+                code: AuthErrorCodeEnum.RefreshTokenInvalid,
+            });
         }
 
         const hash = crypto
@@ -487,15 +460,13 @@ export class AuthService {
         const user = await this.usersService.findById(session.user._id);
 
         if (!user) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNAUTHORIZED,
-                    errors: {
-                        user: 'userNotFound',
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNAUTHORIZED,
+                errors: {
+                    user: 'userNotFound',
                 },
-                HttpStatus.UNAUTHORIZED,
-            );
+                code: AuthErrorCodeEnum.UserNotFound,
+            });
         }
 
         await this.sessionService.update(session._id, {
@@ -521,15 +492,13 @@ export class AuthService {
         }
 
         if (!user) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        email: 'emailNotExists',
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                errors: {
+                    email: 'emailNotExists',
                 },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+                code: AuthErrorCodeEnum.UserNotFound,
+            });
         }
 
         const tokenExpiresIn = this.configService.getOrThrow('AUTH_FORGOT_TOKEN_EXPIRES_IN');
@@ -573,42 +542,36 @@ export class AuthService {
 
             userId = jwtData.forgotUserId;
         } catch {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        hash: `invalidHash`,
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                errors: {
+                    hash: `invalidHash`,
                 },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+                code: AuthErrorCodeEnum.InvalidHash,
+            });
         }
 
         const user = await this.usersService.findById(userId);
 
         if (!user) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        hash: `notFound`,
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                errors: {
+                    hash: `notFound`,
                 },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+                code: AuthErrorCodeEnum.UserNotFound,
+            });
         }
         const key = `auth:forgotPassword:${user._id.toString()}`;
 
         if (!(await this.redisService.existsUniqueKey(key))) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNPROCESSABLE_ENTITY,
-                    errors: {
-                        hash: `hashRevoked`,
-                    },
+            throw new HttpExceptionDto({
+                status: HttpStatus.UNPROCESSABLE_ENTITY,
+                errors: {
+                    hash: `hashRevoked`,
                 },
-                HttpStatus.UNPROCESSABLE_ENTITY,
-            );
+                code: AuthErrorCodeEnum.InvalidHash,
+            });
         }
 
         user.password = password;
@@ -632,41 +595,35 @@ export class AuthService {
 
         if (userDto?.password) {
             if (!userDto.oldPassword) {
-                throw new HttpException(
-                    {
-                        status: HttpStatus.UNPROCESSABLE_ENTITY,
-                        errors: {
-                            oldPassword: 'missingOldPassword',
-                        },
+                throw new HttpExceptionDto({
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        oldPassword: 'missingOldPassword',
                     },
-                    HttpStatus.UNPROCESSABLE_ENTITY,
-                );
+                    code: AuthErrorCodeEnum.MissingOldPassword,
+                });
             }
 
             const currentUser = await this.usersService.findById(userJwtPayload.userId);
 
             if (!currentUser) {
-                throw new HttpException(
-                    {
-                        status: HttpStatus.UNPROCESSABLE_ENTITY,
-                        errors: {
-                            user: 'userNotFound',
-                        },
+                throw new HttpExceptionDto({
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        user: 'userNotFound',
                     },
-                    HttpStatus.UNPROCESSABLE_ENTITY,
-                );
+                    code: AuthErrorCodeEnum.UserNotFound,
+                });
             }
 
             if (!currentUser.password) {
-                throw new HttpException(
-                    {
-                        status: HttpStatus.UNPROCESSABLE_ENTITY,
-                        errors: {
-                            oldPassword: 'incorrectOldPassword',
-                        },
+                throw new HttpExceptionDto({
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        oldPassword: 'incorrectOldPassword',
                     },
-                    HttpStatus.UNPROCESSABLE_ENTITY,
-                );
+                    code: AuthErrorCodeEnum.WrongEmailOrPassword,
+                });
             }
 
             const isValidOldPassword = await bcrypt.compare(
@@ -675,15 +632,13 @@ export class AuthService {
             );
 
             if (!isValidOldPassword) {
-                throw new HttpException(
-                    {
-                        status: HttpStatus.UNPROCESSABLE_ENTITY,
-                        errors: {
-                            oldPassword: 'incorrectOldPassword',
-                        },
+                throw new HttpExceptionDto({
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        oldPassword: 'incorrectOldPassword',
                     },
-                    HttpStatus.UNPROCESSABLE_ENTITY,
-                );
+                    code: AuthErrorCodeEnum.WrongEmailOrPassword,
+                });
             } else {
                 await this.sessionService.softDelete({
                     user: {
@@ -716,29 +671,25 @@ export class AuthService {
                 try {
                     addressData = await Promise.all(addressPromises ?? []);
                 } catch (error) {
-                    throw new HttpException(
-                        {
-                            status: HttpStatus.UNPROCESSABLE_ENTITY,
-                            errors: {
-                                address: 'invalidAddress',
-                                message: error.message,
-                            },
+                    throw new HttpExceptionDto({
+                        status: HttpStatus.UNPROCESSABLE_ENTITY,
+                        errors: {
+                            address: 'invalidAddress',
+                            message: error.message,
                         },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
+                        code: AuthErrorCodeEnum.InvalidAddress,
+                    });
                 }
 
                 const defaultAddresses = userDto.address.filter((address) => address?.isDefault);
                 if (defaultAddresses.length > 1) {
-                    throw new HttpException(
-                        {
-                            status: HttpStatus.UNPROCESSABLE_ENTITY,
-                            errors: {
-                                address: 'Only one address can be set as default.',
-                            },
+                    throw new HttpExceptionDto({
+                        status: HttpStatus.UNPROCESSABLE_ENTITY,
+                        errors: {
+                            address: 'Only one address can be set as default.',
                         },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
+                        code: AuthErrorCodeEnum.InvalidAddress,
+                    });
                 } else if (defaultAddresses.length <= 0) {
                     userDto.address[0].isDefault = true;
                 }
@@ -769,15 +720,13 @@ export class AuthService {
                 userDto.avatarImageId,
             );
             if (!image) {
-                throw new HttpException(
-                    {
-                        status: HttpStatus.UNPROCESSABLE_ENTITY,
-                        errors: {
-                            avatarImageId: 'invalidImageId',
-                        },
+                throw new HttpExceptionDto({
+                    status: HttpStatus.UNPROCESSABLE_ENTITY,
+                    errors: {
+                        avatarImageId: 'invalidImageId',
                     },
-                    HttpStatus.UNPROCESSABLE_ENTITY,
-                );
+                    code: AuthErrorCodeEnum.InvalidImageId,
+                });
             }
 
             cloneUpdateData.avatar = image;
