@@ -1,10 +1,12 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ConfigService } from '@nestjs/config';
 import { JwtRefreshPayloadType } from './types/jwt-refresh-payload.type';
 import { OrNeverType } from '~/common/types';
 import { AuthService } from '../auth.service';
+import { AuthHttpExceptionDto } from '../dtos';
+import { AuthErrorCodeEnum } from '../enums';
 
 @Injectable()
 export class JwtRefreshStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
@@ -22,27 +24,23 @@ export class JwtRefreshStrategy extends PassportStrategy(Strategy, 'jwt-refresh'
         payload: JwtRefreshPayloadType,
     ): Promise<OrNeverType<JwtRefreshPayloadType>> {
         if (!payload.sessionId) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNAUTHORIZED,
-                    errors: {
-                        token: 'invalidRefreshToken',
-                    },
+            throw new AuthHttpExceptionDto({
+                status: HttpStatus.UNAUTHORIZED,
+                errors: {
+                    token: 'invalidRefreshToken',
                 },
-                HttpStatus.UNAUTHORIZED,
-            );
+                code: AuthErrorCodeEnum.RefreshTokenInvalid,
+            });
         }
 
         if (await this.usersService.isTokenRevoked('refresh', payload.hash)) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNAUTHORIZED,
-                    errors: {
-                        token: 'refreshTokenRevoked',
-                    },
+            throw new AuthHttpExceptionDto({
+                status: HttpStatus.UNAUTHORIZED,
+                errors: {
+                    token: 'refreshTokenRevoked',
                 },
-                HttpStatus.UNAUTHORIZED,
-            );
+                code: AuthErrorCodeEnum.RefreshTokenRevoked,
+            });
         }
         return payload;
     }

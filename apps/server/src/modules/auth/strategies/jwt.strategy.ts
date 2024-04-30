@@ -1,10 +1,12 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { HttpStatus, HttpException, Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ConfigService } from '@nestjs/config';
 import { JwtPayloadType } from './types/jwt-payload.type';
 import { OrNeverType } from '~/common/types';
 import { AuthService } from '../auth.service';
+import { AuthHttpExceptionDto } from '../dtos';
+import { AuthErrorCodeEnum } from '../enums';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
@@ -22,27 +24,23 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     // https://github.com/brocoders/nestjs-boilerplate/blob/main/docs/auth.md#about-jwt-strategy
     public async validate(payload: JwtPayloadType): Promise<OrNeverType<JwtPayloadType>> {
         if (!payload.userId || !payload.sessionId) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNAUTHORIZED,
-                    errors: {
-                        token: 'invalid',
-                    },
+            throw new AuthHttpExceptionDto({
+                status: HttpStatus.UNAUTHORIZED,
+                errors: {
+                    token: 'invalid',
                 },
-                HttpStatus.UNAUTHORIZED,
-            );
+                code: AuthErrorCodeEnum.AccessTokenInvalid,
+            });
         }
 
         if (await this.usersService.isTokenRevoked('access', payload.hash)) {
-            throw new HttpException(
-                {
-                    status: HttpStatus.UNAUTHORIZED,
-                    errors: {
-                        token: 'accessTokenRevoked',
-                    },
+            throw new AuthHttpExceptionDto({
+                status: HttpStatus.UNAUTHORIZED,
+                errors: {
+                    token: 'accessTokenRevoked',
                 },
-                HttpStatus.UNAUTHORIZED,
-            );
+                code: AuthErrorCodeEnum.AccessTokenRevoked,
+            });
         }
 
         return payload;

@@ -5,8 +5,11 @@ export const AuthErrorCodeEnum = {
     InvalidHash: 'auth.invalidHash',
     WrongProvider: 'auth.wrongProvider',
     WrongEmailOrPassword: 'auth.wrongEmailOrPassword',
-    RefreshTokenInvalid: 'auth.refreshTokenInvalid',
     MissingOldPassword: 'auth.missingOldPassword',
     InvalidAddress: 'auth.invalidAddress',
     InvalidImageId: 'auth.invalidImageId',
+    AccessTokenInvalid: 'auth.accessTokenInvalid',
+    AccessTokenRevoked: 'auth.accessTokenRevoked',
+    RefreshTokenInvalid: 'auth.refreshTokenInvalid',
+    RefreshTokenRevoked: 'auth.refreshTokenRevoked',
 };

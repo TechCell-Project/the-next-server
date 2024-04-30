@@ -6,6 +6,7 @@ import {
     HttpStatus,
     Post,
     SerializeOptions,
+    UnprocessableEntityException,
 } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from '../auth/auth.service';
@@ -35,7 +36,6 @@ export class AuthGoogleController {
     async login(@Body() loginDto: AuthGoogleLoginDto): Promise<LoginResponseDto> {
         let socialData: SocialInterface | null = null;
 
-        console.log(loginDto);
         if (!loginDto.idToken && !loginDto.accessTokenGoogle) {
             throw new BadRequestException('idToken or accessTokenGoogle is required');
         }
@@ -49,7 +49,7 @@ export class AuthGoogleController {
         }
 
         if (!socialData) {
-            throw new BadRequestException('Failed to get social data');
+            throw new UnprocessableEntityException('Failed to get social data');
         }
 
         return this.authService.validateSocialLogin(AuthProviderEnum.Google, socialData);
