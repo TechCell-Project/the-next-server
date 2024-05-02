@@ -105,6 +105,9 @@ jobs:
         needs: [check-skip-ci, automation-tests]
         if: ${{ needs.check-skip-ci.outputs.skip_sdk != 'true' }}
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            id-token: write
 
         steps:
             - name: Checkout code
