@@ -235,7 +235,7 @@ jobs:
 
                   cd ./generated/node
                   echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-                  npm publish --access public
+                  npm publish --access public --provenance
               env:
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN_NODE_SDK }}
 
