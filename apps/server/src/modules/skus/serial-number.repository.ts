@@ -1,4 +1,4 @@
-import { AbstractRepository, TPaginationOptions } from '~/common';
+import { AbstractRepository, convertToObjectId, TPaginationOptions } from '~/common';
 import { SerialNumber } from './schemas/serial-number.schema';
 import { PinoLogger } from 'nestjs-pino';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
@@ -37,6 +37,11 @@ export class SerialNumberRepository extends AbstractRepository<SerialNumber> {
         paginationOptions: TPaginationOptions;
     }): Promise<SerialNumber[]> {
         const where: FilterQuery<SerialNumber> = {};
+
+        if (filterOptions?.skuId) {
+            where.skuId = convertToObjectId(filterOptions.skuId);
+        }
+
         if (filterOptions?.status?.length) {
             where.status = { $in: filterOptions.status.map((s) => s.toString()) };
         } else {
