@@ -7,6 +7,8 @@ import { MaybeType } from '~/common/types';
 import { MailData } from './mail-data.interface';
 import { I18nTranslations } from '~/common/i18n';
 import { PinoLogger } from 'nestjs-pino';
+import { join } from 'path';
+import { Attachment } from 'nodemailer/lib/mailer';
 
 @Injectable()
 export class MailService {
@@ -20,10 +22,18 @@ export class MailService {
         this.mailerService.addTransporter(GMAIL_TRANSPORT, mailConfig.GmailTransport);
 
         this.logger.setContext(MailService.name);
+        this.BASE_ATTACHMENT = [
+            {
+                filename: 'techcell.png',
+                path: join(__dirname, 'modules/mail/templates/assets/images/techcell.png'),
+                cid: 'techcell',
+            },
+        ];
     }
 
     private readonly TRANSPORTERS = [SENDGRID_TRANSPORT, RESEND_TRANSPORT, GMAIL_TRANSPORT];
     private readonly MAX_RETRIES = this.TRANSPORTERS.length;
+    private readonly BASE_ATTACHMENT: Attachment[] = [];
 
     async sendConfirmMail(
         data: {
@@ -84,6 +94,7 @@ export class MailService {
                 to: to,
                 subject: emailConfirmTitle,
                 template: 'confirm-email',
+                attachments: this.BASE_ATTACHMENT,
                 context: {
                     title: emailConfirmTitle,
                     url: url.toString(),
@@ -138,15 +149,15 @@ export class MailService {
         let text1: MaybeType<string>;
         let text2: MaybeType<string>;
         let text3: MaybeType<string>;
-        let text4: MaybeType<string>;
+        let btn1: MaybeType<string>;
 
         if (i18n) {
-            [resetPasswordTitle, text1, text2, text3, text4] = await Promise.all([
+            [resetPasswordTitle, text1, text2, text3, btn1] = await Promise.all([
                 i18n.t('mail-context.RESET_PASSWORD.title'),
                 i18n.t('mail-context.RESET_PASSWORD.text1'),
                 i18n.t('mail-context.RESET_PASSWORD.text2'),
                 i18n.t('mail-context.RESET_PASSWORD.text3'),
-                i18n.t('mail-context.RESET_PASSWORD.text4'),
+                i18n.t('mail-context.RESET_PASSWORD.btn1'),
             ]);
         }
         const fallbackReturnUrl = process.env.FE_DOMAIN ?? '' + '/password-change';
@@ -160,18 +171,17 @@ export class MailService {
         await this.mailerService
             .sendMail({
                 transporterName,
+                attachments: this.BASE_ATTACHMENT,
                 to: to,
                 subject: resetPasswordTitle,
                 template: 'reset-password',
                 context: {
                     title: resetPasswordTitle,
                     url: url.toString(),
-                    actionTitle: resetPasswordTitle,
-                    app_name: 'TechCell.cloud',
                     text1,
                     text2,
                     text3,
-                    text4,
+                    btn1,
                 },
             })
             .then(() => {

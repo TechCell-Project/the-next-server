@@ -1,23 +1,23 @@
 {
+    "RESET_PASSWORD": {
+        "title": "Đặt lại mật khẩu",
+        "text1": "Nếu bạn đã quên mật khẩu hoặc muốn đặt lại nó, chỉ cần nhấn nút bên dưới và làm theo hướng dẫn. Chúng tôi sẽ giúp bạn hoạt động trong thời gian ngắn.",
+        "text2": "Hoặc bạn có thể sao chép liên kết dưới đây và dán vào trình duyệt của bạn để bắt đầu:",
+        "text3": "Nếu bạn không yêu cầu điều này thì vui lòng bỏ qua email này.",
+        "btn1": "Đặt lại mật khẩu"
+    },
     "CONFIRM_EMAIL": {
         "title": "Xác nhận email",
-        "text1": "Chào bạn!",
-        "text2": "Bạn sắp sửa sẵn sàng để bắt đầu tận hưởng",
-        "text3": "Chỉ cần nhấp vào nút xanh lớn bên dưới để xác minh địa chỉ email của bạn.",
+        "text1": "Bạn sắp sửa sẵn sàng để bắt đầu tận hưởng dịch vụ của chúng tôi. Chỉ cần nhấn nút bên dưới để xác nhận địa chỉ email của bạn.",
+        "text2": "Hoặc bạn có thể sao chép liên kết dưới đây và dán vào trình duyệt của bạn để bắt đầu:",
+        "text3": "Nếu bạn không yêu cầu điều này thì vui lòng bỏ qua email này.",
         "btn1": "Xác nhận email"
     },
     "RESEND_CONFIRM_EMAIL": {
         "title": "Xác nhận email",
-        "text1": "Xin chào!",
-        "text2": "Có vẻ như bạn chưa xác nhận địa chỉ email của mình.",
-        "text3": "Chỉ cần nhấp vào nút xanh lớn bên dưới để xác minh địa chỉ email của bạn.",
+        "text1": "Có vẻ như bạn chưa xác nhận địa chỉ email của mình. Chỉ cần nhấn nút bên dưới để xác nhận địa chỉ email của bạn.",
+        "text2": "Hoặc bạn có thể sao chép liên kết dưới đây và dán vào trình duyệt của bạn để bắt đầu:",
+        "text3": "Nếu bạn không yêu cầu điều này thì vui lòng bỏ qua email này.",
         "btn1": "Xác nhận email"
-    },
-    "RESET_PASSWORD": {
-        "title": "Đặt mật khẩu",
-        "text1": "Gặp rắc rối khi đăng nhập?",
-        "text2": "Đặt lại mật khẩu của bạn rất dễ dàng.",
-        "text3": "Chỉ cần nhấn nút bên dưới và làm theo hướng dẫn. Chúng tôi sẽ giúp bạn hoạt động trong thời gian ngắn.",
-        "text4": "Nếu bạn không yêu cầu điều này thì vui lòng bỏ qua email này."
     }
 }

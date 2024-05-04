@@ -62,7 +62,7 @@
             "sourceRoot": "apps/communication/src",
             "compilerOptions": {
                 "tsConfigPath": "apps/communication/tsconfig.app.json",
-                "assets": ["**/*.proto", "**/*.hbs"],
+                "assets": ["**/*.hbs", "**/*.png"],
                 "watchAssets": true
             }
         }

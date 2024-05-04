@@ -6,6 +6,13 @@ import { Path } from "nestjs-i18n";
 /* prettier-ignore */
 export type I18nTranslations = {
     "mail-context": {
+        "RESET_PASSWORD": {
+            "title": string;
+            "text1": string;
+            "text2": string;
+            "text3": string;
+            "btn1": string;
+        };
         "CONFIRM_EMAIL": {
             "title": string;
             "text1": string;
@@ -19,13 +26,6 @@ export type I18nTranslations = {
             "text2": string;
             "text3": string;
             "btn1": string;
-        };
-        "RESET_PASSWORD": {
-            "title": string;
-            "text1": string;
-            "text2": string;
-            "text3": string;
-            "text4": string;
         };
     };
 };

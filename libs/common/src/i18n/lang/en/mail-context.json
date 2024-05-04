@@ -1,23 +1,23 @@
 {
+    "RESET_PASSWORD": {
+        "title": "Reset password",
+        "text1": "If you've lost your password or wish to reset it, just press the button below and follow the instructions. We’ll have you up and running in no time.",
+        "text2": "Or you can copy the link below and paste it into your browser to get started:",
+        "text3": "If you did not make this request then please ignore this email.",
+        "btn1": "Reset password"
+    },
     "CONFIRM_EMAIL": {
         "title": "Confirm email",
-        "text1": "Hey!",
-        "text2": "You’re almost ready to start enjoying",
-        "text3": "Simply click the big green button below to verify your email address.",
+        "text1": "You're almost ready to start enjoying our service. Just press the button below to confirm your email address.",
+        "text2": "Or you can copy the link below and paste it into your browser to get started:",
+        "text3": "If you did not make this request then please ignore this email.",
         "btn1": "Confirm email"
     },
     "RESEND_CONFIRM_EMAIL": {
         "title": "Confirm email",
-        "text1": "Hello!",
-        "text2": "It seems like you haven't confirmed your email address yet.",
-        "text3": "Simply click the big green button below to verify your email address.",
+        "text1": "It seems like you haven't confirmed your email address yet. Just press the button below to confirm your email address.",
+        "text2": "Or you can copy the link below and paste it into your browser to get started:",
+        "text3": "If you did not make this request then please ignore this email.",
         "btn1": "Confirm email"
-    },
-    "RESET_PASSWORD": {
-        "title": "Reset password",
-        "text1": "Trouble signing in?",
-        "text2": "Resetting your password is easy.",
-        "text3": "Just press the button below and follow the instructions. We’ll have you up and running in no time.",
-        "text4": "If you did not make this request then please ignore this email."
     }
 }
