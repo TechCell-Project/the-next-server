@@ -29,9 +29,9 @@ export class OrdersMntController {
     constructor(private readonly ordersMntService: OrdersMntService) {}
 
     @SerializeOptions({
-        groups: [UserRoleEnum.Sales, UserRoleEnum.Accountant, UserRoleEnum.Warehouse],
+        groups: [UserRoleEnum.Sales, UserRoleEnum.Warehouse],
     })
-    @AuthRoles(UserRoleEnum.Sales, UserRoleEnum.Accountant, UserRoleEnum.Warehouse)
+    @AuthRoles(UserRoleEnum.Sales, UserRoleEnum.Warehouse)
     @ApiOkResponse({
         type: OrderInfinityPaginationResult,
     })
@@ -56,9 +56,9 @@ export class OrdersMntController {
     }
 
     @SerializeOptions({
-        groups: [UserRoleEnum.Sales, UserRoleEnum.Accountant, UserRoleEnum.Warehouse],
+        groups: [UserRoleEnum.Sales, UserRoleEnum.Warehouse],
     })
-    @AuthRoles(UserRoleEnum.Sales, UserRoleEnum.Accountant, UserRoleEnum.Warehouse)
+    @AuthRoles(UserRoleEnum.Sales, UserRoleEnum.Warehouse)
     @ApiOkResponse({
         type: Order,
     })
@@ -68,9 +68,9 @@ export class OrdersMntController {
     }
 
     @SerializeOptions({
-        groups: [UserRoleEnum.Sales, UserRoleEnum.Accountant, UserRoleEnum.Warehouse],
+        groups: [UserRoleEnum.Sales, UserRoleEnum.Warehouse],
     })
-    @AuthRoles(UserRoleEnum.Sales, UserRoleEnum.Accountant, UserRoleEnum.Warehouse)
+    @AuthRoles(UserRoleEnum.Sales, UserRoleEnum.Warehouse)
     @Patch('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async updateOrderStatus(

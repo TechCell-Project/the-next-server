@@ -34,7 +34,7 @@ import { AuthRoles } from '../auth/guards';
 export class TagsController {
     constructor(private readonly tagsService: TagsService) {}
 
-    @AuthRoles(UserRoleEnum.DataEntry)
+    @AuthRoles(UserRoleEnum.Warehouse)
     @Post('/')
     @HttpCode(HttpStatus.NO_CONTENT)
     async createTag(@Body() data: CreateTagDto) {
@@ -42,7 +42,7 @@ export class TagsController {
     }
 
     @SerializeOptions({
-        groups: [UserRoleEnum.DataEntry],
+        groups: [UserRoleEnum.Warehouse],
     })
     @ApiOkResponse({
         description: 'Get tags successfully',
@@ -75,7 +75,7 @@ export class TagsController {
         return this.tagsService.getTagById(id);
     }
 
-    @AuthRoles(UserRoleEnum.DataEntry)
+    @AuthRoles(UserRoleEnum.Warehouse)
     @Patch('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async updateTag(@Param() { id }: ObjectIdParamDto, @Body() data: UpdateTagDto) {

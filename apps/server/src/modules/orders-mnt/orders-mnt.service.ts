@@ -32,26 +32,9 @@ export class OrdersMntService {
 
         switch (updateStatus) {
             case OrderStatusEnum.Confirmed: {
-                if (user.role !== UserRoleEnum.Sales) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                user: 'Only sales can confirm order',
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
-                }
-                if (order.orderStatus !== OrderStatusEnum.Pending) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                order: 'orderStatus is not pending',
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
-                }
+                this.requiredRole(user, UserRoleEnum.Sales);
+                this.requiredOrderStatus(order, OrderStatusEnum.Pending);
+
                 order.orderStatus = OrderStatusEnum.Confirmed;
                 order.orderLogs = order.orderLogs || [];
                 order.orderLogs.push({
@@ -62,26 +45,9 @@ export class OrdersMntService {
                 break;
             }
             case OrderStatusEnum.Preparing: {
-                if (user.role !== UserRoleEnum.Accountant) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                user: 'Only accountant can change order to preparing',
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
-                }
-                if (order.orderStatus !== OrderStatusEnum.Confirmed) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                order: 'orderStatus is not confirmed',
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
-                }
+                this.requiredRole(user, UserRoleEnum.Warehouse);
+                this.requiredOrderStatus(order, OrderStatusEnum.Confirmed);
+
                 order.orderStatus = OrderStatusEnum.Preparing;
                 order.orderLogs.push({
                     actorId: convertToObjectId(user.userId),
@@ -93,26 +59,9 @@ export class OrdersMntService {
             case OrderStatusEnum.Prepared: {
                 // Prepared order, make all serial number available
                 // Only warehouse can change order to prepared
-                if (user.role !== UserRoleEnum.Warehouse) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                user: 'Only warehouse can change order to prepared',
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
-                }
-                if (order.orderStatus !== OrderStatusEnum.Preparing) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                order: 'orderStatus is not preparing',
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
-                }
+                this.requiredRole(user, UserRoleEnum.Warehouse);
+                this.requiredOrderStatus(order, OrderStatusEnum.Preparing);
+
                 promises.push(this.soldSerialNumber(order, updateSerialNumbers));
                 order.orderStatus = OrderStatusEnum.Prepared;
                 order.orderLogs.push({
@@ -125,62 +74,13 @@ export class OrdersMntService {
             case OrderStatusEnum.Shipping: {
                 // Only warehouse can change order to prepared
                 // Hand over product to delivery service
-                if (user.role !== UserRoleEnum.Warehouse) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                user: 'Only warehouse can change order to prepared',
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
-                }
-                if (order.orderStatus !== OrderStatusEnum.Prepared) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                order: 'orderStatus is not prepared',
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
-                }
+                this.requiredRole(user, UserRoleEnum.Warehouse);
+                this.requiredOrderStatus(order, OrderStatusEnum.Prepared);
+
                 order.orderStatus = OrderStatusEnum.Shipping;
                 order.orderLogs.push({
                     actorId: convertToObjectId(user.userId),
                     action: `Update status to ${OrderStatusEnum.Shipping}`,
-                    note,
-                });
-                break;
-            }
-            case OrderStatusEnum.Completed: {
-                // Completed order, make all serial number sold
-                // Only accountant can change order to completed
-                if (user.role !== UserRoleEnum.Accountant) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                user: 'Only accountant can complete order',
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
-                }
-                if (order.orderStatus !== OrderStatusEnum.Shipping) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                order: `orderStatus is not ${OrderStatusEnum.Shipping}`,
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
-                }
-                order.orderStatus = OrderStatusEnum.Completed;
-                order.orderLogs.push({
-                    actorId: convertToObjectId(user.userId),
-                    action: `Update status to ${OrderStatusEnum.Completed}`,
-
                     note,
                 });
                 break;
@@ -190,50 +90,8 @@ export class OrdersMntService {
                 // Only if payment is completed
                 // Only if order is not shipping
                 // Only accountant can change order to failed
-                if (user.role !== UserRoleEnum.Accountant) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                user: 'Only accountant can change order to failed',
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
-                }
-                if (order.payment.status === PaymentStatusEnum.Completed) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                order: 'can not failed order when payment is completed',
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
-                }
-                if (
-                    order.orderStatus === OrderStatusEnum.Canceled ||
-                    order.orderStatus === OrderStatusEnum.Failed ||
-                    order.orderStatus === OrderStatusEnum.Completed
-                ) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                order: 'can not failed order when order already done',
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
-                }
-                if (order.orderStatus === OrderStatusEnum.Shipping) {
-                    throw new HttpException(
-                        {
-                            errors: {
-                                order: 'can not failed order when order is shipping',
-                            },
-                        },
-                        HttpStatus.UNPROCESSABLE_ENTITY,
-                    );
-                }
+                this.requiredOrderStatus(order, OrderStatusEnum.Pending, OrderStatusEnum.Preparing);
+                this.requiredRole(user, UserRoleEnum.Sales, UserRoleEnum.Warehouse);
 
                 order.payment.status = PaymentStatusEnum.Failed;
                 order.payment.url = '';
@@ -287,11 +145,6 @@ export class OrdersMntService {
         });
 
         switch (user.role) {
-            case UserRoleEnum.Sales:
-                filters.$or.push({
-                    orderStatus: OrderStatusEnum.Pending,
-                });
-                break;
             case UserRoleEnum.Warehouse:
                 filters.$or.push(
                     {
@@ -302,7 +155,7 @@ export class OrdersMntService {
                     },
                 );
                 break;
-            case UserRoleEnum.Accountant:
+            case UserRoleEnum.Sales:
                 delete filters.$or;
                 break;
             default:
@@ -328,7 +181,7 @@ export class OrdersMntService {
         switch (user.role) {
             case UserRoleEnum.Sales:
                 return this.getOrdersSalesMnt(user, query);
-            case UserRoleEnum.Accountant:
+            case UserRoleEnum.Sales:
                 return this.getOrdersAccountantMnt(user, query);
             case UserRoleEnum.Warehouse:
                 return this.getOrdersWarehouseMnt(user, query);
@@ -412,7 +265,7 @@ export class OrdersMntService {
                     $in: [OrderStatusEnum.Confirmed, OrderStatusEnum.Prepared],
                 };
                 break;
-            case SelectOrderTypeEnum.allForAccountant:
+            case SelectOrderTypeEnum.all:
                 break;
             case SelectOrderTypeEnum.both:
             default:
@@ -533,5 +386,33 @@ export class OrdersMntService {
         });
 
         await Promise.all(productPromises);
+    }
+
+    private requiredRole(user: JwtPayloadType, ...roles: string[]) {
+        if (!roles.includes(user.role)) {
+            throw new HttpException(
+                {
+                    errors: {
+                        user: `Required ${roles.join(', ')}`,
+                    },
+                },
+                HttpStatus.FORBIDDEN,
+            );
+        }
+        return true;
+    }
+
+    private requiredOrderStatus(order: Order, ...statuses: string[]) {
+        if (!statuses.includes(order.orderStatus)) {
+            throw new HttpException(
+                {
+                    errors: {
+                        order: `Required ${statuses.join(', ')}`,
+                    },
+                },
+                HttpStatus.FORBIDDEN,
+            );
+        }
+        return true;
     }
 }

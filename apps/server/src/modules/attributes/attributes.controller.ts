@@ -44,7 +44,7 @@ export class AttributesController {
     @ApiCreatedResponse({
         description: 'Attribute created',
     })
-    @AuthRoles(UserRoleEnum.DataEntry)
+    @AuthRoles(UserRoleEnum.Warehouse)
     @Post('/')
     @HttpCode(HttpStatus.CREATED)
     async createAttribute(@Body() payload: CreateAttributeDto) {
@@ -52,7 +52,7 @@ export class AttributesController {
     }
 
     @SerializeOptions({
-        groups: [UserRoleEnum.DataEntry],
+        groups: [UserRoleEnum.Warehouse],
     })
     @ApiOkResponse({
         description: 'Get attributes successfully',
@@ -85,7 +85,7 @@ export class AttributesController {
         return this.attributesService.getAttribute(id);
     }
 
-    @AuthRoles(UserRoleEnum.DataEntry)
+    @AuthRoles(UserRoleEnum.Warehouse)
     @ApiNoContentResponse({
         description: 'Update attribute successfully',
     })
@@ -95,7 +95,7 @@ export class AttributesController {
         return this.attributesService.updateAttribute(id, payload);
     }
 
-    @AuthRoles(UserRoleEnum.DataEntry)
+    @AuthRoles(UserRoleEnum.Warehouse)
     @ApiNoContentResponse({
         description: 'Delete attribute successfully',
     })

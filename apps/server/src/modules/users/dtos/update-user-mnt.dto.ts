@@ -31,7 +31,7 @@ export class UpdateUserMntDto {
     @ApiPropertyOptional({
         enum: RolesWithoutCustomerAndManager,
         description: 'User role to update',
-        example: UserRoleEnum.DataEntry,
+        example: UserRoleEnum.Sales,
         type: String,
     })
     @IsOptional()

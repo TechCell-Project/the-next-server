@@ -96,9 +96,7 @@ export class User extends AbstractDocument {
     })
     @Factory((faker: Faker) =>
         faker.helpers.arrayElement([
-            UserRoleEnum.Accountant,
             UserRoleEnum.Customer,
-            UserRoleEnum.DataEntry,
             UserRoleEnum.Sales,
             UserRoleEnum.Warehouse,
         ]),

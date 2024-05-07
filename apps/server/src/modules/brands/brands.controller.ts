@@ -34,7 +34,7 @@ import { UserRoleEnum } from '../users/enums';
 export class BrandsController {
     constructor(private readonly brandsService: BrandsService) {}
 
-    @AuthRoles(UserRoleEnum.DataEntry)
+    @AuthRoles(UserRoleEnum.Warehouse)
     @Post('/')
     @HttpCode(HttpStatus.CREATED)
     async createBrand(@Body() data: CreateBrandDto) {
@@ -75,14 +75,14 @@ export class BrandsController {
         return this.brandsService.getBrandById(id);
     }
 
-    @AuthRoles(UserRoleEnum.DataEntry)
+    @AuthRoles(UserRoleEnum.Warehouse)
     @Patch('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async updateBrand(@Param() { id }: ObjectIdParamDto, @Body() data: UpdateBrandDto) {
         return this.brandsService.updateBrand(id, data);
     }
 
-    @AuthRoles(UserRoleEnum.DataEntry)
+    @AuthRoles(UserRoleEnum.Warehouse)
     @Delete('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async deleteBrand(@Param() { id }: ObjectIdParamDto) {

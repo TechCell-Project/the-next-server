@@ -49,7 +49,7 @@ export class CreateUserDto {
         description: "The user's role.",
         required: true,
         enum: RolesWithoutCustomerAndManager,
-        example: UserRoleEnum.Accountant,
+        example: UserRoleEnum.Sales,
         type: String,
     })
     @IsNotEmpty()

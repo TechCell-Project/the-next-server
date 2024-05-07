@@ -51,7 +51,7 @@ export class SkusController {
         private readonly rabbitMqService: RabbitMQService,
     ) {}
 
-    @AuthRoles(UserRoleEnum.DataEntry)
+    @AuthRoles(UserRoleEnum.Warehouse)
     @ApiCreatedResponse({
         type: SKU,
     })
@@ -133,7 +133,7 @@ export class SkusController {
         return this.skusService.addSerialNumbers(id, serialNumbers);
     }
 
-    @AuthRoles(UserRoleEnum.DataEntry)
+    @AuthRoles(UserRoleEnum.Warehouse)
     @Patch('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async updateSkuById(@Param() { id }: ObjectIdParamDto, @Body() data: UpdateSkuDto) {

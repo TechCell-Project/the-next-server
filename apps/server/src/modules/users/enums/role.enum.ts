@@ -5,8 +5,6 @@ export enum UserRoleEnum {
     Customer = 'customer',
     Sales = 'sales',
     Warehouse = 'warehouse',
-    DataEntry = 'data_entry',
-    Accountant = 'accountant',
 }
 
 export const RolesWithoutCustomerAndManager = valuesOfEnum(UserRoleEnum).filter(

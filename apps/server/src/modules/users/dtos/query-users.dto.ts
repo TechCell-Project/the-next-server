@@ -9,7 +9,7 @@ export class FilterUserDto {
     @ApiPropertyOptional({
         type: [UserRoleEnum],
         enum: UserRoleEnum,
-        example: [UserRoleEnum.Accountant, UserRoleEnum.DataEntry],
+        example: [UserRoleEnum.Warehouse, UserRoleEnum.Sales],
     })
     @IsOptional()
     @IsEnum(UserRoleEnum, { each: true })
