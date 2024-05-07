@@ -3,7 +3,12 @@ import { AppModule } from './app.module';
 import { Logger } from 'nestjs-pino';
 import helmet from 'helmet';
 import { ConfigService } from '@nestjs/config';
-import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
+import {
+    ClassSerializerInterceptor,
+    ForbiddenException,
+    HttpException,
+    ValidationPipe,
+} from '@nestjs/common';
 import validationOptions from '~/common/utils/validation-options';
 import {
     DocumentBuilder,
@@ -15,6 +20,8 @@ import { ResolvePromisesInterceptor } from '~/common/utils';
 import * as swaggerStats from 'swagger-stats';
 import { SwaggerTheme, SwaggerThemeNameEnum } from 'swagger-themes';
 import { RabbitMQService } from '~/common/rabbitmq';
+import { AuthService } from './modules/auth/auth.service';
+import { UserRoleEnum } from './modules/users/enums';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, { bufferLogs: true });
@@ -69,6 +76,7 @@ async function bootstrap() {
     };
     SwaggerModule.setup('docs', app, document, swaggerCustomOptions);
 
+    const authService = app.get(AuthService);
     // Use swagger-stats to generate statistics
     app.use(
         swaggerStats.getMiddleware({
@@ -78,15 +86,31 @@ async function bootstrap() {
             hostname: 'api.techcell.cloud',
             timelineBucketDuration: 180000,
             authentication: true,
-            onAuthenticate(req, username, password) {
+            async onAuthenticate(req, username, password) {
                 if (
-                    username !== configService.getOrThrow<string>('API_STATS_USERNAME') ||
-                    password !== configService.getOrThrow<string>('API_STATS_PASSWORD')
+                    username === configService.getOrThrow<string>('API_STATS_USERNAME') &&
+                    password === configService.getOrThrow<string>('API_STATS_PASSWORD')
                 ) {
-                    return false;
+                    return true;
                 }
 
-                return true;
+                try {
+                    const user = await authService.validateLogin({
+                        email: username,
+                        password: password,
+                    });
+
+                    if (user && user.user.role === UserRoleEnum.Customer) {
+                        throw new ForbiddenException('Forbidden');
+                    }
+
+                    return true;
+                } catch (error) {
+                    if (error instanceof HttpException) {
+                        throw error;
+                    }
+                    throw new ForbiddenException('Forbidden');
+                }
             },
         }),
     );
