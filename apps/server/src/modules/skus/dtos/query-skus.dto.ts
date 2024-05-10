@@ -52,7 +52,7 @@ export class QuerySkusDto extends IntersectionType(
 
     @ApiPropertyOptional({
         type: String,
-        description: `JSON string of ${SortSkuDto.name}`,
+        description: `JSON string of ${SortSkuDto.name}[]`,
         format: getSchemaPath(SortSkuDto),
     })
     @IsOptional()

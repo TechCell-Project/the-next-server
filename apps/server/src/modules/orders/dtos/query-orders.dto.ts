@@ -41,7 +41,7 @@ export class QueryOrdersDto extends QueryManyWithPaginationDto<FilterOrdersDto, 
 
     @ApiPropertyOptional({
         type: String,
-        description: `JSON string of ${SortOrdersDto.name}`,
+        description: `JSON string of ${SortOrdersDto.name}[]`,
         format: getSchemaPath(SortOrdersDto),
     })
     @IsOptional()

@@ -83,7 +83,7 @@ export class QueryAttributesDto extends IntersectionType(
 
     @ApiPropertyOptional({
         type: String,
-        description: `JSON string of ${SortAttributeDto.name}`,
+        description: `JSON string of ${SortAttributeDto.name}[]`,
         format: getSchemaPath(SortAttributeDto),
     })
     @IsOptional()

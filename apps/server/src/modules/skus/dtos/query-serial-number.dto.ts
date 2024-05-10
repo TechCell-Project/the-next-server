@@ -44,7 +44,7 @@ export class QuerySerialNumberDto extends QueryManyWithPaginationDto<
 
     @ApiPropertyOptional({
         type: String,
-        description: `JSON string of ${SortSerialNumberDto.name}`,
+        description: `JSON string of ${SortSerialNumberDto.name}[]`,
         format: getSchemaPath(SortSerialNumberDto),
     })
     @IsOptional()
