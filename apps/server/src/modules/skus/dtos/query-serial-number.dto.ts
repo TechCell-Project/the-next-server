@@ -40,7 +40,7 @@ export class QuerySerialNumberDto extends QueryManyWithPaginationDto<
     @JsonTransform(FilterSerialNumberDto)
     @ValidateNested()
     @Type(() => FilterSerialNumberDto)
-    filters?: FilterSerialNumberDto | null | undefined;
+    filters?: FilterSerialNumberDto | null;
 
     @ApiPropertyOptional({
         type: String,

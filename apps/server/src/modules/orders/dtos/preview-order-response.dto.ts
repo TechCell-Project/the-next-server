@@ -1,11 +1,6 @@
 import { OmitType } from '@nestjs/swagger';
 import { Order } from '../schemas';
 
-// export class CalculateShippingFeeResponseDto implements CalculateShippingFeeResponse {
-
-//     total: number;
-// }
-
 export class PreviewOrderResponseDto extends OmitType(Order, ['_id', 'note', 'orderStatus']) {
     constructor(data: Omit<PreviewOrderResponseDto, 'totalPrice'>) {
         super();
@@ -21,6 +16,4 @@ export class PreviewOrderResponseDto extends OmitType(Order, ['_id', 'note', 'or
                 );
             }, 0);
     }
-
-    // shippingList: CalculateShippingFeeResponse[];
 }
