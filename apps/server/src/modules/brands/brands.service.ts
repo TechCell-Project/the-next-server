@@ -76,7 +76,7 @@ export class BrandsService extends AbstractService {
             paginationOptions,
         });
 
-        await this.redisService.set(cacheKey, res, convertTimeString('3m'));
+        await this.redisService.set(cacheKey, res, convertTimeString('10s'));
         return res;
     }
 
@@ -90,7 +90,7 @@ export class BrandsService extends AbstractService {
         const res = await this.brandsRepository.findOneOrThrow({
             filterQuery: { _id: convertToObjectId(id) },
         });
-        await this.redisService.set(cacheKey, res, convertTimeString('3m'));
+        await this.redisService.set(cacheKey, res, convertTimeString('5s'));
         return res;
     }
 
@@ -108,7 +108,7 @@ export class BrandsService extends AbstractService {
             return res;
         }
 
-        await this.redisService.set(cacheKey, res, convertTimeString('3m'));
+        await this.redisService.set(cacheKey, res, convertTimeString('10s'));
         return res;
     }
 }

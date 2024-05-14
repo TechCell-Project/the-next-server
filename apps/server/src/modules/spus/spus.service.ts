@@ -160,7 +160,7 @@ export class SpusService extends AbstractService {
             },
         });
 
-        await this.redisService.set(cacheKey, res, convertTimeString('3m'));
+        await this.redisService.set(cacheKey, res, convertTimeString('10s'));
         return res;
     }
 
@@ -177,7 +177,7 @@ export class SpusService extends AbstractService {
             },
         });
 
-        await this.redisService.set(cacheKey, res, convertTimeString('3m'));
+        await this.redisService.set(cacheKey, res, convertTimeString('5s'));
         return res;
     }
 

@@ -187,7 +187,7 @@ export class ProductsService {
         const resultProducts = this.avoidProductSameSpu(
             await Promise.all(skus.map((s) => this.getProductInListFromSku(s))),
         );
-        await this.redisService.set(cacheKey, resultProducts, convertTimeString('5m'));
+        await this.redisService.set(cacheKey, resultProducts, convertTimeString('10s'));
         return resultProducts.slice(start, start + limit);
     }
 

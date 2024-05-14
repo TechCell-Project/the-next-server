@@ -87,7 +87,7 @@ export class SkusService extends AbstractService {
         });
         skus = skus.map((sku) => new SKU(sku));
 
-        await this.redisService.set(cacheKey, skus, convertTimeString('3m'));
+        await this.redisService.set(cacheKey, skus, convertTimeString('10s'));
         return skus;
     }
 
@@ -100,7 +100,7 @@ export class SkusService extends AbstractService {
 
         const skus = await this.skusRepository.findOrThrow({ filterQuery: data.filterQuery });
 
-        await this.redisService.set(cacheKey, skus, convertTimeString('3m'));
+        await this.redisService.set(cacheKey, skus, convertTimeString('10s'));
         return skus;
     }
 
@@ -117,7 +117,7 @@ export class SkusService extends AbstractService {
             },
         });
 
-        await this.redisService.set(cacheKey, sku, convertTimeString('3m'));
+        await this.redisService.set(cacheKey, sku, convertTimeString('10s'));
         return sku;
     }
 
@@ -152,7 +152,7 @@ export class SkusService extends AbstractService {
 
         const res = await this.skusRepository.findOneOrThrow(data);
 
-        await this.redisService.set(cacheKey, res, convertTimeString('3m'));
+        await this.redisService.set(cacheKey, res, convertTimeString('5s'));
         return res;
     }
 
