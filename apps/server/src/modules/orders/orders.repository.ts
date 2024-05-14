@@ -42,7 +42,7 @@ export class OrdersRepository extends AbstractRepository<Order> {
     }
 
     async findManyWithPagination({
-        customerId: customerId,
+        customerId,
         filterOptions,
         sortOptions,
         paginationOptions,
