@@ -48,6 +48,7 @@ export class BrandsRepository extends AbstractRepository<Brand> {
             ];
         }
 
+        this.logger.debug(where, 'brands-where');
         const brandObjects = await this.brandModel
             .find(where)
             .sort(

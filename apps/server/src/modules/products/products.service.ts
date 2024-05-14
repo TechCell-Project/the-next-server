@@ -140,7 +140,7 @@ export class ProductsService {
                     keyword: keyword,
                 },
                 paginationOptions: {
-                    limit: 0,
+                    limit: 100,
                     page,
                 },
             });
@@ -149,7 +149,7 @@ export class ProductsService {
             spuFilters.brandIds = Array.from(
                 new Set([
                     ...(filters?.brandIds ?? []),
-                    ...(brandsWithKeyword ?? []).map((b) => b._id.toString()),
+                    ...(brandsWithKeyword ?? []).map((b) => b?._id?.toString()),
                 ]),
             );
         }
@@ -157,24 +157,26 @@ export class ProductsService {
         if (filters?.brandIds) {
             spuFilters.brandIds = Array.from(
                 new Set([
-                    ...(spuFilters?.brandIds?.map((b) => b.toString()) || []),
+                    ...(spuFilters?.brandIds?.map((b) => b?.toString()) || []),
                     ...filters.brandIds,
                 ]),
             );
         }
 
         const spus = await this.spusService.getSpus({
-            limit: 0,
+            limit: 100,
             page,
             filters: spuFilters,
         });
+        if (spus) {
+            skuFilters.spuId = {
+                $in: spus.map((s) => convertToObjectId(s._id)),
+            };
+        }
 
         if (filters?.tagIds) {
             skuFilters.tags = {
                 $in: filters.tagIds.map((t) => convertToObjectId(t)),
-            };
-            skuFilters.spuId = {
-                $in: spus.map((s) => s._id),
             };
         }
 
