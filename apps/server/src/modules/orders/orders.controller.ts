@@ -13,7 +13,13 @@ import {
     SerializeOptions,
 } from '@nestjs/common';
 import { OrdersService } from './orders.service';
-import { ApiExcludeEndpoint, ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+    ApiCreatedResponse,
+    ApiExcludeEndpoint,
+    ApiExtraModels,
+    ApiOkResponse,
+    ApiTags,
+} from '@nestjs/swagger';
 import { CurrentUser, infinityPagination, ObjectIdParamDto } from '~/common';
 import { JwtPayloadType } from '../auth/strategies/types';
 import {
@@ -56,7 +62,10 @@ export class OrdersController {
 
     @AuthRoles(UserRoleEnum.Customer)
     @Post('/')
-    @HttpCode(HttpStatus.OK)
+    @HttpCode(HttpStatus.CREATED)
+    @ApiCreatedResponse({
+        type: Order,
+    })
     async createOrder(
         @Ip() ip: string,
         @CurrentUser() { userId }: JwtPayloadType,

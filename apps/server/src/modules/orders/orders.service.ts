@@ -139,7 +139,7 @@ export class OrdersService {
         userId: string;
         payload: CreateOrderDto;
         ip: string;
-    }) {
+    }): Promise<Order> {
         const resources = [`order_create:user:${userId}`];
 
         const { addressIndex, products, paymentMethod } = payload;
@@ -444,6 +444,7 @@ export class OrdersService {
         order.orderLogs.push({
             action: 'cancel',
             actorId: order.customer.customerId,
+            actionAt: new Date(),
             note: cancel?.reason ?? '',
         });
         order.orderStatus = OrderStatusEnum.Canceled;
