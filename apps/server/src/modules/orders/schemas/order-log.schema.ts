@@ -11,6 +11,10 @@ export class OrderLogSchema {
     @Prop({ required: true, type: String })
     action: string;
 
+    @ApiProperty({ example: '2020-01-01T00:00:00.000Z', type: Date })
+    @Prop({ required: true, type: Date })
+    actionAt: Date;
+
     @ApiPropertyOptional({ example: 'confirm order, pass order to warehouse', type: String })
     @Prop({ required: false, type: String, default: '' })
     note: string;

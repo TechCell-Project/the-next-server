@@ -40,6 +40,7 @@ export class OrdersMntService {
                 order.orderLogs.push({
                     actorId: convertToObjectId(user.userId),
                     action: `Update status to ${OrderStatusEnum.Confirmed}`,
+                    actionAt: new Date(),
                     note,
                 });
                 break;
@@ -52,6 +53,7 @@ export class OrdersMntService {
                 order.orderLogs.push({
                     actorId: convertToObjectId(user.userId),
                     action: `Update status to ${OrderStatusEnum.Preparing}`,
+                    actionAt: new Date(),
                     note,
                 });
                 break;
@@ -67,6 +69,7 @@ export class OrdersMntService {
                 order.orderLogs.push({
                     actorId: convertToObjectId(user.userId),
                     action: `Update status to ${OrderStatusEnum.Prepared}`,
+                    actionAt: new Date(),
                     note,
                 });
                 break;
@@ -81,6 +84,7 @@ export class OrdersMntService {
                 order.orderLogs.push({
                     actorId: convertToObjectId(user.userId),
                     action: `Update status to ${OrderStatusEnum.Shipping}`,
+                    actionAt: new Date(),
                     note,
                 });
                 break;
@@ -100,6 +104,7 @@ export class OrdersMntService {
                 order.orderLogs.push({
                     actorId: convertToObjectId(user.userId),
                     action: `Update status to ${OrderStatusEnum.Failed}`,
+                    actionAt: new Date(),
                     note,
                 });
 
