@@ -1,15 +1,26 @@
 import { Prop } from '@nestjs/mongoose';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { Types } from 'mongoose';
+import { ApiProperty, ApiPropertyOptional, PickType } from '@nestjs/swagger';
+import { OrderActionEnum } from '../enum';
+import { User } from '~/server/users';
+
+export class Actor extends PickType(User, ['_id', 'firstName', 'lastName', 'role']) {
+    constructor(data: User) {
+        super();
+        this._id = data._id;
+        this.firstName = data.firstName;
+        this.lastName = data.lastName;
+        this.role = data.role;
+    }
+}
 
 export class OrderLogSchema {
-    @ApiProperty({ example: '5f9a7f5d9d8f6d7f5d8f6d7', type: String, format: 'ObjectId' })
-    @Prop({ required: true, type: String })
-    actorId: Types.ObjectId;
+    @ApiProperty({ example: '5f9a7f5d9d8f6d7f5d8f6d7', type: Actor })
+    @ApiProperty({ type: Actor, required: true })
+    actor: Actor;
 
-    @ApiProperty({ example: 'update status', type: String })
-    @Prop({ required: true, type: String })
-    action: string;
+    @ApiProperty({ example: OrderActionEnum.CancelByCustomer, type: String, enum: OrderActionEnum })
+    @Prop({ required: true, type: String, enum: OrderActionEnum })
+    action: OrderActionEnum;
 
     @ApiProperty({ example: '2020-01-01T00:00:00.000Z', type: Date })
     @Prop({ required: true, type: Date })

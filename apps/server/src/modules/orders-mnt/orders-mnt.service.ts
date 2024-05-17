@@ -5,12 +5,20 @@ import { convertToObjectId, TPaginationOptions } from '~/common';
 import { JwtPayloadType } from '../auth/strategies/types';
 import { UserRoleEnum } from '../users/enums';
 import { FilterQuery } from 'mongoose';
-import { Order, OrderStatusEnum, PaymentStatusEnum, SelectOrderTypeEnum } from '~/server/orders';
+import {
+    Actor,
+    Order,
+    OrderActionEnum,
+    OrderStatusEnum,
+    PaymentStatusEnum,
+    SelectOrderTypeEnum,
+} from '~/server/orders';
 import { OrdersRepository } from '../orders/orders.repository';
 import { UpdateOrderStatusDto } from './dtos/update-order-status.dto';
 import { SkusService } from '../skus';
 import { SerialNumberStatusEnum } from '../skus/enums';
 import { GhnService } from '~/third-party/giaohangnhanh';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class OrdersMntService {
@@ -19,6 +27,7 @@ export class OrdersMntService {
         private readonly ordersMntRepository: OrdersRepository,
         private readonly skusService: SkusService,
         private readonly ghnService: GhnService,
+        private readonly usersService: UsersService,
     ) {}
 
     async updateOrderStatus(
@@ -27,7 +36,10 @@ export class OrdersMntService {
         { orderStatus: updateStatus, note, updateSerialNumbers = [] }: UpdateOrderStatusDto,
     ) {
         const promises = [];
-        const order = await this.getOrdersMntById(user, orderId);
+        const [order, actor] = await Promise.all([
+            this.getOrdersMntById(user, orderId),
+            this.usersService.findByIdOrThrow(user.userId),
+        ]);
         order.orderLogs = order.orderLogs || [];
 
         switch (updateStatus) {
@@ -38,8 +50,8 @@ export class OrdersMntService {
                 order.orderStatus = OrderStatusEnum.Confirmed;
                 order.orderLogs = order.orderLogs || [];
                 order.orderLogs.push({
-                    actorId: convertToObjectId(user.userId),
-                    action: `Update status to ${OrderStatusEnum.Confirmed}`,
+                    actor: new Actor(actor),
+                    action: OrderActionEnum.PendingToConfirmed,
                     actionAt: new Date(),
                     note,
                 });
@@ -51,8 +63,8 @@ export class OrdersMntService {
 
                 order.orderStatus = OrderStatusEnum.Preparing;
                 order.orderLogs.push({
-                    actorId: convertToObjectId(user.userId),
-                    action: `Update status to ${OrderStatusEnum.Preparing}`,
+                    actor: new Actor(actor),
+                    action: OrderActionEnum.ConfirmedToPreparing,
                     actionAt: new Date(),
                     note,
                 });
@@ -67,8 +79,8 @@ export class OrdersMntService {
                 promises.push(this.soldSerialNumber(order, updateSerialNumbers));
                 order.orderStatus = OrderStatusEnum.Prepared;
                 order.orderLogs.push({
-                    actorId: convertToObjectId(user.userId),
-                    action: `Update status to ${OrderStatusEnum.Prepared}`,
+                    actor: new Actor(actor),
+                    action: OrderActionEnum.PreparingToPrepared,
                     actionAt: new Date(),
                     note,
                 });
@@ -82,8 +94,8 @@ export class OrdersMntService {
 
                 order.orderStatus = OrderStatusEnum.Shipping;
                 order.orderLogs.push({
-                    actorId: convertToObjectId(user.userId),
-                    action: `Update status to ${OrderStatusEnum.Shipping}`,
+                    actor: new Actor(actor),
+                    action: OrderActionEnum.PreparedToShipping,
                     actionAt: new Date(),
                     note,
                 });
@@ -102,8 +114,8 @@ export class OrdersMntService {
 
                 order.orderStatus = OrderStatusEnum.Failed;
                 order.orderLogs.push({
-                    actorId: convertToObjectId(user.userId),
-                    action: `Update status to ${OrderStatusEnum.Failed}`,
+                    actor: new Actor(actor),
+                    action: OrderActionEnum.FailedBySales,
                     actionAt: new Date(),
                     note,
                 });

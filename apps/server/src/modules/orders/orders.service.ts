@@ -18,6 +18,7 @@ import { ItemType } from 'giaohangnhanh/lib/order';
 import { ProductsService } from '../products/products.service';
 import { PaymentTypeId, RequiredNote } from 'giaohangnhanh/lib/order/enums';
 import {
+    OrderActionEnum,
     OrderStatusEnum,
     PaymentMethodEnum,
     PaymentStatusEnum,
@@ -33,7 +34,7 @@ import {
 } from 'vnpay';
 import { PinoLogger } from 'nestjs-pino';
 import { ConfigService } from '@nestjs/config';
-import { Order } from './schemas';
+import { Actor, Order } from './schemas';
 import { CartsService } from '../carts';
 import { RedlockService } from '~/common/redis';
 import { ClientSession, Types } from 'mongoose';
@@ -411,12 +412,15 @@ export class OrdersService {
         userId: string;
         cancel: CancelOrderDto;
     }) {
-        const order = await this.ordersRepository.findOneOrThrow({
-            filterQuery: {
-                _id: convertToObjectId(orderId),
-                'customer.customerId': convertToObjectId(userId),
-            },
-        });
+        const [order, customer] = await Promise.all([
+            this.ordersRepository.findOneOrThrow({
+                filterQuery: {
+                    _id: convertToObjectId(orderId),
+                    'customer.customerId': convertToObjectId(userId),
+                },
+            }),
+            this.usersService.findByIdOrThrow(userId),
+        ]);
         if (order.orderStatus !== OrderStatusEnum.Pending) {
             throw new HttpException(
                 {
@@ -442,8 +446,8 @@ export class OrdersService {
 
         order.orderLogs = order?.orderLogs || [];
         order.orderLogs.push({
-            action: 'cancel',
-            actorId: order.customer.customerId,
+            action: OrderActionEnum.CancelByCustomer,
+            actor: new Actor(customer),
             actionAt: new Date(),
             note: cancel?.reason ?? '',
         });
