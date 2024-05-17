@@ -1,4 +1,4 @@
-import { HttpException, Inject, Injectable } from '@nestjs/common';
+import { HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { GetShippingFeeDTO, ItemShipping } from './dtos/get-shipping-fee.dto';
 import Ghn, { GhnConfig } from 'giaohangnhanh';
 import { GhnDistrictDTO, GhnProvinceDTO, GhnWardDTO } from './dtos';
@@ -8,6 +8,7 @@ import { convertTimeString } from 'convert-time-string';
 import { CreateOrder, PreviewOrder, CreateOrderResponse } from 'giaohangnhanh/lib/order';
 import { retry } from '~/common/utils';
 import { ConfigService } from '@nestjs/config';
+import { HttpExceptionDto } from '~/common';
 
 @Injectable()
 export class GhnService {
@@ -119,7 +120,6 @@ export class GhnService {
     }
 
     public async previewOrder(previewData: PreviewOrder) {
-        console.log(previewData);
         const maxRetries = 3;
         let retries = 0;
 
@@ -134,29 +134,32 @@ export class GhnService {
                 return { expected_delivery_time: expected, ...data };
             } catch (error) {
                 console.log(error);
+
+                if (error?.message?.includes('master_data_validate_phone')) {
+                    throw new HttpExceptionDto({
+                        code: 'ghn.invalidPhone',
+                        status: HttpStatus.UNPROCESSABLE_ENTITY,
+                        errors: {
+                            phone: 'Phone number is invalid',
+                            message: error?.message,
+                        },
+                    });
+                }
+
                 retries++;
                 if (retries === maxRetries) {
-                    throw new HttpException('Failed to preview order after multiple attempts', 500);
+                    throw new HttpExceptionDto({
+                        code: 'GHN_INVALID_PHONE',
+                        status: HttpStatus.INTERNAL_SERVER_ERROR,
+                        errors: {
+                            ghn: 'Failed to preview order after multiple attempts',
+                        },
+                    });
                 }
             }
         }
     }
 
-    // public async createOrder(orderData: CreateOrder) {
-    //     console.log(orderData);
-    //     return retry(
-    //         async () => {
-    //             const { expected_delivery_time, ...data } =
-    //                 await this.ghnInstance.order.createOrder(orderData);
-
-    //             const expected = new Date(expected_delivery_time);
-    //             expected.setDate(expected.getDate() + 1);
-
-    //             return { expected_delivery_time: expected, ...data };
-    //         },
-    //         { maxRetries: 3, errorMessage: 'Failed to create order after multiple attempts' },
-    //     );
-    // }
     public async createOrder(orderData: CreateOrder) {
         const maxRetries = 3;
         let retries = 0;
@@ -174,9 +177,27 @@ export class GhnService {
                 return { expected_delivery_time: expected, ...data };
             } catch (error) {
                 console.error(error);
+
+                if (error?.message?.includes('master_data_validate_phone')) {
+                    throw new HttpExceptionDto({
+                        code: 'ghn.invalidPhone',
+                        status: HttpStatus.UNPROCESSABLE_ENTITY,
+                        errors: {
+                            phone: 'Phone number is invalid',
+                            message: error?.message,
+                        },
+                    });
+                }
+
                 retries++;
                 if (retries === maxRetries) {
-                    throw new HttpException('Failed to create order after multiple attempts', 500);
+                    throw new HttpExceptionDto({
+                        code: 'GHN_INVALID_PHONE',
+                        status: HttpStatus.INTERNAL_SERVER_ERROR,
+                        errors: {
+                            ghn: 'Failed to preview order after multiple attempts',
+                        },
+                    });
                 }
             }
         }
