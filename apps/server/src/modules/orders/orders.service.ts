@@ -35,7 +35,7 @@ import {
 import { PinoLogger } from 'nestjs-pino';
 import { ConfigService } from '@nestjs/config';
 import { Actor, Order } from './schemas';
-import { CartsService } from '../carts';
+import { Cart, CartsService } from '../carts';
 import { RedlockService } from '~/common/redis';
 import { ClientSession, Types } from 'mongoose';
 import { ExecutionError, Lock } from 'redlock';
@@ -468,13 +468,14 @@ export class OrdersService {
     ) {
         const cartFound = await this.cartsService.getCarts(user._id);
         const productToDel: string[] = orderCreated.products.map((p) => p.skuId.toString());
-        cartFound.products = cartFound.products.filter(
+        const toUpdate = cartFound.products.filter(
             (p) => !productToDel.includes(p.skuId.toString()),
         );
-        await this.cartsService.updateCart(
+
+        await this.cartsService.upsertCart(
             {
                 userId: user._id,
-                data: cartFound,
+                updateData: { ...cartFound, products: toUpdate },
             },
             session,
         );

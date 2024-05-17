@@ -69,6 +69,32 @@ export class CartsService {
         );
     }
 
+    async upsertCart(
+        { userId, updateData }: { userId: string | Types.ObjectId; updateData: Cart },
+        session?: ClientSession,
+    ) {
+        let cartFound = await this.cartRepository.findOne({
+            filterQuery: { userId: convertToObjectId(userId) },
+        });
+
+        if (!cartFound) {
+            cartFound = await this.cartRepository.create({
+                document: {
+                    userId: convertToObjectId(userId),
+                    products: [],
+                },
+            });
+        }
+
+        return this.cartRepository.updateCartLockSession(
+            {
+                userId: convertToObjectId(userId),
+                products: updateData.products,
+            },
+            session,
+        );
+    }
+
     async getCarts(userId: Types.ObjectId | string) {
         let cartFound = await this.cartRepository.findOne({
             filterQuery: { userId: convertToObjectId(userId) },
