@@ -17,4 +17,12 @@ export class AbstractDocument {
     @Factory((faker: Faker) => new Types.ObjectId(faker.database.mongodbObjectId()))
     @Prop({ type: Types.ObjectId, default: new Types.ObjectId(), required: false })
     _id: Types.ObjectId;
+
+    @ApiProperty({ example: new Date(), type: Date, default: new Date() })
+    @Prop({ type: Date, default: new Date(), required: false })
+    createdAt?: Date;
+
+    @ApiProperty({ example: new Date(), type: Date, default: new Date() })
+    @Prop({ type: Date, default: new Date(), required: false })
+    updatedAt?: Date;
 }

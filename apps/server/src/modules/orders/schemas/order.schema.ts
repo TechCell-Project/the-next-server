@@ -3,7 +3,7 @@ import { AbstractDocument } from '~/common/abstract';
 import { Factory } from 'nestjs-seeder';
 import { Faker } from '@faker-js/faker';
 import { HydratedDocument } from 'mongoose';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, IntersectionType } from '@nestjs/swagger';
 import { CustomerSchema } from './customer.schema';
 import { PaymentSchema } from './payment.schema';
 import { OrderStatusEnum } from '../enum';
@@ -15,7 +15,7 @@ import { OrderLogSchema } from './order-log.schema';
     timestamps: true,
     collection: 'orders',
 })
-export class Order extends AbstractDocument {
+export class Order extends IntersectionType(AbstractDocument) {
     constructor(data?: Partial<Order>) {
         super();
         Object.assign(this, data);
