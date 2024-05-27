@@ -5,10 +5,8 @@ services:
         container_name: mongodb
         hostname: mongodb
         image: docker.io/bitnami/mongodb:7.0
-        environment:
-            - MONGODB_PORT_NUMBER=${MONGODB_PORT:-27017}
-            - MONGODB_ROOT_USER=${MONGODB_USERNAME}
-            - MONGODB_ROOT_PASSWORD=${MONGODB_PASSWORD}
+        env_file:
+            - .env
         ports:
             - '${MONGODB_PORT:-27017}:${MONGODB_PORT:-27017}'
         volumes:
@@ -50,6 +48,7 @@ services:
             - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
             - RABBITMQ_NODE_PORT_NUMBER=${RABBITMQ_PORT:-5672}
             - RABBITMQ_MANAGEMENT_PORT_NUMBER=${RABBITMQ_MANAGEMENT_PORT:-15672}
+            - RABBITMQ_MANAGEMENT_ALLOW_WEB_ACCESS=true
         volumes:
             - 'rabbitmq_data:/bitnami/rabbitmq/mnesia'
         networks:
