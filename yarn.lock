@@ -12539,7 +12539,7 @@ __metadata:
     tsconfig-paths: "npm:^4.2.0"
     typescript: "npm:^5.1.3"
     uuid: "npm:^9.0.1"
-    vnpay: "npm:^1.1.0"
+    vnpay: "npm:^1.5.0"
     webpack: "npm:^5.91.0"
   languageName: unknown
   linkType: soft
@@ -14031,12 +14031,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vnpay@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "vnpay@npm:1.1.0"
+"vnpay@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "vnpay@npm:1.5.0"
   dependencies:
     moment-timezone: "npm:^0.5.43"
-  checksum: 10c0/b5e3287ebbd62589e1dcd1c2d66a145c8029b6b6e45a600ce47c81a37e391d15823cbea74afe18c206a25048bc27767b67d9fe58aaeed6f1dad07706468a7ca7
+  checksum: 10c0/3a6242407a29c1a42faea651d4f5072bd0ce58e9d2e340b41cb9ffde3f6f4856709a3a447a425896ae51d58133e2738295d01a7ac410974547945796c908de06
   languageName: node
   linkType: hard
 

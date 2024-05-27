@@ -35,7 +35,7 @@ import {
 import { PinoLogger } from 'nestjs-pino';
 import { ConfigService } from '@nestjs/config';
 import { Actor, Order } from './schemas';
-import { Cart, CartsService } from '../carts';
+import { CartsService } from '../carts';
 import { RedlockService } from '~/common/redis';
 import { ClientSession, Types } from 'mongoose';
 import { ExecutionError, Lock } from 'redlock';
@@ -333,9 +333,13 @@ export class OrdersService {
     async verifyVnpayIpn(query: VnpayIpnUrlDTO) {
         this.logger.debug(`Verify VNPAY IPN: ${JSON.stringify(query)}`);
         try {
-            const isVerified = this.vnpayService.verifyReturnUrl(query);
-            if (!isVerified || !isVerified.isSuccess) {
+            const isVerified = this.vnpayService.verifyIpnCall(query);
+            if (!isVerified) {
                 return IpnFailChecksum;
+            }
+
+            if (!isVerified.isSuccess) {
+                return IpnUnknownError;
             }
 
             const order = await this.ordersRepository.getOrderByIdOrNull(query.vnp_TxnRef);
