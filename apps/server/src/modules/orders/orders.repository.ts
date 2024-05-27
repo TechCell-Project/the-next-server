@@ -12,7 +12,7 @@ import {
 } from 'mongoose';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { FilterOrdersDto, SortOrdersDto } from './dtos';
-import { generateRegexQuery } from 'regex-vietnamese';
+import { createRegex } from '@vn-utils/text';
 import { RedlockService } from '~/common/redis';
 import { ExecutionError, Lock } from 'redlock';
 import { HttpException, HttpStatus } from '@nestjs/common';
@@ -63,7 +63,7 @@ export class OrdersRepository extends AbstractRepository<Order> {
         }
 
         if (filterOptions?.keyword) {
-            const keywordRegex = generateRegexQuery(filterOptions.keyword);
+            const keywordRegex = createRegex(filterOptions.keyword);
             where.$or = [
                 { name: keywordRegex },
                 { description: keywordRegex },

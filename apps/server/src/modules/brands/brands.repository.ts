@@ -5,7 +5,7 @@ import { Connection, FilterQuery, Model } from 'mongoose';
 import { PinoLogger } from 'nestjs-pino';
 import { FilterBrandsDto, SortBrandsDto } from './dtos';
 import { BrandStatusEnum } from './enums';
-import { generateRegexQuery } from 'regex-vietnamese';
+import { createRegex } from '@vn-utils/text';
 
 export class BrandsRepository extends AbstractRepository<Brand> {
     constructor(
@@ -41,10 +41,11 @@ export class BrandsRepository extends AbstractRepository<Brand> {
         }
 
         if (filterOptions?.keyword) {
+            const keywordRegex = createRegex(filterOptions.keyword);
             where.$or = [
-                { name: generateRegexQuery(filterOptions.keyword) },
-                { description: generateRegexQuery(filterOptions.keyword) },
-                { slug: generateRegexQuery(filterOptions.keyword) },
+                { name: keywordRegex },
+                { description: keywordRegex },
+                { slug: keywordRegex },
             ];
         }
 

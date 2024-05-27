@@ -5,7 +5,7 @@ import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, FilterQuery, Model } from 'mongoose';
 import { QuerySpusDto } from './dtos';
 import { SpuStatusEnum } from './spus.enum';
-import { generateRegexQuery } from 'regex-vietnamese';
+import { createRegex } from '@vn-utils/text';
 
 export class SPURepository extends AbstractRepository<SPU> {
     constructor(
@@ -43,7 +43,7 @@ export class SPURepository extends AbstractRepository<SPU> {
         }
 
         if (filterOptions?.keyword) {
-            const keywordQuery = generateRegexQuery(filterOptions.keyword);
+            const keywordQuery = createRegex(filterOptions.keyword);
 
             where.$or = [
                 ...(where?.$or || []),

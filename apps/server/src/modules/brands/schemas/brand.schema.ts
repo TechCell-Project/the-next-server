@@ -40,3 +40,4 @@ export class Brand extends AbstractDocument {
 
 export type BrandDocument = HydratedDocument<Brand>;
 export const BrandSchema = SchemaFactory.createForClass(Brand);
+BrandSchema.index({ slug: 'text', name: 'text' });

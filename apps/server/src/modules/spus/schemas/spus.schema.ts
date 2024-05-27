@@ -55,3 +55,10 @@ export class SPU extends AbstractDocument {
 
 export type SPUDocument = HydratedDocument<SPU>;
 export const SPUSchema = SchemaFactory.createForClass(SPU);
+SPUSchema.index({
+    brandId: 1,
+    status: 1,
+    'models.name': 1,
+    'models.slug': 1,
+    description: 1,
+});

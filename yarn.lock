@@ -3681,6 +3681,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vn-utils/text@npm:^0.0.1-rc.2":
+  version: 0.0.1-rc.2
+  resolution: "@vn-utils/text@npm:0.0.1-rc.2"
+  checksum: 10c0/0c33350dade259d424ab41dfed9c8530c3cf877ff7147b0b1fa1a5fb1269c31aa9c51797b6325ab6afe53c2b057defff46ebcb223aa4b6f325ab35a844c34e3f
+  languageName: node
+  linkType: hard
+
 "@webassemblyjs/ast@npm:1.12.1, @webassemblyjs/ast@npm:^1.11.5, @webassemblyjs/ast@npm:^1.12.1":
   version: 1.12.1
   resolution: "@webassemblyjs/ast@npm:1.12.1"
@@ -11996,15 +12003,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"regex-vietnamese@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "regex-vietnamese@npm:2.0.3"
-  dependencies:
-    diacritics: "npm:^1.3.0"
-  checksum: 10c0/15bfc6359efd433852e57d977d3b27e15bc287bb6f300d72cbb693dc14a36882e45a2a6f84ed5eeda1e94385c652f839603a9ca77197fcac58b6e2571462a580
-  languageName: node
-  linkType: hard
-
 "regexp.prototype.flags@npm:^1.5.1, regexp.prototype.flags@npm:^1.5.2":
   version: 1.5.2
   resolution: "regexp.prototype.flags@npm:1.5.2"
@@ -12487,6 +12485,7 @@ __metadata:
     "@types/uuid": "npm:^9.0.8"
     "@typescript-eslint/eslint-plugin": "npm:^6.0.0"
     "@typescript-eslint/parser": "npm:^6.0.0"
+    "@vn-utils/text": "npm:^0.0.1-rc.2"
     amqp-connection-manager: "npm:^4.1.14"
     amqplib: "npm:^0.10.3"
     axios: "npm:^1.6.8"
@@ -12526,7 +12525,6 @@ __metadata:
     prom-client: "npm:14.2.0"
     redlock: "npm:^5.0.0-beta.2"
     reflect-metadata: "npm:^0.2.0"
-    regex-vietnamese: "npm:^2.0.3"
     rxjs: "npm:^7.8.1"
     sanitize-html: "npm:^2.13.0"
     slugify: "npm:^1.6.6"

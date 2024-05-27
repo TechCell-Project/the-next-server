@@ -94,3 +94,4 @@ export class SKU extends AbstractDocument {
 
 export type SKUDocument = HydratedDocument<SKU>;
 export const SKUSchema = SchemaFactory.createForClass(SKU);
+SKUSchema.index({ name: 1, spuId: 1, tags: 1 });

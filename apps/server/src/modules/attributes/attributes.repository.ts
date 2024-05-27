@@ -7,7 +7,7 @@ import { CreateAttributeDto } from './dtos';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { AttributeStatusEnum } from './attribute.enum';
 import { QueryAttributesDto } from './dtos/query-attributes.dto';
-import { generateRegexQuery } from 'regex-vietnamese';
+import { createRegex } from '@vn-utils/text';
 
 export class AttributesRepository extends AbstractRepository<Attribute> {
     constructor(
@@ -70,15 +70,15 @@ export class AttributesRepository extends AbstractRepository<Attribute> {
         }
 
         if (filterOptions?.name) {
-            where.name = generateRegexQuery(filterOptions.name);
+            where.name = createRegex(filterOptions.name);
         }
 
         if (filterOptions?.unit) {
-            where.unit = generateRegexQuery(filterOptions.unit);
+            where.unit = createRegex(filterOptions.unit);
         }
 
         if (filterOptions?.keyword) {
-            const keywordsRegex = generateRegexQuery(filterOptions.keyword);
+            const keywordsRegex = createRegex(filterOptions.keyword);
             where.$or = [
                 { name: keywordsRegex },
                 { description: keywordsRegex },

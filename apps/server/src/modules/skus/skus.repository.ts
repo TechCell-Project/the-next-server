@@ -5,7 +5,7 @@ import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, FilterQuery, Model } from 'mongoose';
 import { QuerySkusDto } from './dtos';
 import { SkuStatusEnum } from './enums';
-import { generateRegexQuery } from 'regex-vietnamese';
+import { createRegex } from '@vn-utils/text';
 
 export class SkusRepository extends AbstractRepository<SKU> {
     constructor(
@@ -34,7 +34,7 @@ export class SkusRepository extends AbstractRepository<SKU> {
         }
 
         if (filterOptions?.keyword) {
-            const keywordRegex = generateRegexQuery(filterOptions.keyword);
+            const keywordRegex = createRegex(filterOptions.keyword);
             where.$or = [{ name: keywordRegex }, { description: keywordRegex }];
         }
 

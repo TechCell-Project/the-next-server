@@ -5,7 +5,7 @@ import { Connection, FilterQuery, Model } from 'mongoose';
 import { PinoLogger } from 'nestjs-pino';
 import { QueryTagsDto } from './dtos';
 import { TagStatusEnum } from './status.enum';
-import { generateRegexQuery } from 'regex-vietnamese';
+import { createRegex } from '@vn-utils/text';
 
 export class TagRepository extends AbstractRepository<Tag> {
     constructor(
@@ -39,10 +39,8 @@ export class TagRepository extends AbstractRepository<Tag> {
         }
 
         if (filterOptions?.keyword) {
-            where.$or = [
-                { name: generateRegexQuery(filterOptions.keyword) },
-                { description: generateRegexQuery(filterOptions.keyword) },
-            ];
+            const keywordRegex = createRegex(filterOptions.keyword);
+            where.$or = [{ name: keywordRegex }, { description: keywordRegex }];
         }
 
         this.logger.info(where);
