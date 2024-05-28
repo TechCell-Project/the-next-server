@@ -1,0 +1,64 @@
+version: '3'
+
+services:
+    mongodb_dev:
+        container_name: mongodb_dev
+        hostname: mongodb_dev
+        image: docker.io/bitnami/mongodb:7.0
+        env_file:
+            - .env
+        ports:
+            - 27027:27017
+        volumes:
+            - 'mongodb_data_dev:/bitnami/mongodb'
+        networks:
+            - the_next_techcell_backend
+
+    redis_dev:
+        container_name: redis_dev
+        hostname: redis_dev
+        image: docker.io/bitnami/redis:7.2
+        environment:
+            - REDIS_PASSWORD=${REDIS_PASSWORD}
+            - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+            - REDIS_PORT_NUMBER=6389
+        ports:
+            - 6389:6389
+        volumes:
+            - 'redis_data_dev:/bitnami/redis/data'
+        networks:
+            - the_next_techcell_backend
+        restart: unless-stopped
+
+    rabbitmq_dev:
+        container_name: rabbitmq_dev
+        hostname: rabbitmq_dev
+        image: docker.io/bitnami/rabbitmq:3.12
+        ports:
+            - 5682:5682
+            - 15682:15682
+        environment:
+            - RABBITMQ_SECURE_PASSWORD=yes
+            - RABBITMQ_LOGS=-
+            - RABBITMQ_USERNAME=${RABBITMQ_USERNAME}
+            - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+            - RABBITMQ_NODE_PORT_NUMBER=5682
+            - RABBITMQ_MANAGEMENT_PORT_NUMBER=15682
+            - RABBITMQ_MANAGEMENT_ALLOW_WEB_ACCESS=true
+        volumes:
+            - 'rabbitmq_data_dev:/bitnami/rabbitmq/mnesia'
+        networks:
+            - the_next_techcell_backend
+        restart: unless-stopped
+
+networks:
+    the_next_techcell_backend:
+        driver: bridge
+
+volumes:
+    mongodb_data_dev:
+        driver: local
+    redis_data_dev:
+        driver: local
+    rabbitmq_data_dev:
+        driver: local
