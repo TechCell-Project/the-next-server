@@ -62,3 +62,5 @@ asyncapi.yaml
 
 .pnp.cjs
 .pnp.loader.mjs
+
+firebase.json

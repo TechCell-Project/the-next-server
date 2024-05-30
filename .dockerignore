@@ -58,3 +58,5 @@ ssl/
 uploads/
 
 swagger.yaml
+
+firebase.json

@@ -5,6 +5,7 @@ import { I18nModule } from '~/common/i18n';
 import { LoggerModule } from '~/logger';
 import { TaskModule } from './modules/task';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { NotifyModule } from './modules/notify';
 
 @Module({
     imports: [
@@ -21,6 +22,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
         I18nModule,
         MailModule,
         TaskModule,
+        NotifyModule,
     ],
 })
 export class CommunicationModule {}
